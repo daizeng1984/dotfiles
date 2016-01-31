@@ -1,0 +1,9 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =7
+let g:netrw_dirhist_1='/media/Development/DiscO/MyWorkPlace/myIGLUDemo/ImperfectShadwoMap-Zeng/Sources'
+let g:netrw_dirhist_2='/media/Development/DiscO/MyWorkPlace/myIGLUDemo/ImperfectShadwoMap-Zeng/Sources/MultiView'
+let g:netrw_dirhist_3='/home/zdai/.vim/plugin'
+let g:netrw_dirhist_4='/home/zdai/Workspace'
+let g:netrw_dirhist_5='/home/zdai/.vim'
+let g:netrw_dirhist_6='/Users/zengdai/Workplace/cppcms'
+let g:netrw_dirhist_7='/Users/zengdai/Workplace'

@@ -1,0 +1,206 @@
+set backspace=indent,eol,start
+set nocp
+set ww=b,s,<,>,[,]
+
+"Check filetype and apply plugin
+filetype plugin on
+"Syntax highlight on
+syntax on
+
+"Line number
+set number
+
+"Set tab == 4spaces
+set expandtab
+set tabstop=4
+set shiftwidth=4
+
+
+"Set textwidth to avoid auto wrapping (insert new line)
+set textwidth=0
+
+
+"Ignore keymapping etc when saving or load session
+set ssop-=options " do not store global and local values in a session 
+set ssop-=folds " do not store folds
+
+"Search case insensitive and highlight them
+set hlsearch
+set ignorecase
+set smartcase
+
+"The theme and font setting
+colorscheme desert
+set guifont=Monospace\ 11
+
+"VIMRC editing and autoupdate
+"Set mapleader
+let mapleader = ","
+"Fast reloading of the .vimrc
+map <silent> <leader>ss :source ~/.vimrc<cr>
+"Fast editing of .vimrc
+map <silent> <leader>ee :e ~/.vimrc<cr>
+"When .vimrc is edited, reload it
+autocmd! bufwritepost .vimrc source ~/.vimrc
+
+"Fold for syntax ( { [
+set foldmethod=syntax
+set foldlevel=100
+
+"GLSL syntax
+au BufNewFile,BufRead *.frag,*.vert,*.fp,*.vp,*.glsl,*.frag.glsl,*.vert.glsl set filetype=glsl 
+
+"Taglist
+let Tlist_Show_One_File=1
+let TList_Exit_OnlyWindow=1
+
+"CScope
+map <C-F11> :!mkdir -p ./cscopeTmp/ <Bar> cscope -Rbq -f ./cscopeTmp/cscope.out <CR>
+map <C-F10> :cs add ./cscopeTmp/cscope.out <CR>
+set cscopequickfix=s-,c-,d-,i-,t-,e-
+"Autoopen quickfix window
+nmap <C-\>s :cs find s <C-R>=expand("<cword>")<CR><CR> :cw<CR>
+nmap <C-\>g :cs find g <C-R>=expand("<cword>")<CR><CR> :cw<CR>
+nmap <C-\>c :cs find c <C-R>=expand("<cword>")<CR><CR> :cw<CR>
+nmap <C-\>t :cs find t <C-R>=expand("<cword>")<CR><CR> :cw<CR>
+nmap <C-\>e :cs find e <C-R>=expand("<cword>")<CR><CR> :cw<CR>
+nmap <C-\>f :cs find f <C-R>=expand("<cfile>")<CR><CR> :cw<CR>
+nmap <C-\>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR> :cw<CR>
+nmap <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR> :cw<CR>
+
+"WinManager
+let g:winManagerWindowLayout='FileExplorer|TagList'
+map <silent> <leader>wm :WMToggle<CR>
+
+"BuffExplorer
+nmap <unique> <C-j> <C-w>j
+nmap <C-k> <C-w>k
+nmap <C-h> <C-w>h
+nmap <C-l> <C-w>l
+map <silent> <leader>wb :BufExplorer<CR>
+"let g:miniBufExplMapCTabSwitchBufs = 1
+"let g:miniBufExplMapWindowNavVim = 1
+let g:bufExplorerShowRelativePath=1
+let g:bufExplorerSortBy='mru'
+let g:bufExplorerSplitRight=0
+let g:bufExplorerSplitVertical=0
+let g:bufExplorerSplitVertSize = 30
+"let g:bufExplorerUseCurrentWindow=1
+"autocmd BufWinEnter \[Buf\ List\] setl
+
+"FuzzyFinder
+"Find file
+map <silent> <leader>wf :FufCoverageFile<CR>
+
+"Grep
+let Grep_Default_Options = '-i -I'
+nnoremap <silent> <C-F> :Rgrep<CR>
+
+"Insert Date
+"nmap <F3> "=strftime("%m/%d/%Y")<CR>P
+imap <F3> <C-R>=strftime("%m/%d/%Y")<CR>
+imap <F4> <C-R>=strftime("%X")<CR>
+
+"A switcher for h/cpp file
+nnoremap <silent> <A-o> :A<CR>
+
+"Backup
+set backupdir=~/.vim/backup
+
+"Ctags, create tags in current work directory
+map <C-F12> :!ctags -R --c++-kinds=+p --fields=+ialS --extra=+q .<CR>
+
+"Set ctrl j so that it can work with clewn better
+let g:C_Ctrl_j='off'
+
+"This is for latex
+"set for win32
+set shellslash
+set grepprg=grep\ -nH\ $*
+filetype indent on
+let g:tex_flavor='latex'
+
+"Load the example configure file.
+source $VIMRUNTIME/vimrc_example.vim
+"Behave like windows
+source $VIMRUNTIME/mswin.vim
+behave mswin
+
+"This is for neocomplcache
+" Disable AutoComplPop. 
+let g:acp_enableAtStartup = 0 
+" Use neocomplcache. 
+let g:neocomplcache_enable_at_startup = 1 
+" Use smartcase. 
+let g:neocomplcache_enable_smart_case = 1 
+" Use camel case completion. 
+let g:neocomplcache_enable_camel_case_completion = 1 
+" Use underbar completion. 
+let g:neocomplcache_enable_underbar_completion = 1 
+" Set minimum syntax keyword length. 
+let g:neocomplcache_min_syntax_length = 3 
+let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*' 
+"For input-saving, this variable controls whether you can  choose a candidate with a alphabet or number displayed beside a candidate after '-'.  When you input 'ho-a',  neocomplcache will select candidate 'a'.
+let g:neocomplcache_enable_quick_match = 1
+
+" Define dictionary. 
+let g:neocomplcache_dictionary_filetype_lists = { 
+    \ 'default' : '', 
+    \ 'vimshell' : $HOME.'/.vimshell_hist', 
+    \ 'scheme' : $HOME.'/.gosh_completions' 
+    \ } 
+
+" Define keyword. 
+if !exists('g:neocomplcache_keyword_patterns') 
+    let g:neocomplcache_keyword_patterns = {} 
+endif 
+let g:neocomplcache_keyword_patterns['default'] = '\h\w*' 
+
+" Plugin key-mappings. 
+imap <C-k>     <Plug>(neocomplcache_snippets_expand) 
+smap <C-k>     <Plug>(neocomplcache_snippets_expand) 
+inoremap <expr><C-g>     neocomplcache#undo_completion() 
+inoremap <expr><C-l>     neocomplcache#complete_common_string() 
+
+" SuperTab like snippets behavior. 
+"imap <expr><TAB> neocomplcache#sources#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : pumvisible() ? "\<C-n>" : "\<TAB>" 
+
+" Recommended key-mappings. 
+" <CR>: close popup and save indent. 
+inoremap <expr><CR>  neocomplcache#smart_close_popup() . "\<CR>" 
+" <TAB>: completion. 
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>" 
+" <C-h>, <BS>: close popup and delete backword char. 
+inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>" 
+inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>" 
+inoremap <expr><C-y>  neocomplcache#close_popup() 
+inoremap <expr><C-e>  neocomplcache#cancel_popup() 
+
+" AutoComplPop like behavior. 
+"let g:neocomplcache_enable_auto_select = 1 
+
+" Shell like behavior(not recommended). 
+"set completeopt+=longest 
+"let g:neocomplcache_enable_auto_select = 1 
+"let g:neocomplcache_disable_auto_complete = 1 
+"inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<TAB>" 
+"inoremap <expr><CR>  neocomplcache#smart_close_popup() . "\<CR>" 
+
+" Enable omni completion. 
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS 
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags 
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS 
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete 
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags 
+
+" Enable heavy omni completion. 
+if !exists('g:neocomplcache_omni_patterns') 
+let g:neocomplcache_omni_patterns = {} 
+endif 
+let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::' 
+"autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete 
+let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+let g:neocomplcache_omni_patterns.c = '\%(\.\|->\)\h\w*'
+let g:neocomplcache_omni_patterns.cpp = '\h\w*\%(\.\|->\)\h\w*\|\h\w*::'
+
+
