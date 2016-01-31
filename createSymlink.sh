@@ -19,14 +19,14 @@ for folder in $folders; do
         cd $dir/$folder
         echo "$(find -maxdepth 1 -path './*' -prune)"
         for d in $(find -maxdepth 1 -path './*' -prune) ; do
-            if [ -L ~/test/$d ] ; then
-                rm ~/test/$d
+            if [ -L ~/$d ] ; then
+                rm ~/$d
             else
-                mv ~/test/$d ~/dotfiles_old/
+                mv -f ~/$d ~/dotfiles_old/
             fi
 
             echo "Creating symlink for $d"
-            ln -s $dir/$folder/$d ~/test/$d
+            ln -s $dir/$folder/$d ~/$d
         done
         cd $dir
     fi

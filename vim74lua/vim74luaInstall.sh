@@ -1,4 +1,4 @@
-#centos
+# Install vim74 in centos 7 so that we could use neocomplete
 git clone https://github.com/vim/vim.git
 sudo yum install -y ruby ruby-devel lua lua-devel luajit luajit-devel ctags mercurial python python-devel python3 python3-devel tcl-devel perl perl-devel perl-ExtUtils-ParseXS perl-ExtUtils-XSpp perl-ExtUtils-CBuilder perl-ExtUtils-Embed ncurses-devel
 cd ./vim
@@ -6,6 +6,7 @@ cd ./vim
 make VIMRUNTIMEDIR=/usr/share/vim/vim74
 sudo make install
 cd
-#don't forget to run GoInstallBinaries in Vim
+echo "don't forget to run GoInstallBinaries in Vim!"
+
 # on mac
 # you just need to brew re/install vim --with-lua
