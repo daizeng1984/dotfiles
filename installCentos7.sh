@@ -43,10 +43,11 @@ sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install
 # ZSH should do this by default
 # chsh -s /usr/bin/zsh
 
-# Download dotfiles
+# Download dotfiles necessary?
+DOTFILES=.dotfiles
 [ -d "$DOTFILES" ] && git clone https://github.com/daizeng1984/configuration.git $DOTFILES
 # Create symlink
-
+cd ~/DOTFILES && ./createSymlink.sh
 
 # Reminde of removing alternateTab in gnome's /usr/share/gnome-shell/extensions
 echo "don't forget to remove alternateTab in /usr/share/gnome-shell/extensions\n"
