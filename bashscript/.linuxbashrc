@@ -1,4 +1,4 @@
 # Include
 [ -r $HOME/.universalbashrc ] && source $HOME/.universalbashrc
 
-# Mac's bashrc
+# Linux's bashrc
