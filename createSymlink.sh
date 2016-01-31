@@ -21,7 +21,7 @@ for folder in $folders; do
             if [ -L ~/$d ] ; then
                 rm ~/$d
             else
-                mv -f ~/$d ~/dotfiles_old/
+                mv -f ~/$d $olddir
             fi
 
             echo "Creating symlink for $d"
