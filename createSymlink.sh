@@ -17,8 +17,7 @@ echo "done"
 for folder in $folders; do
     if [ -d $folder ] ; then
         cd $dir/$folder
-        echo "$(find -maxdepth 1 -path './*' -prune)"
-        for d in $(find -maxdepth 1 -path './*' -prune) ; do
+        for d in $(find . -maxdepth 1 -path './*' -prune) ; do
             if [ -L ~/$d ] ; then
                 rm ~/$d
             else
