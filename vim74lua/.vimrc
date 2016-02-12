@@ -162,10 +162,42 @@ let g:bufExplorerSplitVertSize = 30
 "FuzzyFinder
 "Find file
 map <silent> <leader>wf :FufCoverageFile<CR>
+"Ignore binary files
+" let g:fuf_coveragefile_exclude = '\v\~$|\.(o|exe|dll|bak|orig|swp|class|cache)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])'
+"Grab to ignore .gitignore mostly from http://stackoverflow.com/questions/4132956/is-there-an-easy-way-to-exclude-files-for-which-fuzzyfinder-searches#answer-17322862
+let ignorefiles = [ $HOME . "/.vim/.gitignore", ".gitignore" ]
+let exclude_vcs = '\.(o|exe|dll|bak|orig|swp|class|cache)$|(^|[/\\])\.(hg|git|bzr|svn|cvs)($|[/\\])'
+let ignore = '\v\~$'
+for ignorefile in ignorefiles
+
+    if filereadable(ignorefile)
+        for line in readfile(ignorefile)
+            " Rmove empty lines and comment lines
+            if match(line, '^\s*$') == -1 && match(line, '^\s*#') == -1
+                let line = substitute(line, '^/', '', '')
+                let line = substitute(line, '\.', '\\.', 'g')
+                let line = substitute(line, '\*', '.*', 'g')
+                let ignore .= '|' . line
+            endif
+        endfor
+    endif
+
+    " Local will override the home folder's .gitignore
+    let ignore .= '|' . exclude_vcs
+    let g:fuf_coveragefile_exclude = ignore
+    let g:fuf_file_exclude = ignore
+    let g:fuf_dir_exclude = ignore
+
+endfor
 
 "Grep
 let Grep_Default_Options = '-i -I'
 nnoremap <silent> <C-F> :Rgrep<CR>
+" Fix Mac issue: xargs illegal options
+let s:os = system('uname')
+if  s:os =~ 'Darwin'
+    let g:Grep_Xargs_Options='-0' 
+endif 
 
 "Insert Date
 "nmap <F3> "=strftime("%m/%d/%Y")<CR>P
