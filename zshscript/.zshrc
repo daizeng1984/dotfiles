@@ -54,6 +54,7 @@ plugins=(git)
 # User configuration
 
 export PATH="/opt/local/bin:/opt/local/sbinct:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin"
+export PATH="$PATH:$ECLIPSE_HOME"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
@@ -83,3 +84,7 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias cp='rsync --progress -ravzI'
+
+function eclimd {
+$ECLIPSE_HOME/eclimd -Dosgi.instance.area.default=$(pwd)/$1
+}
