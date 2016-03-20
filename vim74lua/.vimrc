@@ -97,7 +97,7 @@ set smartcase
 "Clean swp files for current folder
 "Set mapleader
 let mapleader = ","
-map <silent> <leader>wp :!find -name ".*.*.swp" <Bar> xargs rm -rf<cr>
+map <silent> <leader>wp :!find . -name ".*.*.swp" <Bar> xargs rm -rf<cr>
 
 "The theme and font setting
 colorscheme desert
@@ -125,19 +125,19 @@ let Tlist_Show_One_File=1
 let TList_Exit_OnlyWindow=1
 
 "CScope
-map <C-F11> :silent! !mkdir -p ./cscopeTmp/ <Bar> cscope -Rbq -f ./cscopeTmp/cscope.out <CR> :cs kill -1<CR> :cs add ./cscopeTmp/cscope.out <CR>
+"map <C-F11> :silent! !mkdir -p ./cscopeTmp/ <Bar> cscope -Rbq -f ./cscopeTmp/cscope.out <CR> :cs kill -1<CR> :cs add ./cscopeTmp/cscope.out <CR>
 "map <C-F10> :cs add ./cscopeTmp/cscope.out <CR>
-set cscopequickfix=s-,c-,d-,i-,t-,e-
+"set cscopequickfix=s-,c-,d-,i-,t-,e-
 
 "Autoopen quickfix window
-nmap <C-\>s :cs find s <C-R>=expand("<cword>")<CR><CR> :cw<CR>
-nmap <C-\>g :cs find g <C-R>=expand("<cword>")<CR><CR> :cw<CR>
-nmap <C-\>c :cs find c <C-R>=expand("<cword>")<CR><CR> :cw<CR>
-nmap <C-\>t :cs find t <C-R>=expand("<cword>")<CR><CR> :cw<CR>
-nmap <C-\>e :cs find e <C-R>=expand("<cword>")<CR><CR> :cw<CR>
-nmap <C-\>f :cs find f <C-R>=expand("<cfile>")<CR><CR> :cw<CR>
-nmap <C-\>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR> :cw<CR>
-nmap <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR> :cw<CR>
+"nmap <C-\>s :cs find s <C-R>=expand("<cword>")<CR><CR> :cw<CR>
+"nmap <C-\>g :cs find g <C-R>=expand("<cword>")<CR><CR> :cw<CR>
+"nmap <C-\>c :cs find c <C-R>=expand("<cword>")<CR><CR> :cw<CR>
+"nmap <C-\>t :cs find t <C-R>=expand("<cword>")<CR><CR> :cw<CR>
+"nmap <C-\>e :cs find e <C-R>=expand("<cword>")<CR><CR> :cw<CR>
+"nmap <C-\>f :cs find f <C-R>=expand("<cfile>")<CR><CR> :cw<CR>
+"nmap <C-\>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR> :cw<CR>
+"nmap <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR> :cw<CR>
 
 "WinManager
 let g:winManagerWindowLayout='TagList'
@@ -162,6 +162,7 @@ let g:bufExplorerSplitVertSize = 30
 "FuzzyFinder
 "Find file
 map <silent> <leader>wf :FufCoverageFile<CR>
+map <silent> <leader>w, :FufRenewCache<CR>
 "Ignore binary files
 " let g:fuf_coveragefile_exclude = '\v\~$|\.(o|exe|dll|bak|orig|swp|class|cache)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])'
 "Grab to ignore .gitignore mostly from http://stackoverflow.com/questions/4132956/is-there-an-easy-way-to-exclude-files-for-which-fuzzyfinder-searches#answer-17322862
@@ -319,3 +320,8 @@ endif
 let g:neocomplete#force_omni_input_patterns.java = '\%(\h\w*\|)\)\.\w*'
 let g:neocomplete#force_omni_input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
 let g:neocomplete#force_omni_input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+
+map <silent> <leader>j :JavaImport<CR>
+map <silent> <leader>d :JavaDocComment<CR>
+map <F5> :Java %<CR>
+
