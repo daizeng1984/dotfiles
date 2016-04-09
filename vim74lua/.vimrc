@@ -215,7 +215,7 @@ set backupdir=~/.vim/backup
 map <C-F5> :silent! !./build.sh<CR>
 
 "Ctags, create tags in current work directory
-map <C-F12> :silent! !ctags -R --c++-kinds=+p --fields=+ialS --extra=+q .<CR> :UpdateTypesFile <CR>
+"map <C-F12> :silent! !ctags -R --c++-kinds=+p --fields=+ialS --extra=+q .<CR> :UpdateTypesFile <CR>
 
 "Set ctrl j so that it can work with clewn better
 let g:C_Ctrl_j='off'
@@ -324,4 +324,5 @@ let g:neocomplete#force_omni_input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\
 map <silent> <leader>j :JavaImport<CR>
 map <silent> <leader>d :JavaDocComment<CR>
 map <F5> :Java %<CR>
+map <C-]> :JavaSearch<CR>
 
