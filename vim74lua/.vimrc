@@ -2,6 +2,9 @@ set backspace=indent,eol,start
 set nocp
 set ww=b,s,<,>,[,]
 
+"Fix ctrl-q
+silent !stty -ixon > /dev/null 2>/dev/null
+
 "Display key command
 set showcmd
 

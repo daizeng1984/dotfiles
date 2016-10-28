@@ -1,7 +1,7 @@
 #!/usr/bin/bash
 # Install on minimal setup
-yum groupinstall "X Window System"
-yum groupinstall "GNOME Desktop"
+yum -y groupinstall "X Window System"
+yum -y groupinstall "GNOME Desktop"
 
 # 3rd Party Repo 
 # Install Elrepo based on official website, this might be changed
@@ -10,22 +10,22 @@ rpm -Uvh http://www.elrepo.org/elrepo-release-7.0-2.el7.elrepo.noarch.rpm
 # So we could install kmod-nvidia after that
 # yum install kmod-nvidia
 # Install EPEL
-yum install epel-release
+yum -y install epel-release
 # Install NUX desktop if you need app like audacious
 yum -y install epel-release && rpm -Uvh http://li.nux.ro/download/nux/dextop/el7/x86_64/nux-dextop-release-0-5.el7.nux.noarch.rpm
 
 # Install some tools essential for myself
-yum install gvim
-yum install ntfs-3g
-yum install gcc gcc-c++ git
-yum install tree
-yum install wget
+yum -y install gvim
+yum -y install ntfs-3g
+yum -y install gcc gcc-c++ git
+yum -y install tree
+yum -y install wget
 
 # install chrome
 cd && mkdir Downloads && cd Downloads
 chown -R $USER:$USER
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
-yum --nogpgcheck localinstall google-chrome-stable_current_x86_64.rpm
+yum -y --nogpgcheck localinstall google-chrome-stable_current_x86_64.rpm
 cd
 
 #install dropbox better from official website's RPM
