@@ -1,0 +1,8 @@
+termux-javac(){
+    ecj "${1}.java"
+    dx --dex --output="${1}.dex" "${1}.class"
+}
+
+termux-java(){
+    dalvikvm -cp "${1}.dex" $1
+}
