@@ -1,6 +1,12 @@
 set backspace=indent,eol,start
 set nocp
 set ww=b,s,<,>,[,]
+set shell=/bin/bash
+
+"Help stupid windows vim to get the path
+if has('win32') || has('win64')
+    set runtimepath=$HOME/.dotfiles/vim74lua/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,$HOME/.dotfiles/vim74lua/.vim/after
+endif
 
 "Fix ctrl-q
 silent !stty -ixon > /dev/null 2>/dev/null

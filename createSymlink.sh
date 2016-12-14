@@ -20,13 +20,32 @@ for folder in $folders; do
         for d in $(find . -maxdepth 1 -path './*' -prune) ; do
             if [ -L ~/$d ] ; then
                 rm ~/$d
-            else
-                mv -f ~/$d $olddir
+            else 
+				if [ -e ~/$d ]; then
+					cp -rf ~/$d $olddir
+					rm -rf ~/$d
+				fi
             fi
 
-            echo "Creating symlink for $d"
-            ln -s $dir/$folder/$d ~/$d
+			if [[ ${1} == 'nosymlink' ]]; then
+				if [[ -d ${d} ]]; then
+					# Process .dotfolder, currently only .vim, TODO: extend it if there's later needs
+					if [[ ${d} != './.vim' ]]; then
+						# Better let gvim handle this
+						# printf "if has('win32') || has('win64')\n\tset runtimepath=" + $(cygpath -wa ${dir}/${folder}/${d}) + "\nendif\n" > 
+						echo "Cannot support dot folder: ${d}"
+					fi
+				else
+					echo "Create wrapper .dotfiles for ${d}"
+					printf "source \$HOME/.dotfiles/${folder}/${d}" > '__${d}'
+					mv -f '__${d}' ~/${d}
+				fi
+			else
+				echo "Creating symlink for $d"
+				ln -s $dir/$folder/$d ~/$d
+			fi
         done
         cd $dir
     fi
 done
+
