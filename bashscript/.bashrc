@@ -1,5 +1,5 @@
 # Which machine? we use uname to see: http://stackoverflow.com/questions/3466166/how-to-check-if-running-in-cygwin-mac-or-linux
-if [ "$(expr substr $(uname -s) 1 6)" == "Darwin" ]; then
+if [ "$(uname -s)" == "Darwin" ]; then
 	echo "Find Darwin System..."
     [ -r $HOME/.macbashrc ] && source $HOME/.macbashrc
 elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
