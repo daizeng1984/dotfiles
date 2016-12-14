@@ -1,0 +1,3 @@
+export ECLIPSE_HOME="/Applications/Eclipse.app/Contents/Eclipse"
+export PATH="$PATH:$ECLIPSE_HOME"
+export PATH="$PATH:/Users/zengdai/anaconda2/bin"

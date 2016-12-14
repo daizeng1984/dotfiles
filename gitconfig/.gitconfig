@@ -1,0 +1,44 @@
+[user]
+    name = daizeng1984
+    email = daizeng1984@gmail.com\n
+[diff]
+    tool = gvimdiff
+[difftool]
+    prompt = true
+[alias]
+    d = difftool
+    s = status
+    co = commit
+[push]
+    default = matching
+[pager]
+    status = false
+    stash = false
+
+[merge]
+    tool = gvimdiff
+
+[core]
+    editor = vim
+
+[i18n]
+    filesEncoding = utf-8
+
+[color]
+    ui = always
+    pager = true
+
+[mergetool]
+    keepBackup = false
+
+[alias]
+    # https://www.jacobtomlinson.co.uk/quick%20tip/2016/01/18/pretty-git-logs-with-git-lg/
+    lg = !"git lg2"
+    lg1 = !"git lg1-specific --all"
+    lg2 = !"git lg2-specific --all"
+    lg3 = !"git lg3-specific --all"
+
+    lg1-specific = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)'
+    lg2-specific = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(auto)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)'
+    lg3-specific = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset) %C(bold cyan)(committed: %cD)%C(reset) %C(auto)%d%C(reset)%n''          %C(white)%s%C(reset)%n''          %C(dim white)- %an <%ae> %C(reset) %C(dim white)(committer: %cn <%ce>)%C(reset)'
+
