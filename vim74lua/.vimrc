@@ -1,7 +1,7 @@
 set backspace=indent,eol,start
 set nocp
 set ww=b,s,<,>,[,]
-set shell=/bin/bash
+"set shell=/bin/bash
 
 "Help stupid windows vim to get the path
 if has('win32') || has('win64')
@@ -110,7 +110,11 @@ map <silent> <leader>wp :!find . -name ".*.*.swp" <Bar> xargs rm -rf<cr>
 
 "The theme and font setting
 colorscheme desert
+if has('win32') || has('win64')
+set guifont=Droid_Sans_Mono:h12:cANSI
+else
 set guifont=Monospace\ 11
+endif
 
 "VIMRC editing and autoupdate
 "Set mapleader
@@ -330,8 +334,11 @@ let g:neocomplete#force_omni_input_patterns.java = '\%(\h\w*\|)\)\.\w*'
 let g:neocomplete#force_omni_input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
 let g:neocomplete#force_omni_input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
 
-map <silent> <leader>j :JavaImport<CR>
-map <silent> <leader>d :JavaDocComment<CR>
+map <silent> <leader>ji :JavaImport<CR>
+map <silent> <leader>jc :JavaDocComment<CR>
 map <F5> :Java %<CR>
 map <C-]> :JavaSearch<CR>
 
+nmap <leader>d :diffupdate<CR>zm
+nmap <leader>dp :.diffput<CR>:diffupdate<CR>zm
+nmap <leader>dg :diffget<CR>:diffupdate<CR>zm
