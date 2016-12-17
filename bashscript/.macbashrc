@@ -1,5 +1,8 @@
 # Include
 [ -r $HOME/.universalbashrc ] && source $HOME/.universalbashrc
 
-# Mac's bashrc
-alias cp='rsync --progress -ravzI'
+# Alert
+notify() {
+osascript -e "display notification \"${1}\" with title \"Alert\""
+}
+alias alert=notify

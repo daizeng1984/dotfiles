@@ -1,4 +1,3 @@
 # Include
 [ -r $HOME/.universalbashrc ] && source $HOME/.universalbashrc
 
-# Linux's bashrc

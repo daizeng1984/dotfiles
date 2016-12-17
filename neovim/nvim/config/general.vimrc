@@ -23,6 +23,8 @@ set autoread
 " clipboard
 set clipboard=unnamedplus
 " set completeopt=longest,menuone,preview
+filetype plugin indent on
+set omnifunc=syntaxcomplete#Complete
 
 " Add rtp
 set runtimepath+=$XDG_CONFIG_HOME/nvim/runtime
@@ -69,7 +71,7 @@ set ssop-=folds " do not store folds
 
 "The theme and font setting
 colorscheme desert
-"let g:GuiFont="Droid Sans Mono:h13"
+let g:GuiFont="Droid Sans Mono:h11" " Meslo LG L DZ for Powerline:h11
 
 "Fold for syntax ( { [
 set foldmethod=syntax
@@ -92,6 +94,10 @@ set fileencoding=utf-8
 
 "GLSL syntax
 au BufNewFile,BufRead *.frag,*.vert,*.fp,*.vp,*.glsl,*.frag.glsl,*.vert.glsl set filetype=glsl 
+"Scala
+au BufNewFile,BufRead *.sc,*.scala set filetype=scala 
+" Javascript
+au BufNewFile,BufRead *.js set filetype=javascript 
 " detect .md as markdown instead of modula-2
 autocmd BufNewFile,BufReadPost *.md set filetype=
 " stop highlighting of underscores in markdown files
