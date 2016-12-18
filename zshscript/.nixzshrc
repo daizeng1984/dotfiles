@@ -99,6 +99,7 @@ checkIfInstalled() {
     fi
 }
 checkAndBrew() {
+    PATH="${PATH}:$HOME/.linuxbrew/bin:/usr/local/bin"
     RED='\033[0;31m'
     NC='\033[0m' # No Color
     # Make sure this is fast than brew ls --versions ${1} > /dev/null; ?
@@ -116,7 +117,7 @@ checkAndBrew() {
 
 # Fzf and ag is my new love
 checkAndBrew "fzf" fzf
-checkAndBrew "ag" the_silver_search
+checkAndBrew "ag" the_silver_searcher
 
 # Eclim, powerful yet require many setups, here we are only interested in headless mode
 function eclimd {
