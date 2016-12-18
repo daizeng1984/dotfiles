@@ -90,10 +90,13 @@ bindkey "^b" backward-word
 alias cp='rsync --progress -ravzI'
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
-_delete_before_check() {
+# Safer rm habits
+# Usage: delete a single fileOrFolder at current folder, hope we will have more sophisticated solution later
+delete() {
     #if this is a folder
     filepath=($@)
     echo "Finding all files to delete..."
+    echo "$filepath"
     filesToDelete=$(ag --hidden -l -g "" -u ${filepath[@]})
     linesToDelete=$(echo $filesToDelete | wc -l)
     printf "${filesToDelete}\n"
@@ -124,22 +127,8 @@ _delete_before_check() {
         fi
     fi
 }
-# Safer rm habits
-# Usage: delete a single fileOrFolder at current folder, hope we will have more sophisticated solution later
-delete() {
-    #TODO: disable tilde expansion 
-    filepath="./${1}" #echo "path: $filepath"
-    if [ -d ${filepath} ]; then
-        _delete_before_check ${filepath}
-    if [ -e ${filepath} ]; then
-        #if this is a single files, just delete interactively
-        rm -i ${filepath} #echo "rm single file"
-    else
-        echo "Cannot recognize path $(pwd)/${filepath} in current folder!"
-    fi
-}
 # alias foo='set -f;foo';foo(){ command foo "$@";set +f;}
-alias delete='noglob delete'
+# alias delete='noglob delete'
 
 # Home brew check and install
 checkIfInstalled() {
