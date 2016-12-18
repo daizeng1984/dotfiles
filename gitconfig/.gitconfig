@@ -2,7 +2,7 @@
     name = daizeng1984
     email = daizeng1984@gmail.com\n
 [diff]
-    tool = gvimdiff
+    tool = vimdiff
 [difftool]
     prompt = true
 [alias]
@@ -16,7 +16,7 @@
     stash = false
 
 [merge]
-    tool = gvimdiff
+    tool = vimdiff
 
 [core]
     editor = vim

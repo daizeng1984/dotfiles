@@ -1,2 +1,6 @@
 .netrwhist
 *.swp
+backup/
+plugged/
+undodir/
+doc/

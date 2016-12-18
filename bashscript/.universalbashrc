@@ -60,6 +60,38 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 # A copy that can solve Mac's "problem"
 alias cp='rsync --progress -ravzI'
 
+# Home brew check and install
+checkIfInstalled() {
+    if ! type ${1}  > /dev/null 2>&1; then
+        printf "${RED}${1} is installed.${NC}\n"
+    else
+        printf "${RED}${1} might not be installed correctly.${NC}\n"
+    fi
+}
+checkAndBrew() {
+    RED='\033[0;31m'
+    NC='\033[0m' # No Color
+    # Make sure this is fast than brew ls --versions ${1} > /dev/null; ?
+    if ! type "brew"  > /dev/null 2>&1; then
+        >&2 printf "${RED}Please install Home Brew first! Mac or Linux${NC}\n"
+    else
+        if ! type $1 > /dev/null 2>&1; then
+            printf "${RED}Brew installing '${1}'${NC}\n"
+            brew install $2
+        else
+            printf "${1} is ready.\n"
+        fi
+    fi
+}
+
+# Fzf and ag is my new love
+checkAndBrew "fzf" fzf
+checkAndBrew "ag" the_silver_search
+
+# Eclim, powerful yet require many setups, here we are only interested in headless mode
+function eclimd {
+${ECLIPSE_HOME}/eclimd -Dosgi.instance.area.default=$(pwd)/$1
+}
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
