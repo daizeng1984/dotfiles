@@ -1,0 +1,52 @@
+[1mdiff --git a/neovim/nvim/config/general.vimrc b/neovim/nvim/config/general.vimrc[m
+[1mindex 1413913..617b1d7 100644[m
+[1m--- a/neovim/nvim/config/general.vimrc[m
+[1m+++ b/neovim/nvim/config/general.vimrc[m
+[36m@@ -31,7 +31,7 @@[m [mset runtimepath+=$XDG_CONFIG_HOME/nvim/runtime[m
+ [m
+ "Set textwidth to avoid auto wrapping (insert new line)[m
+ set textwidth=0[m
+[31m-"set shell=/bin/bash[m
+[32m+[m[32mset shell=~/../usr/bin/zsh[m
+ [m
+ "Fix ctrl-q[m
+ silent !stty -ixon > /dev/null 2>/dev/null[m
+[36m@@ -113,7 +113,7 @@[m [mif has('path_extra')[m
+   setglobal tags-=./tags tags^=./tags;[m
+ endif[m
+ [m
+[31m-[m
+[32m+[m[32mlet loaded_netrwPllugin = 1[m
+ [m
+ [m
+ [m
+[1mdiff --git a/neovim/nvim/config/plugins.vimrc b/neovim/nvim/config/plugins.vimrc[m
+[1mindex 90f66d8..cb39236 100644[m
+[1m--- a/neovim/nvim/config/plugins.vimrc[m
+[1m+++ b/neovim/nvim/config/plugins.vimrc[m
+[36m@@ -23,7 +23,6 @@[m [mPlug 'grep.vim'[m
+ [m
+ " Deplete companions[m
+ Plug 'zchee/deoplete-jedi' " Python[m
+[31m-Plug 'artur-shaik/vim-javacomplete2' "Java[m
+ Plug 'ternjs/tern_for_vim', { 'for': ['javascript', 'javascript.jsx'] }[m
+ Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' } "Javascript[m
+ [m
+[36m@@ -38,7 +37,7 @@[m [mcall plug#end()[m
+ [m
+ " Deoplete[m
+ [m
+[31m-autocmd FileType java setlocal omnifunc=javacomplete#Complete " Java Complete 2, with eclim enable this can be disabled[m
+[32m+[m[32m" autocmd FileType java setlocal omnifunc=javacomplete#Complete " Java Complete 2, with eclim enable this can be disabled[m
+ autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags[m
+ " Jedi make it easier! autocmd FileType python setlocal omnifunc=pythoncomplete#Complete[m
+ autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags[m
+[36m@@ -84,7 +83,7 @@[m [mlet $FZF_DEFAULT_COMMAND = 'ag --hidden --path-to-ignore ~/.config/nvim/.agignor[m
+ [m
+ " VimAirline[m
+ set t_Co=256[m
+[31m-let g:airline_powerline_fonts = 1[m
+[32m+[m[32m" let g:airline_powerline_fonts = 1[m
+ let g:airline_theme='wombat'[m
+ [m
+ " Wombat![m
