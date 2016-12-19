@@ -1,7 +1,9 @@
 #!/usr/bin/bash
 # Install on minimal setup
+# TODO: separate desktop app from terminal app
 yum -y groupinstall "X Window System"
 yum -y groupinstall "GNOME Desktop"
+yum -y groupinstall 'Development Tools'
 
 # 3rd Party Repo 
 # Install Elrepo based on official website, this might be changed
@@ -9,6 +11,7 @@ rpm --import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org
 rpm -Uvh http://www.elrepo.org/elrepo-release-7.0-2.el7.elrepo.noarch.rpm
 # So we could install kmod-nvidia after that
 # yum install kmod-nvidia
+
 # Install EPEL
 yum -y install epel-release
 # Install NUX desktop if you need app like audacious
@@ -17,7 +20,8 @@ yum -y install epel-release && rpm -Uvh http://li.nux.ro/download/nux/dextop/el7
 # Install some tools essential for myself
 yum -y install gvim
 yum -y install ntfs-3g
-yum -y install gcc gcc-c++ git
+yum -y install curl gcc irb gcc-c++ git ruby
+yum -y install python35 python35-setuptools python-virtualenv # --user for pip install
 yum -y install tree
 yum -y install wget
 
@@ -35,13 +39,14 @@ cd
 #sh -c "printf '[playonlinux]\nname=PlayOnLinux Official repository\nbaseurl=http://rpm.playonlinux.com/fedora/yum/base\nenable=1\ngpgcheck=0\ngpgkey=http://rpm.playonlinux.com/public.gpg\n' > /etc/yum.repos.d/playonlinux.repo"
 #yum install playonlinux
 
-# autocomplete ignore case
+# autocomplete ignore case for bash
 echo "set completion-ignore-case On" >> $HOME/.inputrc
 
 # Install zsh to be default
 sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
 # ZSH should do this by default
 # chsh -s /usr/bin/zsh
+# However for ssh you might need to change /etc/passwd
 
 # Download dotfiles necessary?
 DOTFILES=.dotfiles

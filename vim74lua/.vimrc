@@ -109,12 +109,16 @@ let mapleader = ","
 map <silent> <leader>wp :!find . -name ".*.*.swp" <Bar> xargs rm -rf<cr>
 
 "The theme and font setting
-colorscheme desert
+colorscheme wombat256mod
 if has('win32') || has('win64')
 set guifont=Droid_Sans_Mono:h12:cANSI
 else
 set guifont=Monospace\ 11
 endif
+set t_Co=256
+" let g:airline_powerline_fonts = 0
+let g:airline_theme='wombat'
+
 
 "VIMRC editing and autoupdate
 "Set mapleader
@@ -153,8 +157,8 @@ let TList_Exit_OnlyWindow=1
 "nmap <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR> :cw<CR>
 
 "WinManager
-let g:winManagerWindowLayout='TagList'
-map <silent> <leader>wm :WMToggle<CR>
+" let g:winManagerWindowLayout='TagList'
+" map <silent> <leader>wm :WMToggle<CR>
 
 "BuffExplorer
 nmap <unique> <C-j> <C-w>j
@@ -342,3 +346,11 @@ map <C-]> :JavaSearch<CR>
 nmap <leader>d :diffupdate<CR>zm
 nmap <leader>dp :.diffput<CR>:diffupdate<CR>zm
 nmap <leader>dg :diffget<CR>:diffupdate<CR>zm
+
+" Undo
+set undodir=~/.vim/.undodir
+set undofile
+set undolevels=100
+set undoreload=1000
+
+set laststatus=2

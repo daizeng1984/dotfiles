@@ -96,7 +96,6 @@ delete() {
     #if this is a folder
     filepath=($@)
     echo "Finding all files to delete..."
-    echo "$filepath"
     filesToDelete=$(ag --hidden -l -g "" -u ${filepath[@]})
     linesToDelete=$(echo $filesToDelete | wc -l)
     printf "${filesToDelete}\n"
@@ -156,7 +155,7 @@ checkAndBrew() {
 }
 
 # Fzf and ag is my new love
-checkAndBrew "fzf" fzf
+checkAndBrew "$HOME/.fzf/bin/fzf" fzf
 checkAndBrew "ag" the_silver_searcher
 
 # Eclim, powerful yet require many setups, here we are only interested in headless mode

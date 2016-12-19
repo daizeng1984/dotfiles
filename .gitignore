@@ -4,3 +4,4 @@ backup/
 plugged/
 undodir/
 doc/
+.DS_Store
