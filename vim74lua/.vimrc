@@ -4,8 +4,9 @@ set ww=b,s,<,>,[,]
 "set shell=/bin/bash
 
 "Help stupid windows vim to get the path
-if has('win32') || has('win64')
-    set runtimepath=$HOME/.dotfiles/vim74lua/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,$HOME/.dotfiles/vim74lua/.vim/after
+if has('win32') || has('win64') || has('win32unix')
+    set runtimepath=$VIM/vimfiles,$HOME/.dotfiles/vim74lua/.vim,$VIMRUNTIME,$VIM/vimfiles/after,$HOME/.dotfiles/vim74lua/.vim/after
+    set shell=$COMSPEC " Sorry, Windows Users
 endif
 
 "Fix ctrl-q
@@ -110,10 +111,27 @@ map <silent> <leader>wp :!find . -name ".*.*.swp" <Bar> xargs rm -rf<cr>
 
 "The theme and font setting
 colorscheme wombat256mod
-if has('win32') || has('win64')
+if has('win32') || has('win64') || has('win32unix')
 set guifont=Droid_Sans_Mono:h12:cANSI
 else
 set guifont=Monospace\ 11
+endif
+
+" ConEmu
+if !empty($CONEMUBUILD)
+    " echom Running in conemu
+    set term=xterm
+    let &t_AB="\e[48;5;%dm"
+    let &t_AF="\e[38;5;%dm"
+    inoremap <Char-0x07F> <BS>
+    nnoremap <Char-0x07F> <BS>
+    " termcap codes for cursor shape changes on entry and exit to
+    " /from insert mode
+    " doesn't work
+    " let &t_ti="\e[1 q"
+    " let &t_SI="\e[5 q"
+    " let &t_EI="\e[1 q"
+    " let &t_te="\e[0 q"
 endif
 set t_Co=256
 " let g:airline_powerline_fonts = 0
@@ -354,3 +372,4 @@ set undolevels=100
 set undoreload=1000
 
 set laststatus=2
+
