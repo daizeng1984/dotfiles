@@ -3,10 +3,21 @@ set nocp
 set ww=b,s,<,>,[,]
 "set shell=/bin/bash
 
+" Undo
+set undodir=~/.vim/.undodir
+set undofile
+set undolevels=100
+set undoreload=1000
+set backupdir=~/.vim/backup
+
 "Help stupid windows vim to get the path
 if has('win32') || has('win64') || has('win32unix')
     set runtimepath=$VIM/vimfiles,$HOME/.dotfiles/vim74lua/.vim,$VIMRUNTIME,$VIM/vimfiles/after,$HOME/.dotfiles/vim74lua/.vim/after
     set shell=$COMSPEC " Sorry, Windows Users
+    set backupdir=$HOME/.dotfiles/vim74lua/.vim/tmp " Sorry, Windows User has to create their own folder
+    set undodir=$HOME/.dotfiles/vim74lua/.vim/tmp
+else
+    "Backup
 endif
 
 "Fix ctrl-q
@@ -136,6 +147,8 @@ endif
 set t_Co=256
 " let g:airline_powerline_fonts = 0
 let g:airline_theme='wombat'
+set laststatus=2
+
 
 
 "VIMRC editing and autoupdate
@@ -242,9 +255,6 @@ imap <F4> <C-R>=strftime("%X")<CR>
 
 "A switcher for h/cpp file
 nnoremap <silent> <A-o> :A<CR>
-
-"Backup
-set backupdir=~/.vim/backup
 
 "Build and run! (only apply for my project)
 map <C-F5> :silent! !./build.sh<CR>
@@ -365,11 +375,5 @@ nmap <leader>d :diffupdate<CR>zm
 nmap <leader>dp :.diffput<CR>:diffupdate<CR>zm
 nmap <leader>dg :diffget<CR>:diffupdate<CR>zm
 
-" Undo
-set undodir=~/.vim/.undodir
-set undofile
-set undolevels=100
-set undoreload=1000
 
-set laststatus=2
 
