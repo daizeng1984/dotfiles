@@ -1,4 +1,6 @@
 #!/bin/bash
+tmpdir="/tmp"
+[ ! -z $TMPDIR ] && tmpdir=$TMPDIR
 [ ! -d $tmpdir ] && mkdir -p $tmpdir
 
 cd $tmpdir
