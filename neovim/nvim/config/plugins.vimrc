@@ -20,6 +20,8 @@ Plug 'jlanzarotta/bufexplorer'
 Plug 'wombat256.vim'
 " Plug 'mhinz/vim-grepper'
 Plug 'grep.vim'
+Plug 'airblade/vim-gitgutter' " Show git diff
+Plug 'rhysd/conflict-marker.vim'
 
 " Deplete companions
 Plug 'zchee/deoplete-jedi' " Python

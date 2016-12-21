@@ -13,3 +13,4 @@ elif [ "$(expr substr $(uname -s) 1 10)" == "MINGW32_NT" ]; then
     [ -r $HOME/.cygwinbashrc ] && source $HOME/.cygwinbashrc
 fi
 
+[ -r $HOME/.dotfiles/samples/var.def ] && source $HOME/.dotfiles/samples/var.def
