@@ -1,4 +1,0 @@
-# Include
-[ -r $HOME/.universalbashrc ] && source $HOME/.universalbashrc
-
-

@@ -1,5 +1,6 @@
+DOTFILES_HOME=$HOME/.dotfiles
 # Include
-[ -r $HOME/.universalbashrc ] && source $HOME/.universalbashrc
+[ -r $DOTFILES_HOME/bashscript/platform/.universalbashrc ] && source $DOTFILES_HOME/bashscript/platform/.universalbashrc
 
 # Cygwin's bashrc
 #alias gvim=/cygdrive/d/DevelopTools/Vim/vim73/gvim
