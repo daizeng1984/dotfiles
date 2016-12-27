@@ -15,6 +15,9 @@ yum -y install curl gcc irb gcc-c++ git ruby
 yum -y install wget
 yum -y install ntfs-3g
 
+# Install npm and nodejs
+yum -y install npm
+
 # Install python34 and pip3
 yum -y install python34 python34-setuptools python-virtualenv # --user for pip install
 wget https://bootstrap.pypa.io/get-pip.py 
@@ -26,7 +29,8 @@ curl -o /etc/yum.repos.d/dperson-neovim-epel-7.repo https://copr.fedorainfraclou
 yum -y install neovim
 pip3 install neovim --user
 yum -y install tree
-yum -y zsh
+yum -y install zsh
+yum -y install the_silver_searcher
 
 # autocomplete ignore case for bash
 echo "set completion-ignore-case On" >> $HOME/.inputrc

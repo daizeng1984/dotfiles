@@ -142,15 +142,16 @@ checkAndBrew() {
     RED='\033[0;31m'
     NC='\033[0m' # No Color
     # Make sure this is fast than brew ls --versions ${1} > /dev/null; ?
-    if ! type "brew"  > /dev/null 2>&1; then
-        >&2 printf "${RED}Please install Home Brew first! Mac or Linux${NC}\n"
-    else
-        if ! type $1 > /dev/null 2>&1; then
-            printf "${RED}Brew installing '${1}'${NC}\n"
-            brew install $2
+
+    if ! type $1 > /dev/null 2>&1; then
+        if ! type "brew"  > /dev/null 2>&1; then
+            >&2 printf "${RED}Please install Home Brew first! Mac or Linux${NC}\n"
         else
-            printf "${1} is ready.\n"
+            printf "${RED}Brew installing '${1}'${NC}\n"
+                brew install $2
         fi
+    else
+        printf "${1} is ready.\n"
     fi
 }
 

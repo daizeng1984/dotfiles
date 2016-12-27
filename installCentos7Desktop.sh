@@ -3,6 +3,9 @@
 yum -y groupinstall "X Window System"
 yum -y groupinstall "GNOME Desktop"
 
+# Install xclip
+yum -y install xclip
+
 # 3rd Party Repo 
 # Install Elrepo based on official website, this might be changed
 rpm --import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org
