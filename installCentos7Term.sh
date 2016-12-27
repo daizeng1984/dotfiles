@@ -14,11 +14,17 @@ yum -y install epel-release
 yum -y install curl gcc irb gcc-c++ git ruby
 yum -y install wget
 yum -y install ntfs-3g
-yum -y install python35 python35-setuptools python-virtualenv # --user for pip install
+
+# Install python34 and pip3
+yum -y install python34 python34-setuptools python-virtualenv # --user for pip install
+wget https://bootstrap.pypa.io/get-pip.py 
+python3.4 get-pip.py --user
+rm get-pip.py
+
 source ./installVimWithLua.sh
 curl -o /etc/yum.repos.d/dperson-neovim-epel-7.repo https://copr.fedorainfracloud.org/coprs/dperson/neovim/repo/epel-7/dperson-neovim-epel-7.repo 
 yum -y install neovim
-pip3 install neovim
+pip3 install neovim --user
 yum -y install tree
 yum -y zsh
 

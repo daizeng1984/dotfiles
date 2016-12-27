@@ -70,7 +70,7 @@ set ssop-=options " do not store global and local values in a session
 set ssop-=folds " do not store folds
 
 "The theme and font setting
-colorscheme desert
+silent colorscheme desert
 let g:GuiFont="Droid Sans Mono:h11" " Meslo LG L DZ for Powerline:h11
 
 "Fold for syntax ( { [

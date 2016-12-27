@@ -1,0 +1,25 @@
+set backspace=indent,eol,start
+set nocp
+set ww=b,s,<,>,[,]
+"Display key command
+set showcmd
+syntax on
+"Line number
+set number
+"Set tab == 4spaces
+set expandtab
+set tabstop=4
+set shiftwidth=4
+
+"Set textwidth to avoid auto wrapping (insert new line)
+set textwidth=0
+
+"Search case insensitive and highlight them
+set hlsearch
+set ignorecase
+set smartcase
+
+"Fold for syntax ( { [
+set foldmethod=syntax
+set foldlevel=100
+
