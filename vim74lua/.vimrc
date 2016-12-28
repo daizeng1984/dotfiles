@@ -375,8 +375,7 @@ nmap <leader>d :diffupdate<CR>zm
 nmap <leader>dp :.diffput<CR>:diffupdate<CR>zm
 nmap <leader>dg :diffget<CR>:diffupdate<CR>zm
 
-
-# SSH paste
+" SSH paste
 map <silent> <leader>p :r /tmp/sshclipboard.txt<CR>
 
 

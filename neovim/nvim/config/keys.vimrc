@@ -34,5 +34,5 @@ nmap <leader>dg :diffget<CR>:diffupdate<CR>zm
 " Grep
 nnoremap <silent> <C-F> :Rgrep<CR>
 
-# SSH paste
+" SSH paste
 map <silent> <leader>p :r /tmp/sshclipboard.txt<CR>
