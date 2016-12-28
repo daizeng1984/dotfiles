@@ -13,6 +13,9 @@ rpm -Uvh http://www.elrepo.org/elrepo-release-7.0-2.el7.elrepo.noarch.rpm
 # So we could install kmod-nvidia after that
 # yum install kmod-nvidia
 
+# Install NUX desktop if you need app like audacious, autokey-gtk
+yum -y install epel-release && rpm -Uvh http://li.nux.ro/download/nux/dextop/el7/x86_64/nux-dextop-release-0-5.el7.nux.noarch.rpm
+
 # Install some tools essential for myself
 # install chrome
 cd && mkdir Downloads && cd Downloads
