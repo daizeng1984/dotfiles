@@ -8,3 +8,5 @@ notify() {
 osascript -e "display notification \"${1}\" with title \"Alert\""
 }
 alias alert=notify
+alias dumpclipboard='pbpaste > '
+alias sshclipboard='sshcopyclipboard zeng@192.168.0.10 idfile.pem'
