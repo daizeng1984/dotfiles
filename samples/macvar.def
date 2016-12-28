@@ -8,5 +8,4 @@ notify() {
 osascript -e "display notification \"${1}\" with title \"Alert\""
 }
 alias alert=notify
-alias dumpclipboard='pbpaste > '
-alias sshclipboard='sshcopyclipboard zeng@192.168.0.10 idfile.pem'
+alias sshcopyclipboard='sshcopyclipboard ec2-user@ec2-54-169-88-67.ap-southeast-1.compute.amazonaws.com $HOME/.ssh/myAWSKeyPairSingapore.pem'
