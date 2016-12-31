@@ -190,6 +190,7 @@ let TList_Exit_OnlyWindow=1
 "WinManager
 " let g:winManagerWindowLayout='TagList'
 " map <silent> <leader>wm :WMToggle<CR>
+map <silent> <leader>we :Explore<CR>
 
 "BuffExplorer
 nmap <unique> <C-j> <C-w>j

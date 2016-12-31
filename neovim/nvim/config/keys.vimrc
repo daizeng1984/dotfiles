@@ -16,6 +16,7 @@ map <silent> <leader>wp :!find . -name ".*.*.swp" <Bar> xargs rm -rf<cr>
 "WinManager
 " let g:winManagerWindowLayout='TagList'
 " map <silent> <leader>wm :WMToggle<CR>
+map <silent> <leader>we :Explore<CR>
 
 "BuffExplorer
 map <silent> <leader>wb :BufExplorer<CR>

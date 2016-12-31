@@ -1,0 +1,20 @@
+# Most screen comes with +color-256, but on my Mac it doesn't so on Mac: brew install homebrew/dupes/screen
+attrcolor b ".I"
+termcapinfo xterm 'Co#256:AB=\E[48;5;%dm:AF=\E38;5;%dm'
+defbce "on"
+
+startup_message off
+
+term screen-256color
+
+defscrollback 30000
+
+# Change main escape key to ctrl-j
+escape ^Jj
+
+# Show status, recommend byobu
+hardstatus alwayslastline 
+hardstatus string '%{= Kd} %{= Kd}%-w%{= Kr}[%{= KW}%n %t%{= Kr}]%{= Kd}%+w %-= %{KG} %H%{KW}|%{KY}%101`%{KW}|%D %M %d %Y%{= Kc} %C%A%{-}'
+
+# Esc key slow in vim
+maptimeout 0
