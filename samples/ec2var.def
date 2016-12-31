@@ -1,3 +1,4 @@
+# https://coderwall.com/p/tgm2la/auto-attach-or-start-tmux-at-login
 if [[ "$TERM" != "screen" ]] ; then
     # Attempt to discover a detached session and attach 
     # it, else create a new session
