@@ -1,0 +1,2 @@
+source $HOME/.dotfiles/samples/macvar.def
+#source $HOME/.dotfiles/samples/ec2var.def

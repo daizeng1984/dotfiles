@@ -63,9 +63,11 @@ alias cp='rsync --progress -ravzI'
 # Home brew check and install
 checkIfInstalled() {
     if ! type ${1}  > /dev/null 2>&1; then
-        printf "${RED}${1} is installed.${NC}\n"
+        >&2 printf "${RED}${1} might not be installed correctly.${NC}\n"
+        echo "-1"
     else
-        printf "${RED}${1} might not be installed correctly.${NC}\n"
+        >&2 printf "${RED}${1} is ready.${NC}\n"
+        echo "0"
     fi
 }
 checkAndBrew() {
@@ -73,21 +75,27 @@ checkAndBrew() {
     RED='\033[0;31m'
     NC='\033[0m' # No Color
     # Make sure this is fast than brew ls --versions ${1} > /dev/null; ?
-    if ! type "brew"  > /dev/null 2>&1; then
-        >&2 printf "${RED}Please install Home Brew first! Mac or Linux${NC}\n"
-    else
-        if ! type $1 > /dev/null 2>&1; then
-            printf "${RED}Brew installing '${1}'${NC}\n"
-            brew install $2
+
+    if ! type $1 > /dev/null 2>&1; then
+        if ! type "brew"  > /dev/null 2>&1; then
+            >&2 printf "${RED}Please install Home Brew first! Mac or Linux${NC}\n"
         else
-            printf "${1} is ready.\n"
+            printf "${RED}Brew installing '${1}'${NC}\n"
+                brew install $2
         fi
+    else
+        printf "${1} is ready.\n"
     fi
 }
 
 # Fzf and ag is my new love
-checkAndBrew "fzf" fzf
-checkAndBrew "ag" the_silver_searcher
+installedFzf=$(checkIfInstalled "$HOME/.fzf/bin/fzf" fzf)
+installedAg=$(checkIfInstalled "ag" the_silver_searcher)
+installedFasd=$(checkIfInstalled "fasd" fasd)
+
+if [ "$installedFzf" = "0" ] && [ "$installedAg" = "0" ]; then
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+fi
 
 # Eclim, powerful yet require many setups, here we are only interested in headless mode
 function eclimd {
