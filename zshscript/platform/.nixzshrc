@@ -147,9 +147,11 @@ delete() {
 # Home brew check and install
 checkIfInstalled() {
     if ! type ${1}  > /dev/null 2>&1; then
-        printf "${RED}${1} is installed.${NC}\n"
+        >&2 printf "${RED}${1} might not be installed correctly.${NC}\n"
+        echo "-1"
     else
-        printf "${RED}${1} might not be installed correctly.${NC}\n"
+        >&2 printf "${RED}${1} is ready.${NC}\n"
+        echo "0"
     fi
 }
 checkAndBrew() {
@@ -171,21 +173,23 @@ checkAndBrew() {
 }
 
 # Fzf and ag is my new love
-checkAndBrew "$HOME/.fzf/bin/fzf" fzf
-checkAndBrew "ag" the_silver_searcher
-checkAndBrew "fasd" fasd
-# export certainfile='$(fzf)'
+installedFzf=$(checkIfInstalled "$HOME/.fzf/bin/fzf" fzf)
+installedAg=$(checkIfInstalled "ag" the_silver_searcher)
+installedFasd=$(checkIfInstalled "fasd" fasd)
 
+# TODO: export certainfile='$(fzf)'
 # Initialize fasd
-eval "$(fasd --init zsh-hook zsh-ccomp zsh-ccomp-install zsh-wcomp zsh-wcomp-install)"
+if [ "$installedFasd" = "0" ] && [ "$installedFzf" = "0" ]; then
+    eval "$(fasd --init zsh-hook zsh-ccomp zsh-ccomp-install zsh-wcomp zsh-wcomp-install)"
+    z() {
+        local dir
+        dir="$(fasd -Rdl "$1" | fzf -1 -0 --no-sort +m)" && cd "${dir}" || return 1
+    }
+fi
 
+if [ "$installedFzf" = "0" ] && [ "$installedAg" = "0" ]; then
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 # fzf tools from https://github.com/junegunn/fzf/wiki/examples
-z() {
-  local dir
-  dir="$(fasd -Rdl "$1" | fzf -1 -0 --no-sort +m)" && cd "${dir}" || return 1
-}
-
 # fd - cd to selected directory
 fd() {
   local dir
@@ -221,6 +225,7 @@ fshow() {
       --format="%C(auto)%h%d %s %C(black)%C(bold)%cr" "$@" | fzf --ansi --no-sort --reverse --tiebreak=index --bind=ctrl-s:toggle-sort \
       --bind "ctrl-m:execute: (grep -o '[a-f0-9]\{7\}' | head -1 | xargs -I % sh -c 'git show --color=always % | less -R') << 'FZF-EOF' {} FZF-EOF"
 }
+fi
 
 # Eclim, powerful yet require many setups, here we are only interested in headless mode
 function eclimd {
