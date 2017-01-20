@@ -65,16 +65,16 @@ return FullPath
 
 ^!n::
 FullPath := GetExplorerFilePath()
-run, notepad++.exe %FullPath%
+run, notepad++.exe "%FullPath%"
 return
 
 ^!g::
 FullPath := GetExplorerFilePath()
-run, "C:/Program Files (x86)/Vim/vim80/gvim.exe" %FullPath%
+run, "C:/Program Files (x86)/Vim/vim80/gvim.exe" "%FullPath%"
 return
 
 ^!t::
-run, "D:/Programs/ConEmu/ConEmu64.exe" -loadcfgfile %HOME%/.dotfiles/windows/ConEmu.xml
+run, "D:/Programs/ConEmu/ConEmu64.exe" -loadcfgfile "%HOME%/.dotfiles/windows/ConEmu.xml"
 return
 
 ^!p::
