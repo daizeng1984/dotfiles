@@ -99,7 +99,7 @@ au BufNewFile,BufRead *.sc,*.scala set filetype=scala
 " Javascript
 au BufNewFile,BufRead *.js set filetype=javascript 
 " detect .md as markdown instead of modula-2
-autocmd BufNewFile,BufReadPost *.md set filetype=
+autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 " stop highlighting of underscores in markdown files
 autocmd BufNewFile,BufRead,BufEnter *.md,*.markdown :syntax match markdownIgnore "_"
 

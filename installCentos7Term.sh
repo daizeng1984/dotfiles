@@ -22,12 +22,14 @@ yum -y install npm
 yum -y install python34 python34-setuptools python-virtualenv # --user for pip install
 wget https://bootstrap.pypa.io/get-pip.py 
 python3.4 get-pip.py --user
+# yum -y install python python-setuptools
 rm get-pip.py
 
 source ./installVimWithLua.sh
 curl -o /etc/yum.repos.d/dperson-neovim-epel-7.repo https://copr.fedorainfracloud.org/coprs/dperson/neovim/repo/epel-7/dperson-neovim-epel-7.repo 
 yum -y install neovim
 pip3 install neovim --user
+pip install neovim --user
 yum -y install tree
 yum -y install zsh
 yum -y install the_silver_searcher
