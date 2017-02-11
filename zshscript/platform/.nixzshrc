@@ -92,7 +92,7 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 
 # hack for clipboard...
 if ! type pbpaste  > /dev/null 2>&1; then
-    alias dumpclipboard='xclip -selection clipboard -o'
+    alias dumpclipboard='xclip -selection clipboard -o > '
 else
     alias dumpclipboard='pbpaste > '
 fi
