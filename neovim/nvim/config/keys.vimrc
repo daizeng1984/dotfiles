@@ -37,3 +37,7 @@ nnoremap <silent> <C-F> :Rgrep<CR>
 
 " SSH paste
 map <silent> <leader>p :r /tmp/sshclipboard.txt<CR>
+
+" Terminal
+tnoremap <silent> <Esc> <C-\><C-n><bar>:q<CR>
+map <silent> <leader>tt :call TermEnter()<CR>
