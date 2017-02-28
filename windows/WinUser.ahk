@@ -63,6 +63,10 @@ ClipSaved =
 return FullPath
 }
 
+^!$::
+run, "%windir%\system32\SnippingTool.exe"
+return
+
 ^!n::
 FullPath := GetExplorerFilePath()
 run, notepad++.exe "%FullPath%"
