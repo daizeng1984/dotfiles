@@ -28,6 +28,8 @@ Plug 'zchee/deoplete-jedi' " Python
 Plug 'artur-shaik/vim-javacomplete2' "Java
 Plug 'ternjs/tern_for_vim', { 'for': ['javascript', 'javascript.jsx'] }
 Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' } "Javascript
+Plug 'mhartington/nvim-typescript' " should do npm install -g typescript
+Plug 'HerringtonDarkholme/yats.vim' " typescript syntax
 
 "Plug 'ramele/agrep'
 "Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript', 'javascript.jsx'] }
@@ -112,3 +114,6 @@ let g:tern#filetypes = [
 " Scala
 let g:scala_scaladoc_indent = 1
 
+Plug 'daizeng1984/my-worddoctor' " My own python plugin currently in test
+" whD
+let g:deoplete#sources#whd#learning_texts = ['${HOME}/obama08.txt', '/']

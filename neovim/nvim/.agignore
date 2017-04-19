@@ -62,6 +62,7 @@ ehthumbs.db
 bin/
 Bin/
 tmp/
+__pycache__/
 
 # IDE and editor files #
 ########################
