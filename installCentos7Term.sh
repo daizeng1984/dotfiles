@@ -15,6 +15,10 @@ yum -y install curl gcc irb gcc-c++ git ruby
 yum -y install wget
 yum -y install ntfs-3g
 
+# Install gdrive
+wget https://docs.google.com/uc\?id\=0B3X9GlR6Embnb010SnpUV0s2ZkU\&export\=download -O /usr/local/bin/gdrive
+chmod +x /usr/local/bin/gdrive
+
 # Install npm and nodejs
 yum -y install npm
 
