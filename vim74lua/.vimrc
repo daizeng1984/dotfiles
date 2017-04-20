@@ -254,6 +254,10 @@ endif
 imap <F3> <C-R>=strftime("%m/%d/%Y")<CR>
 imap <F4> <C-R>=strftime("%X")<CR>
 
+"Big E
+"http://stackoverflow.com/questions/10394707/create-file-inside-new-directory-in-vim-in-one-step
+command -nargs=1 E execute('silent! !mkdir -p "$(dirname "<args>")"') <Bar> e <args>
+
 "A switcher for h/cpp file
 nnoremap <silent> <A-o> :A<CR>
 
