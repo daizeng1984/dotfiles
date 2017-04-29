@@ -12,13 +12,14 @@ Plug 'ervandew/supertab'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'dansomething/vim-eclim'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " some time this cause issue if you install fzf in different source e.g. brew install. To solve you need to brew reinstall
 Plug 'junegunn/fzf.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'jlanzarotta/bufexplorer'
 Plug 'wombat256.vim'
 " Plug 'mhinz/vim-grepper'
+Plug 'danro/rename.vim'
 Plug 'grep.vim'
 Plug 'airblade/vim-gitgutter' " Show git diff
 Plug 'rhysd/conflict-marker.vim'
@@ -29,8 +30,10 @@ Plug 'artur-shaik/vim-javacomplete2' "Java
 Plug 'ternjs/tern_for_vim', { 'for': ['javascript', 'javascript.jsx'] }
 Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' } "Javascript
 Plug 'mhartington/nvim-typescript' " should do npm install -g typescript
+" Plug 'Quramy/tsuquyomi'
 Plug 'HerringtonDarkholme/yats.vim' " typescript syntax
 
+Plug 'daizeng1984/my-worddoctor' " My own python plugin currently in test
 "Plug 'ramele/agrep'
 "Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript', 'javascript.jsx'] }
 "Plug 'othree/jspc.vim', { 'for': ['javascript', 'javascript.jsx'] }
@@ -60,12 +63,17 @@ let g:deoplete#omni_patterns.java = '\%(\h\w*\|)\)\.\w*'
 let g:deoplete#omni_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
 let g:deoplete#omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
 let g:deoplete#omni_patterns.scala = '[^. *\t]\.\w*\|: [A-Z]\w*'
+" let g:deoplete#omni_patterns.typescript = '[^. \t0-9]\.([a-zA-Z_]\w*)?'
 
 let g:deoplete#sources = {}
 let g:deoplete#sources._ = []
 let g:deoplete#auto_completion_start_length = 2
 let g:deoplete#file#enable_buffer_path = 1
 
+
+" let g:deoplete#enable_debug = 1
+" let g:deoplete#enable_profile = 1
+" call deoplete#enable_logging('DEBUG', './deoplete.log')
 
 " Add eclimd support
 let g:EclimCompletionMethod = 'omnifunc'
@@ -114,6 +122,5 @@ let g:tern#filetypes = [
 " Scala
 let g:scala_scaladoc_indent = 1
 
-Plug 'daizeng1984/my-worddoctor' " My own python plugin currently in test
 " whD
 let g:deoplete#sources#whd#learning_texts = ['${HOME}/obama08.txt', '/']
