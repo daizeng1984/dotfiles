@@ -1,0 +1,20 @@
+set autoupdategist
+set noautofocus
+set smoothscroll
+set hud
+set noregex
+set noinsertmappings
+set typelinkhints
+set defaultnewtabpage
+let scrollduration = 10
+let searchlimit = 40
+let searchalias g = "google"
+let mapleader = ","
+let barposition = "bottom"
+let typelinkhintsdelay = "0"
+let hintcharacters = "fdsawerjkiop"
+
+map <c-d> scrollPageDown
+map <c-u> scrollPageUp
+map <u> goBack
+map <c-r> goForward
