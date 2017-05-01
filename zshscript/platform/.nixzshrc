@@ -147,10 +147,14 @@ delete() {
 # Home brew check and install
 checkIfInstalled() {
     if ! type ${1}  > /dev/null 2>&1; then
-        >&2 printf "${RED}${1} might not be installed correctly.${NC}\n"
+        if [ "${3}" != "--quiet" ]; then
+            >&2 printf "${RED}${1} might not be installed correctly.${NC}\n"
+        fi
         echo "-1"
     else
-        >&2 printf "${RED}${1} is ready.${NC}\n"
+        if [ "${3}" != "--quiet" ]; then
+            >&2 printf "${RED}${1} is ready.${NC}\n"
+        fi
         echo "0"
     fi
 }
@@ -221,15 +225,56 @@ fkill() {
 }
 # fshow - git commit browser
 fshow() {
-  git log --graph --color=always \
-      --format="%C(auto)%h%d %s %C(black)%C(bold)%cr" "$@" | fzf --ansi --no-sort --reverse --tiebreak=index --bind=ctrl-s:toggle-sort \
-      --bind "ctrl-m:execute: (grep -o '[a-f0-9]\{7\}' | head -1 | xargs -I % sh -c 'git show --color=always % | less -R') << 'FZF-EOF' {} FZF-EOF"
+  local out shas sha q k
+  while out=$(
+      git log --graph --color=always \
+          --format="%C(auto)%h%d %s %C(black)%C(bold)%cr" "$@" |
+      fzf --bind 'ctrl-e:jump' --ansi --multi --no-sort --reverse --query="$q" \
+          --print-query --expect=ctrl-d --toggle-sort=\`); do
+    q=$(head -1 <<< "$out")
+    k=$(head -2 <<< "$out" | tail -1)
+    shas=$(sed '1,2d;s/^[^a-z0-9]*//;/^$/d' <<< "$out" | awk '{print $1}')
+    [ -z "$shas" ] && continue
+
+    param1=$(echo $shas | tr '\n' ' ' | cut -d " " -f 1)
+    param2=$(echo $shas | tr '\n' ' ' | cut -d " " -f 2)
+
+    if [ "$k" = ctrl-d ]; then
+        git d ${param2} ${param1} --
+        break
+    else
+        git --no-pager diff ${param2} ${param1} | diff-so-fancy | less --tabs=4 -R
+    fi
+  done
 }
+
+alias fzf="fzf --multi --bind 'ctrl-e:jump'"
 fi
 
 # Eclim, powerful yet require many setups, here we are only interested in headless mode
 function eclimd {
 ${ECLIPSE_HOME}/eclimd -Dosgi.instance.area.default=$(pwd)/$1
+}
+
+# Alias for open, you know we don't need to do this on mac
+installedOpen=$(checkIfInstalled "open" open --quiet)
+if [ "$installedOpen" = "-1" ]; then
+    alias open=xdg-open
+fi
+
+installedDiffSoFancy=$(checkIfInstalled "diff-so-fancy" diff-so-fancy)
+
+if [ "$installedOpen" = "0" ]; then
+    # Offensive? Experimentally keep it :)
+    git config --global core.pager "diff-so-fancy | less --tabs=4 -RFX"
+    git config --global color.diff-highlight.oldNormal "red bold"
+    git config --global color.diff-highlight.oldHighlight "red bold 52"
+    git config --global color.diff-highlight.newNormal "green bold"
+    git config --global color.diff-highlight.newHighlight "green bold 22"
+fi
+
+function __now() {
+    echo $(date +"%Y-%m-%d-%H-%M-%S")
 }
 
 # Machine dependent, path and install, eventually this might be disabled when everything is installed from brew
