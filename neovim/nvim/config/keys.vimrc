@@ -34,6 +34,7 @@ nmap <leader>dg :diffget<CR>:diffupdate<CR>zm
 
 " Grep
 nnoremap <silent> <C-F> :Rgrep<CR>
+map <silent> <leader>ff :Find<Space>
 
 " SSH paste
 map <silent> <leader>p :r /tmp/sshclipboard.txt<CR>

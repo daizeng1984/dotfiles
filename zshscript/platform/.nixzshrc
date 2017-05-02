@@ -273,10 +273,11 @@ if [ "$installedOpen" = "0" ]; then
     git config --global color.diff-highlight.newHighlight "green bold 22"
 fi
 
-function __now() {
-    echo $(date +"%Y-%m-%d-%H-%M-%S")
-}
+installedRipGrep=$(checkIfInstalled "rg" ripgrep)
 
+nrg(){
+    rg -p "$@" | less -R
+}
 # Machine dependent, path and install, eventually this might be disabled when everything is installed from brew
 # source ~/.dotfiles/samples/macvar.def
 # source ~/.dotfiles/samples/linuxvar.def

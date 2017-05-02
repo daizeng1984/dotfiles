@@ -21,7 +21,7 @@ set lazyredraw
 set magic " for regular expressions
 set autoread
 " clipboard
-set clipboard=unnamedplus
+" set clipboard=unnamedplus
 " set completeopt=longest,menuone,preview
 filetype plugin indent on
 set omnifunc=syntaxcomplete#Complete

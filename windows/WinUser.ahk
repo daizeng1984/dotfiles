@@ -67,6 +67,11 @@ return FullPath
 run, "%windir%\system32\SnippingTool.exe"
 return
 
+^!o::
+FullPath := GetExplorerFilePath()
+run, "%FullPath%"
+return
+
 ^!n::
 FullPath := GetExplorerFilePath()
 run, notepad++.exe "%FullPath%"
