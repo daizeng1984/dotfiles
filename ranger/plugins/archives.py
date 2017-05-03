@@ -135,7 +135,12 @@ class openas(Command):
             if len(parts) < 1 :
                 self.fm.notify("No arguments!")
             else:
-                self.fm.execute_console( "shell '" + self.apps[parts[1]] + "' " + " ".join(['"$(cygpath -wma "' + os.path.relpath(f.path, cwd.path) + '")"' for f in marked_files]) + " &>/dev/null &")
+                runapp = ""
+                if (parts[1] in self.apps):
+                    runapp = self.apps[parts[1]]
+                else:
+                    runapp = parts[1]
+                self.fm.execute_console( "shell '" + runapp + "' " + " ".join(['"$(cygpath -wma "' + os.path.relpath(f.path, cwd.path) + '")"' for f in marked_files]) + " &>/dev/null &")
 
     def tab(self):
         return ['openas ' + app for app in self.apps]
