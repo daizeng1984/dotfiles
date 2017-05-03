@@ -60,9 +60,9 @@ set undolevels=100
 set undoreload=1000
 
 " I don't like mouse in VIM
-"if has('mouse')
-"  set mouse=a
-"endif
+if has('mouse')
+  set mouse=
+endif
 
 
 " Session: Ignore keymapping etc when saving or load session

@@ -94,14 +94,16 @@ class trash(Command):
         trashpath = "${HOME}/.Trash/" + str(uuidname);
 
         # Nasty but good to hear some sound coming out
+        # TODO: separate to a separate command
+        playsound = ""
         if 'cygwin' in platform.system().lower():
-            "cat `cygpath -W`/Media/recycle.wav > /dev/dsp & "
+            playsound = "cat `cygpath -W`/Media/recycle.wav > /dev/dsp & "
         elif 'darwin' in platform.system().lower():
-            "afplay /System/Library/Components/CoreAudio.component/Contents/SharedSupport/SystemSounds/dock/drag\ to\ trash.aif & "
+            playsound = "afplay /System/Library/Components/CoreAudio.component/Contents/SharedSupport/SystemSounds/dock/drag\ to\ trash.aif & "
 
         self.fm.execute_console(
         'shell mkdir -p ' + trashpath + ' && mv ' + \
-                " " + " ".join(['"' + os.path.relpath(f.path, cwd.path) + '"' for f in marked_files]) + " " + trashpath + " &  ")
+                " " + " ".join(['"' + os.path.relpath(f.path, cwd.path) + '"' for f in marked_files]) + " " + trashpath + " & " + playsound)
 
         self.fm.reload_cwd()
 
