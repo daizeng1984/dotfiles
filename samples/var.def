@@ -1,5 +1,5 @@
 #source $HOME/.dotfiles/samples/macvar.def
-#source $HOME/.dotfiles/samples/ec2var.def
+source $HOME/.dotfiles/samples/ec2var.def
 
 #export PATH=${PATH}:~/Workspace/Android/tools
 #export PATH=${PATH}:~/Workspace/Android/platform-tools
