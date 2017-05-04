@@ -34,7 +34,7 @@ class extracthere(Command):
             descr = "extracting files from: " + os.path.basename(one_file.dirname)
         self.fm.execute_console(
         'shell aunpack ' + " ".join(au_flags) \
-                + " " + " ".join([ "'" + f.path + "'" for f in copied_files]) + " &") 
+                + " " + " ".join([ "'" + f.path + "'" for f in copied_files]) + " ") 
 
         self.fm.reload_cwd()
 
