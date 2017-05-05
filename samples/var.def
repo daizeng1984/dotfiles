@@ -1,6 +1,6 @@
 if [ "zengdai" = "$(whoami)" ] && [ "Zengs-MacBook-Pro-2.local" = "$(hostname)" ] ; then
 source $HOME/.dotfiles/samples/macvar.def
-elif [ "ubuntu" = "$(whoami)" ] && [[ *"ip"* == "$(hostname)" ]] ; then
+elif [ "ubuntu" = "$(whoami)" ] && [[ "$(hostname)" == *"ip"* ]] ; then
 source $HOME/.dotfiles/samples/ec2var.def
 fi
 
