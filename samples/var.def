@@ -1,5 +1,9 @@
-#source $HOME/.dotfiles/samples/macvar.def
-#source $HOME/.dotfiles/samples/ec2var.def
+if [ "zengdai" = "$(whoami)" ] && [ "Zengs-MacBook-Pro-2.local" = "$(hostname)" ] ; then
+source $HOME/.dotfiles/samples/macvar.def
+elif [ "ubuntu" = "$(whoami)" ] && [[ *"ip"* == "$(hostname)" ]] ; then
+source $HOME/.dotfiles/samples/ec2var.def
+fi
+
 
 #export PATH=${PATH}:~/Workspace/Android/tools
 #export PATH=${PATH}:~/Workspace/Android/platform-tools
