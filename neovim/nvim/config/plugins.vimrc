@@ -94,10 +94,16 @@ let $FZF_DEFAULT_COMMAND = 'ag --hidden --path-to-ignore ~/.config/nvim/.agignor
 " previous-history instead of down and up. If you don't like the change,
 " explicitly bind the keys to down and up in your $FZF_DEFAULT_OPTS.
 
+
+" BufExplorer
+let g:bufExplorerDisableDefaultKeyMapping=1
+
 " VimAirline
 set t_Co=256
 let g:airline_powerline_fonts = 1
 let g:airline_theme='wombat'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#fnamemod = ':t'
 
 " Wombat!
 colorscheme wombat256mod
