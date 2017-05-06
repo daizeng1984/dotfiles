@@ -31,6 +31,7 @@ map <silent> <leader>we :Explore<CR>
 
 "FuzzyFinder
 "Find file
+imap <C-L> <plug>(fzf-complete-line)
 map <silent> <leader>wf :FZF --reverse<CR>
 map <silent> <leader>w, :?<CR>
 function! s:buflist()

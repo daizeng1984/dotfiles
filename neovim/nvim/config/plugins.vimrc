@@ -32,6 +32,7 @@ Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' } "Javascript
 Plug 'mhartington/nvim-typescript' " should do npm install -g typescript
 " Plug 'Quramy/tsuquyomi'
 Plug 'HerringtonDarkholme/yats.vim' " typescript syntax
+Plug 'tpope/vim-fugitive'
 
 Plug 'daizeng1984/my-worddoctor' " My own python plugin currently in test
 "Plug 'ramele/agrep'
