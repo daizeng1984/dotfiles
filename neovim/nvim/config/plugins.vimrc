@@ -85,7 +85,7 @@ let g:EclimCompletionMethod = 'omnifunc'
 " - down / up / left / right
 let g:fzf_layout = { 'up': '~50%' }
 " TODO: change to rg
-let $FZF_DEFAULT_COMMAND = 'ag --hidden --path-to-ignore ~/.config/nvim/.agignore -l -g ""'
+let $FZF_DEFAULT_COMMAND = 'ag --hidden -p ~/.config/nvim/.agignore -l -g ""'
 
 " In Neovim, you can set up fzf window using a Vim command
 
