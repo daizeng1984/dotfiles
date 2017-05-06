@@ -92,6 +92,8 @@ checkAndBrew() {
 installedFzf=$(checkIfInstalled "$HOME/.fzf/bin/fzf" fzf)
 installedAg=$(checkIfInstalled "ag" the_silver_searcher)
 installedFasd=$(checkIfInstalled "fasd" fasd)
+installedDiffSoFancy=$(checkIfInstalled "diff-so-fancy" diff-so-fancy)
+installedRipGrep=$(checkIfInstalled "rg" ripgrep)
 
 if [ "$installedFzf" = "0" ] && [ "$installedAg" = "0" ]; then
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
