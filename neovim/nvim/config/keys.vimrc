@@ -14,8 +14,8 @@ map <C-]> :JavaSearch<CR>
 map <silent> <leader>bt :enew<CR>
 " Doesn't work fix temporarily see https://github.com/neovim/neovim/issues/2048
 " map <silent> <C-h> :bnext<CR>
-map <silent> <BS> :bnext<CR>
-map <silent> <C-l> :bprevious<CR>
+map <silent> <BS> :bprevious<CR>
+map <silent> <C-l> :bnext<CR>
 map <silent> <leader>bq :bp <BAR> bd # <CR>
 
 " Clear swp files
@@ -27,12 +27,29 @@ map <silent> <leader>wp :!find . -name ".*.*.swp" <Bar> xargs rm -rf<cr>
 map <silent> <leader>we :Explore<CR>
 
 "BuffExplorer
-map <silent> <leader>wb :BufExplorer<CR>
+" map <silent> <leader>wb :BufExplorer<CR>
 
 "FuzzyFinder
 "Find file
 map <silent> <leader>wf :FZF --reverse<CR>
 map <silent> <leader>w, :?<CR>
+function! s:buflist()
+  redir => ls
+  silent ls
+  redir END
+  return split(ls, '\n')
+endfunction
+
+function! s:bufopen(e)
+  execute 'buffer' matchstr(a:e, '^[ 0-9]*')
+endfunction
+map <silent> <leader>wb :call fzf#run({
+\   'source':  reverse(<sid>buflist()),
+\   'sink':    function('<sid>bufopen'),
+\   'options': '+m',
+\   'down':    len(<sid>buflist()) + 2,
+\   'up': '~50%'
+\ })<CR>
 
 
 " Diff
