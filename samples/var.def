@@ -1,11 +1,18 @@
-if [ "zengdai" = "$(whoami)" ] && [ "Zengs-MacBook-Pro-2.local" = "$(hostname)" ] ; then
-source $HOME/.dotfiles/samples/macvar.def
-elif [ "ubuntu" = "$(whoami)" ] && [[ "$(hostname)" == *"ip"* ]] ; then
-source $HOME/.dotfiles/samples/ec2var.def
-fi
+function __mapToDef() {
+    user="${1}"
+    host="${2}"
+    def="${3}"
+    if [ "${user}" = "$(whoami)" ] && [[ "$(hostname)" == *"${host}"* ]] ; then
+        if [ -r "$HOME/.dotfiles/samples/${def}" ] ; then
+            echo "Find ${def} script for user ${user} on $(hostname)"
+            source "$HOME/.dotfiles/samples/${def}"
+        else
+            echo "Cannot find def"
+        fi
+    fi
 
+}
 
-#export PATH=${PATH}:~/Workspace/Android/tools
-#export PATH=${PATH}:~/Workspace/Android/platform-tools
-#export ANDROID_HOME="$HOME/Workspace/Android"
-#export JAVA_HOME=/usr/java/jdk1.8.0_121
+__mapToDef 'zengdai' 'Zengs-MacBook-Pro' 'macvar.def'
+__mapToDef 'ubuntu' 'ip' 'ec2var.def'
+__mapToDef 'ying' '192.168' 'yingvar.def'

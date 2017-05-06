@@ -1,0 +1,4 @@
+export PATH=${PATH}:~/Workspace/Android/tools
+export PATH=${PATH}:~/Workspace/Android/platform-tools
+export ANDROID_HOME="$HOME/Workspace/Android"
+export JAVA_HOME=/usr/java/jdk1.8.0_121
