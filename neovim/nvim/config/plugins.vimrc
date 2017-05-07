@@ -17,10 +17,10 @@ Plug 'junegunn/fzf.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'jlanzarotta/bufexplorer'
-Plug 'wombat256.vim'
+Plug 'vim-scripts/wombat256.vim'
 " Plug 'mhinz/vim-grepper'
 Plug 'danro/rename.vim'
-Plug 'grep.vim'
+Plug 'vim-scripts/grep.vim'
 Plug 'airblade/vim-gitgutter' " Show git diff
 Plug 'rhysd/conflict-marker.vim'
 

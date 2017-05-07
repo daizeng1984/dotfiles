@@ -53,3 +53,9 @@ command -bang -bar -nargs=? -complete=file E :call s:MKDir(<f-args>) | e<bang> <
 " --color: Search color options
 command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>), 1, <bang>0)
 set grepprg=rg\ --vimgrep
+
+" Our Vim function
+fu! MyEclimdJavaDebug(mainclass)
+    execute ":! java  -Xdebug -agentlib:jdwp=transport=dt_socket,address=9999,server=y,suspend=y -classpath ./bin ".a:mainclass." &"
+    let g:server_addr = serverstart('EclimdDebug')
+endfunction
