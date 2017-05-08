@@ -9,6 +9,10 @@ map <silent> <leader>ji :JavaImport<CR>
 map <silent> <leader>jc :JavaDocComment<CR>
 map <F5> :Java %<CR>
 map <C-]> :JavaSearch<CR>
+map <silent> <leader>jdb :call MyEclimdJavaDebug()<CR>
+map <F9> :JavaDebugBreakpointToggle<CR>:JavaDebugStatus<CR>
+map <F8> :JavaDebugStep over <CR> :JavaDebugStatus<CR>
+map <F7> :JavaDebugStep into <CR> :JavaDebugStatus<CR>
 
 " Buffer switch
 map <silent> <leader>bt :enew<CR>

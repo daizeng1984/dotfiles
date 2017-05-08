@@ -55,7 +55,15 @@ command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-h
 set grepprg=rg\ --vimgrep
 
 " Our Vim function
-fu! MyEclimdJavaDebug(mainclass)
-    execute ":! java  -Xdebug -agentlib:jdwp=transport=dt_socket,address=9999,server=y,suspend=y -classpath ./bin ".a:mainclass." &"
+fu! MyEclimdJavaDebug()
+    let filename = expand("%")
+    let filename = substitute(filename, "\.java$", "", "")
+    let dir = getcwd() . "/" . filename
+    let dir = substitute(dir, "^.*\/src\/", "", "")
+    let dir = substitute(dir, "\/[^\/]*$", "", "")
+    let dir = substitute(dir, "\/", ".", "g")
+    let filename = substitute(filename, "^.*\/", "", "")
+    execute ":! java  -Xdebug -agentlib:jdwp=transport=dt_socket,address=9999,server=y,suspend=y -classpath ./bin ".dir.".".filename." & sleep 1.5"
     let g:server_addr = serverstart('EclimdDebug')
+    execute ":JavaDebugStart localhost 9999"
 endfunction

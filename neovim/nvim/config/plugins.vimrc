@@ -46,7 +46,7 @@ call plug#end()
 
 " Deoplete
 
-autocmd FileType java setlocal omnifunc=javacomplete#Complete " Java Complete 2, with eclim enable this can be disabled
+" autocmd FileType java setlocal omnifunc=javacomplete#Complete " Java Complete 2, with eclim enable this can be disabled
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 " Jedi make it easier! autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
@@ -78,6 +78,11 @@ let g:deoplete#file#enable_buffer_path = 1
 
 " Add eclimd support
 let g:EclimCompletionMethod = 'omnifunc'
+" for airline
+let g:airline#extensions#eclim#enabled = 1
+highlight DebugBreak ctermfg=0 ctermbg=226
+let g:EclimLineHighlightDebug = 'DebugBreak'
+" let g:EclimJavaDebugLineSignText = '->'
 
 " Fuzzy Find for neovim
 " TODO: filter file type e.g. binary file
