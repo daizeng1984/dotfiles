@@ -257,9 +257,9 @@ ${ECLIPSE_HOME}/eclimd -Dosgi.instance.area.default=$(pwd)/$1
 }
 
 # Alias for open, you know we don't need to do this on mac
-installedOpen=$(checkIfInstalled "open" open --quiet)
-if [ "$installedOpen" = "-1" ]; then
-    alias open=xdg-open
+installedXdgOpen=$(checkIfInstalled "xdg-open" xdg-open --quiet)
+if [ "$installedXdgOpen" = "-1" ]; then
+    alias xdg-open=open
 fi
 
 installedDiffSoFancy=$(checkIfInstalled "diff-so-fancy" diff-so-fancy)
