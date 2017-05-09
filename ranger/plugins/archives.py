@@ -20,7 +20,9 @@ class extracthere(Command):
         one_file = copied_files[0]
         cwd = self.fm.thisdir
         original_path = cwd.path
-        au_flags = ['-X', cwd.path + '/' + os.path.splitext(os.path.basename(one_file.path))[0] ]
+
+        newfolder = cwd.path + '/' + os.path.splitext(os.path.basename(one_file.path))[0];
+        au_flags = ['-X', newfolder]
         au_flags += self.line.split()[1:]
         au_flags += ['-e']
         au_flags += ['-q']
@@ -33,7 +35,7 @@ class extracthere(Command):
         else:
             descr = "extracting files from: " + os.path.basename(one_file.dirname)
         self.fm.execute_console(
-        'shell aunpack ' + " ".join(au_flags) \
+        'shell mkdir -p ' + newfolder + " && aunpack " + " ".join(au_flags) \
                 + " " + " ".join([ "'" + f.path + "'" for f in copied_files]) + " ") 
 
         self.fm.reload_cwd()
