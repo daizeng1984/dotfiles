@@ -71,10 +71,18 @@ let g:deoplete#sources._ = []
 let g:deoplete#auto_completion_start_length = 2
 let g:deoplete#file#enable_buffer_path = 1
 
-
 " let g:deoplete#enable_debug = 1
 " let g:deoplete#enable_profile = 1
 " call deoplete#enable_logging('DEBUG', './deoplete.log')
+
+" Super Tab enable as alternative to avoid annoying eclim error popping up when deoplete automatically
+" queries it
+let g:SuperTabDefaultCompletionType = "context"
+let g:SuperTabCompletionContexts = ['s:ContextText', 's:ContextDiscover']
+let g:SuperTabContextTextOmniPrecedence = ['&omnifunc', '&completefunc']
+let g:SuperTabContextDiscoverDiscovery = ["&completefunc:<c-x><c-u>", "&omnifunc:<c-x><c-o>"]
+let g:SuperTabContextDefaultCompletionType = "<c-n>"
+
 
 " Ultisnips
 let g:UltiSnipsExpandTrigger="<C-e>"
