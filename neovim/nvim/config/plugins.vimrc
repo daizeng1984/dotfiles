@@ -59,8 +59,8 @@ let g:deoplete#enable_at_startup = 1
 
 let g:deoplete#omni_patterns = {}
 " When Eclim is available, we will use eclim!
-" let g:deoplete#omni_patterns.java = '[^. *\t]\.\w*'
-let g:deoplete#omni_patterns.java = '\%(\h\w*\|)\)\.\w*'
+let g:deoplete#omni_patterns.java = '[^. *\t]\.\w*'
+" let g:deoplete#omni_patterns.java = '\%(\h\w*\|)\)\.\w*'
 let g:deoplete#omni_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
 let g:deoplete#omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
 let g:deoplete#omni_patterns.scala = '[^. *\t]\.\w*\|: [A-Z]\w*'
@@ -75,6 +75,11 @@ let g:deoplete#file#enable_buffer_path = 1
 " let g:deoplete#enable_debug = 1
 " let g:deoplete#enable_profile = 1
 " call deoplete#enable_logging('DEBUG', './deoplete.log')
+
+" Ultisnips
+let g:UltiSnipsExpandTrigger="<C-e>"
+let g:UltiSnipsJumpForwardTrigger="<C-k>"
+let g:UltiSnipsJumpBackwardTrigger="<C-b>"
 
 " Add eclimd support
 let g:EclimCompletionMethod = 'omnifunc'
