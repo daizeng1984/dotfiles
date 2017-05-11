@@ -33,6 +33,11 @@ Plug 'mhartington/nvim-typescript' " should do npm install -g typescript
 " Plug 'Quramy/tsuquyomi'
 Plug 'HerringtonDarkholme/yats.vim' " typescript syntax
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
+Plug 'vim-scripts/Gist.vim' "Gist but before git config --global github.user Username
+Plug 'mattn/webapi-vim' 
+Plug 'mattn/emmet-vim' " c-y ,
+Plug 'tomtom/tcomment_vim' " gc
 
 Plug 'daizeng1984/my-worddoctor' " My own python plugin currently in test
 "Plug 'ramele/agrep'
