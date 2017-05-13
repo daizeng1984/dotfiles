@@ -20,6 +20,7 @@ set sidescrolloff=5
 set lazyredraw
 set magic " for regular expressions
 set autoread
+set pastetoggle=<F3>
 " clipboard
 " set clipboard=unnamedplus
 " set completeopt=longest,menuone,preview

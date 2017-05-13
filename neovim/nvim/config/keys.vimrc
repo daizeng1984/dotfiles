@@ -1,9 +1,5 @@
 let mapleader = ","
 
-"Insert Date
-imap <F3> <C-R>=strftime("%m/%d/%Y")<CR>
-imap <F4> <C-R>=strftime("%X")<CR>
-
 " Eclim, TODO: make a switch
 map <silent> <leader>ji :JavaImport<CR>
 map <silent> <leader>jc :JavaDocComment<CR>

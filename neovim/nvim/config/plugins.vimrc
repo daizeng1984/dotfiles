@@ -26,10 +26,8 @@ Plug 'rhysd/conflict-marker.vim'
 
 " Deplete companions
 Plug 'zchee/deoplete-jedi' " Python
-Plug 'artur-shaik/vim-javacomplete2' "Java
 Plug 'ternjs/tern_for_vim', { 'for': ['javascript', 'javascript.jsx'] }
 Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' } "Javascript
-Plug 'mhartington/nvim-typescript' " should do npm install -g typescript
 " Plug 'Quramy/tsuquyomi'
 Plug 'HerringtonDarkholme/yats.vim' " typescript syntax
 Plug 'tpope/vim-fugitive'
@@ -38,11 +36,17 @@ Plug 'vim-scripts/Gist.vim' "Gist but before git config --global github.user Use
 Plug 'mattn/webapi-vim' 
 Plug 'mattn/emmet-vim' " c-y ,
 Plug 'tomtom/tcomment_vim' " gc
+Plug 'dhruvasagar/vim-table-mode' " for better table in markdown, :TableModeToggle and || to start, you can even tableize the csv style entries and do table formula, delete column localleader=\\
+Plug 'mattn/calendar-vim' " Good to have a calendar view
 
-Plug 'daizeng1984/my-worddoctor' " My own python plugin currently in test
+" Plug 'jceb/vim-orgmode' " Org mode for todo management
+" Plug 'artur-shaik/vim-javacomplete2' "Java
+" Plug 'mhartington/nvim-typescript' " should do npm install -g typescript now causing problems and freeze vim
+"Plug 'daizeng1984/my-worddoctor' " My own python plugin currently in test
 "Plug 'ramele/agrep'
 "Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript', 'javascript.jsx'] }
 "Plug 'othree/jspc.vim', { 'for': ['javascript', 'javascript.jsx'] }
+" Plug 'itchyny/calendar.vim' " Interesting to try out, Google Calendar in vim!
 
 " Add plugins to &runtimepath
 call plug#end()
@@ -75,6 +79,7 @@ let g:deoplete#sources = {}
 let g:deoplete#sources._ = []
 let g:deoplete#auto_completion_start_length = 2
 let g:deoplete#file#enable_buffer_path = 1
+let g:deoplete#enable_smart_case = 1
 
 " let g:deoplete#enable_debug = 1
 " let g:deoplete#enable_profile = 1
@@ -129,6 +134,12 @@ let g:airline_powerline_fonts = 1
 let g:airline_theme='wombat'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
+let g:airline#extensions#tabline#left_sep = ''
+let g:airline#extensions#tabline#left_alt_sep = ''
+let g:airline#extensions#tabline#right_sep = ''
+let g:airline#extensions#tabline#right_alt_sep = ''
+
+" 
 
 " Wombat!
 colorscheme wombat256mod

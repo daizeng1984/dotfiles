@@ -67,3 +67,14 @@ fu! MyEclimdJavaDebug()
     let g:server_addr = serverstart('EclimdDebug')
     execute ":JavaDebugStart localhost 9999"
 endfunction
+
+" TODO: insert the date value using the calendar function. e.g. markdown
+" function MyCalenarInsertDate(day,month,year,week,dir)
+"     " day   : day you actioned
+"     " month : month you actioned
+"     " year  : year you actioned
+"     " week  : day of week (Mo=1 ... Su=7)
+"     " dir   : direction of calendar
+"     execute \" normal a \". a:day . a:month . a:year
+" endfunction
+" let calendar_action = 'MyCalenarInsertDate'
