@@ -103,6 +103,9 @@ autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 " stop highlighting of underscores in markdown files
 autocmd BufNewFile,BufRead,BufEnter *.md,*.markdown :syntax match markdownIgnore "_"
 
+" stop saving the crap due to typo
+autocmd BufWritePre [\:\;\'\[\]\,\?\1\!\.\"] throw 'Forbidden file name: ' . expand('<afile>')
+
 
 " TODO?
 if &listchars ==# 'eol:$'
