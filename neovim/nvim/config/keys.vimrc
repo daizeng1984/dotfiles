@@ -12,9 +12,7 @@ map <F7> :JavaDebugStep into <CR> :JavaDebugStatus<CR>
 
 " Buffer switch
 map <silent> <leader>bt :enew<CR>
-" Doesn't work fix temporarily see https://github.com/neovim/neovim/issues/2048
-" map <silent> <C-h> :bnext<CR>
-map <silent> <BS> :bprevious<CR>
+map <silent> <C-h> :bprevious<CR>
 map <silent> <C-l> :bnext<CR>
 map <silent> <leader>bq :bp <BAR> bd # <CR>
 
@@ -32,6 +30,7 @@ map <silent> <leader>we :Explore<CR>
 "FuzzyFinder
 "Find file
 imap <C-L> <plug>(fzf-complete-line)
+imap <C-T> <plug>(fzf-complete-file)
 map <silent> <leader>wf :FZF --reverse<CR>
 map <silent> <leader>w, :?<CR>
 function! s:buflist()
