@@ -67,3 +67,7 @@ map <silent> <leader>sp :r /tmp/sshclipboard.txt<CR>
 " Terminal
 tnoremap <silent> <Esc> <C-\><C-n><bar>:q<CR>
 map <silent> <leader>tt :call TermEnter()<CR>
+
+" Vim Wiki
+imap <C-D> <Plug>VimwikiIncreaseLvlSingleItem
+nmap <Space> <Plug>VimwikiToggleListItem

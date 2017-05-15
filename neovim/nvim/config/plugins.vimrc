@@ -40,6 +40,7 @@ Plug 'dhruvasagar/vim-table-mode' " for better table in markdown, :TableModeTogg
 Plug 'mattn/calendar-vim' " Good to have a calendar view
 Plug 'plasticboy/vim-markdown' " gx ge note some font (like my favorite nerd font) doesn't have bold, italic etc.
 Plug 'vimwiki/vimwiki' " Great tool! I think it's better than org mode I tried
+Plug 'vim-scripts/utl.vim' " Utl help open URL in netrw
 " Plug 'jceb/vim-orgmode' " Org mode for todo management
 " Plug 'tybenz/vimdeck' " Presentation tool
 " Plug 'artur-shaik/vim-javacomplete2' "Java
@@ -174,6 +175,7 @@ let g:vim_markdown_folding_style_pythonic = 1
 " Vim Wiki
 let g:vimwiki_list = [{'path': '~/Google Drive/vimwiki',
                        \ 'syntax': 'markdown', 'ext': '.md'}]
+let g:vimwiki_folding = 'expr'
 
 " whD
 let g:deoplete#sources#whd#learning_texts = ['${HOME}/obama08.txt', '/']

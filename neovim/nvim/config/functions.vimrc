@@ -68,6 +68,9 @@ fu! MyEclimdJavaDebug()
     execute ":JavaDebugStart localhost 9999"
 endfunction
 
+" Delete current file http://vim.wikia.com/wiki/Delete_files_with_a_Vim_command
+command! -complete=file -nargs=1 Remove :echo 'Remove: '.'<f-args>'.' '.(delete(<f-args>) == 0 ? 'SUCCEEDED' : 'FAILED')
+
 " TODO: insert the date value using the calendar function. e.g. markdown
 " function MyCalenarInsertDate(day,month,year,week,dir)
 "     " day   : day you actioned
