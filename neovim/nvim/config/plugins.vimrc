@@ -41,6 +41,7 @@ Plug 'mattn/calendar-vim' " Good to have a calendar view
 Plug 'plasticboy/vim-markdown' " gx ge note some font (like my favorite nerd font) doesn't have bold, italic etc.
 Plug 'vimwiki/vimwiki' " Great tool! I think it's better than org mode I tried
 Plug 'vim-scripts/utl.vim' " Utl help open URL in netrw
+Plug 'vim-scripts/BufOnly.vim' " BufOnly to close all but this
 " Plug 'jceb/vim-orgmode' " Org mode for todo management
 " Plug 'tybenz/vimdeck' " Presentation tool
 " Plug 'artur-shaik/vim-javacomplete2' "Java

@@ -14,7 +14,10 @@ map <F7> :JavaDebugStep into <CR> :JavaDebugStatus<CR>
 map <silent> <leader>bt :enew<CR>
 map <silent> <C-h> :bprevious<CR>
 map <silent> <C-l> :bnext<CR>
-map <silent> <leader>bq :bp <BAR> bd # <CR>
+map <silent> <leader>q :bp <BAR> bd # <CR>
+
+" Buf Only
+map <silent> <leader>bq :BufOnly <CR>
 
 " Clear swp files
 map <silent> <leader>wp :!find . -name ".*.*.swp" <Bar> xargs rm -rf<cr>
