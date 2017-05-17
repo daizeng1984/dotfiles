@@ -20,33 +20,37 @@ Plug 'jlanzarotta/bufexplorer'
 Plug 'vim-scripts/wombat256.vim'
 " Plug 'mhinz/vim-grepper'
 Plug 'danro/rename.vim'
-Plug 'vim-scripts/grep.vim'
+Plug 'vim-scripts/grep.vim' " when you cannot use rg
 Plug 'airblade/vim-gitgutter' " Show git diff
 Plug 'rhysd/conflict-marker.vim'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
+Plug 'mattn/emmet-vim' " c-y ,then type this>is>tag ---> <this> <is> <tag> ... </....
+Plug 'tomtom/tcomment_vim' " gc toggle comment
+Plug 'mattn/webapi-vim' " Gist dependencies
+Plug 'vim-scripts/Gist.vim' "Gist but before git config --global github.user Username
+Plug 'vim-scripts/BufOnly.vim' " BufOnly to close all but this
 
 " Deplete companions
 Plug 'zchee/deoplete-jedi' " Python
 Plug 'ternjs/tern_for_vim', { 'for': ['javascript', 'javascript.jsx'] }
 Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' } "Javascript
-" Plug 'Quramy/tsuquyomi'
-Plug 'HerringtonDarkholme/yats.vim' " typescript syntax
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-surround'
-Plug 'vim-scripts/Gist.vim' "Gist but before git config --global github.user Username
-Plug 'mattn/webapi-vim' 
-Plug 'mattn/emmet-vim' " c-y ,
-Plug 'tomtom/tcomment_vim' " gc
-Plug 'dhruvasagar/vim-table-mode' " for better table in markdown, :TableModeToggle and || to start, you can even tableize the csv style entries and do table formula, delete column localleader=\\
-Plug 'mattn/calendar-vim' " Good to have a calendar view
-Plug 'plasticboy/vim-markdown' " gx ge note some font (like my favorite nerd font) doesn't have bold, italic etc.
+
+" Markdown plugins
+Plug 'dhruvasagar/vim-table-mode', {'for': ['markdown'] } " for better table in markdown, :TableModeToggle and || to start, you can even tableize the csv style entries and do table formula, delete column localleader=\\
+Plug 'mattn/calendar-vim', {'for': ['markdown'] } " Good to have a calendar view
+Plug 'plasticboy/vim-markdown', {'for': ['markdown'] } " gx ge note some font (like my favorite nerd font) doesn't have bold, italic etc.
 Plug 'vimwiki/vimwiki' " Great tool! I think it's better than org mode I tried
-Plug 'vim-scripts/utl.vim' " Utl help open URL in netrw
-Plug 'vim-scripts/BufOnly.vim' " BufOnly to close all but this
-Plug 'powerman/vim-plugin-AnsiEsc' " allow colorful chart in taskwiki
-Plug 'jamessan/vim-gnupg' " Encryptize transparently error informations
-Plug 'tbabej/taskwiki', { 'do': 'pip3 install --upgrade git+git://github.com/tbabej/tasklib@develop' }
+Plug 'vim-scripts/utl.vim', {'for': ['markdown'] } " Utl help open URL in netrw
+Plug 'powerman/vim-plugin-AnsiEsc', {'for': ['markdown'] }  " allow colorful chart in taskwiki
+Plug 'jamessan/vim-gnupg', {'for': ['markdown'] }  " Encryptize transparently error informations
+Plug 'tbabej/taskwiki', {'for': ['markdown'], 'do': 'pip3 install --upgrade git+git://github.com/tbabej/tasklib@develop' }
 " Plug 'jceb/vim-orgmode' " Org mode for todo management
 " Plug 'tybenz/vimdeck' " Presentation tool
+
+" Plug 'Quramy/tsuquyomi'
+" TODO typescript filetype
+Plug 'HerringtonDarkholme/yats.vim' " typescript syntax
 " Plug 'artur-shaik/vim-javacomplete2' "Java
 " Plug 'mhartington/nvim-typescript' " should do npm install -g typescript now causing problems and freeze vim
 "Plug 'daizeng1984/my-worddoctor' " My own python plugin currently in test
