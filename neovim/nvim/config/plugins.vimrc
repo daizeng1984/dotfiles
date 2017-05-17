@@ -39,12 +39,13 @@ Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' } "Javascript
 " Markdown plugins
 Plug 'dhruvasagar/vim-table-mode', {'for': ['markdown'] } " for better table in markdown, :TableModeToggle and || to start, you can even tableize the csv style entries and do table formula, delete column localleader=\\
 Plug 'mattn/calendar-vim', {'for': ['markdown'] } " Good to have a calendar view
-Plug 'plasticboy/vim-markdown', {'for': ['markdown'] } " gx ge note some font (like my favorite nerd font) doesn't have bold, italic etc.
+" Plug 'plasticboy/vim-markdown', {'for': ['markdown'] } " gx ge note some font (like my favorite nerd font) doesn't have bold, italic etc.
 Plug 'vimwiki/vimwiki' " Great tool! I think it's better than org mode I tried
 Plug 'vim-scripts/utl.vim', {'for': ['markdown'] } " Utl help open URL in netrw
 Plug 'powerman/vim-plugin-AnsiEsc', {'for': ['markdown'] }  " allow colorful chart in taskwiki
 Plug 'jamessan/vim-gnupg', {'for': ['markdown'] }  " Encryptize transparently error informations
 Plug 'tbabej/taskwiki', {'for': ['markdown'], 'do': 'pip3 install --upgrade git+git://github.com/tbabej/tasklib@develop' }
+Plug 'blindFS/vim-taskwarrior', {'for': ['markdown'] }  " For grid view of taskwiki
 " Plug 'jceb/vim-orgmode' " Org mode for todo management
 " Plug 'tybenz/vimdeck' " Presentation tool
 
@@ -179,11 +180,14 @@ let g:scala_scaladoc_indent = 1
 let g:vim_markdown_fenced_languages = ['html', 'java', 'cpp', 'python=py', 'bash=sh']
 let g:vim_markdown_autowrite = 1
 let g:vim_markdown_folding_style_pythonic = 1
+let g:vimwiki_conceallevel=0
+let g:taskwiki_disable_concealcursor=1 " Disable the override 
 
-" Vim Wiki
+" Vim/Task Wiki
 let g:vimwiki_list = [{'path': '~/Dropbox/Share/vimwiki',
                        \ 'syntax': 'markdown', 'ext': '.md'}]
 let g:vimwiki_folding = 'expr'
+let g:UltiSnipsSnippetDirectories=["UltiSnips", $HOME."/.config/nvim/my-snippets/UltiSnips"]
 
 " whD
 let g:deoplete#sources#whd#learning_texts = ['${HOME}/obama08.txt', '/']
