@@ -74,3 +74,4 @@ map <silent> <leader>tt :call TermEnter()<CR>
 " Vim Wiki
 imap <C-D> <Plug>VimwikiIncreaseLvlSingleItem
 nmap <Space> <Plug>VimwikiToggleListItem
+imap <F4> <Esc>:call MyInsertCalDate()<CR>

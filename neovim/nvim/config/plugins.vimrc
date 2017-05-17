@@ -42,6 +42,9 @@ Plug 'plasticboy/vim-markdown' " gx ge note some font (like my favorite nerd fon
 Plug 'vimwiki/vimwiki' " Great tool! I think it's better than org mode I tried
 Plug 'vim-scripts/utl.vim' " Utl help open URL in netrw
 Plug 'vim-scripts/BufOnly.vim' " BufOnly to close all but this
+Plug 'powerman/vim-plugin-AnsiEsc' " allow colorful chart in taskwiki
+Plug 'jamessan/vim-gnupg' " Encryptize transparently error informations
+Plug 'tbabej/taskwiki', { 'do': 'pip3 install --upgrade git+git://github.com/tbabej/tasklib@develop' }
 " Plug 'jceb/vim-orgmode' " Org mode for todo management
 " Plug 'tybenz/vimdeck' " Presentation tool
 " Plug 'artur-shaik/vim-javacomplete2' "Java
@@ -174,7 +177,7 @@ let g:vim_markdown_autowrite = 1
 let g:vim_markdown_folding_style_pythonic = 1
 
 " Vim Wiki
-let g:vimwiki_list = [{'path': '~/Google Drive/vimwiki',
+let g:vimwiki_list = [{'path': '~/Dropbox/Share/vimwiki',
                        \ 'syntax': 'markdown', 'ext': '.md'}]
 let g:vimwiki_folding = 'expr'
 

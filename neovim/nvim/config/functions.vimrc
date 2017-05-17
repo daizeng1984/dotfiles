@@ -71,13 +71,29 @@ endfunction
 " Delete current file http://vim.wikia.com/wiki/Delete_files_with_a_Vim_command
 command! -complete=file -nargs=1 Remove :echo 'Remove: '.'<f-args>'.' '.(delete(<f-args>) == 0 ? 'SUCCEEDED' : 'FAILED')
 
-" TODO: insert the date value using the calendar function. e.g. markdown
-" function MyCalenarInsertDate(day,month,year,week,dir)
-"     " day   : day you actioned
-"     " month : month you actioned
-"     " year  : year you actioned
-"     " week  : day of week (Mo=1 ... Su=7)
-"     " dir   : direction of calendar
-"     execute \" normal a \". a:day . a:month . a:year
-" endfunction
-" let calendar_action = 'MyCalenarInsertDate'
+
+" Calendar action some stolen from 
+let g:my#calendar_action#backup = ''
+fun MyCalAction(day, month, year, week, dir)
+    let datetime_date = printf("%d-%d-%d", a:year, a:month, a:day)
+	exe "q"
+    exe "normal! a".datetime_date."\el"
+    let g:calendar_action = g:my#calendar_action#backup
+    if col('.') == col('$') - 1
+        startinsert! " `A`
+    else
+        normal l     " `l`
+        startinsert  " `i`
+    end
+endf
+fun MyInsertCalDate()
+    let g:my#calendar_action#backup = g:calendar_action
+    let g:calendar_action = 'MyCalAction'
+    if !exists(':Calendar')
+        echo "Please install plugin Calendar.vim"
+    endif
+
+    " call calendar
+    echo "Open Calendar..."
+    exe ":Calendar"
+endf
