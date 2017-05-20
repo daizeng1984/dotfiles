@@ -32,7 +32,6 @@ Plug 'vim-scripts/Gist.vim' "Gist but before git config --global github.user Use
 Plug 'vim-scripts/BufOnly.vim' " BufOnly to close all but this
 
 " Deplete companions
-Plug 'zchee/deoplete-jedi' " Python
 Plug 'ternjs/tern_for_vim', { 'for': ['javascript', 'javascript.jsx'] }
 Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' } "Javascript
 
@@ -43,12 +42,16 @@ Plug 'mattn/calendar-vim', {'for': ['markdown'] } " Good to have a calendar view
 Plug 'vimwiki/vimwiki' " Great tool! I think it's better than org mode I tried
 Plug 'vim-scripts/utl.vim', {'for': ['markdown'] } " Utl help open URL in netrw
 Plug 'powerman/vim-plugin-AnsiEsc', {'for': ['markdown'] }  " allow colorful chart in taskwiki
-Plug 'jamessan/vim-gnupg', {'for': ['markdown'] }  " Encryptize transparently error informations
-Plug 'tbabej/taskwiki', {'for': ['markdown'], 'do': 'pip3 install --upgrade git+git://github.com/tbabej/tasklib@develop' }
+Plug 'jamessan/vim-gnupg' " Encryptize transparently error informations
+Plug 'tbabej/taskwiki', {'for': ['markdown'], 'do': 'pip3 install --upgrade git+git://github.com/tbabej/tasklib@develop --user' }
 Plug 'blindFS/vim-taskwarrior', {'for': ['markdown'] }  " For grid view of taskwiki
 " Plug 'jceb/vim-orgmode' " Org mode for todo management
 " Plug 'tybenz/vimdeck' " Presentation tool
 
+" Python
+Plug 'zchee/deoplete-jedi' " Python deoplete
+Plug 'bfredl/nvim-ipy' " Jupyter/IPython
+Plug 'goerz/ipynb_notedown.vim', { 'do': 'pip3 install notedown' } " Install notedown to write ipynb in vim
 " Plug 'Quramy/tsuquyomi'
 " TODO typescript filetype
 Plug 'HerringtonDarkholme/yats.vim' " typescript syntax
@@ -184,7 +187,7 @@ let g:vimwiki_conceallevel=0
 let g:taskwiki_disable_concealcursor=1 " Disable the override 
 
 " Vim/Task Wiki
-let g:vimwiki_list = [{'path': '~/Dropbox/Share/vimwiki',
+let g:vimwiki_list = [{'path': '~/Workplace/vimwiki',
                        \ 'syntax': 'markdown', 'ext': '.md'}]
 let g:vimwiki_folding = 'expr'
 let g:UltiSnipsSnippetDirectories=["UltiSnips", $HOME."/.config/nvim/my-snippets/UltiSnips"]

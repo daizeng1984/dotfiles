@@ -5,3 +5,4 @@ plugged/
 undodir/
 doc/
 .DS_Store
+*.pyc
