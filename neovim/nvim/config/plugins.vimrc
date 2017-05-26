@@ -52,7 +52,7 @@ Plug 'blindFS/vim-taskwarrior', {'for': ['markdown'], 'on': 'VimwikiIndex' }  " 
 " Python
 Plug 'zchee/deoplete-jedi' " Python deoplete
 Plug 'bfredl/nvim-ipy' " Jupyter/IPython
-Plug 'goerz/ipynb_notedown.vim', { 'do': 'pip3 install notedown' } " Install notedown to write ipynb in vim
+Plug 'goerz/ipynb_notedown.vim', { 'do': 'pip3 install notedown --user' } " Install notedown to write ipynb in vim
 " Plug 'Quramy/tsuquyomi'
 " TODO typescript filetype
 Plug 'HerringtonDarkholme/yats.vim' " typescript syntax
@@ -188,7 +188,7 @@ let g:vimwiki_conceallevel=0
 let g:taskwiki_disable_concealcursor=1 " Disable the override 
 
 " Vim/Task Wiki
-let g:vimwiki_list = [{'path': '~/Workplace/vimwiki',
+let g:vimwiki_list = [{'path': '~/Workspace/vimwiki',
                        \ 'syntax': 'markdown', 'ext': '.md'}]
 let g:vimwiki_folding = 'expr'
 let g:UltiSnipsSnippetDirectories=["UltiSnips", $HOME."/.config/nvim/my-snippets/UltiSnips"]
