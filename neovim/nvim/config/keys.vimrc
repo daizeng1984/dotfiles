@@ -61,8 +61,8 @@ nmap <leader>dp :.diffput<CR>:diffupdate<CR>zm
 nmap <leader>dg :diffget<CR>:diffupdate<CR>zm
 
 " Grep
-nnoremap <silent> <C-F> :Rgrep<CR>
-map <silent> <leader>fz :Find<Space>
+nnoremap <silent> <leader>fg :Rgrep<CR>
+map <C-f> :Rg <C-r><C-w>
 " Esearch
 " Start esearch prompt autofilled with one of g:esearch.use initial patterns
 call esearch#map('<leader>ff', 'esearch')

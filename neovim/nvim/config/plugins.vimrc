@@ -46,6 +46,7 @@ Plug 'powerman/vim-plugin-AnsiEsc', {'for': ['markdown'] }  " allow colorful cha
 Plug 'jamessan/vim-gnupg' " Encryptize transparently error informations
 Plug 'tbabej/taskwiki', {'for': ['markdown'], 'on': 'VimwikiIndex', 'do': 'pip3 install --upgrade git+git://github.com/tbabej/tasklib@develop --user' }
 Plug 'blindFS/vim-taskwarrior', {'for': ['markdown'], 'on': 'VimwikiIndex' }  " For grid view of taskwiki
+" Plug 'rhysd/nyaovim-markdown-preview', {'for': ['markdown'] }  " Nayovim GUI preview for markdown
 " Plug 'jceb/vim-orgmode' " Org mode for todo management
 " Plug 'tybenz/vimdeck' " Presentation tool
 
