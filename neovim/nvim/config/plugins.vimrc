@@ -31,6 +31,7 @@ Plug 'tomtom/tcomment_vim' " gc toggle comment
 Plug 'mattn/webapi-vim' " Gist dependencies
 Plug 'vim-scripts/Gist.vim' "Gist but before git config --global github.user Username
 Plug 'vim-scripts/BufOnly.vim' " BufOnly to close all but this
+Plug 'brooth/far.vim' " Easier Search&Replace :Far number num <tab>for hint and then vola! Use x to exclude and X to exclude for all, i for include and I for ... Far also works for virtual block!
 
 " Deplete companions
 Plug 'ternjs/tern_for_vim', { 'for': ['javascript', 'javascript.jsx'] }
@@ -205,3 +206,6 @@ let g:esearch = {
   \ 'batch_size': 1000,
   \ 'use':        ['word_under_cursor', 'visual', 'hlsearch', 'last'],
   \}
+
+" Far
+" let g:far#source = 'agnvim' " Note ag etc. doesn't support multiline replacement
