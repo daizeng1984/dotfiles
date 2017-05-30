@@ -88,6 +88,12 @@ command! -nargs=* Rg call fzf#run({
 \ 'down':    '50%'
 \ })
 
+" Find a file to diff
+command! -nargs=* FzfDiff call fzf#run({
+            \ 'sink': 'vertical diffsplit',
+            \ 'down':    '50%'
+            \})
+
 set grepprg=rg\ --vimgrep
 
 " Our Vim function

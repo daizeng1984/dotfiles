@@ -34,6 +34,7 @@ map <silent> <leader>we :Explore<CR>
 "Find file
 imap <C-L> <plug>(fzf-complete-line)
 imap <C-T> <plug>(fzf-complete-file)
+map <silent> <leader>fd :FzfDiff<CR>
 map <silent> <leader>wf :FZF --reverse<CR>
 map <silent> <leader>w, :?<CR>
 function! s:buflist()
