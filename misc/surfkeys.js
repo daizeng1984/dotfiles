@@ -12,6 +12,7 @@ mapkey('p', "Open the clipboard's URL in the current tab", function() {
 mapkey('ym', "#7Copy current page's URL as markdown", function() {
   Front.writeClipboard('[' + document.title + '](' + window.location.href + ')');
 });
+mapkey(',h', '#1Mouse over elements.', 'Hints.create("", Hints.dispatchMouseClick, {mouseEvents: ["mouseover"]})');
 
 imap('<Ctrl-w>', '<Alt-w>');
 imap('<Ctrl-f>', '<Alt-f>');
