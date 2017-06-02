@@ -35,6 +35,7 @@ map <silent> <leader>we :Explore<CR>
 imap <C-L> <plug>(fzf-complete-line)
 imap <C-T> <plug>(fzf-complete-file)
 map <silent> <leader>fd :FzfDiff<CR>
+map <silent> <leader>fo :call fzf#vim#history()<CR>
 map <silent> <leader>wf :FZF --reverse<CR>
 map <silent> <leader>w, :?<CR>
 function! s:buflist()
