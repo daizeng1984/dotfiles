@@ -11,7 +11,7 @@ Plug 'airblade/vim-rooter'
 Plug 'ervandew/supertab'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
-Plug 'dansomething/vim-eclim'
+Plug 'dansomething/vim-eclim', { 'for' : ['java', 'scala']} " Annoying 'unable to determine the project ...' for file like html
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " some time this cause issue if you install fzf in different source e.g. brew install. To solve you need to brew reinstall
 Plug 'junegunn/fzf.vim'
 Plug 'vim-airline/vim-airline'
@@ -32,6 +32,7 @@ Plug 'mattn/webapi-vim' " Gist dependencies
 Plug 'vim-scripts/Gist.vim' "Gist but before git config --global github.user Username
 Plug 'vim-scripts/BufOnly.vim' " BufOnly to close all but this
 Plug 'brooth/far.vim' " Easier Search&Replace :Far number num <tab>for hint and then vola! Use x to exclude and X to exclude for all, i for include and I for ... Far also works for virtual block!
+Plug 'tpope/vim-ragtag' " complete words with tag!
 
 " Deplete companions
 Plug 'ternjs/tern_for_vim', { 'for': ['javascript', 'javascript.jsx'] }
@@ -188,6 +189,10 @@ let g:vim_markdown_autowrite = 1
 let g:vim_markdown_folding_style_pythonic = 1
 let g:vimwiki_conceallevel=0
 let g:taskwiki_disable_concealcursor=1 " Disable the override 
+
+" Vim table mode conflict to vimwiki (https://github.com/dhruvasagar/vim-table-mode/issues/110)
+let g:vimwiki_table_mappings = 0
+autocmd FileType vimwiki setlocal commentstring="> %s"
 
 " Vim/Task Wiki
 let g:vimwiki_list = [{'path': '~/Workspace/vimwiki',
