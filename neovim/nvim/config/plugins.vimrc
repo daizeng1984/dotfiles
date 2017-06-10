@@ -7,7 +7,7 @@ behave mswin
 call plug#begin('~/.config/nvim/plugged')
 
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'airblade/vim-rooter'
+Plug 'airblade/vim-rooter' " User :Rooter to do it manually
 Plug 'ervandew/supertab'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
@@ -214,3 +214,6 @@ let g:esearch = {
 
 " Far
 " let g:far#source = 'agnvim' " Note ag etc. doesn't support multiline replacement
+
+" Rooter
+let g:rooter_manual_only = 1
