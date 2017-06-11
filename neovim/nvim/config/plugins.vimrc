@@ -24,7 +24,7 @@ Plug 'vim-scripts/grep.vim' " when you cannot use rg
 Plug 'eugen0329/vim-esearch' " rg
 Plug 'airblade/vim-gitgutter' " Show git diff
 Plug 'rhysd/conflict-marker.vim'
-Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive' " -, dv, U, cc, cA, p, q
 Plug 'tpope/vim-surround'
 Plug 'mattn/emmet-vim' " c-y ,then type this>is>tag ---> <this> <is> <tag> ... </....
 Plug 'tomtom/tcomment_vim' " gc toggle comment
@@ -32,7 +32,7 @@ Plug 'mattn/webapi-vim' " Gist dependencies
 Plug 'vim-scripts/Gist.vim' "Gist but before git config --global github.user Username
 Plug 'vim-scripts/BufOnly.vim' " BufOnly to close all but this
 Plug 'brooth/far.vim' " Easier Search&Replace :Far number num <tab>for hint and then vola! Use x to exclude and X to exclude for all, i for include and I for ... Far also works for virtual block!
-Plug 'tpope/vim-ragtag' " complete words with tag!
+Plug 'tpope/vim-ragtag' " complete words with tag! :help ragtag
 
 " Deplete companions
 Plug 'ternjs/tern_for_vim', { 'for': ['javascript', 'javascript.jsx'] }
