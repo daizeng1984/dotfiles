@@ -177,7 +177,7 @@ class copyfilepath(Command):
             return 
         def darwin_copy(path):
             self.fm.notify( "Copied file path: " + path)
-            os.system("echo \"" + path + "\" | pbcopy")
+            os.system("echo -n \"" + path + "\" | pbcopy")
         def donothing_copy(path):
             self.fm.notify( "Cannot do anything about this path: " + path)
 
