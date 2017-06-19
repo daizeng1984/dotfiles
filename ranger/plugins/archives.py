@@ -1,4 +1,5 @@
 import os
+import subprocess
 import uuid
 import platform
 from ranger.api.commands import *
@@ -177,7 +178,9 @@ class copyfilepath(Command):
             return 
         def darwin_copy(path):
             self.fm.notify( "Copied file path: " + path)
-            os.system("echo -n \"" + path + "\" | pbcopy")
+            ps = subprocess.Popen(("echo", "-n", path ), stdout=subprocess.PIPE)
+            subprocess.check_output(("pbcopy"), stdin=ps.stdout)
+            ps.wait()
         def donothing_copy(path):
             self.fm.notify( "Cannot do anything about this path: " + path)
 
