@@ -1,5 +1,4 @@
 import os
-import subprocess
 import uuid
 import platform
 from ranger.api.commands import *
@@ -175,12 +174,14 @@ class copyfilepath(Command):
         def cygwin_copy(path):
             self.fm.notify( "Copied file path: " + path)
             os.system("echo -n " + path  + "  > /dev/clipboard")
-            return 
         def darwin_copy(path):
             self.fm.notify( "Copied file path: " + path)
             ps = subprocess.Popen(("echo", "-n", path ), stdout=subprocess.PIPE)
             subprocess.check_output(("pbcopy"), stdin=ps.stdout)
             ps.wait()
+        def linux_copy(path):
+            self.fm.notify( "Copied file path: " + path)
+            os.system("echo \"" + path + "\" | xclip -selection clipboard")
         def donothing_copy(path):
             self.fm.notify( "Cannot do anything about this path: " + path)
 
@@ -189,5 +190,7 @@ class copyfilepath(Command):
             cygwin_copy(" ".join(["$(cygpath -wma \"" + os.path.abspath(f.path) + "\")" for f in marked_files]))
         elif "darwin" in platform.system().lower():
             darwin_copy(" ".join([os.path.abspath(f.path) for f in marked_files]))
+        elif "linux" in platform.system().lower():
+            linux_copy(" ".join([os.path.abspath(f.path) for f in marked_files]))
         else:
             donothing_copy(" ".join([os.path.abspath(f.path) for f in marked_files]))
