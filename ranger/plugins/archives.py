@@ -1,4 +1,5 @@
 import os
+import subprocess
 import uuid
 import platform
 from ranger.api.commands import *
