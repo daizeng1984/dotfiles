@@ -24,3 +24,28 @@ snippet foot "Footnote"
 
 [^$1]:${2:Text}
 endsnippet
+
+snippet post "Jekyll Post Front Matter"
+---
+layout: post
+title: "${1:My Title}"
+date: ${2:`!v strftime("%Y-%m-%d %H:%M:%S %z")`}
+categories: jekyll update
+size: ${3:12}
+---
+endsnippet
+
+snippet project "Jekyll Project Front Matter"
+---
+order: ${1:`!v strftime("%Y%m%d")`}
+title: "${2:My Title}"
+image: ${6}
+resources:
+	- ${3:code}:
+		res: ${5}
+		desc: ${4}
+---
+
+${7}
+endsnippet
+

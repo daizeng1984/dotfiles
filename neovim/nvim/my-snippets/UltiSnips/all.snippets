@@ -2,3 +2,7 @@
 snippet task
 ${1:TODO} ${2:!!} (${3:`!v strftime("%Y-%m-%d")`} ${4:`!v strftime("%H:%M")`}) -- project:`!p snip.rv = snip.basename or 'Unknown'`
 endsnippet
+
+snippet utc "UTC Time"
+${1:`!v strftime("%Y-%m-%d %H:%M:%S %z")`}
+endsnippet

@@ -215,5 +215,8 @@ let g:esearch = {
 " Far
 " let g:far#source = 'agnvim' " Note ag etc. doesn't support multiline replacement
 
+" Ipy
+let g:nvim_ipy_perform_mappings = 0
+
 " Rooter
 let g:rooter_manual_only = 1
