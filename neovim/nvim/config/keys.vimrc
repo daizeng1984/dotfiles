@@ -104,3 +104,6 @@ map <silent> <leader>tt :call TermEnter()<CR>
 imap <C-D> <Plug>VimwikiIncreaseLvlSingleItem
 nmap <Space> <Plug>VimwikiToggleListItem
 imap <F4> <Esc>:call MyInsertCalDate()<CR>
+
+" Far, find selection in virtual mode
+vmap <C-S-F> y:Farp<CR><C-R>0<CR>
