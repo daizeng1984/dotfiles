@@ -10,3 +10,12 @@ osascript -e "display notification \"${1}\" with title \"Alert\""
 }
 alias alert=notify
 alias sshcopyclipboard='sshcopyclipboard $SSHCOPY_REMOTE $SSH_KEY'
+
+# https://apple.stackexchange.com/questions/15318/using-terminal-to-copy-a-file-to-clipboard#answer-15484
+file-to-clipboard() {
+    osascript - "$@" <<'END' 2> /dev/null
+on run {a}
+set the clipboard to POSIX file (POSIX path of ((POSIX file a) as alias))
+end
+END
+}
