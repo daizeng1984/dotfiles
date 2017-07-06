@@ -3,7 +3,10 @@ snippet img "Image"
 endsnippet
 
 snippet kimg "Kramdown Image"
-![${1:pic alt}](${6:path}${2/.+/ "/}${2:opt title}${2/.+/"/}){: width=${3/.+/"/}${3:50%}${3/.+/"/} class=${4/.+/"/}${4:img-thumbnail} ${5:center-block}${4/.+/"/}}$0
+![${1:pic alt}](${6:path}){: width="${2:50%}" class="${3:img-thumbnail} ${4:center-block}"}
+*${5:caption}*
+{:.image-caption}
+$0
 endsnippet
 
 snippet cbl "Codeblock" b
