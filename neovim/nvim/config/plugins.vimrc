@@ -19,7 +19,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'jlanzarotta/bufexplorer'
 Plug 'vim-scripts/wombat256.vim'
 " Plug 'mhinz/vim-grepper'
-Plug 'danro/rename.vim'
+Plug 'danro/rename.vim' " :Rename
 Plug 'vim-scripts/grep.vim' " when you cannot use rg
 Plug 'eugen0329/vim-esearch' " rg
 Plug 'airblade/vim-gitgutter' " Show git diff
@@ -33,6 +33,8 @@ Plug 'vim-scripts/Gist.vim' "Gist but before git config --global github.user Use
 Plug 'vim-scripts/BufOnly.vim' " BufOnly to close all but this
 Plug 'AndrewRadev/linediff.vim' " :Linediff for two blocks
 Plug 'brooth/far.vim' " Easier Search&Replace :Far number num <tab>for hint and then vola! Use x to exclude and X to exclude for all, i for include and I for ... Far also works for virtual block!
+" Plug 'rking/ag.vim' " Test
+Plug 'bronson/vim-visual-star-search' " Case sensitive * in virtual mode
 Plug 'tpope/vim-ragtag' " complete words with tag! :help ragtag
 
 " Deplete companions
@@ -50,7 +52,6 @@ Plug 'jamessan/vim-gnupg' " Encryptize transparently error informations
 Plug 'tbabej/taskwiki', {'for': ['markdown'], 'on': 'VimwikiIndex', 'do': 'pip3 install --upgrade git+git://github.com/tbabej/tasklib@develop --user' }
 Plug 'blindFS/vim-taskwarrior', {'for': ['markdown'], 'on': 'VimwikiIndex' }  " For grid view of taskwiki
 " Plug 'rhysd/nyaovim-markdown-preview', {'for': ['markdown'] }  " Nayovim GUI preview for markdown
-" Plug 'jceb/vim-orgmode' " Org mode for todo management
 " Plug 'tybenz/vimdeck' " Presentation tool
 
 " Python
