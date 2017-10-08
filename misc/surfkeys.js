@@ -13,6 +13,9 @@ mapkey('ym', "#7Copy current page's URL as markdown", function() {
   Front.writeClipboard('[' + document.title + '](' + window.location.href + ')');
 });
 mapkey(',h', '#1Mouse over elements.', 'Hints.create("", Hints.dispatchMouseClick, {mouseEvents: ["mouseover"]})');
+mapkey('<Ctrl-o>', '#4Go one tab history back', 'RUNTIME("historyTab", {backward: true})', {repeatIgnore: true});
+mapkey('<Ctrl-i>', '#4Go one tab history forward', 'RUNTIME("historyTab", {backward: false})', {repeatIgnore: true});
+
 
 imap('<Ctrl-w>', '<Alt-w>');
 imap('<Ctrl-f>', '<Alt-f>');
@@ -21,7 +24,6 @@ imap('<Ctrl-n>', '<ArrowDown>');
 imap('<Ctrl-b>', '<ArrowUp>');
 map('L', '<Ctrl-r>');
 map(',q', 'x');
-map('F', 'gf');
 map(',r', 'X');
 map('<Ctrl-[>', '<Esc>');
 map(',wf', 'T');
