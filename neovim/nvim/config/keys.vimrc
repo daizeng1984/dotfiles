@@ -107,3 +107,7 @@ imap <F4> <Esc>:call MyInsertCalDate()<CR>
 
 " Far, find selection in virtual mode
 vmap <C-S-F> y:Farp<CR><C-R>0<CR>
+
+" Ctrl-A/X in mswin
+noremap <C-_>= <C-A>
+noremap <C-_>- <C-X>
