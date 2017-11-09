@@ -30,6 +30,10 @@ cd
 #Forget about MS Office
 #sh -c "printf '[playonlinux]\nname=PlayOnLinux Official repository\nbaseurl=http://rpm.playonlinux.com/fedora/yum/base\nenable=1\ngpgcheck=0\ngpgkey=http://rpm.playonlinux.com/public.gpg\n' > /etc/yum.repos.d/playonlinux.repo"
 #yum install playonlinux
+# Install Wechat
+wget https://github.com/geeeeeeeeek/electronic-wechat/releases/download/V2.0/linux-x64.tar.gz
+tar -zxvf linux-x64.tar.gz
+mv electronic-wechat-linux-x64 /usr/share/applications/
 
 # Reminde of removing alternateTab in gnome's /usr/share/gnome-shell/extensions
 echo "don't forget to remove alternateTab in /usr/share/gnome-shell/extensions\n"

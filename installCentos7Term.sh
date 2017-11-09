@@ -25,7 +25,8 @@ yum -y install npm
 # Install python34 and pip3
 yum -y install python34 python34-setuptools python-virtualenv # --user for pip install
 wget https://bootstrap.pypa.io/get-pip.py 
-python3.4 get-pip.py --user
+#python get-pip.py --user # Install pip, not well link in Centos, has to install via:
+yum -y install python2-pip python34-pip
 # yum -y install python python-setuptools
 rm get-pip.py
 
@@ -37,6 +38,13 @@ pip install neovim --user
 yum -y install tree
 yum -y install zsh
 yum -y install the_silver_searcher
+yum -y install fasd
+yum -y install xsel
+yum-config-manager --add-repo=https://copr.fedorainfracloud.org/coprs/carlwgeorge/ripgrep/repo/epel-7/carlwgeorge-ripgrep-epel-7.repo
+yum -y install ripgrep
+wget https://raw.githubusercontent.com/so-fancy/diff-so-fancy/master/third_party/build_fatpack/diff-so-fancy
+chmod +x diff-so-fancy
+mv diff-so-fancy /usr/bin/
 
 # autocomplete ignore case for bash
 echo "set completion-ignore-case On" >> $HOME/.inputrc
