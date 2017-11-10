@@ -94,6 +94,12 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 # Theme
 source "$HOME/.dotfiles/misc/oldstyle.zsh-theme"
 
+# Color
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+NC='\033[0m' # No Color
+
+
 # hack for clipboard...
 if ! type pbpaste  > /dev/null 2>&1; then
     alias dumpclipboard='xclip -selection clipboard -o > '
@@ -118,8 +124,6 @@ delete() {
     filesToDelete=$(ag --hidden -l -g "" -u ${filepath[@]})
     linesToDelete=$(echo $filesToDelete | wc -l)
     printf "${filesToDelete}\n"
-    RED='\033[0;31m'
-    NC='\033[0m' # No Color
     echo "${RED}Do you really want to install this folder(${linesToDelete} files)?${NC}(y/n)"
     read yesno
     if [ "${yesno}" != "y" ]; then
@@ -152,20 +156,18 @@ delete() {
 checkIfInstalled() {
     if ! type ${1}  > /dev/null 2>&1; then
         if [ "${3}" != "--quiet" ]; then
-            >&2 printf "${RED}${1} might not be installed correctly.${NC}\n"
+            >&2 printf "${RED}${1} might not be found or installed correctly.${NC} Try ${GREEN}brew install ${2}${NC}!\n"
         fi
         echo "-1"
     else
         if [ "${3}" != "--quiet" ]; then
-            >&2 printf "${RED}${1} is ready.${NC}\n"
+            >&2 printf "${GREEN}${1}${NC} is ready.\n"
         fi
         echo "0"
     fi
 }
 checkAndBrew() {
     PATH="${PATH}:$HOME/.linuxbrew/bin:/usr/local/bin"
-    RED='\033[0;31m'
-    NC='\033[0m' # No Color
     # Make sure this is fast than brew ls --versions ${1} > /dev/null; ?
 
     if ! type $1 > /dev/null 2>&1; then
