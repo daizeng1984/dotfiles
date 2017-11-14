@@ -38,6 +38,8 @@ Plug 'kshenoy/vim-signature' " Added color vis for marks
 " Plug 'rking/ag.vim' " Test
 Plug 'bronson/vim-visual-star-search' " Case sensitive * in virtual mode
 Plug 'tpope/vim-ragtag' " complete words with tag! :help ragtag
+Plug 'scrooloose/nerdtree' " NERDtree, even though know it for a while, usually my flow doesn't include much file exploring
+Plug 'Xuyuanp/nerdtree-git-plugin' " git flag in NERDTree
 
 " Deplete companions
 Plug 'ternjs/tern_for_vim', { 'for': ['javascript', 'javascript.jsx'] }
