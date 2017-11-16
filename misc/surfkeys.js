@@ -1,5 +1,6 @@
-mapkey('<Ctrl-h>', '#3Go one tab left', 'RUNTIME("previousTab")');
-mapkey('<Ctrl-l>', '#3Go one tab right', 'RUNTIME("nextTab")');mapkey('<Ctrl-u>', '#2Scroll a page up', 'Normal.scroll("pageUp")', {repeatIgnore: true});
+//mapkey('<Ctrl-h>', '#3Go one tab left', 'RUNTIME("previousTab")');
+//mapkey('<Ctrl-l>', '#3Go one tab right', 'RUNTIME("nextTab")');
+mapkey('<Ctrl-u>', '#2Scroll a page up', 'Normal.scroll("pageUp")', {repeatIgnore: true});
 mapkey('<Ctrl-d>', '#2Scroll a page down', 'Normal.scroll("pageDown")', {repeatIgnore: true})
 mapkey('H', '#4Go back in history', 'history.go(-1)', {repeatIgnore: true});
 mapkey('<Ctrl-r>', '#4Go forward in history', 'history.go(1)', {repeatIgnore: true});
