@@ -139,3 +139,5 @@ fun MyInsertCalDate()
     echo "Open Calendar..."
     exe ":Calendar"
 endf
+
+source $HOME/.config/nvim/config/functions/asciiemoji.vimrc

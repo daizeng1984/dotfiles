@@ -7,6 +7,7 @@ behave mswin
 call plug#begin('~/.config/nvim/plugged')
 
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'Shougo/denite.nvim', { 'do': 'pip3 install typing --user' }
 Plug 'airblade/vim-rooter' " User :Rooter to do it manually
 Plug 'ervandew/supertab'
 Plug 'SirVer/ultisnips'

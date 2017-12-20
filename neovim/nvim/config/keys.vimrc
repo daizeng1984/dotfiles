@@ -114,3 +114,7 @@ noremap <C-_>- <C-X>
 
 " Tcomment
 vmap gb <C-_>b
+
+" AsciiEmoji
+nnoremap <leader>em :<C-U>call AsciiEmoji()<CR>:<C-U>Denite menu<CR>
+
