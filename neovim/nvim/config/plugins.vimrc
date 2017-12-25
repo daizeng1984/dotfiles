@@ -27,7 +27,7 @@ Plug 'airblade/vim-gitgutter' " Show git diff
 Plug 'rhysd/conflict-marker.vim'
 Plug 'tpope/vim-fugitive' " -, dv, U, cc, cA, p, q
 Plug 'tpope/vim-surround'
-Plug 'mattn/emmet-vim' " c-y ,then type this>is>tag ---> <this> <is> <tag> ... </....
+Plug 'mattn/emmet-vim' " c-y ,then type this>is>tag ---> <this> <is> <tag> ... </.... or type insert mode and c-y , here's the cheatsheet https://docs.emmet.io/cheat-sheet/
 Plug 'tomtom/tcomment_vim' " gc toggle comment
 Plug 'mattn/webapi-vim' " Gist dependencies
 Plug 'vim-scripts/Gist.vim' "Gist but before git config --global github.user Username
