@@ -1,7 +1,7 @@
 //mapkey('<Ctrl-h>', '#3Go one tab left', 'RUNTIME("previousTab")');
 //mapkey('<Ctrl-l>', '#3Go one tab right', 'RUNTIME("nextTab")');
-mapkey('<Ctrl-u>', '#2Scroll a page up', 'Normal.scroll("pageUp")', {repeatIgnore: true});
-mapkey('<Ctrl-d>', '#2Scroll a page down', 'Normal.scroll("pageDown")', {repeatIgnore: true})
+//mapkey('<Ctrl-u>', '#2Scroll a page up', 'Normal.scroll("pageUp")', {repeatIgnore: true});
+//mapkey('<Ctrl-d>', '#2Scroll a page down', 'Normal.scroll("pageDown")', {repeatIgnore: true})
 mapkey('H', '#4Go back in history', 'history.go(-1)', {repeatIgnore: true});
 mapkey('<Ctrl-r>', '#4Go forward in history', 'history.go(1)', {repeatIgnore: true});
 mapkey('<Ctrl-f>', '', 'Insert.keydown()', {repeatIgnore: true});
@@ -28,6 +28,8 @@ map(',q', 'x');
 map(',r', 'X');
 map('<Ctrl-[>', '<Esc>');
 map(',wf', 'T');
+map('<Ctrl-d>', 'd');
+map('<Ctrl-u>', 'u');
 
 settings.hintAlign = "left";
 settings.stealFocusOnLoad = false;
