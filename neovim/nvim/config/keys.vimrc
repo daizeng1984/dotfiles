@@ -3,12 +3,20 @@ let mapleader = ","
 " Eclim, TODO: make a switch
 map <silent> <leader>ji :JavaImport<CR>
 map <silent> <leader>jc :JavaDocComment<CR>
-map <F5> :Java %<CR>
-map <C-]> :JavaSearch<CR>
+map <silent> <leader>jr<F5>:Java %<CR>
+map <leader>j<C-]> :JavaSearch<CR>
 map <silent> <leader>jdb :call MyEclimdJavaDebug()<CR>
-map <F9> :JavaDebugBreakpointToggle<CR>:JavaDebugStatus<CR>
-map <F8> :JavaDebugStep over <CR> :JavaDebugStatus<CR>
-map <F7> :JavaDebugStep into <CR> :JavaDebugStatus<CR>
+map <silent> <leader>j<F9> :JavaDebugBreakpointToggle<CR>:JavaDebugStatus<CR>
+map <silent> <leader>j<F8> :JavaDebugStep over <CR> :JavaDebugStatus<CR>
+map <silent> <leader>j<F7> :JavaDebugStep into <CR> :JavaDebugStatus<CR>
+
+" IPython
+map <silent> <leader>pr <Plug>(IPy-Run)
+map <silent> <leader>p<Tab> <Plug>(IPy-Complete)
+map <silent> <leader>p? <Plug>(IPy-WordObjInfo)
+map <silent> <leader>ps <Plug>(IPy-Interrupt)
+map <silent> <leader>pq <Plug>(IPy-Terminate)
+map <silent> <leader>pp :call IPyRun('print <C-R><C-W>')<CR>
 
 " Buffer switch
 map <silent> <leader>bt :enew<CR>
