@@ -195,6 +195,12 @@ if [ "$installedFasd" = "0" ] && [ "$installedFzf" = "0" ]; then
         local dir
         dir="$(fasd -Rdl "$1" | fzf -1 -0 --no-sort +m)" && cd "${dir}" || return 1
     }
+
+    zz() {
+        local file
+        file="$(fasd -Rfl "$1" | fzf -1 -0 --no-sort +m)" && open "${file}" || return 1
+    }
+
 fi
 
 if [ "$installedFzf" = "0" ] && [ "$installedAg" = "0" ]; then
