@@ -44,6 +44,7 @@ Plug 'Xuyuanp/nerdtree-git-plugin' " git flag in NERDTree
 
 " Deplete companions
 Plug 'ternjs/tern_for_vim', { 'for': ['javascript', 'javascript.jsx'] }
+Plug 'mxw/vim-jsx'
 Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' } "Javascript
 
 " Markdown plugins
