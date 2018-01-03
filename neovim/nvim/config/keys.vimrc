@@ -16,7 +16,7 @@ map <silent> <leader>p<Tab> <Plug>(IPy-Complete)
 map <silent> <leader>p? <Plug>(IPy-WordObjInfo)
 map <silent> <leader>ps <Plug>(IPy-Interrupt)
 map <silent> <leader>pq <Plug>(IPy-Terminate)
-map <silent> <leader>pp :call IPyRun('print <C-R><C-W>')<CR>
+map <silent> <leader>pp :call IPyRun('print(<C-R><C-W>)')<CR>
 
 " Buffer switch
 map <silent> <leader>bt :enew<CR>
