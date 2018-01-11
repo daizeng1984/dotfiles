@@ -72,6 +72,7 @@ Plug 'HerringtonDarkholme/yats.vim' " typescript syntax
 " Plug 'mhartington/nvim-typescript' " should do npm install -g typescript now causing problems and freeze vim
 "Plug 'daizeng1984/my-worddoctor' " My own python plugin currently in test
 Plug 'daizeng1984/vim-feeling-lucky', {'do': 'pip3 install --upgrade google-api-python-client' } " require google api
+Plug 'daizeng1984/vim-snip-and-paste'
 "Plug 'ramele/agrep'
 "Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript', 'javascript.jsx'] }
 "Plug 'othree/jspc.vim', { 'for': ['javascript', 'javascript.jsx'] }
