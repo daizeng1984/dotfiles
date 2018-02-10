@@ -216,7 +216,7 @@ let g:deoplete#sources#whd#learning_texts = ['${HOME}/obama08.txt', '/']
 
 " ESearch
 let g:esearch = {
-  \ 'adapter':    'rg',
+  \ 'adapter':    'ag',
   \ 'backend':    'nvim',
   \ 'out':        'qflist',
   \ 'batch_size': 1000,
