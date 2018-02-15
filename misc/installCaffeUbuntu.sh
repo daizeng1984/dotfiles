@@ -18,6 +18,7 @@ apt-get -y install libatlas-base-dev libgflags-dev libgoogle-glog-dev liblmdb-de
 
 apt-get -y install python-dev
 
+# TODO:
 # now install caffe either from source or pre-compiled repo
 cd
 mkdir -p Workspace
@@ -27,6 +28,7 @@ cd caffe
 make all -j8
 make test
 make runtest
+make pycaffe
 
 # Install python 36 data rider's world: anaconda
 wget https://repo.continuum.io/archive/Anaconda3-5.0.1-Linux-x86_64.sh
@@ -34,5 +36,11 @@ wget https://repo.continuum.io/archive/Anaconda3-5.0.1-Linux-x86_64.sh
 ....
 # Install boost that comaptible with 36
 conda install -c anaconda boost
+# Install the protobuf if not exist
+conda install -c anaconda protobuf
 # Now caffe need to use 36 python 
+# Make sure your python3 is anaconda's
+# Set a bunch of path dependencies
+DYLD_FALLBACK_LIBRARY_PATH or LD_LIBRARY_PATH for the specific libboost
+PYTHONPATH  for python import /path/to/caffe/python
 
