@@ -2,6 +2,10 @@
 source $VIMRUNTIME/mswin.vim
 behave mswin
 
+" Check if a cli is there
+function! CliInstalled(cond)
+  return system("if ! type " . a:cond . " > /dev/null 2>&1; then echo '0'; else echo '1'; fi")
+endfunction
 
 " Specify a directory for plugins (for Neovim: ~/.local/share/nvim/plugged)
 call plug#begin('~/.config/nvim/plugged')
@@ -56,8 +60,11 @@ Plug 'vim-scripts/utl.vim', {'for': ['markdown'] } " Utl help open URL in netrw
 Plug 'powerman/vim-plugin-AnsiEsc', {'for': ['markdown'] }  " allow colorful chart in taskwiki
 Plug 'ap/vim-css-color' " Color for CSS
 Plug 'jamessan/vim-gnupg' " Encryptize transparently error informations
+" Stop the complaining due to taskwarrior not installed
+if CliInstalled('task')
 Plug 'tbabej/taskwiki', {'for': ['markdown'], 'on': 'VimwikiIndex', 'do': 'pip3 install --upgrade git+git://github.com/tbabej/tasklib@develop --user' }
 Plug 'blindFS/vim-taskwarrior', {'for': ['markdown'], 'on': 'VimwikiIndex' }  " For grid view of taskwiki
+endif
 " Plug 'rhysd/nyaovim-markdown-preview', {'for': ['markdown'] }  " Nayovim GUI preview for markdown
 " Plug 'tybenz/vimdeck' " Presentation tool
 
