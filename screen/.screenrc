@@ -9,8 +9,21 @@ term screen-256color
 
 defscrollback 30000
 
-# Change main escape key to ctrl-j
-escape ^Jj
+# Change main escape key to F10 https://stackoverflow.com/questions/1543427/gnu-screen-changing-the-default-escape-command-key-to-alt-x#7251588
+# reset escape key to the default
+escape ^Aa
+# auxiliary register
+register S ^A
+# Alt + x produces ^A and acts as an escape key
+bindkey -k k; process S
+bind j focus down
+bind k focus up
+bind t focus top
+bind b focus bottom
+bind x remove
+bind o focus
+bind - eval "split" "focus" "screen"
+bind | eval "split -v" "focus" "screen"
 
 # Show status, recommend byobu
 hardstatus alwayslastline 
