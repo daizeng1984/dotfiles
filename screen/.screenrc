@@ -22,12 +22,19 @@ bind t focus top
 bind b focus bottom
 bind x remove
 bind o focus
+bind , title
 bind - eval "split" "focus" "screen"
 bind | eval "split -v" "focus" "screen"
+bind v paste .
+bind -k k; other
+
+# Make v to mark instead of space
+markkeys ' '=v:^M=y:V=Y
 
 # Show status, recommend byobu
 hardstatus alwayslastline 
-hardstatus string '%{= Kd} %{= Kd}%-w%{= Kr}[%{= KW}%n %t%{= Kr}]%{= Kd}%+w %-= %{KG} %H%{KW}|%{KY}%101`%{KW}|%D %M %d %Y%{= Kc} %C%A%{-}'
+hardstatus string '%{= cW} %='
+caption always "%{= KW} %H [%`] %{= Kw}|%{-} %-Lw%{= rW}%n%f %t%{-}%+Lw %=%C%a %Y-%M-%d"
 
 # Esc key slow in vim
 maptimeout 0
