@@ -13,9 +13,11 @@ make
 sudo make install
 
 # DOWNLOAD SOURCES FOR TMUX AND MAKE AND INSTALL
-curl -OL https://github.com/tmux/tmux/releases/download/2.1/tmux-2.1.tar.gz
-tar -xvzf tmux-2.1.tar.gz
-cd tmux-2.1
+cd ..
+git clone https://github.com/tmux/tmux.git
+cd tmux
+git checkout 2.6 
+sh autogen.sh
 LDFLAGS="-L/usr/local/lib -Wl,-rpath=/usr/local/lib" ./configure --prefix=/usr/local
 make
 sudo make install
