@@ -56,3 +56,5 @@
 	newHighlight = green bold 22
 [github]
 	user = daizeng1984
+[credential]
+	helper = cache --timeout=2628000
