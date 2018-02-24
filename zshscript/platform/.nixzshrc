@@ -291,6 +291,10 @@ nrg(){
     rg -p "$@" | less -R
 }
 
+search(){
+    ag -g $@ --hidden -i -u 
+}
+
 # ftpane - switch pane (@george-b) https://github.com/junegunn/fzf/wiki/Examples#tmux
 ftpane() {
   local panes current_window current_pane target target_window target_pane
