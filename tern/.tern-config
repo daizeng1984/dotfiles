@@ -1,0 +1,21 @@
+{
+    "ecmaVersion": 6,
+    "libs": [
+        "ecma5",
+        "ecma6"
+    ],
+    "loadEagerly": [
+        "**/src/**/*.js"
+    ],
+    "dontLoad": [
+        "**/node_modules/**"
+    ],
+    "plugins": {
+        "requirejs": {
+            "baseURL": "./",
+            "paths": {}
+        },
+        "node": {},
+        "webpack": {}
+    }
+}

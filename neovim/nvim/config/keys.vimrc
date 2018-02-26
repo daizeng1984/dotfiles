@@ -106,7 +106,7 @@ map <silent> <leader>sp :r /tmp/sshclipboard.txt<CR>
 
 " Terminal
 tnoremap <silent> <Esc> <C-\><C-n><bar>:q<CR>
-map <silent> <leader>tt :call TermEnter()<CR>
+" map <silent> <leader>TT :call TermEnter()<CR> I seldom use it and confusing when using tmux...
 
 " Vim Wiki
 imap <C-D> <Plug>VimwikiIncreaseLvlSingleItem

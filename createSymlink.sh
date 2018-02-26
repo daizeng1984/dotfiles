@@ -1,7 +1,7 @@
 # some code is from https://github.com/michaeljsmalley/dotfiles/blob/master/makesymlinks.sh with slightly modification
 dir=~/.dotfiles                    # dotfiles directory
 olddir=~/.dotfiles_old             # old dotfiles backup directory
-folders="bashscript zshscript vim74lua gitconfig screen tmux"    # list of folders that have dot files
+folders="bashscript zshscript vim74lua gitconfig screen tmux tern"    # list of folders that have dot files
 
 # create dotfiles_old in homedir
 echo -n "Creating $olddir for backup of any existing dotfiles in ~ ..."

@@ -1,10 +1,9 @@
 "Behave like windows
 source $VIMRUNTIME/mswin.vim
-behave mswin
-
-" Check if a cli is there
-function! CliInstalled(cond)
-  return system("if ! type " . a:cond . " > /dev/null 2>&1; then echo '0'; else echo '1'; fi")
+behave mswin 
+" Check if a cli is there 
+function! CliInstalled(cond) 
+    return system("if ! type " . a:cond . " > /dev/null 2>&1; then echo '0'; else echo '1'; fi")
 endfunction
 
 " Specify a directory for plugins (for Neovim: ~/.local/share/nvim/plugged)
@@ -36,6 +35,7 @@ Plug 'tomtom/tcomment_vim' " gc toggle comment
 Plug 'mattn/webapi-vim' " Gist dependencies
 Plug 'vim-scripts/Gist.vim' "Gist but before git config --global github.user Username
 Plug 'vim-scripts/BufOnly.vim' " BufOnly to close all but this
+Plug 'vim-scripts/LargeFile' " Load largefile without syntax etc. burden
 Plug 'AndrewRadev/linediff.vim' " :Linediff for two blocks
 Plug 'brooth/far.vim' " Easier Search&Replace :Far number num <tab>for hint and then vola! Use x to exclude and X to exclude for all, i for include and I for ... Far also works for virtual block!
 Plug 'djoshea/vim-autoread' " Auto reload when changed by other app
@@ -47,9 +47,9 @@ Plug 'scrooloose/nerdtree' " NERDtree, even though know it for a while, usually 
 Plug 'Xuyuanp/nerdtree-git-plugin' " git flag in NERDTree
 
 " Deplete companions
-Plug 'ternjs/tern_for_vim', { 'for': ['javascript', 'javascript.jsx'] }
 Plug 'mxw/vim-jsx'
 Plug 'justinj/vim-react-snippets'
+Plug 'ternjs/tern_for_vim', { 'for': ['javascript', 'javascript.jsx'] } " TernDef
 Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' } "Javascript
 
 " Markdown plugins
@@ -82,7 +82,6 @@ Plug 'HerringtonDarkholme/yats.vim' " typescript syntax
 Plug 'daizeng1984/vim-feeling-lucky', {'do': 'pip2 install --upgrade google-api-python-client --user' } " require google api
 Plug 'daizeng1984/vim-snip-and-paste'
 "Plug 'ramele/agrep'
-"Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript', 'javascript.jsx'] }
 "Plug 'othree/jspc.vim', { 'for': ['javascript', 'javascript.jsx'] }
 " Plug 'itchyny/calendar.vim' " Interesting to try out, Google Calendar in vim!
 
@@ -190,7 +189,11 @@ colorscheme wombat256mod
 " Deoplete companion Language
 " Use deoplete.
 let g:tern_request_timeout = 1
-let g:tern_show_signature_in_pum = '0'  " This do disable full signature type on autocomplete
+let g:tern_map_keys = 1
+let g:tern_show_signature_in_pum = 1  " This do disable full signature type on autocomplete
+let g:tern_show_argument_hints = 'on_hold'
+let g:tern_show_loc_after_rename = 1
+let g:tern_map_prefix = ','
 
 "Add extra filetypes
 let g:tern#filetypes = [
@@ -198,6 +201,8 @@ let g:tern#filetypes = [
                 \ 'javascript.jsx',
                 \ 'vue',
                 \ ]
+let g:tern#command = ["tern"]
+let g:tern#arguments = ["--persistent"]
 
 " Scala
 let g:scala_scaladoc_indent = 1
@@ -239,3 +244,6 @@ let g:nvim_ipy_perform_mappings = 0
 
 " Rooter
 let g:rooter_manual_only = 1
+
+" LargeFile
+let g:LargeFile = 5
