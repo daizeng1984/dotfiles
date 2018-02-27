@@ -1,5 +1,8 @@
 {
-    "usageCount": 27, 
+    "usageCount": 0, 
+    "omitTrigger": false, 
+    "prompt": false, 
+    "description": "Capture-to-clip", 
     "abbreviation": {
         "wordChars": "[\\w]", 
         "abbreviations": [], 
@@ -8,16 +11,21 @@
         "backspace": true, 
         "triggerInside": false
     }, 
-    "modes": [], 
-    "title": "autokey", 
     "hotkey": {
-        "hotKey": null, 
-        "modifiers": []
+        "hotKey": "4", 
+        "modifiers": [
+            "<alt>", 
+            "<ctrl>"
+        ]
     }, 
+    "modes": [
+        3
+    ], 
+    "showInTrayMenu": false, 
     "filter": {
         "regex": null, 
         "isRecursive": false
     }, 
-    "type": "folder", 
-    "showInTrayMenu": false
+    "type": "script", 
+    "store": {}
 }
