@@ -56,6 +56,9 @@ class compress(Command):
 
         original_path = cwd.path
         parts = self.line.split()
+        if len(parts) < 2 :
+            self.fm.notify("Please input file name, e.g. my_files.zip")
+
         au_flags = parts[1:]
         au_flags += ['-q']
         au_flags += ['-f']
