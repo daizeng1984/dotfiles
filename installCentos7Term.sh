@@ -46,6 +46,14 @@ wget https://raw.githubusercontent.com/so-fancy/diff-so-fancy/master/third_party
 chmod +x diff-so-fancy
 mv diff-so-fancy /usr/bin/
 
+# install ranger
+cd
+git clone https://github.com/ranger/ranger
+cd ranger
+make install
+cd ..
+rm -rf ranger
+
 # autocomplete ignore case for bash
 echo "set completion-ignore-case On" >> $HOME/.inputrc
 
