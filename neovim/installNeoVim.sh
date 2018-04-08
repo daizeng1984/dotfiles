@@ -13,3 +13,4 @@ curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
 
 # It seems vim-plug support...
 nvim +PlugInstall +qall
+nvim +UpdateRemotePlugins +qall
