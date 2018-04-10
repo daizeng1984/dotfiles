@@ -15,7 +15,11 @@ Plug 'airblade/vim-rooter' " User :Rooter to do it manually
 Plug 'ervandew/supertab'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
+if CliInstalled('eclipse')
 Plug 'dansomething/vim-eclim', { 'for' : ['java', 'scala']} " Annoying 'unable to determine the project ...' for file like html
+else
+Plug 'artur-shaik/vim-javacomplete2', { 'for' : ['java']}
+endif
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " some time this cause issue if you install fzf in different source e.g. brew install. To solve you need to brew reinstall
 Plug 'junegunn/fzf.vim'
 Plug 'vim-airline/vim-airline'
@@ -51,6 +55,7 @@ Plug 'mxw/vim-jsx'
 Plug 'justinj/vim-react-snippets'
 Plug 'ternjs/tern_for_vim', { 'for': ['javascript', 'javascript.jsx'] } " TernDef
 Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' } "Javascript
+Plug 'neomake/neomake'
 
 " Markdown plugins
 Plug 'dhruvasagar/vim-table-mode', {'for': ['markdown'] } " for better table in markdown, :TableModeToggle and || to start, you can even tableize the csv style entries and do table formula, delete column localleader=\\
@@ -71,8 +76,12 @@ endif
 
 " Python
 Plug 'zchee/deoplete-jedi' " Python deoplete
+if CliInstalled('ipython')
 Plug 'bfredl/nvim-ipy', { 'do': 'pip3 install jupyter --user' } " Jupyter/IPython
+endif
+if CliInstalled('notedown')
 Plug 'goerz/ipynb_notedown.vim', { 'do': 'pip3 install notedown --user' } " Install notedown to write ipynb in vim
+endif
 " Plug 'Quramy/tsuquyomi'
 " TODO typescript filetype
 Plug 'HerringtonDarkholme/yats.vim' " typescript syntax
@@ -81,6 +90,8 @@ Plug 'HerringtonDarkholme/yats.vim' " typescript syntax
 "Plug 'daizeng1984/my-worddoctor' " My own python plugin currently in test
 Plug 'daizeng1984/vim-feeling-lucky', {'do': 'pip2 install --upgrade google-api-python-client --user' } " require google api
 Plug 'daizeng1984/vim-snip-and-paste'
+
+Plug 'ekalinin/Dockerfile.vim'
 "Plug 'ramele/agrep'
 "Plug 'othree/jspc.vim', { 'for': ['javascript', 'javascript.jsx'] }
 " Plug 'itchyny/calendar.vim' " Interesting to try out, Google Calendar in vim!
