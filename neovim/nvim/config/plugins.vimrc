@@ -39,6 +39,7 @@ Plug 'tomtom/tcomment_vim' " gc toggle comment
 Plug 'mattn/webapi-vim' " Gist dependencies
 Plug 'vim-scripts/Gist.vim' "Gist but before git config --global github.user Username
 Plug 'vim-scripts/BufOnly.vim' " BufOnly to close all but this
+Plug 'sheerun/vim-polyglot' " One to rule them all, one to find them, one to bring them all and in the darkness bind them.
 Plug 'vim-scripts/LargeFile' " Load largefile without syntax etc. burden
 Plug 'AndrewRadev/linediff.vim' " :Linediff for two blocks
 Plug 'brooth/far.vim' " Easier Search&Replace :Far number num <tab>for hint and then vola! Use x to exclude and X to exclude for all, i for include and I for ... Far also works for virtual block!
@@ -51,7 +52,6 @@ Plug 'scrooloose/nerdtree' " NERDtree, even though know it for a while, usually 
 Plug 'Xuyuanp/nerdtree-git-plugin' " git flag in NERDTree
 
 " Deplete companions
-Plug 'mxw/vim-jsx'
 Plug 'justinj/vim-react-snippets'
 Plug 'ternjs/tern_for_vim', { 'for': ['javascript', 'javascript.jsx'] } " TernDef
 Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' } "Javascript
@@ -83,15 +83,11 @@ if CliInstalled('notedown')
 Plug 'goerz/ipynb_notedown.vim', { 'do': 'pip3 install notedown --user' } " Install notedown to write ipynb in vim
 endif
 " Plug 'Quramy/tsuquyomi'
-" TODO typescript filetype
-Plug 'HerringtonDarkholme/yats.vim' " typescript syntax
-" Plug 'artur-shaik/vim-javacomplete2' "Java
 " Plug 'mhartington/nvim-typescript' " should do npm install -g typescript now causing problems and freeze vim
 "Plug 'daizeng1984/my-worddoctor' " My own python plugin currently in test
 Plug 'daizeng1984/vim-feeling-lucky', {'do': 'pip2 install --upgrade google-api-python-client --user' } " require google api
 Plug 'daizeng1984/vim-snip-and-paste'
 
-Plug 'ekalinin/Dockerfile.vim'
 "Plug 'ramele/agrep'
 "Plug 'othree/jspc.vim', { 'for': ['javascript', 'javascript.jsx'] }
 " Plug 'itchyny/calendar.vim' " Interesting to try out, Google Calendar in vim!
