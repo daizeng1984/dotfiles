@@ -1,0 +1,8 @@
+platform: darwin
+debug: true
+ignore_existing: true
+components:
+  - build-tools;25.0.3
+  - platforms;android-25
+  - platform-tools
+  - extras;android;m2repository
