@@ -49,6 +49,8 @@
 [alias]
     # http://stackoverflow.com/questions/1265040/how-to-count-total-lines-changed-by-a-specific-author-in-a-git-repository#answer-1265229
     stat=!"_mygitstat(){ git log --oneline --shortstat --author=${1} ; }; _mygitstat"
+    ls="ls-tree --full-tree -r --name-only HEAD"
+    map=!"git branch -r --no-color | grep -v '\\->' | while read remote; do git branch --track \"${remote#origin/}\" \"$remote\"; done"
 
 [color "diff-highlight"]
 	oldNormal = red bold

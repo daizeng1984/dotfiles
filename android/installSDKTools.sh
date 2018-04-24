@@ -19,7 +19,10 @@ fi
 cp "$HOME/.dotfiles/android/android-sdk-installer.yml" .
 "$HOME/.dotfiles/android/android-sdk-installer" -p $PLATFORM .
 
-echo "Please add this to your path!: \n \
+echo "Please add this to your path! e.g.: \n \
 export ANDROID_HOME=\$HOME/android/android-sdk\n \
+export ANDROID_NDK=\$ANDROID_HOME/ndk-bundle/your-ndk-version\n \
+export ANDROID_SDK=\$ANDROID_HOME\n \
 export PATH=\$ANDROID_HOME/platform-tools:\$PATH\n \
-export PATH=\$ANDROID_HOME/tools:\$PATH"
+export PATH=\$ANDROID_HOME/tools:\$ANDROID_HOME/tools/bin:\$PATH\n \
+"

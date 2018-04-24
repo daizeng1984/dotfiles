@@ -5,7 +5,7 @@ export PATH="$PATH:$HOME/anaconda2/bin:$HOME/Workspace/ConTeXt/tex/texmf-osx-64/
 export NODE_PATH="/usr/local/lib/node_modules"
 export ANDROID_HOME=$HOME/android/android-sdk
 export PATH=$ANDROID_HOME/platform-tools:$PATH
-export PATH=$ANDROID_HOME/tools:$PATH
+export PATH=$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$PATH
 
 # Grab from perl installation, maybe remove if not needed
 PATH="/Users/zengdai/perl5/bin${PATH:+:${PATH}}"; export PATH;

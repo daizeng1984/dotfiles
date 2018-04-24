@@ -7,3 +7,4 @@ components:
   - platform-tools
   - ndk-bundle
   - extras;android;m2repository
+    # $ANDROID_HOME/tools/bin/sdkmanager --list --verbose
