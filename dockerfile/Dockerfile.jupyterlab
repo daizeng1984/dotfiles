@@ -1,6 +1,15 @@
 # Deep learning mega image
 FROM ufoym/deepo
 
+# Node for vim plugin
+RUN apt-get update && apt-get install -y \
+    curl
+
+RUN curl -sL https://deb.nodesource.com/setup_8.x | bash -
+
+RUN apt-get install -y \
+    nodejs
+
 # Install Jupyter
 RUN pip install jupyter
 RUN pip install ipywidgets
@@ -8,8 +17,13 @@ RUN jupyter nbextension enable --py widgetsnbextension
 
 # Install JupyterLab
 RUN pip install jupyterlab && jupyter serverextension enable --py jupyterlab
+RUN jupyter labextension install jupyterlab_vim
 
 
 # Expose Jupyter port & cmd
-EXPOSE 9999
-CMD jupyter lab --ip=* --port=9999 --no-browser --notebook-dir=/root/Downloads/jupyterlab --allow-root --NotebookApp.token=
+EXPOSE 8888
+CMD jupyter lab --ip=* --port=8888 --no-browser --notebook-dir=/root/Downloads/jupyterlab --allow-root --NotebookApp.token=
+
+
+# Run it like:
+# mkdir -p ~/Downloads/jupyterlab && sudo nvidia-docker run -it -p 8888:8888 -v ~/Downloads/:/root/Downloads [yourtag e.g. test:jupyter]
