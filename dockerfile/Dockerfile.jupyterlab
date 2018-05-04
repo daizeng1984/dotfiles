@@ -1,0 +1,15 @@
+# Deep learning mega image
+FROM ufoym/deepo
+
+# Install Jupyter
+RUN pip install jupyter
+RUN pip install ipywidgets
+RUN jupyter nbextension enable --py widgetsnbextension
+
+# Install JupyterLab
+RUN pip install jupyterlab && jupyter serverextension enable --py jupyterlab
+
+
+# Expose Jupyter port & cmd
+EXPOSE 9999
+CMD jupyter lab --ip=* --port=9999 --no-browser --notebook-dir=/root/Downloads/jupyterlab --allow-root --NotebookApp.token=
