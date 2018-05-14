@@ -1,3 +1,5 @@
+# TODO: clean sudo/user since some installation are messed up by sudo
+# sudo -u username ./installUbuntu16Term.sh to temporarily solve this problem
 #!/usr/bin/bash
 add-apt-repository ppa:neovim-ppa/stable
 add-apt-repository ppa:aacebedo/fasd
