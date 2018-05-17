@@ -33,6 +33,7 @@ Plug 'eugen0329/vim-esearch' " rg
 Plug 'airblade/vim-gitgutter' " Show git diff
 Plug 'rhysd/conflict-marker.vim'
 Plug 'tpope/vim-fugitive' " -, dv, U, cc, cA, p, q
+Plug 'gregsexton/gitv' "extension to fugitive
 Plug 'tpope/vim-surround'
 Plug 'mattn/emmet-vim' " c-y ,then type this>is>tag ---> <this> <is> <tag> ... </.... or type insert mode and c-y , here's the cheatsheet https://docs.emmet.io/cheat-sheet/
 Plug 'tomtom/tcomment_vim' " gc toggle comment
@@ -76,6 +77,7 @@ endif
 
 " Python
 Plug 'zchee/deoplete-jedi' " Python deoplete
+Plug 'nathanaelkane/vim-indent-guides' " Indention guide
 if CliInstalled('ipython')
 Plug 'bfredl/nvim-ipy', { 'do': 'pip3 install jupyter --user' } " Jupyter/IPython
 endif
@@ -187,6 +189,7 @@ let g:airline#extensions#tabline#right_alt_sep = ''
 
 " Wombat!
 colorscheme wombat256mod
+hi Normal ctermbg=none
 
 " Grepper, hard to config for my use search(pattern, folder, filepattern), and a few segment fault suspects
 " let g:grepper = {
@@ -254,3 +257,9 @@ let g:rooter_manual_only = 1
 
 " LargeFile
 let g:LargeFile = 5
+
+" Indent Guides
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_auto_colors = 0
+hi IndentGuidesOdd  ctermbg=237
+hi IndentGuidesEven ctermbg=234
