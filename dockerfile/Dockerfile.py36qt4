@@ -1,0 +1,31 @@
+FROM python:3.6 
+
+MAINTAINER Zeng Dai <daizeng1984@gmail.com>
+
+# Add pyqt4
+RUN apt-get update && apt-get install -y \
+    python3-tk \
+    wget \
+    qt4-default \
+    python3.6-dev \ 
+    gcc \
+    libqt4-dev
+
+RUN pip3 install pydot-ng
+
+# python3-pyqt4 at this point is for python3.5 alone unfortunately... 
+# You have to build from source
+RUN pip3 install SIP
+
+RUN cd /tmp && wget https://sourceforge.net/projects/pyqt/files/sip/sip-4.19.8/sip-4.19.8.tar.gz && tar -zxvf sip-4.19.8.tar.gz && cd sip-4.19.8
+
+RUN python3.6 configure.py && make && make install
+
+
+# Download source
+RUN cd /tmp && wget http://sourceforge.net/projects/pyqt/files/PyQt4/PyQt-4.12.1/PyQt4_gpl_x11-4.12.1.tar.gz && tar -zxvf PyQt4_gpl_x11-4.12.1.tar.gz && cd PyQt4_gpl_x11-4.12.1 
+
+
+RUN echo "yes" | python3.6 ./configure.py
+
+RUN make && make install
