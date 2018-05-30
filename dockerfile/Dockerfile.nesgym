@@ -1,5 +1,49 @@
-# Run it with x window
-# sudo docker run -ti --rm --device /dev/snd --group-add audio -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix ubuntu-fceux
+# Setup VNC to run x11 app
+# Mostly grabbed from this repo https://github.com/paulsuda/jupyter-gym-vnc
+# build: sudo docker build -t test:nesgym .
+# run: sudo nvidia-docker run -it -p 5900:5900 -v ~/Workspace/:/root/Workspace test:nesgym
+#      then run your python app and use any vnc client e.g. for mac, open finder -> cmd+K
+# TODO: extract the x11 vnc part
 FROM ufoym/deepo
-RUN apt-get install -y fceux
+
+RUN apt-get update
+
+RUN apt-get install -y freeglut3 libglu1 libopenal1
+# Install open ai gym requirements and X11 stuff
+RUN apt-get update \
+    && apt-get install -y \
+        libav-tools \
+        python-pyglet \
+        python-opengl \
+        libpq-dev \
+        libjpeg-dev \
+        libboost-all-dev \
+        libsdl2-dev \
+        curl \
+        cmake \
+        swig \
+        wget \
+        unzip \
+        git \
+        xvfb \
+        x11vnc \
+        ratpoison \
+        xterm \
+        python-tk \
+        fceux \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/* /root/.cache/pip/
+
 RUN pip3 install gym
+
+ENV PATH=$PATH:/usr/games
+
+# Xvnc
+EXPOSE 5900
+
+COPY "./extra/docker_start.sh" "/opt/docker_start.sh"
+COPY "./extra/xsession_start.sh" "/opt/xsession_start.sh"
+
+RUN chmod +x "/opt/docker_start.sh" "/opt/xsession_start.sh"
+
+CMD ["/opt/docker_start.sh"]
