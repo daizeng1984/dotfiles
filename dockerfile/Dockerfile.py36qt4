@@ -2,6 +2,7 @@ FROM python:3.6
 
 MAINTAINER Zeng Dai <daizeng1984@gmail.com>
 
+
 # Add pyqt4
 RUN apt-get update && apt-get install -y \
     python3-tk \
@@ -17,15 +18,15 @@ RUN pip3 install pydot-ng
 # You have to build from source
 RUN pip3 install SIP
 
-RUN cd /tmp && wget https://sourceforge.net/projects/pyqt/files/sip/sip-4.19.8/sip-4.19.8.tar.gz && tar -zxvf sip-4.19.8.tar.gz && cd sip-4.19.8
-
-RUN python3.6 configure.py && make && make install
-
+RUN cd /tmp && wget https://sourceforge.net/projects/pyqt/files/sip/sip-4.19.8/sip-4.19.8.tar.gz && tar -zxvf sip-4.19.8.tar.gz && cd sip-4.19.8 && python3.6 ./configure.py && make && make install
 
 # Download source
-RUN cd /tmp && wget http://sourceforge.net/projects/pyqt/files/PyQt4/PyQt-4.12.1/PyQt4_gpl_x11-4.12.1.tar.gz && tar -zxvf PyQt4_gpl_x11-4.12.1.tar.gz && cd PyQt4_gpl_x11-4.12.1 
 
+COPY "./extra/surrender_pyqt.exp" "/opt/surrender_pyqt.exp"
 
-RUN echo "yes" | python3.6 ./configure.py
+RUN chmod +x "/opt/surrender_pyqt.exp"
 
-RUN make && make install
+RUN apt-get update && apt-get install -y \
+    expect 
+
+RUN cd /tmp && wget http://sourceforge.net/projects/pyqt/files/PyQt4/PyQt-4.12.1/PyQt4_gpl_x11-4.12.1.tar.gz && tar -zxvf PyQt4_gpl_x11-4.12.1.tar.gz && cd PyQt4_gpl_x11-4.12.1 && /opt/surrender_pyqt.exp && make && make install

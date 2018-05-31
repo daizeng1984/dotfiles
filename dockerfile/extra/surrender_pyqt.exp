@@ -1,0 +1,5 @@
+#!/usr/bin/expect
+set timeout -1
+spawn /usr/bin/python3.6 ./configure.py
+expect "Do you accept the terms of the license?" { send "yes\n"}
+expect eof
