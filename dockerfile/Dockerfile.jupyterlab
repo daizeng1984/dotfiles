@@ -22,7 +22,7 @@ RUN jupyter labextension install jupyterlab_vim
 
 # Expose Jupyter port & cmd
 EXPOSE 8888
-CMD jupyter lab --ip=* --port=8888 --no-browser --notebook-dir=/root/Downloads/jupyterlab --allow-root --NotebookApp.token=
+CMD jupyter notebook password && jupyter lab --ip=* --port=8888 --no-browser --notebook-dir=/root/Downloads/jupyterlab --allow-root --NotebookApp.token=
 
 
 # Run it like:
