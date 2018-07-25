@@ -284,7 +284,7 @@ fi
 
 installedDiffSoFancy=$(checkIfInstalled "diff-so-fancy" diff-so-fancy)
 
-if [ "$installedOpen" = "0" ]; then
+if [ "$installedDiffSoFancy" = "0" ]; then
     # Offensive? Experimentally keep it :)
     git config --global core.pager "diff-so-fancy | less --tabs=4 -RFX"
     git config --global color.diff-highlight.oldNormal "red bold"
