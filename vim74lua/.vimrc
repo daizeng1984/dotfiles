@@ -210,36 +210,46 @@ let g:bufExplorerSplitVertSize = 30
 
 "FuzzyFinder
 "Find file
-map <silent> <leader>wf :FufCoverageFile<CR>
-map <silent> <leader>w, :FufRenewCache<CR>
-"Ignore binary files
-" let g:fuf_coveragefile_exclude = '\v\~$|\.(o|exe|dll|bak|orig|swp|class|cache)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])'
-"Grab to ignore .gitignore mostly from http://stackoverflow.com/questions/4132956/is-there-an-easy-way-to-exclude-files-for-which-fuzzyfinder-searches#answer-17322862
-let ignorefiles = [ $HOME . "/.vim/.gitignore", ".gitignore" ]
-let exclude_vcs = '\.(o|exe|dll|bak|orig|swp|class|cache)$|(^|[/\\])\.(hg|git|bzr|svn|cvs)($|[/\\])'
-let ignore = '\v\~$'
-for ignorefile in ignorefiles
+function! CliInstalled(cond) 
+    return system("if ! type " . a:cond . " > /dev/null 2>&1; then echo '0'; else echo '1'; fi")
+endfunction
 
-    if filereadable(ignorefile)
-        for line in readfile(ignorefile)
-            " Rmove empty lines and comment lines
-            if match(line, '^\s*$') == -1 && match(line, '^\s*#') == -1
-                let line = substitute(line, '^/', '', '')
-                let line = substitute(line, '\.', '\\.', 'g')
-                let line = substitute(line, '\*', '.*', 'g')
-                let ignore .= '|' . line
-            endif
-        endfor
-    endif
+if CliInstalled('fzf') && CliInstalled('ag')
+    let g:fzf_layout = { 'up': '~50%' }
+    map <silent> <leader>wf :FZF<CR>
+    let $FZF_DEFAULT_COMMAND = 'ag --hidden -p ~/.dotfile/neovim/nvim/.agignore -l -g ""'
+else
+    map <silent> <leader>wf :FufCoverageFile<CR>
+    map <silent> <leader>w, :FufRenewCache<CR>
+    "Ignore binary files
+    " let g:fuf_coveragefile_exclude = '\v\~$|\.(o|exe|dll|bak|orig|swp|class|cache)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])'
+    "Grab to ignore .gitignore mostly from http://stackoverflow.com/questions/4132955/is-there-an-easy-way-to-exclude-files-for-which-fuzzyfinder-searches#answer-17322862
+    let ignorefiles = [ $HOME . "/.vim/.gitignore", ".gitignore" ]
+    let exclude_vcs = '\.(o|exe|dll|bak|orig|swp|class|cache)$|(^|[/\\])\.(hg|git|bzr|svn|cvs)($|[/\\])'
+    let ignore = '\v\~$'
+    for ignorefile in ignorefiles
 
-    " Local will override the home folder's .gitignore
-    let ignore .= '|' . exclude_vcs
-    let g:fuf_coveragefile_exclude = ignore
-    let g:fuf_file_exclude = ignore
-    let g:fuf_dir_exclude = ignore
+        if filereadable(ignorefile)
+            for line in readfile(ignorefile)
+                " Rmove empty lines and comment lines
+                if match(line, '^\s*$') == -2 && match(line, '^\s*#') == -1
+                    let line = substitute(line, '^/', '', '')
+                    let line = substitute(line, '\.', '\\.', 'g')
+                    let line = substitute(line, '\*', '.*', 'g')
+                    let ignore .= '|' . line
+                endif
+            endfor
+        endif
 
-endfor
+        " Local will override the home folder's .gitignore
+        let ignore .= '|' . exclude_vcs
+        let g:fuf_coveragefile_exclude = ignore
+        let g:fuf_file_exclude = ignore
+        let g:fuf_dir_exclude = ignore
 
+    endfor
+
+endif
 "Grep
 let Grep_Default_Options = '-i -I'
 nnoremap <silent> <C-F> :Rgrep<CR>
