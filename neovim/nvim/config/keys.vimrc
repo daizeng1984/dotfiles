@@ -1,10 +1,18 @@
 let mapleader = ","
 
+" Jump to definition
+autocmd FileType java map <buffer> <C-]> :JavaSearch<CR>
+autocmd FileType javascript map <buffer> <C-]> :TernDef<CR>
+autocmd FileType python map <buffer> <C-]> :call IPyRun('print(<C-R><C-W>)')<CR>
+
+" Find Refs
+autocmd FileType javascript map <buffer> <leader><C-F> :TernRefs<CR>
+
 " Eclim, TODO: make a switch
 map <silent> <leader>ji :JavaImport<CR>
 map <silent> <leader>jc :JavaDocComment<CR>
 map <silent> <leader>jr<F5>:Java %<CR>
-map <leader>j<C-]> :JavaSearch<CR>
+"map <leader>j<C-]> :JavaSearch<CR>
 map <silent> <leader>jdb :call MyEclimdJavaDebug()<CR>
 map <silent> <leader>j<F9> :JavaDebugBreakpointToggle<CR>:JavaDebugStatus<CR>
 map <silent> <leader>j<F8> :JavaDebugStep over <CR> :JavaDebugStatus<CR>
