@@ -1,21 +1,12 @@
 #!/bin/bash
-#TODO: kill if any commands fail
 TMPDIR='./tmp/'
 declare -a cmd=(
 "cmd1" 
 "cmd2" 
 "cmd3" 
 )
-trapcmd=""
-for i in "${!cmd[@]}"; do 
-    if [ ${i} -eq 0 ]; then
-        trapcmd="kill %$(($i+1))"
-    else
-        trapcmd="$trapcmd; kill %$(($i+1))"
-    fi
-done
-echo $trapcmd
-trap "$trapcmd" SIGINT
+
+pgid=$$
 
 # Run all cmds
 for i in "${!cmd[@]}"; do 
@@ -24,13 +15,25 @@ for i in "${!cmd[@]}"; do
     tmplog="${TMPDIR}/${cmdname}.log"
 
     touch "$tmplog"
-    title="\$(echo '\\\\\\e[0;$(($i+41))m[${cmdname}]\\\\\\e[0m') "
-    echo $title
-    common="$c  2>&1 | tee ${tmplog} | sed -e \"s/^/${title} /\" "
-    iplusone=$(($i+1))
-    if [ ${iplusone} -eq ${#cmd[@]} ]; then
-        eval "$common"
-    else
-        eval "$common &"
+    esc=$(printf '\e')
+    title="$esc[0;$(($i+41))m[${cmdname}]$esc[0m"
+    common="$c 2>&1 | tee ${tmplog}" 
+    eval "$c " 2>&1 | tee "${tmplog}" 2>&1 | sed -e "s/^/${title}  /" & p=$!
+    PID_LIST+="$p "
+    #
+done
+
+killall() {
+for pid in $1; do
+for child in $(ps -o pid,pgid -ax | awk "{ if ( \$2 == $pid ) { print \$1 }}"); do
+    if [ "$child" != "$pid" ]; then
+        #echo "kill $child"
+        kill -9 "$child" &> /dev/null
     fi
 done
+done
+}
+trap "killall $pgid" SIGINT
+wait $PID_LIST
+
+
