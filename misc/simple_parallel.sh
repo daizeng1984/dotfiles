@@ -16,7 +16,7 @@ IFS=$'\n' read -d '' -r -a cmd << EOF
 $@
 EOF
 
-pgid=$$
+pgid=$(ps -o pgid= $$ | grep -o [0-9]*)
 
 # Run all cmds
 for i in "${!cmd[@]}"; do 
@@ -29,17 +29,11 @@ for i in "${!cmd[@]}"; do
     title="$esc[0;$(($i+41))m[${cmdname}]$esc[0m"
     eval "$c " 2>&1 | tee "${tmplog}" 2>&1 | sed -e "s/^/${title}  /" & p=$!
     PID_LIST+="$p "
-    #
 done
+
 killall() {
-for pid in $1; do
-for child in $(ps -o pid,pgid -ax | awk "{ if ( \$2 == $pid ) { print \$1 }}"); do
-    if [ "$child" != "$pid" ]; then
-        #echo "kill $child"
-        kill -9 "$child" &> /dev/null
-    fi
-done
-done
+    echo "kill $1"
+    pkill -9 -g $1
 }
 trap "killall $pgid" SIGINT
 wait $PID_LIST
