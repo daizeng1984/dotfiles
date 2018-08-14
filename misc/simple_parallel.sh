@@ -16,7 +16,7 @@ IFS=$'\n' read -d '' -r -a cmd << EOF
 $@
 EOF
 
-pgid=$(ps -o pgid= $$ | grep -o '[0-9]*')
+pgid=$(ps -o pgid= $$ | grep -o '[0-9]\+')
 
 # Run all cmds
 for i in "${!cmd[@]}"; do 
