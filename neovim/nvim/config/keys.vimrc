@@ -41,7 +41,8 @@ map <silent> <leader>wp :!find . -name ".*.*.swp" <Bar> xargs rm -rf<cr>
 "WinManager
 " let g:winManagerWindowLayout='TagList'
 " map <silent> <leader>wm :WMToggle<CR>
-map <silent> <leader>we :NERDTreeToggle<CR>
+map <silent> <leader>we :NERDTreeCWD <CR><C-W><C-P>:NERDTreeFind<CR>
+map <silent> <leader>jj :NERDShowDir .<CR>
 
 "BuffExplorer
 " map <silent> <leader>wb :BufExplorer<CR>

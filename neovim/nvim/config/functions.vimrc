@@ -140,4 +140,9 @@ fun MyInsertCalDate()
     exe ":Calendar"
 endf
 
+" Use NERDTree to open the directory https://github.com/junegunn/fzf.vim/issues/251
+command! -nargs=* -complete=dir NERDShowDir call fzf#run(fzf#wrap(
+  \ {'source': 'find '.(empty(<f-args>) ? '.' : <f-args>).' -type d',
+  \  'sink': 'NERDTree'}))
+
 source $HOME/.config/nvim/config/functions/asciiemoji.vimrc
