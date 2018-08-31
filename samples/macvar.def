@@ -8,11 +8,11 @@ export PATH=$ANDROID_HOME/platform-tools:$PATH
 export PATH=$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$PATH
 
 # Grab from perl installation, maybe remove if not needed
-PATH="/Users/zengdai/perl5/bin${PATH:+:${PATH}}"; export PATH;
-PERL5LIB="/Users/zengdai/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
-PERL_LOCAL_LIB_ROOT="/Users/zengdai/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
-PERL_MB_OPT="--install_base \"/Users/zengdai/perl5\""; export PERL_MB_OPT;
-PERL_MM_OPT="INSTALL_BASE=/Users/zengdai/perl5"; export PERL_MM_OPT;
+# PATH="$HOME/perl5/bin${PATH:+:${PATH}}"; export PATH;
+# PERL5LIB="$HOME/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+# PERL_LOCAL_LIB_ROOT="$HOME/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+# PERL_MB_OPT="--install_base \"$HOME/perl5\""; export PERL_MB_OPT;
+# PERL_MM_OPT="INSTALL_BASE=$HOME/perl5"; export PERL_MM_OPT;
 
 # Alert
 notify() {
@@ -37,3 +37,6 @@ if [ -f '/Users/zengdai/Downloads/google-cloud-sdk-188.0.1-darwin-x86_64.tar/goo
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/zengdai/Downloads/google-cloud-sdk-188.0.1-darwin-x86_64.tar/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/zengdai/Downloads/google-cloud-sdk-188.0.1-darwin-x86_64.tar/google-cloud-sdk/completion.zsh.inc'; fi
 
+# Leave experimental at the end
+# gvm
+source $HOME/.gvm/scripts/gvm
