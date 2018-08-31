@@ -10,7 +10,7 @@ Recommend to install:
 But it's fine if you only want .dotfiles and make it work partially ("ssh style" e.g. if you only need bash and vi).
 
 # Create symlink for all dotfiles
-Simply do: `cd && git clone https://github.com/zedai1984/dotfiles.git .dotfiles && cd .dotfiles && ./createSymlink.sh`
+Simply do: `cd && git clone https://github.com/zedai1984/dotfiles.git .dotfiles && cd .dotfiles && bash ./createSymlink.sh`
 
 In Windows  or some other cross-terminal environment that you cannot do symlink, you could do:
 `cd && git clone https://github.com/zedai1984/dotfiles.git .dotfiles && cd .dotfiles && ./createSymlink.sh nosymlink`
