@@ -2,7 +2,7 @@ FROM ubuntu:16.04
 
 MAINTAINER Zeng Dai <daizeng1984@gmail.com>
 
-# My preferred dev env (a bit fat but handy if need to work in container)
+# My preferred dev env (very fat but handy if myself need to work in container)
 ENV TERM screen-256color
 ENV DEBIAN_FRONTEND noninteractive
 
@@ -106,5 +106,4 @@ RUN bash -c echo -ne '\n' | nvim +UpdateRemotePlugins +qall || true
 
 # TODO: install tmux
 
-# Fix
 CMD ["zsh"]
