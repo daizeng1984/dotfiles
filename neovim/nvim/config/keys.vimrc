@@ -1,22 +1,5 @@
 let mapleader = ","
 
-" Jump to definition
-autocmd FileType java map <buffer> <C-]> :JavaSearch<CR>
-autocmd FileType javascript map <buffer> <C-]> :TernDef<CR>
-autocmd FileType python map <buffer> <C-]> :call IPyRun('print(<C-R><C-W>)')<CR>
-
-" Find Refs
-autocmd FileType javascript map <buffer> <leader><C-F> :TernRefs<CR>
-
-" Eclim, TODO: make a switch
-map <silent> <leader>ji :JavaImport<CR>
-map <silent> <leader>jc :JavaDocComment<CR>
-map <silent> <leader>jr<F5>:Java %<CR>
-"map <leader>j<C-]> :JavaSearch<CR>
-map <silent> <leader>jdb :call MyEclimdJavaDebug()<CR>
-map <silent> <leader>j<F9> :JavaDebugBreakpointToggle<CR>:JavaDebugStatus<CR>
-map <silent> <leader>j<F8> :JavaDebugStep over <CR> :JavaDebugStatus<CR>
-map <silent> <leader>j<F7> :JavaDebugStep into <CR> :JavaDebugStatus<CR>
 
 " IPython
 map <silent> <leader>pr <Plug>(IPy-Run)
@@ -42,7 +25,7 @@ map <silent> <leader>wp :!find . -name ".*.*.swp" <Bar> xargs rm -rf<cr>
 " let g:winManagerWindowLayout='TagList'
 " map <silent> <leader>wm :WMToggle<CR>
 map <silent> <leader>we :NERDTreeCWD <CR><C-W><C-P>:NERDTreeFind<CR>
-map <silent> <leader>jj :NERDShowDir .<CR>
+map <silent> <leader>wd :NERDShowDir .<CR>
 
 "BuffExplorer
 " map <silent> <leader>wb :BufExplorer<CR>
@@ -137,3 +120,27 @@ nnoremap <leader>em :<C-U>call AsciiEmoji()<CR>:<C-U>Denite menu<CR>
 
 " Emmet bug temp solution http://vim.wikia.com/wiki/Delete_a_pair_of_XML/HTML_tags
 noremap <C-Y>k vat<Esc>da>`<da> 
+
+" LanguageClient
+" nnoremap <F4> :call LanguageClient_contextMenu()<CR>
+nnoremap <silent> <C-K> :call LanguageClient#textDocument_hover()<CR>
+nnoremap <silent> <C-]> :call LanguageClient#textDocument_definition()<CR>
+nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+
+" Eclim, TODO: enable in the future?
+" " Jump to definition
+" autocmd FileType java map <buffer> <C-]> :JavaSearch<CR>
+" autocmd FileType javascript map <buffer> <C-]> :TernDef<CR>
+" autocmd FileType python map <buffer> <C-]> :call IPyRun('print(<C-R><C-W>)')<CR>
+"
+" " Find Refs
+" autocmd FileType javascript map <buffer> <leader><C-F> :TernRefs<CR>
+" map <silent> <leader>ji :JavaImport<CR>
+" map <silent> <leader>jc :JavaDocComment<CR>
+" map <silent> <leader>jr<F5>:Java %<CR>
+" "map <leader>j<C-]> :JavaSearch<CR>
+" map <silent> <leader>jdb :call MyEclimdJavaDebug()<CR>
+" map <silent> <leader>j<F9> :JavaDebugBreakpointToggle<CR>:JavaDebugStatus<CR>
+" map <silent> <leader>j<F8> :JavaDebugStep over <CR> :JavaDebugStatus<CR>
+" map <silent> <leader>j<F7> :JavaDebugStep into <CR> :JavaDebugStatus<CR>
+
