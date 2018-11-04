@@ -1,0 +1,12 @@
+#!/bin/bash
+PREV_DIR=$(pwd)
+
+INSTALL_DIR=$HOME/.dotfiles/.local/lib/diff-so-fancy
+
+if [ ! -d $INSTALL_DIR ] ; then
+    cd $HOME/.dotfiles/.local/lib/
+    git clone https://github.com/so-fancy/diff-so-fancy.git
+    cd $PREV_DIR
+fi
+
+$HOME/.dotfiles/.local/lib/diff-so-fancy/diff-so-fancy

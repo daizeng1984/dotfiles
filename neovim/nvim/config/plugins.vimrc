@@ -15,13 +15,22 @@ Plug 'airblade/vim-rooter' " User :Rooter to do it manually
 Plug 'ervandew/supertab'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
-if CliInstalled('eclipse')
-Plug 'dansomething/vim-eclim', { 'for' : ['java', 'scala']} " Annoying 'unable to determine the project ...' for file like html
-else
-Plug 'artur-shaik/vim-javacomplete2', { 'for' : ['java']}
-endif
+
+" Language autocomplete
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
+
+" Disable for languageclient-neovim
+" if CliInstalled('eclipse')
+" Plug 'dansomething/vim-eclim', { 'for' : ['java', 'scala']} " Annoying 'unable to determine the project ...' for file like html
+" else
+" Plug 'artur-shaik/vim-javacomplete2', { 'for' : ['java']}
+" endif
+" Disable for languageclient-neovim
+
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " some time this cause issue if you install fzf in different source e.g. brew install. To solve you need to brew reinstall
-Plug 'junegunn/fzf.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'jlanzarotta/bufexplorer'
@@ -55,14 +64,11 @@ Plug 'Xuyuanp/nerdtree-git-plugin' " git flag in NERDTree
 
 " Deplete companions
 Plug 'justinj/vim-react-snippets'
-Plug 'ternjs/tern_for_vim', { 'for': ['javascript', 'javascript.jsx'] } " TernDef
-Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' } "Javascript
 Plug 'neomake/neomake'
 
 " Markdown plugins
 Plug 'dhruvasagar/vim-table-mode', {'for': ['markdown'] } " for better table in markdown, :TableModeToggle and || to start, you can even tableize the csv style entries and do table formula, delete column localleader=\\
 Plug 'mattn/calendar-vim', {'for': ['markdown'] } " Good to have a calendar view
-" Plug 'plasticboy/vim-markdown', {'for': ['markdown'] } " gx ge note some font (like my favorite nerd font) doesn't have bold, italic etc.
 Plug 'vimwiki/vimwiki' " Great tool! I think it's better than org mode I tried
 Plug 'vim-scripts/utl.vim', {'for': ['markdown'] } " Utl help open URL in netrw
 Plug 'powerman/vim-plugin-AnsiEsc', {'for': ['markdown'] }  " allow colorful chart in taskwiki
@@ -77,7 +83,6 @@ endif
 " Plug 'tybenz/vimdeck' " Presentation tool
 
 " Python
-Plug 'zchee/deoplete-jedi' " Python deoplete
 Plug 'nathanaelkane/vim-indent-guides' " Indention guide
 if CliInstalled('ipython')
 Plug 'bfredl/nvim-ipy', { 'do': 'pip3 install jupyter --user' } " Jupyter/IPython
@@ -85,8 +90,7 @@ endif
 if CliInstalled('notedown')
 Plug 'goerz/ipynb_notedown.vim', { 'do': 'pip3 install notedown --user' } " Install notedown to write ipynb in vim
 endif
-" Plug 'Quramy/tsuquyomi'
-" Plug 'mhartington/nvim-typescript' " should do npm install -g typescript now causing problems and freeze vim
+
 "Plug 'daizeng1984/my-worddoctor' " My own python plugin currently in test
 Plug 'daizeng1984/vim-feeling-lucky', {'do': 'pip2 install --upgrade google-api-python-client --user' } " require google api
 Plug 'daizeng1984/vim-snip-and-paste'
@@ -103,30 +107,30 @@ call plug#end()
 " Deoplete
 
 " autocmd FileType java setlocal omnifunc=javacomplete#Complete " Java Complete 2, with eclim enable this can be disabled
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-" Jedi make it easier! autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
-autocmd FileType c setlocal omnifunc=ccomplete#Complete
-autocmd FileType javascript setlocal omnifunc=tern#Complete
+" autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+" " Jedi make it easier! autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+" autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+" autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+" autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
+" autocmd FileType c setlocal omnifunc=ccomplete#Complete
+" autocmd FileType javascript setlocal omnifunc=tern#Complete
 
 let g:deoplete#enable_at_startup = 1
 
-let g:deoplete#omni_patterns = {}
-" When Eclim is available, we will use eclim!
-let g:deoplete#omni_patterns.java = '[^. *\t]\.\w*'
-" let g:deoplete#omni_patterns.java = '\%(\h\w*\|)\)\.\w*'
-let g:deoplete#omni_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
-let g:deoplete#omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
-let g:deoplete#omni_patterns.scala = '[^. *\t]\.\w*\|: [A-Z]\w*'
-" let g:deoplete#omni_patterns.typescript = '[^. \t0-9]\.([a-zA-Z_]\w*)?'
-
-let g:deoplete#sources = {}
-let g:deoplete#sources._ = []
-let g:deoplete#auto_completion_start_length = 2
-let g:deoplete#file#enable_buffer_path = 1
-let g:deoplete#enable_smart_case = 1
+" let g:deoplete#omni_patterns = {}
+" " When Eclim is available, we will use eclim!
+" let g:deoplete#omni_patterns.java = '[^. *\t]\.\w*'
+" " let g:deoplete#omni_patterns.java = '\%(\h\w*\|)\)\.\w*'
+" let g:deoplete#omni_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
+" let g:deoplete#omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+" let g:deoplete#omni_patterns.scala = '[^. *\t]\.\w*\|: [A-Z]\w*'
+" " let g:deoplete#omni_patterns.typescript = '[^. \t0-9]\.([a-zA-Z_]\w*)?'
+"
+" let g:deoplete#sources = {}
+" let g:deoplete#sources._ = []
+" let g:deoplete#auto_completion_start_length = 2
+" let g:deoplete#file#enable_buffer_path = 1
+" let g:deoplete#enable_smart_case = 1
 
 " let g:deoplete#enable_debug = 1
 " let g:deoplete#enable_profile = 1
@@ -198,22 +202,6 @@ hi Normal ctermbg=none
 
 
 " Deoplete companion Language
-" Use deoplete.
-let g:tern_request_timeout = 1
-let g:tern_map_keys = 1
-let g:tern_show_signature_in_pum = 1  " This do disable full signature type on autocomplete
-let g:tern_show_argument_hints = 'on_hold'
-let g:tern_show_loc_after_rename = 1
-let g:tern_map_prefix = ','
-
-"Add extra filetypes
-let g:tern#filetypes = [
-                \ 'jsx',
-                \ 'javascript.jsx',
-                \ 'vue',
-                \ ]
-let g:tern#command = ["tern"]
-let g:tern#arguments = ["--persistent"]
 
 " Scala
 let g:scala_scaladoc_indent = 1
@@ -264,3 +252,15 @@ let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_auto_colors = 0
 hi IndentGuidesOdd  ctermbg=237
 hi IndentGuidesEven ctermbg=234
+
+" LanguageClient neovim
+let g:LanguageClient_serverCommands = {
+    \ 'java': [$HOME.'/.dotfiles/.local/bin/jdtls'],
+    \ 'javascript': [$HOME.'/.dotfiles/.local/lib/js-language-server/node_modules/.bin/javascript-typescript-stdio'],
+    \ 'javascript.jsx': [$HOME.'/.dotfiles/.local/lib/js-language-server/node_modules/.bin/javascript-typescript-stdio'],
+    \ 'typescript': [$HOME.'/.dotfiles/.local/lib/js-language-server/node_modules/.bin/javascript-typescript-stdio'],
+    \ 'python': [$HOME.'/.dotfiles/.local/lib/python-language-server/bin/pyls'],
+    \ }
+" Doublecheck in case any of these servers are not working
+" Here we add some environment necessary to run up pyls
+let $PYTHONPATH .= ":".$HOME."/.dotfiles/.local/lib/python-language-server/lib/python/site-packages/"

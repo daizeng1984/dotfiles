@@ -322,6 +322,10 @@ ftpane() {
     tmux select-window -t $target_window
   fi
 }
+
+# Dotfile Binary PATH
+export PATH=${PATH}:$HOME/.dotfiles/.local/bin/
+
 # Machine dependent, path and install, eventually this might be disabled when everything is installed from brew
 # source ~/.dotfiles/samples/macvar.def
 # source ~/.dotfiles/samples/linuxvar.def
