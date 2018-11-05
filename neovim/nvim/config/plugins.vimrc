@@ -260,7 +260,9 @@ let g:LanguageClient_serverCommands = {
     \ 'javascript.jsx': [$HOME.'/.dotfiles/.local/lib/js-language-server/node_modules/.bin/javascript-typescript-stdio'],
     \ 'typescript': [$HOME.'/.dotfiles/.local/lib/js-language-server/node_modules/.bin/javascript-typescript-stdio'],
     \ 'python': [$HOME.'/.dotfiles/.local/lib/python-language-server/bin/pyls'],
+    \ 'cpp': [$HOME.'/.dotfiles/.local/bin/clangd'],
     \ }
+" \ 'cpp': [$HOME.'/.dotfiles/.local/bin/cquery'],
 " Doublecheck in case any of these servers are not working
 " Here we add some environment necessary to run up pyls
 let $PYTHONPATH .= ":".$HOME."/.dotfiles/.local/lib/python-language-server/lib/python/site-packages/"
