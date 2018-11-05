@@ -11,6 +11,7 @@ call plug#begin('~/.config/nvim/plugged')
 
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'Shougo/denite.nvim', { 'do': 'pip3 install typing --user' }
+Plug 'Shougo/echodoc.vim'
 Plug 'airblade/vim-rooter' " User :Rooter to do it manually
 Plug 'ervandew/supertab'
 Plug 'SirVer/ultisnips'
@@ -135,6 +136,13 @@ let g:deoplete#enable_at_startup = 1
 " let g:deoplete#enable_debug = 1
 " let g:deoplete#enable_profile = 1
 " call deoplete#enable_logging('DEBUG', './deoplete.log')
+
+" EchoDoc
+set cmdheight=2
+let g:echodoc#enable_at_startup = 1
+let g:echodoc#type = 'signature'
+" Always draw the signcolumn.
+set signcolumn=yes
 
 " Super Tab enable as alternative to avoid annoying eclim error popping up when deoplete automatically
 " queries it
@@ -261,6 +269,7 @@ let g:LanguageClient_serverCommands = {
     \ 'typescript': [$HOME.'/.dotfiles/.local/lib/js-language-server/node_modules/.bin/javascript-typescript-stdio'],
     \ 'python': [$HOME.'/.dotfiles/.local/lib/python-language-server/bin/pyls'],
     \ 'cpp': [$HOME.'/.dotfiles/.local/bin/clangd'],
+    \ 'sh': [$HOME.'/.dotfiles/.local/lib/bash-language-server/node_modules/.bin/bash-language-server', 'start'],
     \ }
 " \ 'cpp': [$HOME.'/.dotfiles/.local/bin/cquery'],
 " Doublecheck in case any of these servers are not working
