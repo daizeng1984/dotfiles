@@ -40,3 +40,6 @@ Some notes:
 
 # Install tmux
 To make sure you have the right tmux flavor, check if the tmux is > 2.0 `tmux -V`, then in run `tmux/installTPM.sh` and `Prefix+I` to install plugin in tmux. On Centos, you need to disable gnome terminal's [F10 key bindings](https://ubuntu-tutorials.com/2007/07/16/disabling-the-f10-key-menu-accelerators-in-gnome-terminal/), disable Capslock in `TweakTool` and remap Capslock `xmodmap -e "keycode 66 = F10"`.
+
+# Install Language Support in Neovim
+Just run `./misc/installNeovimLanguageServers.sh`
