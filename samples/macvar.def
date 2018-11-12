@@ -56,5 +56,10 @@ if [ -f '/Users/zengdai/Downloads/google-cloud-sdk-188.0.1-darwin-x86_64.tar/goo
 if [ -f '/Users/zengdai/Downloads/google-cloud-sdk-188.0.1-darwin-x86_64.tar/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/zengdai/Downloads/google-cloud-sdk-188.0.1-darwin-x86_64.tar/google-cloud-sdk/completion.zsh.inc'; fi
 
 # Leave experimental at the end
+# GO related
 # gvm
 source $HOME/.gvm/scripts/gvm
+# virtual go
+command -v vg >/dev/null 2>&1 && eval "$(vg eval --shell zsh)"
+# Stop slowing my cd https://github.com/markeissler/gvm2/issues/16
+unset -f cd
