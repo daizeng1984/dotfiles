@@ -14,8 +14,26 @@ export PATH=$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$PATH
 # PERL_MB_OPT="--install_base \"$HOME/perl5\""; export PERL_MB_OPT;
 # PERL_MM_OPT="INSTALL_BASE=$HOME/perl5"; export PERL_MM_OPT;
 
+# Python sites
+alias pysite='python -m site'
+PYTHON_USER=`python3 -c "import site; print(site.USER_BASE)"`
+export PATH=$PATH:"$PYTHON_USER/bin"
+
+# Slack notifier
+tellslack() {
+    if [ -z "$SLACK_WEBHOOK_URL" ]; then
+        echo -n "Please input your SLACK_WEBHOOK_URL="
+        read __url
+        export SLACK_WEBHOOK_URL="$__url"
+    fi
+    curl -X POST -H 'Content-type: application/json' --data "{\"text\":\"${1}\"}" $SLACK_WEBHOOK_URL
+}
+
+# Mac copy
+alias cp=copy
+
 # Alert
-notify() {
+macnotify() {
 osascript -e "display notification \"${1}\" with title \"Alert\""
 }
 alias alert=notify
