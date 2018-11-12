@@ -106,7 +106,7 @@ nmap <Space> <Plug>VimwikiToggleListItem
 imap <F4> <Esc>:call MyInsertCalDate()<CR>
 
 " Far, find selection in virtual mode
-vmap <C-S-F> y:Farp<CR><C-R>0<CR>
+vmap <C-R> y:Farp<CR><C-R>0<CR>
 
 " Ctrl-A/X in mswin
 noremap <C-_>= <C-A>
