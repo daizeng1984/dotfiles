@@ -79,6 +79,7 @@ source $ZSH/oh-my-zsh.sh
 # Key binding
 bindkey "^f" forward-word
 bindkey "^b" backward-word
+bindkey -s "^h" '^ucd ..;pwd\n'
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -374,7 +375,9 @@ ftpane() {
 }
 
 # Dotfile Binary PATH
-export PATH=${PATH}:$HOME/.dotfiles/.local/bin/
+export DOTFILE_LOCAL_PREFIX=$HOME/.dotfiles/.local
+# Override all bin
+export PATH=$DOTFILE_LOCAL_PREFIX/lib/miniconda/bin:$DOTFILE_LOCAL_PREFIX/bin:${PATH}
 
 # Machine dependent, path and install, eventually this might be disabled when everything is installed from brew
 # source ~/.dotfiles/samples/macvar.def
