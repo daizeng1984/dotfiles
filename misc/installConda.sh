@@ -13,3 +13,23 @@ wget "https://repo.anaconda.com/miniconda/${SCRIPT_NAME}"
 bash ./${SCRIPT_NAME} -b -p $HOME/.dotfiles/.local/lib/miniconda
 rm ./${SCRIPT_NAME}
 cd $RETURN_DIR
+
+# Create default python environment
+conda install python=3.6
+
+# Basic build setup
+conda install -c conda-forge cmake
+conda install -c conda-forge clangdev
+
+# Vim
+conda install -c conda-forge neovim
+conda install -c daizeng1984 nvim
+source $HOME/.dotfiles/neovim/configNeovim.sh
+
+# Nodejs
+conda install -c conda-forge nodejs
+
+# Misc
+conda install -c anaconda ripgrep
+conda install -c anaconda the_silver_searcher
+# TODO: ranger, xsel, fasd, fzf etc.

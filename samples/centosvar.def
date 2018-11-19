@@ -1,6 +1,3 @@
-# Python user binary
-PATH=$HOME/.local/bin:$PATH
-
 # Prefer Clang vs GCC
 export CXX=$(which clang++)
 export CC=$(which clang)
