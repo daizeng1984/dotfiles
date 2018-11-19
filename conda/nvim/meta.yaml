@@ -8,10 +8,6 @@ source:
   git_rev: v{{ version }}
   git_url: https://github.com/neovim/neovim.git
 
-  #patches:
-    # http://lists.gnu.org/archive/html/bug-ncurses/2015-01/msg00016.html
-    #- ncurses-5.9-gcc-5.patch
-
 build:
   number: 0
 
@@ -41,7 +37,7 @@ test:
 about:
   home: https://salt.bountysource.com/teams/neovim
   license: Free software (Apache)
-  summary: The guru editor
+  summary: Vim-fork focused on extensibility and usability https://salt.bountysource.com/teams/neovim
 
 extra:
   recipe-maintainers:
