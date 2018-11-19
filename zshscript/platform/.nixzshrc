@@ -164,15 +164,24 @@ _trash_clean() {
 
 delete() {
     #if this is a folder
-    local filepath=($@)
-    local filesToDelete=$(ag --hidden -l -g "" -u ${filepath[@]})
+    local filepath
+    local filesToDelete
+    local dirsToDelete
+    local deleteFileNum
+    local deleteDirNum
+    local showFiles
+    local showDirs
+
+
+    filepath=($@)
+    filesToDelete=$(ag --hidden -l -g "" -u ${filepath[@]})
     # TODO: no dir only find in ag, we use find here but we might need faster one
-    local dirsToDelete=$(find ${filepath[@]} -type d)
-    local deleteFileNum=$(echo "${filesToDelete}" | sed '/^\s*$/d' | wc -l)
-    local deleteDirNum=$(echo "${dirsToDelete}" | sed '/^\s*$/d' | wc -l)
+    dirsToDelete=$(find ${filepath[@]} -type d)
+    deleteFileNum=$(echo "${filesToDelete}" | sed '/^\s*$/d' | wc -l)
+    deleteDirNum=$(echo "${dirsToDelete}" | sed '/^\s*$/d' | wc -l)
     #printf "$(tree -L 2 ${filepath[@]})\n"
-    local showFiles=$(echo "${filesToDelete}" | head -10)
-    local showDirs=$(echo "${dirsToDelete}" | head -10)
+    showFiles=$(echo "${filesToDelete}" | head -10)
+    showDirs=$(echo "${dirsToDelete}" | head -10)
     echo "Finding all files to delete...\n${showFiles}\n..."
     echo "Finding all folders to delete ...\n${showDirs}\n..."
 
@@ -186,7 +195,8 @@ delete() {
         dangerousFolders=("$HOME" "~/" "\\.$" "\\.\\.$" "/usr/.*")
         danger=""
         for df in ${dangerousFolders[@]}; do
-            local _tmpfiles=$(echo "${filepath}" | grep -e "$df")
+            local _tmpfiles
+            _tmpfiles=$(echo "${filepath}" | grep -e "$df")
             #echo "check if $df matches ${filepath} "
             if [ -n "${_tmpfiles}" ]; then
                 danger="true"
