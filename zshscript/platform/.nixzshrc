@@ -92,6 +92,11 @@ bindkey -s "^h" '^ucd ..;pwd\n'
 alias copy='rsync --progress -ravzI'
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
+# Dotfile Binary PATH
+export DOTFILE_LOCAL_PREFIX=$HOME/.dotfiles/.local
+# Override all bin
+export PATH=$DOTFILE_LOCAL_PREFIX/lib/miniconda/bin:$DOTFILE_LOCAL_PREFIX/bin:${PATH}
+
 # Theme
 source "$HOME/.dotfiles/misc/oldstyle.zsh-theme"
 
@@ -373,11 +378,6 @@ ftpane() {
     tmux select-window -t $target_window
   fi
 }
-
-# Dotfile Binary PATH
-export DOTFILE_LOCAL_PREFIX=$HOME/.dotfiles/.local
-# Override all bin
-export PATH=$DOTFILE_LOCAL_PREFIX/lib/miniconda/bin:$DOTFILE_LOCAL_PREFIX/bin:${PATH}
 
 # Machine dependent, path and install, eventually this might be disabled when everything is installed from brew
 # source ~/.dotfiles/samples/macvar.def
