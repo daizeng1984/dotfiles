@@ -29,7 +29,14 @@ source $HOME/.dotfiles/neovim/configNeovim.sh
 # Nodejs
 conda install -c conda-forge nodejs
 
+# Tmux
+conda install -c conda-forge tmux
+
 # Misc
 conda install -c anaconda ripgrep
 conda install -c anaconda the_silver_searcher
-# TODO: ranger, xsel, fasd, fzf etc.
+conda install -c daizeng1984 fasd
+# fzf
+cd $HOME && git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf  && ~/.fzf/install || true
+
+# TODO: ranger, xsel, etc.

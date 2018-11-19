@@ -1,0 +1,31 @@
+{% set version = "1.0.1" %}
+
+package:
+  name: fasd
+  version: {{ version }}
+
+source:
+  git_rev: {{ version }}
+  git_url: https://github.com/clvv/fasd.git
+
+build:
+  number: 0
+
+requirements:
+  build:
+  host:
+  run:
+
+test:
+  requirements:
+  commands:
+
+
+about:
+  home: https://github.com/clvv/fasd
+  license: Free software (Apache)
+  summary: Command-line productivity booster, offers quick access to files and directories, inspired by autojump, z and v.
+
+extra:
+  recipe-maintainers:
+    - daizeng1984
