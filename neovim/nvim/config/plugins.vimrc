@@ -10,7 +10,7 @@ endfunction
 call plug#begin('~/.config/nvim/plugged')
 
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'Shougo/denite.nvim', { 'do': 'pip3 install typing --user' }
+Plug 'Shougo/denite.nvim', { 'do': 'pip install typing' }
 Plug 'Shougo/echodoc.vim'
 Plug 'airblade/vim-rooter' " User :Rooter to do it manually
 Plug 'ervandew/supertab'
@@ -77,7 +77,7 @@ Plug 'ap/vim-css-color' " Color for CSS
 Plug 'jamessan/vim-gnupg' " Encryptize transparently error informations
 " Stop the complaining due to taskwarrior not installed
 if CliInstalled('task')
-Plug 'tbabej/taskwiki', {'for': ['markdown'], 'on': 'VimwikiIndex', 'do': 'pip3 install --upgrade git+git://github.com/tbabej/tasklib@develop --user' }
+Plug 'tbabej/taskwiki', {'for': ['markdown'], 'on': 'VimwikiIndex', 'do': 'pip install --upgrade git+git://github.com/tbabej/tasklib@develop' }
 Plug 'blindFS/vim-taskwarrior', {'for': ['markdown'], 'on': 'VimwikiIndex' }  " For grid view of taskwiki
 endif
 " Plug 'rhysd/nyaovim-markdown-preview', {'for': ['markdown'] }  " Nayovim GUI preview for markdown
@@ -86,14 +86,14 @@ endif
 " Python
 Plug 'nathanaelkane/vim-indent-guides' " Indention guide
 if CliInstalled('ipython')
-Plug 'bfredl/nvim-ipy', { 'do': 'pip3 install jupyter --user' } " Jupyter/IPython
+Plug 'bfredl/nvim-ipy', { 'do': 'pip install jupyter' } " Jupyter/IPython
 endif
 if CliInstalled('notedown')
-Plug 'goerz/ipynb_notedown.vim', { 'do': 'pip3 install notedown --user' } " Install notedown to write ipynb in vim
+Plug 'goerz/ipynb_notedown.vim', { 'do': 'pip install notedown' } " Install notedown to write ipynb in vim
 endif
 
 "Plug 'daizeng1984/my-worddoctor' " My own python plugin currently in test
-Plug 'daizeng1984/vim-feeling-lucky', {'do': 'pip2 install --upgrade google-api-python-client --user' } " require google api
+Plug 'daizeng1984/vim-feeling-lucky', {'do': 'pip install --upgrade google-api-python-client' } " require google api
 Plug 'daizeng1984/vim-snip-and-paste'
 
 "Plug 'ramele/agrep'
