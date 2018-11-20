@@ -188,6 +188,7 @@ delete() {
     echo "${RED}Do you really want to **DELETE** target including (${ORANGE}${deleteFileNum}${RED} files and ${ORANGE}${deleteDirNum}${RED} folders)?${NC}(y/n)"
     local yesno
     read yesno
+    local _tmpfiles
     if [ "${yesno}" != "y" ]; then
         echo "You didn't delete the files..."
     else
@@ -195,7 +196,6 @@ delete() {
         dangerousFolders=("$HOME" "~/" "\\.$" "\\.\\.$" "/usr/.*")
         danger=""
         for df in ${dangerousFolders[@]}; do
-            local _tmpfiles
             _tmpfiles=$(echo "${filepath}" | grep -e "$df")
             #echo "check if $df matches ${filepath} "
             if [ -n "${_tmpfiles}" ]; then
@@ -207,6 +207,7 @@ delete() {
             #echo "${filesToDelete}" | xargs trash
             _trash ${filepath[@]}
             echo "removing: ${filepath}"
+            echo "You can still recover the file you just delete in ~/."
         else
             echo "${RED}You are deleting files suspeciously dangerous!!!(Type: 'I INSIST' )${NC}"
             read insist
