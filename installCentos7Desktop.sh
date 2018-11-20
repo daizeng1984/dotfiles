@@ -3,8 +3,8 @@
 yum -y groupinstall "X Window System"
 yum -y groupinstall "GNOME Desktop"
 
-# Install xclip
-yum -y install xclip
+# # Install xclip
+# yum -y install xclip
 
 # 3rd Party Repo 
 # Install Elrepo based on official website, this might be changed
@@ -24,16 +24,21 @@ wget https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
 yum -y --nogpgcheck localinstall google-chrome-stable_current_x86_64.rpm
 cd
 
+# Shutter taking screenshot
+yum -y install shutter
+
+
 #install dropbox better from official website's RPM
 #yum install nautilus-dropbox
 
 #Forget about MS Office
 #sh -c "printf '[playonlinux]\nname=PlayOnLinux Official repository\nbaseurl=http://rpm.playonlinux.com/fedora/yum/base\nenable=1\ngpgcheck=0\ngpgkey=http://rpm.playonlinux.com/public.gpg\n' > /etc/yum.repos.d/playonlinux.repo"
 #yum install playonlinux
-# Install Wechat
-wget https://github.com/geeeeeeeeek/electronic-wechat/releases/download/V2.0/linux-x64.tar.gz
-tar -zxvf linux-x64.tar.gz
-mv electronic-wechat-linux-x64 /usr/share/applications/
+
+# # Install Wechat
+# wget https://github.com/geeeeeeeeek/electronic-wechat/releases/download/V2.0/linux-x64.tar.gz
+# tar -zxvf linux-x64.tar.gz
+# mv electronic-wechat-linux-x64 /usr/share/applications/
 
 # Reminde of removing alternateTab in gnome's /usr/share/gnome-shell/extensions
 echo "don't forget to remove alternateTab in /usr/share/gnome-shell/extensions\n"
