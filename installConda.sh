@@ -37,10 +37,3 @@ conda install -c anaconda ripgrep
 conda install -c anaconda the_silver_searcher
 conda install -c daizeng1984 fasd
 conda install -c antoined xsel
-
-# fzf
-cd $HOME && git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf  && ~/.fzf/install || true
-
-# ranger
-pip install ranger-fm
-source $HOME/.dotfiles/ranger/configRanger.sh
