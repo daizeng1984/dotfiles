@@ -35,5 +35,6 @@ conda install -c conda-forge tmux
 # Misc
 conda install -c anaconda ripgrep
 conda install -c anaconda the_silver_searcher
+conda install -c conda-forge rsync
 conda install -c daizeng1984 fasd
 conda install -c antoined xsel

@@ -53,56 +53,45 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 
-# Add an "alert" alias for long running commands.  Use like so:
-#   sleep 10; alert
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+#TODO: integrate bash-it
+# Dotfile Binary PATH
+export DOTFILE_LOCAL_PREFIX=$HOME/.dotfiles/.local
+# Override all bin
+export PATH=$DOTFILE_LOCAL_PREFIX/lib/miniconda/bin:$DOTFILE_LOCAL_PREFIX/bin:${PATH}
 
 # A copy that can solve Mac's "problem"
 alias copy='rsync --progress -ravzI'
 
-# Home brew check and install
-checkIfInstalled() {
-    if ! type ${1}  > /dev/null 2>&1; then
-        >&2 printf "${RED}${1} might not be installed correctly.${NC}\n"
-        echo "-1"
-    else
-        >&2 printf "${RED}${1} is ready.${NC}\n"
-        echo "0"
-    fi
-}
-checkAndBrew() {
-    PATH="${PATH}:$HOME/.linuxbrew/bin:/usr/local/bin"
-    RED='\033[0;31m'
-    NC='\033[0m' # No Color
-    # Make sure this is fast than brew ls --versions ${1} > /dev/null; ?
+# Color
+RED='\033[0;31m'
+ORANGE='\033[0;33m'
+YELLOW='\033[1;33m'
+GREEN='\033[0;32m'
+NC='\033[0m' # No Color
 
-    if ! type $1 > /dev/null 2>&1; then
-        if ! type "brew"  > /dev/null 2>&1; then
-            >&2 printf "${RED}Please install Home Brew first! Mac or Linux${NC}\n"
-        else
-            printf "${RED}Brew installing '${1}'${NC}\n"
-                brew install $2
-        fi
-    else
-        printf "${1} is ready.\n"
-    fi
-}
+source "$HOME/.dotfiles/bashscript/function_definitions.sh"
 
 # Fzf and ag is my new love
 installedFzf=$(checkIfInstalled "$HOME/.fzf/bin/fzf" fzf)
 installedAg=$(checkIfInstalled "ag" the_silver_searcher)
 installedFasd=$(checkIfInstalled "fasd" fasd)
-installedDiffSoFancy=$(checkIfInstalled "diff-so-fancy" diff-so-fancy)
 installedRipGrep=$(checkIfInstalled "rg" ripgrep)
+installedXdgOpen=$(checkIfInstalled "xdg-open" xdg-open --quiet)
 
-if [ "$installedFzf" = "0" ] && [ "$installedAg" = "0" ]; then
+if [ "$installedFasd" = "1" ] && [ "$installedFzf" = "1" ] ; then
+# FZF
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+alias j=fd
+alias ja=fda
+alias jj=cdf
+alias fzf="fzf --multi --bind 'ctrl-e:jump'"
+eval "$(fasd --init bash-hook bash-ccomp bash-ccomp-install)"
 fi
 
-# Eclim, powerful yet require many setups, here we are only interested in headless mode
-function eclimd {
-${ECLIPSE_HOME}/eclimd -Dosgi.instance.area.default=$(pwd)/$1
-}
+# Alias for open, you know we don't need to do this on mac
+if [ "$installedXdgOpen" = "0" ]; then
+    alias xdg-open=open
+fi
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
