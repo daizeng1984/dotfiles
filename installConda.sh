@@ -34,6 +34,8 @@ conda install -y -c conda-forge openjdk
 
 # Tmux
 conda install -y -c conda-forge tmux
+# Fix https://github.com/conda-forge/tmux-feedstock/issues/12
+conda install -y -c conda-forge ncurses
 
 # Misc
 conda install -y -c conda-forge rsync
