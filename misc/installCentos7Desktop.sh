@@ -15,6 +15,8 @@ rpm -Uvh http://www.elrepo.org/elrepo-release-7.0-2.el7.elrepo.noarch.rpm
 
 # Install NUX desktop if you need app like audacious, autokey-gtk
 yum -y install epel-release && rpm -Uvh http://li.nux.ro/download/nux/dextop/el7/x86_64/nux-dextop-release-0-5.el7.nux.noarch.rpm
+yum install -y autokey audacious
+# change ~/.config/autokey/autokey.json to make folders one of ~/.dotfiles/linux/autokey
 
 # Install some tools essential for myself
 # install chrome
@@ -29,7 +31,7 @@ yum -y install shutter
 
 
 #install dropbox better from official website's RPM
-yum install nautilus-dropbox
+yum install -y nautilus-dropbox
 
 #Forget about MS Office
 #sh -c "printf '[playonlinux]\nname=PlayOnLinux Official repository\nbaseurl=http://rpm.playonlinux.com/fedora/yum/base\nenable=1\ngpgcheck=0\ngpgkey=http://rpm.playonlinux.com/public.gpg\n' > /etc/yum.repos.d/playonlinux.repo"
