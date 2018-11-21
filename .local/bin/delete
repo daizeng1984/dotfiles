@@ -1,0 +1,67 @@
+#!/usr/bin/env bash
+# Usage: delete a single fileOrFolder at current folder, hope we will have more sophisticated solution later
+# Color
+RED='\033[0;31m'
+ORANGE='\033[0;33m'
+YELLOW='\033[1;33m'
+GREEN='\033[0;32m'
+NC='\033[0m' # No Color
+
+#if this is a folder
+# local filepath
+# local filesToDelete
+# local dirsToDelete
+# local deleteFileNum
+# local deleteDirNum
+# local showFiles
+# local showDirs
+# local yesno
+# local _tmpfiles
+
+filepath=($@)
+filesToDelete=$(ag --hidden -l -g "" -u ${filepath[@]})
+# TODO: no dir only find in ag, we use find here but we might need faster one
+set -e
+dirsToDelete=$(find ${filepath[@]} -type d)
+if [ -z "${filesToDelete}" ] && [ -z "${dirsToDelete}" ]; then
+    printf "Files/dirs doesn't exist!\n"
+    exit
+fi
+
+deleteFileNum=$(echo "${filesToDelete}" | sed '/^\s*$/d' | wc -l)
+deleteDirNum=$(echo "${dirsToDelete}" | sed '/^\s*$/d' | wc -l)
+#printf "$(tree -L 2 ${filepath[@]})\n"
+showFiles=$(echo "${filesToDelete}" | head -10)
+showDirs=$(echo "${dirsToDelete}" | head -10)
+printf "${GREEN}Finding all files to delete...${NC}\n${showFiles}\n...\n"
+printf "${GREEN}Finding all folders to delete ...${NC}\n${showDirs}\n...\n"
+
+printf "${RED}Do you really want to **DELETE** target including (${ORANGE}${deleteFileNum}${RED} files and ${ORANGE}${deleteDirNum}${RED} folders)?${NC}(y/n)"
+read yesno
+if [ "${yesno}" != "y" ]; then
+    printf "You didn't delete the files...\n"
+else
+    #Check if these folder are dangerous folder
+    dangerousFolders=("$HOME" "~/" "\\.$" "\\.\\.$" "/usr/.*")
+    danger=""
+    for df in ${dangerousFolders[@]}; do
+        #printf "check if $df matches ${filepath} "
+        set +e
+        _tmpfiles=$(echo "${filepath}" | grep -e "$df")
+        if [ -n "${_tmpfiles}" ]; then
+            danger="true"
+            break
+        fi
+    done
+    if [ "$danger" != "true" ]; then
+        #printf "${filesToDelete}" | xargs trash
+        _trash ${filepath[@]}
+        echo "removing: ${filepath[@]}"
+        printf "You can still recover the file you just delete in ~/.\n"
+    else
+        printf "${RED}You are deleting files suspeciously dangerous!!!(Type: 'I INSIST' )${NC}\n"
+        read insist
+        [[ $insist == "I INSIST" ]] && rm -rf ${filepath} && echo "All removed!" && return
+        printf "Nothing deleted.\n"
+    fi
+fi
