@@ -12,5 +12,5 @@ curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 # It seems vim-plug support...
-bash -c echo -ne "\n" | nvim +PlugInstall +qall || true
-bash -c echo -ne "\n" | nvim +UpdateRemotePlugins +qall || true
+nvim -u $HOME/.dotfiles/neovim/nvim/config/plugins.vimrc +PlugInstall +qall
+nvim +UpdateRemotePlugins +qall
