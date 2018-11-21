@@ -11,7 +11,7 @@ RETURN_DIR=$(pwd)
 cd /tmp
 wget "https://repo.anaconda.com/miniconda/${SCRIPT_NAME}"
 bash ./${SCRIPT_NAME} -b -p $HOME/.dotfiles/.local/lib/miniconda
-rm ./${SCRIPT_NAME}
+rm -rf ./${SCRIPT_NAME}
 cd $RETURN_DIR
 
 # Create default python environment
