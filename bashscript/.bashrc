@@ -1,5 +1,6 @@
 # Which machine? we use uname to see: http://stackoverflow.com/questions/3466166/how-to-check-if-running-in-cygwin-mac-or-linux
 DOTFILES_HOME=$HOME/.dotfiles
+__shell_type__="zsh"
 if [ "$(uname -s)" == "Darwin" ]; then
 	echo "Find Darwin System..."
     [ -r $DOTFILES_HOME/bashscript/platform/.macbashrc ] && source $DOTFILES_HOME/bashscript/platform/.macbashrc
