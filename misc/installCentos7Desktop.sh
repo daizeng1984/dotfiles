@@ -29,7 +29,7 @@ yum -y install shutter
 
 
 #install dropbox better from official website's RPM
-#yum install nautilus-dropbox
+yum install nautilus-dropbox
 
 #Forget about MS Office
 #sh -c "printf '[playonlinux]\nname=PlayOnLinux Official repository\nbaseurl=http://rpm.playonlinux.com/fedora/yum/base\nenable=1\ngpgcheck=0\ngpgkey=http://rpm.playonlinux.com/public.gpg\n' > /etc/yum.repos.d/playonlinux.repo"

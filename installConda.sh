@@ -15,26 +15,29 @@ rm ./${SCRIPT_NAME}
 cd $RETURN_DIR
 
 # Create default python environment
-conda install python=3.6
+#conda install -y python=3.6
 
 # Basic build setup
-conda install -c conda-forge cmake
-conda install -c conda-forge clangdev
+conda install -y -c conda-forge cmake
+conda install -y -c conda-forge clangdev
 
 # Vim
-conda install -c conda-forge neovim
-conda install -c daizeng1984 nvim
+conda install -y -c conda-forge neovim
+conda install -y -c daizeng1984 nvim
 source $HOME/.dotfiles/neovim/configNeovim.sh
 
 # Nodejs
-conda install -c conda-forge nodejs
+conda install -y -c conda-forge nodejs
+
+# Jdk
+conda install -y -c conda-forge openjdk
 
 # Tmux
-conda install -c conda-forge tmux
+conda install -y -c conda-forge tmux
 
 # Misc
-conda install -c anaconda ripgrep
-conda install -c anaconda the_silver_searcher
-conda install -c conda-forge rsync
-conda install -c daizeng1984 fasd
-conda install -c antoined xsel
+conda install -y -c conda-forge rsync
+conda install -y -c anaconda ripgrep
+conda install -y -c anaconda the_silver_searcher
+conda install -y -c antoined xsel
+conda install -y -c daizeng1984 fasd
