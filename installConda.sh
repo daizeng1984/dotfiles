@@ -25,6 +25,8 @@ conda install -y -c conda-forge clangdev
 conda install -y -c conda-forge neovim
 conda install -y -c daizeng1984 nvim
 source $HOME/.dotfiles/neovim/configNeovim.sh
+# fzf
+cd $HOME && git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf  && ~/.fzf/install --no-update-rc
 
 # Nodejs
 conda install -y -c conda-forge nodejs
