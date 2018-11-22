@@ -1,4 +1,3 @@
-platform: darwin
 debug: true
 ignore_existing: true
 components:

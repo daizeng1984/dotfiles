@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# TODO: handle filename with Spaces
 # Usage: delete a single fileOrFolder at current folder, hope we will have more sophisticated solution later
 # Color
 RED='\033[0;31m'

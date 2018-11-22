@@ -17,6 +17,7 @@ cd $RETURN_DIR
 # Create default python environment
 #conda install -y python=3.6
 
+# Now conda charge!
 # Basic build setup
 conda install -y -c conda-forge cmake
 conda install -y -c conda-forge clangdev
@@ -24,9 +25,6 @@ conda install -y -c conda-forge clangdev
 # Vim
 conda install -y -c conda-forge neovim
 conda install -y -c daizeng1984 nvim
-source $HOME/.dotfiles/neovim/configNeovim.sh
-# fzf
-cd $HOME && git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf  && ~/.fzf/install --no-update-rc
 
 # Nodejs
 conda install -y -c conda-forge nodejs
@@ -34,11 +32,13 @@ conda install -y -c conda-forge nodejs
 # Jdk
 conda install -y -c conda-forge openjdk
 
+# ruby
+conda install -c conda-forge ruby
+
 # Tmux
 conda install -y -c conda-forge tmux
 # Fix https://github.com/conda-forge/tmux-feedstock/issues/12
 conda install -y -c conda-forge ncurses
-source $HOME/.dotfiles/tmux/configTmux.sh
 
 # Misc
 conda install -y -c conda-forge rsync
@@ -46,3 +46,18 @@ conda install -y -c anaconda ripgrep
 conda install -y -c anaconda the_silver_searcher
 conda install -y -c antoined xsel
 conda install -y -c daizeng1984 fasd
+
+# TODO: separate Non-conda
+# Vim/tmux
+source $HOME/.dotfiles/neovim/configNeovim.sh
+source $HOME/.dotfiles/tmux/configTmux.sh
+# fzf
+cd $HOME && git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf  && ~/.fzf/install --no-update-rc
+# ranger
+pip install ranger-fm
+source $HOME/.dotfiles/ranger/configRanger.sh
+# autocomplete ignore case for bash
+echo "set completion-ignore-case On" >> $HOME/.inputrc
+
+# Install zsh to be default
+sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
