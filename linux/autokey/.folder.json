@@ -1,5 +1,5 @@
 {
-    "usageCount": 27, 
+    "usageCount": 0, 
     "abbreviation": {
         "wordChars": "[\\w]", 
         "abbreviations": [], 
@@ -9,7 +9,7 @@
         "triggerInside": false
     }, 
     "modes": [], 
-    "title": "autokey", 
+    "title": "linux", 
     "hotkey": {
         "hotKey": null, 
         "modifiers": []
