@@ -141,3 +141,6 @@ ftpane() {
   fi
 }
 
+delete(){
+    trash-put -v $@
+}
