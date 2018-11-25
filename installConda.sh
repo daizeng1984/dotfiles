@@ -42,6 +42,7 @@ conda install -y -c conda-forge ncurses
 
 # Misc
 conda install -y -c conda-forge rsync
+conda install -y -c conda-forge trash-cli
 conda install -y -c anaconda ripgrep
 conda install -y -c anaconda the_silver_searcher
 conda install -y -c antoined xsel
