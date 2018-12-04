@@ -8,6 +8,7 @@
 [alias]
     d = difftool
     s = status
+    ss = status --ignored
     co = commit
 [push]
     default = matching

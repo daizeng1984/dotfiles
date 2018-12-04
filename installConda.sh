@@ -47,12 +47,13 @@ conda install -y -c anaconda ripgrep
 conda install -y -c anaconda the_silver_searcher
 conda install -y -c antoined xsel
 conda install -y -c daizeng1984 fasd
+conda install -y -c daizeng1984 fd-find
 
 # TODO: separate Non-conda
 # Vim/tmux
 source $HOME/.dotfiles/neovim/configNeovim.sh
 source $HOME/.dotfiles/tmux/configTmux.sh
-# fzf
+# fzf TODO: move this into .dotfiles/.local/bin
 cd $HOME && git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf  && ~/.fzf/install --no-update-rc
 # ranger
 pip install ranger-fm
