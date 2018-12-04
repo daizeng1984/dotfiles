@@ -47,11 +47,11 @@ zz() {
 
 # fzf tools from https://github.com/junegunn/fzf/wiki/examples
 # fd - cd to selected directory
-fd() {
-  local dir
-  dir=$(find ${1:-.} -path '*/\.*' -prune \
-                  -o -type d -print 2> /dev/null | fzf +m) &&
-  cd "$dir"
+cdd() {
+    local dir
+    dir=$(find ${1:-.} -path '*/\.*' -prune \
+        -o -type d -print 2> /dev/null | fzf +m) &&
+        cd "$dir"
 }
 cdf() {
    local file
@@ -113,12 +113,12 @@ ${ECLIPSE_HOME}/eclimd -Dosgi.instance.area.default=$(pwd)/$1
 }
 
 
-nrg(){
+rgrep(){
     rg -p "$@" | less -R
 }
 
 search(){
-    ag -g $@ --hidden -i -u 
+    fd -HI $@
 }
 
 # ftpane - switch pane (@george-b) https://github.com/junegunn/fzf/wiki/Examples#tmux

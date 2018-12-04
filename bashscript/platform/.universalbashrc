@@ -74,6 +74,7 @@ source "$HOME/.dotfiles/bashscript/function_definitions.sh"
 # Fzf and ag is my new love
 installedFzf=$(checkIfInstalled "$HOME/.fzf/bin/fzf" fzf)
 installedAg=$(checkIfInstalled "ag" the_silver_searcher)
+installedFd=$(checkIfInstalled "fd" fd-find)
 installedFasd=$(checkIfInstalled "fasd" fasd)
 installedRipGrep=$(checkIfInstalled "rg" ripgrep)
 installedXdgOpen=$(checkIfInstalled "xdg-open" xdg-open --quiet)
