@@ -99,9 +99,21 @@ let g:airline#extensions#tabline#right_alt_sep = ''
 colorscheme wombat256mod
 hi Normal ctermbg=none
 
-" Grepper, hard to config for my use search(pattern, folder, filepattern), and a few segment fault suspects
-" let g:grepper = {
-"       \ 'tools': ['grep', 'git', 'ag', 'vimgrep'] }
+" Grepper
+let g:grepper = {
+    \ 'tools': ['ag', 'git', 'rg'],
+    \ 'ag': {
+    \   'grepprg':    'ag --hidden -p ~/.config/nvim/.agignore --vimgrep',
+    \   'grepformat': '%f:%l:%m',
+    \   'escape':     '\+*^$()[]',
+    \ },
+    \ 'rg': {
+    \   'grepprg':    'rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!.git/*" ',
+    \   'grepformat': '%f:%l:%m',
+    \   'escape':     '\+*^$()[]',
+    \ }
+    \}
+let g:grepper.quickfix = 0
 
 
 " Deoplete companion Language
@@ -128,15 +140,6 @@ let g:UltiSnipsSnippetDirectories=["UltiSnips", $HOME."/.config/nvim/my-snippets
 
 " whD
 let g:deoplete#sources#whd#learning_texts = ['${HOME}/obama08.txt', '/']
-
-" ESearch
-let g:esearch = {
-  \ 'adapter':    'ag',
-  \ 'backend':    'nvim',
-  \ 'out':        'qflist',
-  \ 'batch_size': 1000,
-  \ 'use':        ['word_under_cursor', 'visual', 'hlsearch', 'last'],
-  \}
 
 " Far
 " let g:far#source = 'agnvim' " Note ag etc. doesn't support multiline replacement

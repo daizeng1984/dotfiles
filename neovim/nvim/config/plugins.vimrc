@@ -38,8 +38,7 @@ Plug 'jlanzarotta/bufexplorer'
 Plug 'vim-scripts/wombat256.vim'
 " Plug 'mhinz/vim-grepper'
 Plug 'danro/rename.vim' " :Rename
-Plug 'vim-scripts/grep.vim' " when you cannot use rg
-Plug 'eugen0329/vim-esearch' " rg
+Plug 'mhinz/vim-grepper'
 Plug 'airblade/vim-gitgutter' " Show git diff
 Plug 'rhysd/conflict-marker.vim'
 set previewheight=20
