@@ -94,7 +94,10 @@ command! -nargs=* FzfDiff call fzf#run({
             \ 'down':    '50%'
             \})
 
-set grepprg=rg\ --vimgrep
+" if executable("rg")
+"     set grepprg=rg\ --vimgrep\ --no-heading\ --no-ignore\ --hidden
+"     set grepformat=%f:%l:%c:%m,%f:%l:%m
+" endif
 
 " Our Vim function
 fu! MyEclimdJavaDebug()
