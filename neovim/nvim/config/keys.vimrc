@@ -63,13 +63,12 @@ nmap <leader>dp :.diffput<CR>:diffupdate<CR>zm
 nmap <leader>dg :diffget<CR>:diffupdate<CR>zm
 
 " Grep
-nnoremap <silent> <leader>fg :Rgrep<CR>
+" nnoremap <silent> <leader>fg :Rgrep<CR>
 map <C-f> :Rg <C-r><C-w><CR>
-
 " vim-grepper
-nmap <leader>ff :Grepper -tool ag -cword<CR>
+nmap <leader>fg :Grepper -stop<CR>:Grepper -tool ag -cword<CR>
 vmap <leader>ff <plug>(GrepperOperator)
-map <leader>fg :Grepper -tool rg -cword<CR>
+map <leader>ff :Grepper -stop<CR>:Grepper -tool rg -cword<CR>
 
 " SSH paste
 map <silent> <leader>sp :r /tmp/sshclipboard.txt<CR>

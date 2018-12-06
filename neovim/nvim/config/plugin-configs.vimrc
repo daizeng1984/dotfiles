@@ -111,6 +111,7 @@ let g:grepper = {
     \   'grepprg':    'rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!.git/*" ',
     \   'grepformat': '%f:%l:%m',
     \   'escape':     '\+*^$()[]',
+    \   'wordanchors': ['', ''],
     \ }
     \}
 let g:grepper.quickfix = 0
@@ -174,3 +175,5 @@ let g:LanguageClient_serverCommands = {
 " Here we add some environment necessary to run up pyls
 let $PYTHONPATH .= ":".$HOME."/.dotfiles/.local/lib/python-language-server/lib/python/site-packages/"
 
+" Gitgutter
+autocmd BufWritePost * GitGutter
