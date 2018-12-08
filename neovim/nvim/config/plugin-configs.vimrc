@@ -170,6 +170,11 @@ let g:LanguageClient_serverCommands = {
     \ 'cpp': [$HOME.'/.dotfiles/.local/bin/clangd'],
     \ 'sh': [$HOME.'/.dotfiles/.local/lib/bash-language-server/node_modules/.bin/bash-language-server', 'start'],
     \ }
+
+set completefunc=LanguageClient#complete
+" let g:LanguageClient_loggingLevel = 'INFO'
+" let g:LanguageClient_loggingFile =  expand('~/.local/share/nvim/LanguageClient.log')
+" let g:LanguageClient_serverStderr = expand('~/.local/share/nvim/LanguageServer.log')
 " \ 'cpp': [$HOME.'/.dotfiles/.local/bin/cquery'],
 " Doublecheck in case any of these servers are not working
 " Here we add some environment necessary to run up pyls

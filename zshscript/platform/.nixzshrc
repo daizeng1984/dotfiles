@@ -95,6 +95,7 @@ export PATH=$DOTFILE_LOCAL_PREFIX/lib/miniconda/bin:$DOTFILE_LOCAL_PREFIX/bin:${
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias copy='rsync --progress -ravzI'
+alias vr='vim -n --cmd "filetype indent on" -u "NONE"'
 # alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 # Theme

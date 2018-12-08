@@ -16,6 +16,8 @@ cd $RETURN_DIR
 
 # Create default python environment
 #conda install -y python=3.6
+# Add the best channel over defaults TODO: .condarc
+conda config --add channels conda-forge
 
 # Now conda charge!
 # Basic build setup
@@ -33,7 +35,7 @@ conda install -y -c conda-forge nodejs
 conda install -y -c conda-forge openjdk
 
 # ruby
-conda install -c conda-forge ruby
+conda install -y -c conda-forge ruby
 
 # Tmux
 conda install -y -c conda-forge tmux

@@ -61,6 +61,7 @@ export PATH=$DOTFILE_LOCAL_PREFIX/lib/miniconda/bin:$DOTFILE_LOCAL_PREFIX/bin:${
 
 # A copy that can solve Mac's "problem"
 alias copy='rsync --progress -ravzI'
+alias vr='vim -n --cmd "filetype indent on" -u "NONE"'
 
 # Color
 RED='\033[0;31m'
