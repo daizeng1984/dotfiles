@@ -144,3 +144,12 @@ ftpane() {
 delete(){
     trash-put -v $@
 }
+
+# use nvim and fugitive
+gst(){
+GIT_INDEX="$(git rev-parse --show-toplevel)/.git/index"
+if [ -f $GIT_INDEX ]; then
+    # nvim $GIT_INDEX
+    nvim . -c ":Gstatus"
+fi
+}
