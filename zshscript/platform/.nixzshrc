@@ -80,6 +80,8 @@ source $ZSH/oh-my-zsh.sh
 bindkey "^f" forward-word
 bindkey "^b" backward-word
 bindkey -s "^h" '^ucd ..;pwd\n'
+bindkey -s "^g" 'gst\n'
+
 
 # Dotfile Binary PATH
 export DOTFILE_LOCAL_PREFIX=$HOME/.dotfiles/.local
