@@ -146,13 +146,15 @@ delete(){
 }
 # restore the trash files
 frestore() {
-    
-    CHOICE=$(echo -ne '\n' | trash-restore  / | grep '^\s\+\d\+.*$' | fzf -m )
-    [ -z $CHOICE ] && exit
-    CHOICE_ID=$(echo $CHOICE | awk '{print $1}')
-    CHOICE_FULL_PATH=$(echo $CHOICE | awk '{print $4}')
-    echo -ne "$CHOICE_ID" | trash-restore /  > /dev/null
-    printf "Restored file $CHOICE_FULL_PATH."
+    CHOICE=$(echo -ne '\n' | trash-restore  / | grep -P '^\s+\d+.*$' | fzf -m )
+    if [ -z $CHOICE ] ; then
+        printf "No files for restore...\n"
+    else
+        CHOICE_ID=$(echo $CHOICE | awk '{print $1}')
+        CHOICE_FULL_PATH=$(echo $CHOICE | awk '{print $4}')
+        echo -ne "$CHOICE_ID" | trash-restore /  > /dev/null
+        printf "Restored file $CHOICE_FULL_PATH.\n"
+    fi
 }
 
 # use nvim and fugitive
