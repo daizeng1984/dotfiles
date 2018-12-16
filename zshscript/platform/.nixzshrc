@@ -90,10 +90,27 @@ fi
 
 
 # Key binding
-bindkey "^f" forward-word
-bindkey "^b" backward-word
+bindkey -v
+bindkey '^p' up-history
+bindkey '^n' down-history
+bindkey '^w' backward-kill-word
+bindkey '^?' backward-delete-char
+bindkey '^u' kill-whole-line
+bindkey '^r' history-incremental-search-backward
+
+function zle-line-init zle-keymap-select {
+    VIM_PROMPT="%{$bg_bold[blue]%}"
+    PROMPT='${${KEYMAP/vicmd/$VIM_PROMPT}/(main|viins)/}%{${FG[045]}%}%B%2~ $(git_prompt_info)%{$reset_color%}%(!.#.>)%b '
+    zle reset-prompt
+}
+
+zle -N zle-line-init
+zle -N zle-keymap-select
+bindkey "^e" end-of-line
+bindkey "^a" beginning-of-line
 bindkey -s "^h" '^ucd ..;pwd\n'
 bindkey -s "^g" 'gst\n'
+export KEYTIMEOUT=1
 
 
 # Dotfile Binary PATH
