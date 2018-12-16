@@ -50,6 +50,7 @@ conda install -y -c anaconda the_silver_searcher
 conda install -y -c antoined xsel
 conda install -y -c daizeng1984 fasd
 conda install -y -c daizeng1984 fd-find
+conda install -y -c bioconda grep # make sure we have organic grep on mac
 
 # TODO: separate Non-conda
 # Vim/tmux

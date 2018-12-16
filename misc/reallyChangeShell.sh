@@ -5,11 +5,11 @@ fi
 
 change_to_shell="$(which ${1})"
 
-sudo echo "${change_to_shell}" >> /etc/shells
+echo "${change_to_shell}" >> /etc/shells
 
-chsh -s "${change_to_shell}"
+chsh ${2} #username
 
-echo "Please restart your environment if necessary"
+echo "Please logout/login your environment if necessary"
 
 # Nonroot way (.bash_profile)
 # export SHELL=`which zsh`
