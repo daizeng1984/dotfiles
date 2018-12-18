@@ -7,16 +7,17 @@ cd $HOME/.dotfiles
 mkdir -p ./.local/lib/jdt-language-server
 cd ./.local/lib/jdt-language-server
 
-# TODO: choose version you like
+# TODO: choose version you like in page http://download.eclipse.org/jdtls
 wget http://download.eclipse.org/jdtls/milestones/0.27.0/jdt-language-server-0.27.0-201810230512.tar.gz
 tar -zxvf jdt-language-server-0.27.0-201810230512.tar.gz
 
 
 # Install pyls, TODO: locally?
-cd $HOME/.dotfiles
+# cd $HOME/.dotfiles
 mkdir -p ./.local/lib/python-language-server
 cd ./.local/lib/python-language-server
-PYTHONUSERBASE=$(pwd) pip3 install python-language-server --user
+PYTHONUSERBASE=$(pwd) pip3 install 'python-language-server[all]' --user
+# TODO: conda install -y -c conda-forge python-language-server
 
 
 # Install js/ts

@@ -36,8 +36,6 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'jlanzarotta/bufexplorer'
 Plug 'vim-scripts/wombat256.vim'
-" Plug 'mhinz/vim-grepper'
-Plug 'danro/rename.vim' " :Rename
 Plug 'mhinz/vim-grepper'
 Plug 'airblade/vim-gitgutter' " Show git diff
 Plug 'rhysd/conflict-marker.vim'
@@ -45,6 +43,9 @@ set previewheight=20
 Plug 'tpope/vim-fugitive' " -, dv, U, cc, cA, p, q
 Plug 'gregsexton/gitv' "extension to fugitive
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-dadbod' " db, keep it here to try
+Plug 'tpope/vim-unimpaired' " [,]q for quickfix and [l for loclist
+Plug 'tpope/vim-eunuch' "Rename, Delete, Sudo etc.
 Plug 'mattn/emmet-vim' " c-y ,then type this>is>tag ---> <this> <is> <tag> ... </.... or type insert mode and c-y , here's the cheatsheet https://docs.emmet.io/cheat-sheet/
 Plug 'tomtom/tcomment_vim' " gc toggle comment
 Plug 'mattn/webapi-vim' " Gist dependencies
