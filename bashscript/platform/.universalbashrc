@@ -2,6 +2,14 @@
 # enable color in terminal
 export CLICOLOR=1
 
+# key binding
+bind -m "vi-insert" '"\C-L":clear-screen'
+bind -m "vi-insert" '"\C-F":forward-word'
+bind -m "vi-insert" '"\C-B":backward-word'
+bind -m "vi-insert" '"\C-A":beginning-of-line'
+bind -m "vi-insert" '"\C-N":next-history'
+bind -m "vi-insert" '"\C-P":previous-history'
+
 # uncomment for a colored prompt, if the terminal has the capability; turned
 # off by default to not distract the user: the focus in a terminal window
 # should be on the output of commands, not on the prompt
