@@ -102,7 +102,7 @@ bindkey '^r' history-incremental-search-backward
 
 function zle-line-init zle-keymap-select {
     VIM_PROMPT="%{$bg_bold[blue]%}"
-    PROMPT='${${KEYMAP/vicmd/$VIM_PROMPT}/(main|viins)/}%{${FG[045]}%}%B%2~ $(git_prompt_info)%{$reset_color%}%(!.#.>)%b '
+    __VIM_MODE__=$(expr "${${KEYMAP/vicmd/$VIM_PROMPT}/(main|viins)/}")
     zle reset-prompt
 }
 
