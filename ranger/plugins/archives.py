@@ -2,45 +2,36 @@ import os
 import subprocess
 import uuid
 import platform
+import pdb
 from ranger.api.commands import *
 from ranger.core.loader import CommandLoader
 
+# TODO: these 2 guys might be able replaced by simply shell mapping in rc.conf. 
 # Extract and Compress
 class extracthere(Command):
     def execute(self):
-        """ Extract copied files to current directory """
-        copied_files = tuple(self.fm.copy_buffer)
+        cwd = self.fm.thisdir
+        marked_files = cwd.get_selection()
 
-        if not copied_files:
+        if not marked_files:
             return
 
-        def refresh(_):
-            cwd = self.fm.get_directory(original_path)
-            cwd.load_content()
+        archieves = ['"' + os.path.relpath(f.path, cwd.path) + '"' for f in marked_files]
 
-        one_file = copied_files[0]
-        cwd = self.fm.thisdir
-        original_path = cwd.path
+        descr = "extracted file(s): " + " ".join(archieves);
 
-        newfolder = cwd.path + '/' + os.path.splitext(os.path.basename(one_file.path))[0];
-        au_flags = ['-X', newfolder]
-        au_flags += self.line.split()[1:]
-        au_flags += ['-e']
-        au_flags += ['-q']
-        au_flags += ['-f']
+        'shell apack '
+        obj = CommandLoader(args=['patool', 'extract'] \
+                + archieves, descr=descr)
 
-        self.fm.copy_buffer.clear()
-        self.fm.cut_buffer = False
-        if len(copied_files) == 1:
-            descr = "extracting: " + os.path.basename(one_file.path)
-        else:
-            descr = "extracting files from: " + os.path.basename(one_file.dirname)
         self.fm.execute_console(
-        'shell mkdir -p ' + newfolder + " && aunpack " + " ".join(au_flags) \
-                + " " + " ".join([ "'" + f.path + "'" for f in copied_files]) + " ") 
-
+        'shell patool extract ' + \
+                " ".join(archieves))
         self.fm.reload_cwd()
+        self.fm.notify(descr)
 
+    
+    
 class compress(Command):
     def execute(self):
         """ Compress marked files to current directory """
@@ -59,21 +50,13 @@ class compress(Command):
         if len(parts) < 2 :
             self.fm.notify("Please input file name, e.g. my_files.zip")
 
-        au_flags = parts[1:]
-        au_flags += ['-q']
-        au_flags += ['-f']
-
-        descr = "compressing files in: " + os.path.basename(parts[1])
+        descr = "compressing files to: " + str(os.path.basename(parts[1]))
         self.fm.execute_console(
-        'shell apack ' + " ".join(au_flags) + \
-                " " + " ".join(['"' + os.path.relpath(f.path, cwd.path) + '"' for f in marked_files]) + " &")
+        'shell patool create ' + str(os.path.basename(parts[1])) + \
+                " " + " ".join(['"' + os.path.relpath(f.path, cwd.path) + '"' for f in marked_files]) )
 
         self.fm.reload_cwd()
-        #obj = CommandLoader(args=['apack'] + au_flags + \
-        #        [os.path.relpath(f.path, cwd.path) for f in marked_files], descr=descr)
-
-        #obj.signal_bind('after', refresh)
-        #self.fm.loader.add(obj)
+        self.fm.notify(descr)
 
     def tab(self):
         """ Complete with current folder name """
@@ -96,9 +79,6 @@ class trash(Command):
         original_path = cwd.path
         parts = self.line.split()
 
-        uuidname = uuid.uuid4();
-        trashpath = "${HOME}/.Trash/" + str(uuidname);
-
         # Nasty but good to hear some sound coming out
         # TODO: separate to a separate command
         playsound = ""
@@ -108,8 +88,8 @@ class trash(Command):
             playsound = "afplay /System/Library/Components/CoreAudio.component/Contents/SharedSupport/SystemSounds/dock/drag\ to\ trash.aif & "
 
         self.fm.execute_console(
-        'shell mkdir -p ' + trashpath + ' && mv ' + \
-                " " + " ".join(['"' + os.path.relpath(f.path, cwd.path) + '"' for f in marked_files]) + " " + trashpath + " & " + playsound)
+        'shell trash-put -v ' + \
+                " " + " ".join(['"' + os.path.relpath(f.path, cwd.path) + '"' for f in marked_files]) + " & " + playsound)
 
         self.fm.reload_cwd()
 

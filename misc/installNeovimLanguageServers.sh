@@ -16,7 +16,7 @@ tar -zxvf jdt-language-server-0.27.0-201810230512.tar.gz
 # cd $HOME/.dotfiles
 mkdir -p ./.local/lib/python-language-server
 cd ./.local/lib/python-language-server
-PYTHONUSERBASE=$(pwd) pip3 install 'python-language-server[all]' --user
+PYTHONUSERBASE=$(pwd) pip install 'python-language-server[all]' --user
 # TODO: conda install -y -c conda-forge python-language-server
 
 
