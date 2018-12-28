@@ -157,6 +157,30 @@ frestore() {
     fi
 }
 
+fwmctrl() {
+    CHOICE=$(wmctrl -l | fzf -m )
+    if [ -z $CHOICE ] ; then
+        printf "No window to show...\n"
+    else
+        CHOICE_ID=$(echo $CHOICE | awk '{print $1}')
+		# hack to layout all openai gym windows in a row, e.g.  fwmctrl layout 100 200 300
+		if [ "$1" != "layout" ]; then
+            while read -r line; do
+                wmctrl -i -r "$line" $@
+            done <<< "$CHOICE_ID"
+        else
+			_w_x=$2
+			_w_y=$3
+			_w_w=$4
+            while read -r line; do
+                printf "Moving window starting ($_w_x , $_w_y ) of width $_w_w...\n"
+                wmctrl -i -r "$line" -e 0,$_w_x,$_w_y,-1,-1
+                _w_x=$(expr $_w_x + $_w_w)
+            done <<< "$CHOICE_ID"
+        fi
+    fi
+}
+
 # use nvim and fugitive
 gst(){
 GIT_INDEX="$(git rev-parse --show-toplevel)/.git/index"
