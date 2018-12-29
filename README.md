@@ -5,10 +5,10 @@ This configuration is my personal laptop/desktop setup repo originally inspired 
 Basic development tools like git, wget, curl, bzip2 as [here](). However, unless given a minimum OS installation, that shouldn't worry us too much since most normal OS setup should already have them all.
 
 # Get Started
-Simply do: `cd && git clone https://github.com/zedai1984/dotfiles.git .dotfiles && cd .dotfiles && bash ./createSymlink.sh && source ~/.bashrc && source ./installConda.sh`
+Simply do: `cd && git clone https://github.com/daizeng1984/dotfiles.git .dotfiles && cd .dotfiles && bash ./createSymlink.sh && source ~/.bashrc && source ./installConda.sh`
 
 In Windows (Cygwin/Babun) or some other non-*nix environments that have no symlink, you could do:
-`cd && git clone https://github.com/zedai1984/dotfiles.git .dotfiles && cd .dotfiles && ./createSymlink.sh nosymlink`
+`cd && git clone https://github.com/daizeng1984/dotfiles.git .dotfiles && cd .dotfiles && ./createSymlink.sh nosymlink`
 But currently these troubling OS only has minimum support.
 
 # After
