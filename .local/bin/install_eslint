@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+_working_folder=$1
+if [ -z $_working_folder ] ; then
+    printf "Require input a folder\n"
+    exit
+fi
+printf "Install eslint with airbnb style to $1\n"
+npm install eslint eslint-config-airbnb eslint-plugin-import eslint-plugin-react eslint-plugin-jsx-a11y --save
+cat << EOF > .eslintrc
+{
+    "extends" : "airbnb",
+    "rules": {
+        // enable additional rules
+        "indent": ["error", 4],
+        "linebreak-style": ["error", "unix"],
+        "semi": ["error", "always"],
+    }
+}
+EOF
