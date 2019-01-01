@@ -22,6 +22,8 @@ Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
     \ 'do': 'bash install.sh',
     \ }
+" Grammars
+Plug 'w0rp/ale'
 
 " Disable for languageclient-neovim
 " if CliInstalled('eclipse')

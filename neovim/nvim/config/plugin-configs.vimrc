@@ -172,13 +172,24 @@ let g:LanguageClient_serverCommands = {
     \ }
 
 set completefunc=LanguageClient#complete
+let g:LanguageClient_settingsPath=$HOME.'/.dotfiles/neovim/nvim/lsp-settings.json'
+let g:LanguageClient_loadSettings=1
 " let g:LanguageClient_loggingLevel = 'INFO'
 " let g:LanguageClient_loggingFile =  expand('~/.local/share/nvim/LanguageClient.log')
 " let g:LanguageClient_serverStderr = expand('~/.local/share/nvim/LanguageServer.log')
 " \ 'cpp': [$HOME.'/.dotfiles/.local/bin/cquery'],
 " Doublecheck in case any of these servers are not working
-" Here we add some environment necessary to run up pyls
+" Here we add some environment necessary to run up pyls if install locally
 let $PYTHONPATH .= ":".$HOME."/.dotfiles/.local/lib/python-language-server/lib/python/site-packages/"
+
+" ALE
+let g:ale_linters = {
+\   'javascript': ['eslint'],
+\}
+let g:ale_fixers = {
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'javascript': ['eslint'],
+\}
 
 " Gitgutter
 autocmd BufWritePost * GitGutter
