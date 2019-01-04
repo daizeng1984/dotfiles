@@ -23,7 +23,7 @@ set autoread
 set pastetoggle=<F3>
 set conceallevel=1
 " clipboard
-set clipboard=unnamedplus
+" set clipboard=unnamedplus
 " set completeopt=longest,menuone,preview
 filetype plugin indent on
 set omnifunc=syntaxcomplete#Complete
