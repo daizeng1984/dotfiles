@@ -71,6 +71,7 @@ Plug 'neomake/neomake'
 
 " Markdown plugins
 Plug 'dhruvasagar/vim-table-mode', {'for': ['markdown'] } " for better table in markdown, :TableModeToggle and || to start, you can even tableize the csv style entries and do table formula, delete column localleader=\\
+Plug 'daizeng1984/vim-buffer-history' " for better file jump from dhruvasagar/vim-buffer-history
 Plug 'mattn/calendar-vim', {'for': ['markdown'] } " Good to have a calendar view
 Plug 'vimwiki/vimwiki' " Great tool! I think it's better than org mode I tried
 Plug 'vim-scripts/utl.vim', {'for': ['markdown'] } " Utl help open URL in netrw

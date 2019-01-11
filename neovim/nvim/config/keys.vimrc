@@ -13,6 +13,8 @@ map <silent> <leader>pp :call IPyRun('print(<C-R><C-W>)')<CR>
 map <silent> <leader>bt :enew<CR>
 map <silent> <C-h> :bprevious<CR>
 map <silent> <C-l> :bnext<CR>
+nmap <silent> H <Plug>(buffer-history-back)
+nmap <silent> L <Plug>(buffer-history-forward)
 map <silent> <leader>q :bp <BAR> bd # <CR>
 
 " Buf Only
