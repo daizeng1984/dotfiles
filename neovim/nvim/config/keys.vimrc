@@ -55,6 +55,13 @@ map <silent> <leader>wb :call fzf#run({
 \   'down':    len(<sid>buflist()) + 2,
 \   'up': '~50%'
 \ })<CR>
+map <silent> <leader>wc :call fzf#run({
+\   'source':  buffer_history#list(),
+\   'sink':    function('<sid>bufopen'),
+\   'options': '+m',
+\   'down':    len(buffer_history#list()) + 2,
+\   'up': '~50%'
+\ })<CR>
 
 
 " Diff
