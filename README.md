@@ -2,7 +2,7 @@
 This configuration is my personal laptop/desktop setup repo originally inspired from: http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/ and now it grows into a bootstrap setup for my working environments (mainly linux/mac).
 
 # Before
-Basic development tools like git, wget, curl, bzip2 as [here](). However, unless given a minimum OS installation, that shouldn't worry us too much since most normal OS setup should already have them all.
+Basic development tools like git, wget, curl, bzip2 as [here](TODO). However, unless given a minimum OS installation, that shouldn't worry us too much since most normal OS setup should already have them all. In MacOS, beside `xcode-select --install` we need to install wget from `brew`.
 
 # Get Started
 Simply do: `cd && git clone https://github.com/daizeng1984/dotfiles.git .dotfiles && cd .dotfiles && bash ./createSymlink.sh && source ~/.bashrc && source ./installConda.sh`
@@ -20,7 +20,6 @@ sudo source $HOME/.dotfiles/misc/installCentos7Desktop.sh
 ```
 
 ### Mac OS X
-Install `brew` and do:
 ```{bash}
 source $HOME/.dotfiles/mac/installMacDesktop.sh
 ```

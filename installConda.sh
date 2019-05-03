@@ -67,3 +67,5 @@ echo "set completion-ignore-case On" >> $HOME/.inputrc
 
 # Install zsh to be default
 sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+# add all symlink file
+source $HOME/.dotfiles/createSymlink.sh
