@@ -76,7 +76,7 @@ map <leader>ff :Grepper -stop<CR>:Grepper -tool rg -cword<CR>
 map <silent> <leader>sp :r /tmp/sshclipboard.txt<CR>
 
 " Terminal
-tnoremap <silent> <Esc> <C-\><C-n><bar>:q<CR>
+" tnoremap <silent> <Esc> <C-\><C-n><bar>:q<CR>
 " map <silent> <leader>TT :call TermEnter()<CR> I seldom use it and confusing when using tmux...
 
 " Vim Wiki

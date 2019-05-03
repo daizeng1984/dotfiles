@@ -192,6 +192,7 @@ let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'javascript': ['eslint'],
 \}
+let g:ale_set_quickfix = 1
 
 " Gitgutter
 autocmd BufWritePost * GitGutter
