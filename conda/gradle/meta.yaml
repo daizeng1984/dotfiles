@@ -1,0 +1,36 @@
+{% set version = "5.4.1" %}
+
+package:
+  name: gradle
+  version: {{ version }}
+
+source:
+  git_rev: v{{ version }}
+  git_url: https://github.com/gradle/gradle.git
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - unzip
+  host:
+    - libiconv
+  run:
+    - libiconv
+
+test:
+  requirements:
+    - libiconv 
+  commands:
+      #- nvim --version
+
+
+about:
+  home: https://gradle.org/
+  license: Free software (Apache 2.0)
+  summary: Adaptable, fast automation for all https://gradle.org
+
+extra:
+  recipe-maintainers:
+    - daizeng1984
