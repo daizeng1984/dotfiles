@@ -1,10 +1,13 @@
 export ECLIPSE_HOME="/Applications/Eclipse.app/Contents/Eclipse"
 export PATH="$PATH:$ECLIPSE_HOME"
-export JAVA_HOME=$(/usr/libexec/java_home)
 export NODE_PATH="${DOTFILE_LOCAL_PREFIX}/lib/miniconda/lib/node_modules"
 export ANDROID_HOME=$HOME/android/android-sdk
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin
+
+# Java using conda version
+export JAVA_HOME=$HOME/.dotfiles/.local/lib/miniconda/
+export JAVA_LD_LIBRARY_PATH=$JAVA_HOME/lib/server
 
 # Grab from perl installation, maybe remove if not needed
 # PATH="$HOME/perl5/bin${PATH:+:${PATH}}"; export PATH;
@@ -13,9 +16,14 @@ export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin
 # PERL_MB_OPT="--install_base \"$HOME/perl5\""; export PERL_MB_OPT;
 # PERL_MM_OPT="INSTALL_BASE=$HOME/perl5"; export PERL_MM_OPT;
 
-# Python sites
+# Python managed by conda, we can activate our python environment
+# source activate webdev
+python -VV
 alias pysite='python -m site'
+
+# Node/NPM path
 alias nodepath='npm config get prefix'
+npm config set python $(which python)
 
 # Slack notifier
 tellslack() {
@@ -62,8 +70,6 @@ if [ -f '/Users/zengdai/Downloads/google-cloud-sdk-188.0.1-darwin-x86_64.tar/goo
 #command -v vg >/dev/null 2>&1 && eval "$(vg eval --shell ${__shell_type__})"
 ## Stop slowing my cd https://github.com/markeissler/gvm2/issues/16
 #unset -f cd
-
-
 
 
 lcjava() {

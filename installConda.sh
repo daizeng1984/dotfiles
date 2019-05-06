@@ -58,7 +58,7 @@ conda install -y -c conda-forge patool
 source $HOME/.dotfiles/neovim/configNeovim.sh
 source $HOME/.dotfiles/tmux/configTmux.sh
 # fzf TODO: move this into .dotfiles/.local/bin
-cd $HOME && git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf  && ~/.fzf/install --no-update-rc
+cd $HOME && git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf  && ~/.fzf/install --no-update-rc --key-bindings --completion
 # ranger
 pip install ranger-fm
 source $HOME/.dotfiles/ranger/configRanger.sh

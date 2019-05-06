@@ -16,3 +16,6 @@ source $HOME/.dotfiles/mac/configKarabiner.sh
 source $HOME/.dotfiles/misc/installPowerlineFont.sh
 
 # TODO: now import your terminal profile, and make sure it select the right font (e.g. Droid Sans Mono for Powerline)
+
+# Enable showing hidden files in Finder
+defaults write com.apple.finder AppleShowAllFiles YES 
