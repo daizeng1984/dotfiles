@@ -88,7 +88,7 @@ class trash(Command):
             playsound = "afplay /System/Library/Components/CoreAudio.component/Contents/SharedSupport/SystemSounds/dock/drag\ to\ trash.aif & "
 
         self.fm.execute_console(
-        'shell trash-put -v ' + \
+        'shell trash-put ' + \
                 " " + " ".join(['"' + os.path.relpath(f.path, cwd.path) + '"' for f in marked_files]) + " & " + playsound)
 
         self.fm.reload_cwd()
