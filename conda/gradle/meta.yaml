@@ -12,16 +12,8 @@ build:
   number: 0
 
 requirements:
-  build:
-    - unzip
-  host:
-    - libiconv
-  run:
-    - libiconv
 
 test:
-  requirements:
-    - libiconv 
   commands:
       #- nvim --version
 
