@@ -25,6 +25,10 @@ alias pysite='python -m site'
 alias nodepath='npm config get prefix'
 npm config set python $(which python)
 
+# SDKMan
+export SDKMAN_DIR=${DOTFILE_LOCAL_PREFIX}/lib/miniconda/lib/.sdkman
+[[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]] && source "${SDKMAN_DIR}/bin/sdkman-init.sh"
+
 # Slack notifier
 tellslack() {
     if [ -z "$SLACK_WEBHOOK_URL" ]; then
