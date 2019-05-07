@@ -67,7 +67,7 @@ let g:EclimLineHighlightDebug = 'DebugBreak'
 " - down / up / left / right
 let g:fzf_layout = { 'up': '~50%' }
 " TODO: change to rg
-let $FZF_DEFAULT_COMMAND = 'ag --hidden -p ~/.config/nvim/.agignore -l -g ""'
+let $FZF_DEFAULT_COMMAND = 'git grep -l --untracked "" ' 
 
 " In Neovim, you can set up fzf window using a Vim command
 
