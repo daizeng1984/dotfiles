@@ -1,0 +1,28 @@
+{% set version = "5.7.3" %}
+
+package:
+  name: sdkman
+  version: {{ version }}
+
+source:
+  git_rev: {{ version }}
+  git_url: https://github.com/sdkman/sdkman-cli.git
+
+build:
+  number: 0
+
+requirements:
+
+test:
+  commands:
+      #- nvim --version
+
+
+about:
+  home: https://sdkman.io
+  license: Free software (Apache 2.0)
+  summary: The SDKMAN! Command Line Interface https://sdkman.io
+
+extra:
+  recipe-maintainers:
+    - daizeng1984
