@@ -31,8 +31,8 @@ conda install -y -c daizeng1984 nvim
 # Nodejs
 conda install -y -c conda-forge nodejs
 
-# Jdk
-conda install -y -c conda-forge openjdk
+# Boostrap java
+conda install -y -c daizeng1984 sdkman
 
 # ruby
 conda install -y -c conda-forge ruby

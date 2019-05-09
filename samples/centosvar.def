@@ -1,3 +1,7 @@
 # Prefer Clang vs GCC
 export CXX=$(which clang++)
 export CC=$(which clang)
+
+# SDKMan
+export SDKMAN_DIR=${DOTFILE_LOCAL_PREFIX}/lib/miniconda/lib/.sdkman
+[[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]] && source "${SDKMAN_DIR}/bin/sdkman-init.sh"
