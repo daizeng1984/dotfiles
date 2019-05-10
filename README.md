@@ -1,15 +1,13 @@
 # Configuration
-This configuration is my personal laptop/desktop setup repo originally inspired from: http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/ and now it grows into a bootstrap setup for my working environments (mainly linux/mac).
+This configuration is my personal laptop/desktop setup repo originally inspired from: http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/ and now it grows into a bootstrap setup for my working environments (mainly linux/mac) and this bootstrap unlike [Laptop](https://github.com/thoughtbot/laptop), it heavily relies on [conda](https://daizeng1984.github.io/jekyll/update/2018/11/18/conda-everything.html).
 
 # Before
-Basic development tools like git, wget, curl, bzip2 as [here](TODO). However, unless given a minimum OS installation, that shouldn't worry us too much since most normal OS setup should already have them all. In MacOS, beside `xcode-select --install` we need to install wget from `brew`.
+Basic development tools like git, wget, curl, bzip2 e.g. `yum group install "Development Tools"`. However, unless given a minimum OS installation, that shouldn't worry us too much since most normal OS setup should already have them all so you basically don't need to do anything. However in MacOS, you need to make sure git, wget is installed. If not you need to install from `brew`.
 
 # Get Started
 Simply do: `cd && git clone https://github.com/daizeng1984/dotfiles.git .dotfiles && cd .dotfiles && bash ./createSymlink.sh && source ~/.bashrc && source ./installConda.sh`
 
-In Windows (Cygwin/Babun) or some other non-*nix environments that have no symlink, you could do:
-`cd && git clone https://github.com/daizeng1984/dotfiles.git .dotfiles && cd .dotfiles && ./createSymlink.sh nosymlink`
-But currently these troubling OS only has minimum support.
+Note: currently troubling OS like Windows (Cygwin/MingW) only has minimum support from these script and a lot of error messages are expected.
 
 # After
 
