@@ -8,6 +8,8 @@ brew cask install google-chrome
 brew cask install vox
 brew cask install vlc
 brew cask install gimp
+# flash disk better than dd
+brew cask install balenaetcher
 source $HOME/.dotfiles/mac/configKarabiner.sh
 # Has to manually config, it requires device_id
 # source $HOME/.dotfiles/mac/configPhoenix.sh
