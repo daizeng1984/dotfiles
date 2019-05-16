@@ -1,13 +1,6 @@
 export ECLIPSE_HOME="/Applications/Eclipse.app/Contents/Eclipse"
 export PATH="$PATH:$ECLIPSE_HOME"
 export NODE_PATH="${DOTFILE_LOCAL_PREFIX}/lib/miniconda/lib/node_modules"
-export ANDROID_HOME=$HOME/android/android-sdk
-export PATH=$PATH:$ANDROID_HOME/platform-tools
-export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin
-
-# Java using conda version
-export JAVA_HOME=$HOME/.dotfiles/.local/lib/miniconda/
-export JAVA_LD_LIBRARY_PATH=$JAVA_HOME/lib/server
 
 # Grab from perl installation, maybe remove if not needed
 # PATH="$HOME/perl5/bin${PATH:+:${PATH}}"; export PATH;
@@ -25,9 +18,14 @@ alias pysite='python -m site'
 alias nodepath='npm config get prefix'
 npm config set python $(which python)
 
-# SDKMan
+# SDKMan and JDK
 export SDKMAN_DIR=${DOTFILE_LOCAL_PREFIX}/lib/miniconda/lib/.sdkman
 [[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]] && source "${SDKMAN_DIR}/bin/sdkman-init.sh"
+export JAVA_HOME=$SDKMAN_DIR/candidates/java/current
+export JAVA_LD_LIBRARY_PATH=$JAVA_HOME/lib/server
+export ANDROID_HOME=${DOTFILE_LOCAL_PREFIX}/lib/android/android-sdk
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin
 
 # Slack notifier
 tellslack() {

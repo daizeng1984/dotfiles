@@ -1,8 +1,9 @@
 gem install android-sdk-installer --user -n .
 
 INSTALL_DIR="$HOME/.dotfiles/.local/lib/android"
+mkdir -p $INSTALL_DIR
 install -d $INSTALL_DIR && cd $INSTALL_DIR
-export ANDROID_HOME=$INSTALL_DIR/android-sdk
+ANDROID_HOME=$INSTALL_DIR/android-sdk
 
 # Get system name
 SYSTEM_NAME=$(uname -s)
