@@ -35,16 +35,7 @@ yum -y install ntfs-3g
 # wget https://docs.google.com/uc\?id\=0B3X9GlR6Embnb010SnpUV0s2ZkU\&export\=download -O /usr/local/bin/gdrive
 # chmod +x /usr/local/bin/gdrive
 
-#Forget about MS Office
-#sh -c "printf '[playonlinux]\nname=PlayOnLinux Official repository\nbaseurl=http://rpm.playonlinux.com/fedora/yum/base\nenable=1\ngpgcheck=0\ngpgkey=http://rpm.playonlinux.com/public.gpg\n' > /etc/yum.repos.d/playonlinux.repo"
-#yum install playonlinux
-
-# # Install Wechat
-# wget https://github.com/geeeeeeeeek/electronic-wechat/releases/download/V2.0/linux-x64.tar.gz
-# tar -zxvf linux-x64.tar.gz
-# mv electronic-wechat-linux-x64 /usr/share/applications/
-
-# Reminde of removing alternateTab in gnome's /usr/share/gnome-shell/extensions
+# Remind of removing alternateTab in gnome's /usr/share/gnome-shell/extensions
 echo "don't forget to remove alternateTab in /usr/share/gnome-shell/extensions\ninstall extension https://github.com/HROMANO/nohotcorner/releases in gnome-tweak-tools!\n"
 
 #reboot

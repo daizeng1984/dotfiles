@@ -8,6 +8,7 @@ brew cask install google-chrome
 brew cask install vox
 brew cask install vlc
 brew cask install gimp
+brew cask install xee
 # flash disk better than dd
 brew cask install balenaetcher
 source $HOME/.dotfiles/mac/configKarabiner.sh
