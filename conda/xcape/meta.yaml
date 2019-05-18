@@ -1,0 +1,38 @@
+{% set version = "1.2" %}
+
+package:
+  name: xcape
+  version: {{ version }}
+
+source:
+  git_url: https://github.com/daizeng1984/xcape.git
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - clangdev
+    - make
+    - libx11-devel-cos6-x86_64
+    - libxtst-devel-cos6-x86_64
+    - libxi-devel-cos6-x86_64
+    - libxcb
+    - xorg-libxtst
+    - xorg-libxext
+    - xorg-libxfixes
+    - pkg-config
+
+test:
+  requirements:
+  commands:
+
+
+about:
+  home: https://github.com/daizeng1984/xcape
+  license: Free software (GPL-3.0)
+  summary: Linux utility to configure modifier keys to act as other keys when pressed and released on their own.
+
+extra:
+  recipe-maintainers:
+    - daizeng1984
