@@ -35,7 +35,9 @@ conda install -y -c conda-forge nodejs
 conda install -y -c daizeng1984 sdkman
 
 # ruby
-conda install -y -c conda-forge ruby
+# native lib via bundler always requires lib path from conda, not friendly at all
+# has to use system ruby
+# conda install -y -c conda-forge ruby
 
 # Tmux
 conda install -y -c conda-forge tmux
