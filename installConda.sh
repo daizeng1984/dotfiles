@@ -45,6 +45,7 @@ conda install -y -c conda-forge tmux
 conda install -y -c conda-forge ncurses
 
 # Misc
+conda install -y -c conda-forge fzf
 conda install -y -c conda-forge rsync
 conda install -y -c conda-forge trash-cli
 conda install -y -c anaconda ripgrep
@@ -59,15 +60,15 @@ conda install -y -c conda-forge patool
 # Vim/tmux
 source $HOME/.dotfiles/neovim/configNeovim.sh
 source $HOME/.dotfiles/tmux/configTmux.sh
-# fzf TODO: move this into .dotfiles/.local/bin
-cd $HOME && git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf  && ~/.fzf/install --no-update-rc --key-bindings --completion
-# ranger
+# TODO: anaconda ranger
 pip install ranger-fm
 source $HOME/.dotfiles/ranger/configRanger.sh
+# TODO: backup 
 # autocomplete ignore case for bash
 echo "set completion-ignore-case On" >> $HOME/.inputrc
 
 # Install zsh to be default
 sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+# TODO: duplicate and check oh-my-zsh install options
 # add all symlink file
 source $HOME/.dotfiles/createSymlink.sh
