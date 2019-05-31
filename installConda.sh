@@ -24,6 +24,10 @@ conda config --add channels conda-forge
 conda install -y -c conda-forge cmake
 conda install -y -c conda-forge clangdev
 
+# pandoc
+conda install -y -c conda-forge pandoc
+conda install -y -c conda-forge gnupg
+
 # Vim
 conda install -y -c conda-forge neovim
 conda install -y -c daizeng1984 nvim
@@ -46,6 +50,10 @@ conda install -y -c conda-forge ncurses
 
 # Misc
 conda install -y -c conda-forge fzf
+# TODO: fzf recipe is not complete
+mkdir -p $HOME/.dotfiles/.local/lib/miniconda/share/fzf/plugin
+wget https://raw.githubusercontent.com/junegunn/fzf/master/plugin/fzf.vim -P $HOME/.dotfiles/.local/lib/miniconda/share/fzf/plugin
+
 conda install -y -c conda-forge rsync
 conda install -y -c conda-forge trash-cli
 conda install -y -c anaconda ripgrep

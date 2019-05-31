@@ -1,6 +1,8 @@
 # install brew
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 # my desktop stuff
+brew install pinentry-mac
+brew install wkhtmltopdf
 brew cask install karabiner-elements
 brew cask install phoenix
 brew cask install flux
