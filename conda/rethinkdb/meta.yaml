@@ -1,0 +1,38 @@
+{% set version = "2.3.6" %}
+
+package:
+  name: rethinkdb-server
+  version: {{ version }}
+
+source:
+  git_rev: v{{ version }}
+  git_url: https://github.com/rethinkdb/rethinkdb.git
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - clangdev
+    - protobuf
+    - jemalloc
+    - ncurses
+    - boost 
+    - libcurl
+    - openssl
+    - nodejs
+    - curl
+
+test:
+  requirements:
+  commands:
+
+
+about:
+  home: https://rethinkdb.com/
+  license: Free software (Apache)
+  summary: The open-source database for the realtime web. 
+
+extra:
+  recipe-maintainers:
+    - daizeng1984
