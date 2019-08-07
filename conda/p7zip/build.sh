@@ -1,0 +1,11 @@
+#!/bin/bash
+
+make
+
+DEST_HOME="$PREFIX"
+DEST_BIN=${DEST_HOME}/bin
+DEST_SHARE=${DEST_HOME}/lib/p7zip
+DEST_MAN=${DEST_HOME}/man
+DEST_SHARE_DOC=${DEST_HOME}/share/doc/p7zip
+DEST_DIR=
+./install.sh $DEST_BIN $DEST_SHARE $DEST_MAN $DEST_SHARE_DOC $DEST_DIR
