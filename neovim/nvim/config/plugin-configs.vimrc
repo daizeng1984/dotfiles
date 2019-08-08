@@ -169,7 +169,7 @@ let g:LanguageClient_serverCommands = {
     \ 'javascript.jsx': [$HOME.'/.dotfiles/.local/lib/js-language-server/node_modules/.bin/javascript-typescript-stdio'],
     \ 'typescript': [$HOME.'/.dotfiles/.local/lib/js-language-server/node_modules/.bin/javascript-typescript-stdio'],
     \ 'python': [$HOME.'/.dotfiles/.local/lib/python-language-server/bin/pyls'],
-    \ 'cpp': [$HOME.'/.dotfiles/.local/bin/clangd'],
+    \ 'cpp': ['ccls'],
     \ 'sh': [$HOME.'/.dotfiles/.local/lib/bash-language-server/node_modules/.bin/bash-language-server', 'start'],
     \ }
 

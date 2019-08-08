@@ -38,6 +38,10 @@ conda install -y -c conda-forge nodejs
 # Boostrap java
 conda install -y -c daizeng1984 sdkman
 
+# C++
+conda install -y -c conda-forge conan
+conda install -y -c daizeng1984 ccls
+
 # ruby
 # native lib via bundler always requires lib path from conda, not friendly at all
 # has to use system ruby
