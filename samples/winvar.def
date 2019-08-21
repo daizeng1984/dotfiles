@@ -1,0 +1,41 @@
+export NODE_PATH="${DOTFILE_LOCAL_PREFIX}/lib/miniconda/lib/node_modules"
+
+# Python managed by conda, we can activate our python environment
+# source activate webdev
+python -VV
+alias pysite='python -m site'
+
+# Node/NPM path
+alias nodepath='npm config get prefix'
+npm config set python $(which python)
+
+# SDKMan and JDK
+export SDKMAN_DIR=${DOTFILE_LOCAL_PREFIX}/lib/miniconda/lib/.sdkman
+[[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]] && source "${SDKMAN_DIR}/bin/sdkman-init.sh"
+export JAVA_HOME=$SDKMAN_DIR/candidates/java/current
+export JAVA_LD_LIBRARY_PATH=$JAVA_HOME/lib/server
+export ANDROID_HOME=${DOTFILE_LOCAL_PREFIX}/lib/android/android-sdk
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin
+
+# Slack notifier
+tellslack() {
+    if [ -z "$SLACK_WEBHOOK_URL" ]; then
+        echo -n "Please input your SLACK_WEBHOOK_URL="
+        read __url
+        export SLACK_WEBHOOK_URL="$__url"
+    fi
+    curl -X POST -H 'Content-type: application/json' --data "{\"text\":\"${1}\"}" $SLACK_WEBHOOK_URL
+}
+
+# Mac copy
+alias cp=copy
+
+# Alert
+macnotify() {
+osascript -e "display notification \"${1}\" with title \"Alert\""
+}
+alias alert=notify
+
+export DISPLAY=localhost:0.0
+

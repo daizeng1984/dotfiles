@@ -123,3 +123,11 @@ nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
 " map <silent> <leader>j<F8> :JavaDebugStep over <CR> :JavaDebugStatus<CR>
 " map <silent> <leader>j<F7> :JavaDebugStep into <CR> :JavaDebugStatus<CR>
 
+" WSL
+if system('uname -r') =~ "Microsoft"
+" if has('wsl')
+    augroup Yank
+        autocmd!
+        autocmd TextYankPost * :call system('clip.exe ',@")
+    augroup END
+endif
