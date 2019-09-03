@@ -144,8 +144,8 @@ let g:UltiSnipsSnippetDirectories=["UltiSnips", $HOME."/.config/nvim/my-snippets
 " whD
 let g:deoplete#sources#whd#learning_texts = ['${HOME}/obama08.txt', '/']
 
-" Far
-" let g:far#source = 'agnvim' " Note ag etc. doesn't support multiline replacement
+" Far Note ag etc. doesn't support multiline replacement
+let g:far#source = 'rg'
 
 " Ipy
 let g:nvim_ipy_perform_mappings = 0

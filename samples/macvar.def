@@ -24,8 +24,14 @@ export SDKMAN_DIR=${DOTFILE_LOCAL_PREFIX}/lib/miniconda/lib/.sdkman
 export JAVA_HOME=$SDKMAN_DIR/candidates/java/current
 export JAVA_LD_LIBRARY_PATH=$JAVA_HOME/lib/server
 export ANDROID_HOME=${DOTFILE_LOCAL_PREFIX}/lib/android/android-sdk
+export ANDROID_NDK_ROOT=${DOTFILE_LOCAL_PREFIX}/lib/android/android-sdk/ndk-bundle
+export ANDROID_NDK_HOME=${ANDROID_NDK_ROOT}
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin
+
+# C++
+export CXX=$(which clang++)
+export CC=$(which clang)
 
 # Slack notifier
 tellslack() {
@@ -74,12 +80,21 @@ if [ -f '/Users/zengdai/Downloads/google-cloud-sdk-188.0.1-darwin-x86_64.tar/goo
 #unset -f cd
 
 
-lcjava() {
-leetcode show $1 -gx -l java
+lcjava() {                   
+leetcode show $1 -gx -l java 
+}                            
+lcsubmit() {                 
+leetcode submit $1           
+}                            
+lctest() {                   
+leetcode test $@             
+}                            
+lcshow() {
+    __current_path=$(pwd)
+    mkdir -p /tmp/leetcode-submission
+    cd /tmp/leetcode-submission
+    leetcode submission $1 -l java
+    cat $1.*
+    cd $__current_path
 }
-lcsubmit() {
-leetcode submit $1
-}
-lctest() {
-leetcode test $@
-}
+

@@ -41,13 +41,6 @@ autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 "let g:easytags_always_enabled = 1
 let g:easytags_on_cursorhold = 0
 
-
-"Ctags folder
-" configure tags - add additional tags here or comment out not-used ones
-set tags+=~/.vim/tags/cpptag
-set tags+=~/.vim/tags/gltag
-set tags+=~/.vim/tags/iglutag
-
 "Easy select and replace
 " Escape special characters in a string for exact matching.
 " This is useful to copying strings from the file to the search tool

@@ -7,7 +7,7 @@ brew cask install karabiner-elements
 brew cask install phoenix
 brew cask install flux
 brew cask install google-chrome
-brew cask install vox
+brew cask install vimr
 brew cask install vlc
 brew cask install gimp
 brew cask install xee
