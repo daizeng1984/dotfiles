@@ -86,6 +86,7 @@ if [ "$installedFasd" = "1" ] && [ "$installedFzf" = "1" ] ; then
 # FZF from fzf.zsh
 # Auto-completion
 # ---------------
+eval "$(fasd --init ${DOTFILES_SHELL_TYPE}-hook ${DOTFILES_SHELL_TYPE}-ccomp ${DOTFILES_SHELL_TYPE}-ccomp-install)"
 [[ $- == *i* ]] && source "$CONDA_PREFIX/share/fzf/shell/completion.${DOTFILES_SHELL_TYPE}" 2> /dev/null
 # Key bindings
 # ------------
@@ -94,7 +95,6 @@ alias j=fd
 alias ja=fda
 alias jj=cdf
 alias fzf="fzf --multi --bind 'ctrl-e:jump'"
-eval "$(fasd --init auto)"
 fi
 # Alias for open, you know we don't need to do this on mac
 if [ "$installedXdgOpen" = "0" ]; then
