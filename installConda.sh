@@ -79,8 +79,8 @@ source $HOME/.dotfiles/ranger/configRanger.sh
 # autocomplete ignore case for bash
 echo "set completion-ignore-case On" >> $HOME/.inputrc
 
-# Install zsh to be default
-sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+# Install zsh (requires git TODO)
+git clone https://github.com/robbyrussell/oh-my-zsh.git $HOME/.oh-my-zsh
 # TODO: duplicate and check oh-my-zsh install options
 # add all symlink file
 source $HOME/.dotfiles/createSymlink.sh
