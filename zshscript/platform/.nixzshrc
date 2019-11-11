@@ -72,9 +72,6 @@ source $ZSH/oh-my-zsh.sh
 #   export EDITOR='mvim'
 # fi
 
-# Include
-[ -r $DOTFILES_HOME/bashscript/universal_init.sh ] && source $DOTFILES_HOME/bashscript/universal_init.sh
-
 # Key binding
 bindkey -v
 bindkey "^f" forward-word
@@ -91,6 +88,8 @@ bindkey -s "^h" '^ucd ..;pwd\n'
 bindkey -s "^g" 'gst\n'
 export KEYTIMEOUT=1
 
+# Include
+[ -r $DOTFILES_HOME/bashscript/universal_init.sh ] && source $DOTFILES_HOME/bashscript/universal_init.sh
 
 function zle-line-init zle-keymap-select {
     VIM_PROMPT="%{$bg_bold[blue]%}"
