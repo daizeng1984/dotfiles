@@ -1,61 +1,60 @@
-//mapkey('<Ctrl-h>', '#3Go one tab left', 'RUNTIME("previousTab")');
-//mapkey('<Ctrl-l>', '#3Go one tab right', 'RUNTIME("nextTab")');
-//mapkey('<Ctrl-u>', '#2Scroll a page up', 'Normal.scroll("pageUp")', {repeatIgnore: true});
-//mapkey('<Ctrl-d>', '#2Scroll a page down', 'Normal.scroll("pageDown")', {repeatIgnore: true})
-mapkey('H', '#4Go back in history', 'history.go(-1)', {repeatIgnore: true});
-mapkey('<Ctrl-r>', '#4Go forward in history', 'history.go(1)', {repeatIgnore: true});
-mapkey('<Ctrl-f>', '', 'Insert.keydown()', {repeatIgnore: true});
-mapkey('p', "Open the clipboard's URL in the current tab", function() {
-    Front.getContentFromClipboard(function(response) {
-        window.location.href = response.data;
-    });
-});
-mapkey('ym', "#7Copy current page's URL as markdown", function() {
-  Front.writeClipboard('[' + document.title + '](' + window.location.href + ')');
-});
-mapkey(',h', '#1Mouse over elements.', 'Hints.create("", Hints.dispatchMouseClick, {mouseEvents: ["mouseover"]})');
-mapkey('<Ctrl-o>', '#4Go one tab history back', 'RUNTIME("historyTab", {backward: true})', {repeatIgnore: true});
-mapkey('<Ctrl-i>', '#4Go one tab history forward', 'RUNTIME("historyTab", {backward: false})', {repeatIgnore: true});
+mapkey('H', '#4Go back in history', function() {
+    history.go(-1);
+}, {repeatIgnore: true});
+mapkey('L', '#4Go forward in history', function() {
+    history.go(1);
+}, {repeatIgnore: true});
 
+mapkey('p', '#7Open selected link or link from clipboard', function() {
+    if (window.getSelection().toString()) {
+        tabOpenLink(window.getSelection().toString());
+    } else {
+        Clipboard.read(function(response) {
+            tabOpenLink(response.data);
+        });
+    }
+});
+
+mapkey('yy', "#7Copy current page's URL", function() {
+    Clipboard.write(window.location.href);
+});
+mapkey('yh', "#7Copy current page's host", function() {
+    var url = new URL(window.location.href);
+    Clipboard.write(url.host);
+});
+
+mapkey('ym', "#7Copy current page's URL as markdown", function() {
+    Clipboard.write('[' + document.title + '](' + window.location.href + ')');
+});
+
+mapkey(',h', '#1Mouse over elements.', function() {
+    Hints.create("", Hints.dispatchMouseClick, {mouseEvents: ["mouseover"]});
+});
+mapkey(',j', '#1Mouse out elements.', function() {
+    Hints.create("", Hints.dispatchMouseClick, {mouseEvents: ["mouseout"]});
+});
+
+
+mapkey('<Ctrl-o>', '#4Go one tab history back', function() {
+    RUNTIME("historyTab", {backward: true});
+}, {repeatIgnore: true});
+mapkey('<Ctrl-i>', '#4Go one tab history forward', function() {
+    RUNTIME("historyTab", {backward: false});
+}, {repeatIgnore: true});
 
 imap('<Ctrl-w>', '<Alt-w>');
 imap('<Ctrl-f>', '<Alt-f>');
 imap('<Ctrl-b>', '<Alt-b>');
 imap('<Ctrl-n>', '<ArrowDown>');
-imap('<Ctrl-b>', '<ArrowUp>');
-map('L', '<Ctrl-r>');
-map(',q', 'x');
-map(',r', 'X');
+imap('<Ctrl-p>', '<ArrowUp>');
 map('<Ctrl-[>', '<Esc>');
-map(',wf', 'T');
+map(',wb', 'T');
+map(',wf', 'b');
 map('<Ctrl-d>', 'd');
 map('<Ctrl-u>', 'u');
+map('<Ctrl-h>', 'E');
+map('<Ctrl-l>', 'R');
 
 settings.hintAlign = "left";
 settings.stealFocusOnLoad = false;
 settings.tabsThreshold = 9;
-
-// click `Save` button to make above settings to take effect.
-// set theme
-settings.theme = `
-.sk_theme {
-    background: #000;
-    color: #fff;
-}
-.sk_theme tbody {
-    color: #000;
-}
-.sk_theme input {
-    color: #317ef3;
-}
-.sk_theme .url {
-    color: #38f;
-}
-.sk_theme .annotation {
-    color: #38f;
-}
-
-.sk_theme .focused {
-    background: #aaa;
-}`;
-
