@@ -47,6 +47,9 @@ conda install -y -c daizeng1984 ccls
 # has to use system ruby
 # conda install -y -c conda-forge ruby
 
+# Web tools
+conda install -y -c conda-forge httpie
+
 # Tmux
 conda install -y -c conda-forge tmux
 # Fix https://github.com/conda-forge/tmux-feedstock/issues/12
