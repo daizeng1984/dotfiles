@@ -1,3 +1,9 @@
+# fix annoying PATH mess by tmux https://superuser.com/questions/544989/does-tmux-sort-the-path-variable
+if [ -f /etc/profile ]; then
+    PATH=""
+    source /etc/profile
+fi
+
 # This bashrc load the universal setup for bash
 # enable color in terminal
 export CLICOLOR=1
