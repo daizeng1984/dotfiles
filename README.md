@@ -23,6 +23,10 @@ Make sure shell path has been added to /etc/shells
 ```{bash}
 chsh -s /bin/zsh
 ```
+
+## Platform Dependent Script
+make sure you register a name to `samples/var.def` with username `$(whoami)` and hostname `$(hostname)`
+
 ## TODO: Desktop
 ### Centos
 ```{bash}
