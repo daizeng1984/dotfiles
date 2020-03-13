@@ -4,6 +4,13 @@ This configuration is my personal laptop/desktop dotfile [setup](http://blog.sma
 # Before
 Basic development tools like git, wget, curl, bzip2 like [here](https://github.com/daizeng1984/dotfiles/blob/master/misc/installCentos7.sh). However, unless given a minimum OS installation, that shouldn't worry us too much since most normal OS setup should already have them all so you basically don't need to do anything. However in MacOS, you need to install `brew` first and then make sure git, wget is installed. If not you need to install them from `brew`.
 
+## Mac
+```{bash}
+xcode-select --install
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+brew install wget
+```
+
 # Get Started
 Simply do: `cd && git clone https://github.com/daizeng1984/dotfiles.git .dotfiles && cd .dotfiles && bash ./createSymlink.sh && source ~/.bashrc && source ./installConda.sh`
 
@@ -11,6 +18,11 @@ Note: currently troubling OS like Windows (Cygwin/MingW) only has minimum suppor
 
 # After
 
+## Change Shells
+Make sure shell path has been added to /etc/shells
+```{bash}
+chsh -s /bin/zsh
+```
 ## TODO: Desktop
 ### Centos
 ```{bash}
