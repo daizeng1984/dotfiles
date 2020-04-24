@@ -13,7 +13,6 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'Shougo/denite.nvim', { 'do': 'pip install typing' }
 Plug 'Shougo/echodoc.vim'
 Plug 'airblade/vim-rooter' " User :Rooter to do it manually
-Plug 'ervandew/supertab'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 

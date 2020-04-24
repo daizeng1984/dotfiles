@@ -189,3 +189,8 @@ if [ -f $GIT_INDEX ]; then
     nvim . -c ":Gstatus"
 fi
 }
+
+# check listening port
+listen() {
+    lsof -i -P -n | grep LISTEN
+}
