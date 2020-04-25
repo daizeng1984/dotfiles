@@ -40,6 +40,7 @@ conda install -y -c daizeng1984 sdkman
 
 # C++
 conda install -y -c conda-forge conan
+conan remote add bincrafters https://api.bintray.com/conan/bincrafters/public-conan
 conda install -y -c daizeng1984 ccls
 
 # ruby

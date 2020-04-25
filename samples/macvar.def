@@ -70,7 +70,7 @@ if [ -f '/Users/zengdai/Downloads/google-cloud-sdk-188.0.1-darwin-x86_64.tar/goo
 if [ -f '/Users/zengdai/Downloads/google-cloud-sdk-188.0.1-darwin-x86_64.tar/google-cloud-sdk/completion.${__shell_type}.inc' ]; then source '/Users/zengdai/Downloads/google-cloud-sdk-188.0.1-darwin-x86_64.tar/google-cloud-sdk/completion.${__shell_type__}.inc'; fi
 
 ## Leave experimental at the end
-## GO related
+## Just install gvm
 ## gvm
 #source $HOME/.gvm/scripts/gvm
 #

@@ -88,6 +88,28 @@ command! -nargs=* Rg call fzf#run({
 \ 'down':    '50%'
 \ })
 
+function! s:getemoji()
+    let keys = emoji#list()
+    let retval = []
+    for e in keys
+        let v = emoji#for(e)
+        call add(retval, e . '=' . v)
+    endfor
+    return retval
+endfunction
+
+function! s:addemoji(line)
+    let arr = split(a:line, '=')
+    execute "normal! a" . arr[1] . "\<Esc>"
+endfunction
+
+command! -nargs=* FzfEmoji call fzf#run({
+            \ 'source': <sid>getemoji(),
+            \ 'sink': function('<sid>addemoji'),
+            \ 'down':    '50%'
+            \})
+
+
 " Find a file to diff
 command! -nargs=* FzfDiff call fzf#run({
             \ 'sink': 'vertical diffsplit',

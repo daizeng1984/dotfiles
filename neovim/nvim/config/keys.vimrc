@@ -96,6 +96,9 @@ vmap gb <C-_>b
 
 " AsciiEmoji
 nnoremap <leader>em :<C-U>call AsciiEmoji()<CR>:<C-U>Denite menu<CR>
+nnoremap <leader>ea :<C-U>%s/:\([^:]\+\):/\=emoji#for(submatch(1), submatch(0))/g<CR>
+nnoremap <leader>ej :FzfEmoji<CR>
+
 
 " Emmet bug temp solution http://vim.wikia.com/wiki/Delete_a_pair_of_XML/HTML_tags
 noremap <C-Y>k vat<Esc>da>`<da> 
