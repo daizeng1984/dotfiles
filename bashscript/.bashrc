@@ -1,17 +1,22 @@
 # Which machine? we use uname to see: http://stackoverflow.com/questions/3466166/how-to-check-if-running-in-cygwin-mac-or-linux
 DOTFILES_HOME=$HOME/.dotfiles
 __shell_type__="zsh"
-if [ "$(uname -s)" == "Darwin" ]; then
+DOTFILES_SYSTEM_NAME="unknown"
+if [ "$(uname -s)" = "Darwin" ]; then
 	echo "Find Darwin System..."
+    DOTFILES_SYSTEM_NAME="darwin"
     [ -r $DOTFILES_HOME/bashscript/platform/.macbashrc ] && source $DOTFILES_HOME/bashscript/platform/.macbashrc
-elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+elif [ "$(expr substr $(uname -s) 1 5)" = "Linux" ]; then
 	echo "Find Linux System..."
+    DOTFILES_SYSTEM_NAME="linux"
     [ -r $DOTFILES_HOME/bashscript/platform/.linuxbashrc ] && source $DOTFILES_HOME/bashscript/platform/.linuxbashrc
-elif [ "$(expr substr $(uname -s) 1 9)" == "CYGWIN_NT" ]; then
+elif [ "$(expr substr $(uname -s) 1 9)" = "CYGWIN_NT" ]; then
 	echo "Find Cygwin System..."
+    DOTFILES_SYSTEM_NAME="cygwin"
     [ -r $DOTFILES_HOME/bashscript/platform/.cygwinbashrc ] && source $DOTFILES_HOME/bashscript/platform/.cygwinbashrc
-elif [ "$(expr substr $(uname -s) 1 10)" == "MINGW32_NT" ]; then
+elif [ "$(expr substr $(uname -s) 1 10)" = "MINGW32_NT" ]; then
 	echo "Find MingW32 System..."
+    DOTFILES_SYSTEM_NAME="mingw32"
     [ -r $DOTFILES_HOME/bashscript/platform/.cygwinbashrc ] && source $DOTFILES_HOME/bashscript/platform/.cygwinbashrc
 fi
 

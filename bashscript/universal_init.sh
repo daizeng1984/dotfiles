@@ -1,7 +1,9 @@
-# fix annoying PATH mess by tmux https://superuser.com/questions/544989/does-tmux-sort-the-path-variable
-if [ -f /etc/profile ]; then
-    PATH=""
-    source /etc/profile
+# fix annoying PATH mess by tmux in Mac https://superuser.com/questions/544989/does-tmux-sort-the-path-variable
+if [ "$DOTFILES_SYSTEM_NAME" = "darwin" ]; then
+    if [ -f /etc/profile ]; then
+        PATH=""
+        source /etc/profile
+    fi
 fi
 
 # This bashrc load the universal setup for bash
