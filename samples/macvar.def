@@ -70,7 +70,7 @@ if [ -f '/Users/zengdai/Downloads/google-cloud-sdk-188.0.1-darwin-x86_64.tar/goo
 if [ -f '/Users/zengdai/Downloads/google-cloud-sdk-188.0.1-darwin-x86_64.tar/google-cloud-sdk/completion.${__shell_type}.inc' ]; then source '/Users/zengdai/Downloads/google-cloud-sdk-188.0.1-darwin-x86_64.tar/google-cloud-sdk/completion.${__shell_type__}.inc'; fi
 
 ## Leave experimental at the end
-## Just install gvm
+## Just install gvm and do bootstrap install: gvm install go1.8.3 -B && gvm use go1.8.3  then gvm install whatever version and gvim use xxx --default
 ## gvm
 #source $HOME/.gvm/scripts/gvm
 #
@@ -78,7 +78,6 @@ if [ -f '/Users/zengdai/Downloads/google-cloud-sdk-188.0.1-darwin-x86_64.tar/goo
 #command -v vg >/dev/null 2>&1 && eval "$(vg eval --shell ${__shell_type__})"
 ## Stop slowing my cd https://github.com/markeissler/gvm2/issues/16
 #unset -f cd
-
 
 lcjava() {                   
 leetcode show $1 -gx -l java 
