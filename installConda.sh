@@ -81,7 +81,7 @@ pip install ranger-fm
 source $HOME/.dotfiles/ranger/configRanger.sh
 # TODO: backup 
 # autocomplete ignore case for bash
-echo "set completion-ignore-case On" >> $HOME/.inputrc
+# echo "set completion-ignore-case On" >> $HOME/.inputrc
 
 # Install zsh (requires git TODO)
 git clone https://github.com/robbyrussell/oh-my-zsh.git $HOME/.oh-my-zsh

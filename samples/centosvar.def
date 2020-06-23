@@ -7,5 +7,5 @@ export SDKMAN_DIR=${DOTFILE_LOCAL_PREFIX}/lib/miniconda/lib/.sdkman
 [[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]] && source "${SDKMAN_DIR}/bin/sdkman-init.sh"
 
 # xcape avoid multiple keys
-killall xcape
-xcape -e '#66=#76' 
+# killall xcape
+# xcape -e '#66=#76' 
