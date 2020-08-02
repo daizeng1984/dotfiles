@@ -26,7 +26,8 @@ conda install -y -c conda-forge clangdev
 
 # pandoc
 conda install -y -c conda-forge pandoc
-conda install -y -c conda-forge gnupg
+# Suggest install system dependent (brew install gpg or yum install gnupg)
+# conda install -y -c conda-forge gnupg
 
 # Vim
 conda install -y -c conda-forge neovim
