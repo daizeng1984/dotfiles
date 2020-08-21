@@ -2,13 +2,6 @@ export ECLIPSE_HOME="/Applications/Eclipse.app/Contents/Eclipse"
 export PATH="$PATH:$ECLIPSE_HOME"
 export NODE_PATH="${DOTFILE_LOCAL_PREFIX}/lib/miniconda/lib/node_modules"
 
-# Grab from perl installation, maybe remove if not needed
-# PATH="$HOME/perl5/bin${PATH:+:${PATH}}"; export PATH;
-# PERL5LIB="$HOME/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
-# PERL_LOCAL_LIB_ROOT="$HOME/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
-# PERL_MB_OPT="--install_base \"$HOME/perl5\""; export PERL_MB_OPT;
-# PERL_MM_OPT="INSTALL_BASE=$HOME/perl5"; export PERL_MM_OPT;
-
 # Python managed by conda, we can activate our python environment
 # source activate webdev
 python -VV
@@ -74,21 +67,10 @@ if [ -f '/Users/zengdai/Downloads/google-cloud-sdk-188.0.1-darwin-x86_64.tar/goo
 ## Stop slowing my cd https://github.com/markeissler/gvm2/issues/16
 #unset -f cd
 
-lcjava() {                   
-leetcode show $1 -gx -l java 
-}                            
-lcsubmit() {                 
-leetcode submit $1           
-}                            
-lctest() {                   
-leetcode test $@             
-}                            
-lcshow() {
-    __current_path=$(pwd)
-    mkdir -p /tmp/leetcode-submission
-    cd /tmp/leetcode-submission
-    leetcode submission $1 -l java
-    cat $1.*
-    cd $__current_path
+# SSH copy from https://stackoverflow.com/questions/1152362/how-to-send-data-to-local-clipboard-from-a-remote-ssh-session#answer-49890019
+ssh_copy() {
+    while ! (nc -l 2000 | pbcopy) || true; do ; done &
+    copy_daemon=$!
+    ssh $@ -R 2000:localhost:2000
+    pkill -9 -g $copy_daemon
 }
-

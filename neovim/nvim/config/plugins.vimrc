@@ -77,6 +77,7 @@ Plug 'mattn/calendar-vim', {'for': ['markdown'] } " Good to have a calendar view
 Plug 'vimwiki/vimwiki' " Great tool! I think it's better than org mode I tried
 Plug 'vim-scripts/utl.vim', {'for': ['markdown'] } " Utl help open URL in netrw
 Plug 'powerman/vim-plugin-AnsiEsc', {'for': ['markdown'] }  " allow colorful chart in taskwiki
+Plug 'jxnblk/vim-mdx-js' " MDX syntax
 Plug 'ap/vim-css-color' " Color for CSS
 Plug 'jamessan/vim-gnupg' " Encryptize transparently error informations
 " Stop the complaining due to taskwarrior not installed
