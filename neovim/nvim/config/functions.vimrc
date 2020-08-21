@@ -170,4 +170,8 @@ command! -nargs=* -complete=dir NERDShowDir call fzf#run(fzf#wrap(
   \ {'source': 'find '.(empty(<f-args>) ? '.' : <f-args>).' -type d',
   \  'sink': 'NERDTree'}))
 
+function CopyToNetCat() range
+  echo system('echo '.shellescape(join(getline(a:firstline, a:lastline), "\n")).'| nc localhost 2000')
+endfunction
+
 source $HOME/.config/nvim/config/functions/asciiemoji.vimrc

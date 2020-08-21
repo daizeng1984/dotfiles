@@ -109,6 +109,9 @@ nnoremap <silent> <C-K> :call LanguageClient#textDocument_hover()<CR>
 nnoremap <silent> <C-]> :call LanguageClient#textDocument_definition()<CR>
 nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
 
+" Copy to nc
+vmap <S-C-c> :call CopyToNetCat()<CR>
+
 " Eclim, TODO: enable in the future?
 " " Jump to definition
 " autocmd FileType java map <buffer> <C-]> :JavaSearch<CR>
