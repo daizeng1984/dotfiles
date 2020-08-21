@@ -110,7 +110,8 @@ nnoremap <silent> <C-]> :call LanguageClient#textDocument_definition()<CR>
 nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
 
 " Copy to nc
-vmap <C-y> :call CopyToNetCat()<CR>
+unmap <C-y>
+vnoremap <C-y> :call CopyToNetCat()<CR>
 
 " Eclim, TODO: enable in the future?
 " " Jump to definition
