@@ -1,0 +1,6 @@
+# SDKMan and JDK
+export SDKMAN_DIR=${DOTFILE_LOCAL_PREFIX}/lib/miniconda/lib/.sdkman
+[[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]] && source "${SDKMAN_DIR}/bin/sdkman-init.sh"
+export JAVA_HOME=$SDKMAN_DIR/candidates/java/current
+export JAVA_LD_LIBRARY_PATH=$JAVA_HOME/lib/server
+

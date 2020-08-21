@@ -1,0 +1,6 @@
+# Install by using ~/.dotfiles/android/installSDKTools.sh
+export ANDROID_HOME=${DOTFILE_LOCAL_PREFIX}/lib/android/android-sdk
+export ANDROID_NDK_ROOT=${DOTFILE_LOCAL_PREFIX}/lib/android/android-sdk/ndk-bundle
+export ANDROID_NDK_HOME=${ANDROID_NDK_ROOT}
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin
