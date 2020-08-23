@@ -1,4 +1,4 @@
-{% set version = "0.3.2" %}
+{% set version = "0.4.4" %}
 
 package:
   name: nvim
@@ -13,25 +13,14 @@ build:
 
 requirements:
   build:
-    - clangdev
-    - ninja
-    - cmake
-    - gettext 
-    - pkg-config
-    - libtool
-    - autoconf
-    - automake
-    - unzip
+    - {{ compiler('cxx') }}
   host:
-    - libiconv
   run:
-    - libiconv
 
 test:
   requirements:
-    - libiconv 
   commands:
-      #- nvim --version
+    - test -f $PREFIX/bin/nvim
 
 
 about:
