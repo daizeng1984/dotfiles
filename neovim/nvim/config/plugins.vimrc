@@ -9,20 +9,23 @@ endfunction
 " Specify a directory for plugins (for Neovim: ~/.local/share/nvim/plugged)
 call plug#begin('~/.config/nvim/plugged')
 
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'Shougo/denite.nvim', { 'do': 'pip install typing' }
 Plug 'Shougo/echodoc.vim'
 Plug 'airblade/vim-rooter' " User :Rooter to do it manually
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
+let g:use_native_lsp = 0
 " Language autocomplete
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
+if g:use_native_lsp
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'Shougo/deoplete-lsp'
+Plug 'neovim/nvim-lsp'
 " Grammars
 Plug 'w0rp/ale'
+else
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+endif
 
 " Disable for languageclient-neovim
 " if CliInstalled('eclipse')
@@ -101,6 +104,8 @@ endif
 Plug 'daizeng1984/vim-feeling-lucky', {'do': 'pip install --upgrade google-api-python-client' } " require google api
 Plug 'daizeng1984/vim-snip-and-paste'
 
+"Leetcode
+Plug 'ianding1/leetcode.vim'
 "Plug 'ramele/agrep'
 "Plug 'othree/jspc.vim', { 'for': ['javascript', 'javascript.jsx'] }
 " Plug 'itchyny/calendar.vim' " Interesting to try out, Google Calendar in vim!

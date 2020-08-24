@@ -107,12 +107,6 @@ fshow() {
 }
 
 
-# Eclim, powerful yet require many setups, here we are only interested in headless mode
-function eclimd {
-${ECLIPSE_HOME}/eclimd -Dosgi.instance.area.default=$(pwd)/$1
-}
-
-
 rgrep(){
     rg -p "$@" | less -R
 }

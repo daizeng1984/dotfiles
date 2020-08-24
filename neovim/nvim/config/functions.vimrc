@@ -121,20 +121,6 @@ command! -nargs=* FzfDiff call fzf#run({
 "     set grepformat=%f:%l:%c:%m,%f:%l:%m
 " endif
 
-" Our Vim function
-fu! MyEclimdJavaDebug()
-    let filename = expand("%")
-    let filename = substitute(filename, "\.java$", "", "")
-    let dir = getcwd() . "/" . filename
-    let dir = substitute(dir, "^.*\/src\/", "", "")
-    let dir = substitute(dir, "\/[^\/]*$", "", "")
-    let dir = substitute(dir, "\/", ".", "g")
-    let filename = substitute(filename, "^.*\/", "", "")
-    execute ":! java  -Xdebug -agentlib:jdwp=transport=dt_socket,address=9999,server=y,suspend=y -classpath ./bin ".dir.".".filename." & sleep 1.5"
-    let g:server_addr = serverstart('EclimdDebug')
-    execute ":JavaDebugStart localhost 9999"
-endfunction
-
 " Delete current file http://vim.wikia.com/wiki/Delete_files_with_a_Vim_command
 command! -complete=file -nargs=1 Remove :echo 'Remove: '.'<f-args>'.' '.(delete(<f-args>) == 0 ? 'SUCCEEDED' : 'FAILED')
 

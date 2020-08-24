@@ -39,40 +39,21 @@ let g:echodoc#type = 'signature'
 " Always draw the signcolumn.
 set signcolumn=yes
 
-" Super Tab enable as alternative to avoid annoying eclim error popping up when deoplete automatically
-" queries it
-let g:SuperTabDefaultCompletionType = "context"
-let g:SuperTabCompletionContexts = ['s:ContextText', 's:ContextDiscover']
-let g:SuperTabContextTextOmniPrecedence = ['&omnifunc', '&completefunc']
-let g:SuperTabContextDiscoverDiscovery = ["&completefunc:<c-x><c-u>", "&omnifunc:<c-x><c-o>"]
-let g:SuperTabContextDefaultCompletionType = "<c-n>"
-
 
 " Ultisnips
 let g:UltiSnipsExpandTrigger="<C-e>"
 let g:UltiSnipsJumpForwardTrigger="<C-k>"
 let g:UltiSnipsJumpBackwardTrigger="<C-b>"
 
-" Add eclimd support
-let g:EclimCompletionMethod = 'omnifunc'
-" for airline
-let g:airline#extensions#eclim#enabled = 1
-highlight DebugBreak ctermfg=0 ctermbg=226
-let g:EclimLineHighlightDebug = 'DebugBreak'
-" let g:EclimJavaDebugLineSignText = '->'
-
 " Fuzzy Find for neovim
 " TODO: filter file type e.g. binary file
-
 " - down / up / left / right
 let g:fzf_layout = { 'up': '~50%' }
-" TODO: change to rg
+" Rely on fd
 let $FZF_DEFAULT_COMMAND = '( fd --type f --hidden --follow --exclude .git || find . -path "*/\.*" -prune -o -type f -print -o -type l -print | sed s/^..//) 2> /dev/null' 
 
 " In Neovim, you can set up fzf window using a Vim command
-
 " Customize fzf colors to match your color scheme
-
 " Enable per-command history.
 " CTRL-N and CTRL-P will be automatically bound to next-history and
 " previous-history instead of down and up. If you don't like the change,
@@ -162,27 +143,19 @@ let g:indent_guides_auto_colors = 0
 hi IndentGuidesOdd  ctermbg=237
 hi IndentGuidesEven ctermbg=234
 
-" LanguageClient neovim
-let g:LanguageClient_serverCommands = {
-    \ 'java': [$HOME.'/.dotfiles/.local/bin/jdtls'],
-    \ 'javascript': [$HOME.'/.dotfiles/.local/lib/js-language-server/node_modules/.bin/javascript-typescript-stdio'],
-    \ 'javascript.jsx': [$HOME.'/.dotfiles/.local/lib/js-language-server/node_modules/.bin/javascript-typescript-stdio'],
-    \ 'typescript': [$HOME.'/.dotfiles/.local/lib/js-language-server/node_modules/.bin/javascript-typescript-stdio'],
-    \ 'python': [$HOME.'/.dotfiles/.local/lib/python-language-server/bin/pyls'],
-    \ 'cpp': ['ccls'],
-    \ 'sh': [$HOME.'/.dotfiles/.local/lib/bash-language-server/node_modules/.bin/bash-language-server', 'start'],
-    \ }
 
-set completefunc=LanguageClient#complete
-let g:LanguageClient_settingsPath=$HOME.'/.dotfiles/neovim/nvim/lsp-settings.json'
-let g:LanguageClient_loadSettings=1
-" let g:LanguageClient_loggingLevel = 'INFO'
-" let g:LanguageClient_loggingFile =  expand('~/.local/share/nvim/LanguageClient.log')
-" let g:LanguageClient_serverStderr = expand('~/.local/share/nvim/LanguageServer.log')
-" \ 'cpp': [$HOME.'/.dotfiles/.local/bin/cquery'],
-" Doublecheck in case any of these servers are not working
-" Here we add some environment necessary to run up pyls if install locally
-let $PYTHONPATH .= ":".$HOME."/.dotfiles/.local/lib/python-language-server/lib/python/site-packages/"
+" Gitgutter
+autocmd BufWritePost * GitGutter
+
+" LSP
+if g:use_native_lsp
+lua <<EOF
+require'nvim_lsp'.bashls.setup{}
+require'nvim_lsp'.pyls.setup{}
+require'nvim_lsp'.tsserver.setup{}
+require'nvim_lsp'.dockerls.setup{}
+EOF
+" install pyls conda install -y -c conda-forge python-language-server
 
 " ALE
 let g:ale_linters = {
@@ -194,5 +167,5 @@ let g:ale_fixers = {
 \}
 let g:ale_set_quickfix = 1
 
-" Gitgutter
-autocmd BufWritePost * GitGutter
+else
+endif

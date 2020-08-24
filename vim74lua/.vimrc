@@ -386,4 +386,27 @@ nmap <leader>dg :diffget<CR>:diffupdate<CR>zm
 " SSH paste
 map <silent> <leader>p :r /tmp/sshclipboard.txt<CR>
 
+function! Get_Escaped_Selection()
+    let [line_start, column_start] = getpos("'<")[1:2]
+    let [line_end, column_end] = getpos("'>")[1:2]
+    let lines = getline(line_start, line_end)
+    if len(lines) == 0
+        return ''
+    endif
+    let lines[-1] = lines[-1][: column_end - 2]
+    let lines[0] = lines[0][column_start - 1:]
+    let newlines = []
+    for row in lines
+        call add(newlines, escape(row, '\'))
+    endfor
+    return join(newlines, "\n")
+endfunction
 
+function CopyToNetCat() range
+    let selected_lines = Get_Escaped_Selection()
+    echo system('print '.shellescape(selected_lines).'| nc localhost 2000')
+endfunction
+
+" Copy to nc
+unmap <C-y>
+vnoremap <C-y> :call CopyToNetCat()<CR>
