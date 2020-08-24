@@ -10,12 +10,15 @@ source:
 
 build:
   number: 0
+  skip: True  # [win]
 
 requirements:
   build:
     - {{ compiler('cxx') }}
   host:
+    - libiconv
   run:
+    - libiconv
 
 test:
   requirements:
