@@ -1,5 +1,6 @@
 #!/bin/bash
-# Basically mimic brew install glibtool https://github.com/Homebrew/homebrew-core/blob/master/Formula/libtool.rb
+# libtool produces hardcod path! https://github.com/conda-forge/libtool-feedstock/issues/18 and seems no interest fixing that.
+# So let's do it ourselves. Basically mimic brew install glibtool https://github.com/Homebrew/homebrew-core/blob/master/Formula/libtool.rb
 if [ `uname` = Darwin ]; then
     name="libtool-2.4.6"
     filename="${name}.tar.xz"
