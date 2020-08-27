@@ -1,0 +1,9 @@
+# Slack notifier
+tellslack() {
+    if [ -z "$SLACK_WEBHOOK_URL" ]; then
+        echo -n "Please input your SLACK_WEBHOOK_URL="
+        read __url
+        export SLACK_WEBHOOK_URL="$__url"
+    fi
+    curl -X POST -H 'Content-type: application/json' --data "{\"text\":\"${1}\"}" $SLACK_WEBHOOK_URL
+}

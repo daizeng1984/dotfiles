@@ -10,3 +10,7 @@ export CC=$(which clang)
 # xcape avoid multiple keys
 # killall xcape
 # xcape -e '#66=#76' 
+
+
+# Utils
+source "${DOTFILES_HOME}/samples/common/utils.def"

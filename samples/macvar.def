@@ -21,15 +21,8 @@ source "${DOTFILES_HOME}/samples/common/android.def"
 export CXX=$(which clang++)
 export CC=$(which clang)
 
-# Slack notifier
-tellslack() {
-    if [ -z "$SLACK_WEBHOOK_URL" ]; then
-        echo -n "Please input your SLACK_WEBHOOK_URL="
-        read __url
-        export SLACK_WEBHOOK_URL="$__url"
-    fi
-    curl -X POST -H 'Content-type: application/json' --data "{\"text\":\"${1}\"}" $SLACK_WEBHOOK_URL
-}
+# Utils
+source "${DOTFILES_HOME}/samples/common/utils.def"
 
 # Mac copy
 alias cp=copy
@@ -39,16 +32,17 @@ macnotify() {
 osascript -e "display notification \"${1}\" with title \"Alert\""
 }
 alias alert=notify
-alias sshcopyclipboard='sshcopyclipboard $SSHCOPY_REMOTE $SSH_KEY'
 
-# https://apple.stackexchange.com/questions/15318/using-terminal-to-copy-a-file-to-clipboard#answer-15484
-file-to-clipboard() {
-    osascript - "$@" <<'END' 2> /dev/null
-on run {a}
-set the clipboard to POSIX file (POSIX path of ((POSIX file a) as alias))
-end
-END
-}
+# alias sshcopyclipboard='sshcopyclipboard $SSHCOPY_REMOTE $SSH_KEY'
+# 
+# # https://apple.stackexchange.com/questions/15318/using-terminal-to-copy-a-file-to-clipboard#answer-15484
+# file-to-clipboard() {
+#     osascript - "$@" <<'END' 2> /dev/null
+# on run {a}
+# set the clipboard to POSIX file (POSIX path of ((POSIX file a) as alias))
+# end
+# END
+# }
 
 
 # GCP stuff

@@ -65,11 +65,11 @@ wget https://raw.githubusercontent.com/junegunn/fzf/master/plugin/fzf.vim -P $HO
 
 conda install -y -c conda-forge rsync
 conda install -y -c conda-forge trash-cli
-conda install -y -c anaconda ripgrep
-conda install -y -c anaconda the_silver_searcher
+conda install -y -c conda-forge ripgrep
+conda install -y -c conda-forge the_silver_searcher
 conda install -y -c antoined xsel
 conda install -y -c daizeng1984 fasd
-conda install -y -c daizeng1984 fd-find
+conda install -y -c conda-forge fd-find
 conda install -y -c bioconda grep # make sure we have organic grep on mac
 conda install -y -c conda-forge patool
 
