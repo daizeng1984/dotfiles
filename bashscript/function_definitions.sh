@@ -185,6 +185,6 @@ fi
 }
 
 # check listening port
-listen() {
+listen_port() {
     lsof -i -P -n | grep LISTEN
 }

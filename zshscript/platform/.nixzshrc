@@ -84,7 +84,7 @@ bindkey '^u' kill-whole-line
 bindkey '^r' history-incremental-search-backward
 bindkey "^e" end-of-line
 bindkey "^a" beginning-of-line
-bindkey -s "^h" '^ucd ..;pwd\n'
+bindkey -s "^h" '^upopd\n'
 bindkey -s "^g" 'gst\n'
 export KEYTIMEOUT=1
 

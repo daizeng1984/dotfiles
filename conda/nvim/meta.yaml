@@ -6,8 +6,9 @@ package:
   version: {{ version }}
 
 source:
-  git_rev: v{{ version }}
-  git_url: https://github.com/neovim/neovim.git
+  fn: v{{ version }}.tar.gz
+  url: https://github.com/neovim/neovim/archive/v{{ version }}.tar.gz
+  sha256: 2f76aac59363677f37592e853ab2c06151cca8830d4b3fe4675b4a52d41fc42c
   patches:
     - fix-empty-command.patch
 

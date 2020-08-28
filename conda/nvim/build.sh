@@ -1,6 +1,6 @@
 #!/bin/bash
 # libtool produces hardcod path! https://github.com/conda-forge/libtool-feedstock/issues/18
-# So let's do it ourselves. Basically mimic brew install glibtool https://github.com/Homebrew/homebrew-core/blob/master/Formula/libtool.rb
+# So let's do it ourselves.
 name="libtool-2.4.6"
 filename="${name}.tar.xz"
 url="https://ftp.gnu.org/gnu/libtool/${filename}"
@@ -12,14 +12,14 @@ curl -o ${filename} ${url}
 
 # Verify sha256
 if ! echo "${sha256}  ${filename}" | shasum -a 256 -c -; then
-    echo "glibtool checksum failed" >&2
+    echo "libtool checksum failed" >&2
     exit 1
 fi
 
 # Extract tar file
 tar xvf ${filename}
 
-# Apply patch and build glibtool
+# Apply patch and build libtool
 _return_dir=`pwd`
 cd ${name}
 
@@ -28,52 +28,20 @@ mkdir -p $LIBTOOL_INSTALL
 
 
 
-if [ `uname` == Darwin ]; then
-    patch="dynamic_lookup-11.patch"
-    patch_url="https://raw.githubusercontent.com/Homebrew/formula-patches/e5fbd46a25e35663059296833568667c7b572d9a/libtool/${patch}"
-    patch_sha256="5ff495a597a876ce6e371da3e3fe5dd7f78ecb5ebc7be803af81b6f7fcef1079"
+LIBTOOL_INSTALL=$(pwd)/libtool_install
+export HELP2MAN=$(which true)
+export M4=m4
 
-    curl -o ${patch} ${patch_url}
-    # Verify sha256
-    if ! echo "${patch_sha256}  ${patch}" | shasum -a 256 -c -; then
-        echo "patch checksum failed" >&2
-        exit 1
-    fi
-    patch -p0 < ${patch}
-    touch aclocal.m4 libltdl/aclocal.m4 Makefile.in libltdl/Makefile.in config-h.in libltdl/config-h.in configure libltdl/configure
+./configure --prefix=${LIBTOOL_INSTALL}
 
-    export SED=sed
+make -j${CPU_COUNT} ${VERBOSE_AT} && make install
 
-    ./configure \
-        --disable-dependency-tracking \
-        --prefix=${LIBTOOL_INSTALL} \
-        --program-prefix=g \
-        --enable-ltdl-install
-
-    make install
-
-    # Use this download tool for mac
-    export LIBTOOL=${LIBTOOL_INSTALL}/bin/glibtool
-    export LIBTOOLIZE=${LIBTOOL_INSTALL}/bin/glibtoolize
-    if ![ -x "$LIBTOOL" ] ; then
-        echo "cannot create libtool" >&2
-        exit 1
-    fi
-else
-    LIBTOOL_INSTALL=$(pwd)/libtool_install
-    export HELP2MAN=$(which true)
-    export M4=m4
-
-    ./configure --prefix=${LIBTOOL_INSTALL}
-
-    make -j${CPU_COUNT} ${VERBOSE_AT} && make install
-
-    find $LIBTOOL_INSTALL -name '*.la' -delete
-    export LIBTOOL=${LIBTOOL_INSTALL}/bin/libtool
-    export LIBTOOLIZE=${LIBTOOL_INSTALL}/bin/libtoolize
-fi
+find $LIBTOOL_INSTALL -name '*.la' -delete
+export LIBTOOL=${LIBTOOL_INSTALL}/bin/libtool
+export LIBTOOLIZE=${LIBTOOL_INSTALL}/bin/libtoolize
 
 cd $_return_dir
+
 make CMAKE_BUILD_TYPE=Release CMAKE_EXTRA_FLAGS="-DCMAKE_INSTALL_PREFIX=$PREFIX -DCMAKE_OSX_SYSROOT=${CONDA_BUILD_SYSROOT}"  MACOSX_DEPLOYMENT_TARGET=10.9
 
 make install
