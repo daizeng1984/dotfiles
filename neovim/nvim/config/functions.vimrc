@@ -167,14 +167,14 @@ function! Get_Escaped_Selection()
     let lines[0] = lines[0][column_start - 1:]
     let newlines = []
     for row in lines
-        call add(newlines, escape(row, '\'))
+        call add(newlines, row)
     endfor
     return join(newlines, "\n")
 endfunction
 
 function CopyToNetCat() range
     let selected_lines = Get_Escaped_Selection()
-    echo system('print '.shellescape(selected_lines).'| nc localhost 2000')
+    echo system('printf "%s" '.shellescape(selected_lines).' | nc localhost 2000')
 endfunction
 
 source $HOME/.config/nvim/config/functions/asciiemoji.vimrc
