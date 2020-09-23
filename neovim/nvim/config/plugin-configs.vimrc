@@ -1,6 +1,15 @@
 " Plugin setting
 
+" EchoDoc
+set cmdheight=2
+let g:echodoc#enable_at_startup = 1
+let g:echodoc#type = 'signature'
+" Always draw the signcolumn.
+set signcolumn=yes
+
 " Deoplete
+if has_key(g:plugs, 'deoplete.nvim')
+
 
 " autocmd FileType java setlocal omnifunc=javacomplete#Complete " Java Complete 2, with eclim enable this can be disabled
 " autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
@@ -31,19 +40,18 @@ let g:deoplete#enable_at_startup = 1
 " let g:deoplete#enable_debug = 1
 " let g:deoplete#enable_profile = 1
 " call deoplete#enable_logging('DEBUG', './deoplete.log')
+endif
 
-" EchoDoc
-set cmdheight=2
-let g:echodoc#enable_at_startup = 1
-let g:echodoc#type = 'signature'
-" Always draw the signcolumn.
-set signcolumn=yes
-
-
-" Ultisnips
-let g:UltiSnipsExpandTrigger="<C-e>"
-let g:UltiSnipsJumpForwardTrigger="<C-k>"
-let g:UltiSnipsJumpBackwardTrigger="<C-b>"
+if has_key(g:plugs, 'neosnippet.vim')
+    let g:neosnippet#enable_snipmate_compatibility = 1
+    let g:neosnippet#snippets_directory= $HOME."/.config/nvim/my-snippets/snippets"
+else
+    " Ultisnips
+    let g:UltiSnipsExpandTrigger="<C-e>"
+    let g:UltiSnipsJumpForwardTrigger="<C-k>"
+    let g:UltiSnipsJumpBackwardTrigger="<C-b>"
+    let g:UltiSnipsSnippetDirectories=["UltiSnips", $HOME."/.config/nvim/my-snippets/UltiSnips"]
+endif
 
 " Fuzzy Find for neovim
 " TODO: filter file type e.g. binary file
@@ -76,7 +84,10 @@ let g:airline#extensions#tabline#left_alt_sep = ''
 let g:airline#extensions#tabline#right_sep = ''
 let g:airline#extensions#tabline#right_alt_sep = ''
 
-" 
+" TODO: rootcause vim8 fails...
+if ! has('nvim')
+set laststatus=2
+endif
 
 " Wombat!
 colorscheme wombat256mod
@@ -100,11 +111,6 @@ let g:grepper = {
 let g:grepper.quickfix = 0
 
 
-" Deoplete companion Language
-
-" Scala
-let g:scala_scaladoc_indent = 1
-
 " Vim markdown
 let g:vim_markdown_fenced_languages = ['html', 'java', 'cpp', 'python=py', 'bash=sh']
 let g:vim_markdown_autowrite = 1
@@ -120,7 +126,6 @@ autocmd FileType vimwiki setlocal commentstring="> %s"
 let g:vimwiki_list = [{'path': '~/Workspace/vimwiki',
                        \ 'syntax': 'markdown', 'ext': '.md'}]
 let g:vimwiki_folding = 'expr'
-let g:UltiSnipsSnippetDirectories=["UltiSnips", $HOME."/.config/nvim/my-snippets/UltiSnips"]
 
 " whD
 let g:deoplete#sources#whd#learning_texts = ['${HOME}/obama08.txt', '/']
@@ -167,5 +172,4 @@ let g:ale_fixers = {
 \}
 let g:ale_set_quickfix = 1
 
-else
 endif

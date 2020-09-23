@@ -54,6 +54,7 @@ alias l='ls -CF'
 # A copy that can solve Mac's "problem"
 alias copy='rsync --progress -ravzI'
 alias v='vim -n --cmd "filetype indent on" -u "NONE"'
+alias vimm="vim -u $HOME/.config/nvim/init.vim"
 
 # conda
 # Dotfile Binary PATH

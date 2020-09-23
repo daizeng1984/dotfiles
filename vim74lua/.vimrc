@@ -109,34 +109,9 @@ set ignorecase
 set smartcase
 
 "Clean swp files for current folder
-"Set mapleader
-let mapleader = ","
-map <silent> <leader>wp :!find . -name ".*.*.swp" <Bar> xargs rm -rf<cr>
-
 "The theme and font setting
 colorscheme wombat256mod
-if has('win32') || has('win64') || has('win32unix')
-set guifont=Droid_Sans_Mono:h12:cANSI
-else
-set guifont=Monospace\ 11
-endif
 
-" ConEmu
-if !empty($CONEMUBUILD)
-    " echom Running in conemu
-    set term=xterm
-    let &t_AB="\e[48;5;%dm"
-    let &t_AF="\e[38;5;%dm"
-    inoremap <Char-0x07F> <BS>
-    nnoremap <Char-0x07F> <BS>
-    " termcap codes for cursor shape changes on entry and exit to
-    " /from insert mode
-    " doesn't work
-    " let &t_ti="\e[1 q"
-    " let &t_SI="\e[5 q"
-    " let &t_EI="\e[1 q"
-    " let &t_te="\e[0 q"
-endif
 set t_Co=256
 " let g:airline_powerline_fonts = 0
 let g:airline_theme='wombat'
@@ -157,28 +132,6 @@ autocmd! bufwritepost .vimrc source ~/.vimrc
 "Fold for syntax ( { [
 set foldmethod=syntax
 set foldlevel=100
-
-"GLSL syntax
-au BufNewFile,BufRead *.frag,*.vert,*.fp,*.vp,*.glsl,*.frag.glsl,*.vert.glsl set filetype=glsl 
-
-"Taglist
-let Tlist_Show_One_File=1
-let TList_Exit_OnlyWindow=1
-
-"CScope
-"map <C-F11> :silent! !mkdir -p ./cscopeTmp/ <Bar> cscope -Rbq -f ./cscopeTmp/cscope.out <CR> :cs kill -1<CR> :cs add ./cscopeTmp/cscope.out <CR>
-"map <C-F10> :cs add ./cscopeTmp/cscope.out <CR>
-"set cscopequickfix=s-,c-,d-,i-,t-,e-
-
-"Autoopen quickfix window
-"nmap <C-\>s :cs find s <C-R>=expand("<cword>")<CR><CR> :cw<CR>
-"nmap <C-\>g :cs find g <C-R>=expand("<cword>")<CR><CR> :cw<CR>
-"nmap <C-\>c :cs find c <C-R>=expand("<cword>")<CR><CR> :cw<CR>
-"nmap <C-\>t :cs find t <C-R>=expand("<cword>")<CR><CR> :cw<CR>
-"nmap <C-\>e :cs find e <C-R>=expand("<cword>")<CR><CR> :cw<CR>
-"nmap <C-\>f :cs find f <C-R>=expand("<cfile>")<CR><CR> :cw<CR>
-"nmap <C-\>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR> :cw<CR>
-"nmap <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR> :cw<CR>
 
 "WinManager
 " let g:winManagerWindowLayout='TagList'

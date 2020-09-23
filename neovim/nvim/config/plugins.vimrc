@@ -9,24 +9,75 @@ endfunction
 " Specify a directory for plugins (for Neovim: ~/.local/share/nvim/plugged)
 call plug#begin('~/.config/nvim/plugged')
 
-Plug 'Shougo/denite.nvim', { 'do': 'pip install typing' }
-Plug 'Shougo/echodoc.vim'
-Plug 'airblade/vim-rooter' " User :Rooter to do it manually
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
-
+" Whether to use deoplete + lsp or coc.nvim
 let g:use_native_lsp = 0
-" Language autocomplete
-if g:use_native_lsp
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'Shougo/deoplete-lsp'
-Plug 'neovim/nvim-lsp'
-" Grammars
-Plug 'w0rp/ale'
-else
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+let g:use_python3_plugins = 1
+
+if !has('nvim')
+    let g:use_native_lsp = 0
 endif
 
+
+" Complete plugins only for nvim
+if g:use_native_lsp
+    " Language autocomplete for nvim
+    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+    Plug 'Shougo/deoplete-lsp'
+    Plug 'neovim/nvim-lsp'
+    " Grammars
+    Plug 'w0rp/ale'
+else
+    let g:coc_disable_startup_warning = 1
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}
+endif
+
+
+" TODO: Avoid conflict with my old vim plugins
+if has('nvim')
+    Plug 'vim-airline/vim-airline'
+    Plug 'vim-airline/vim-airline-themes'
+endif
+
+
+" Python plugins
+if has('python3') && g:use_python3_plugins
+    " Async interface
+    Plug 'Shougo/denite.nvim', { 'do': 'pip install typing' }
+
+    " ipython
+    if CliInstalled('ipython')
+        Plug 'bfredl/nvim-ipy', { 'do': 'pip install jupyter' } " Jupyter/IPython
+    endif
+
+    " snippet
+    Plug 'SirVer/ultisnips'
+
+    " Stop the complaining due to taskwarrior not installed
+    if CliInstalled('task')
+        Plug 'tbabej/taskwiki', {'for': ['markdown'], 'on': 'VimwikiIndex', 'do': 'pip install --upgrade git+git://github.com/tbabej/tasklib@develop' }
+        Plug 'blindFS/vim-taskwarrior', {'for': ['markdown'], 'on': 'VimwikiIndex' }  " For grid view of taskwiki
+    endif
+    
+    " jupyter notebook
+    if CliInstalled('notedown')
+        Plug 'goerz/ipynb_notedown.vim', { 'do': 'pip install notedown' } " Install notedown to write ipynb in vim
+    endif
+    
+    " My own stuff
+    "Plug 'daizeng1984/my-worddoctor' " My own python plugin currently in test
+    Plug 'daizeng1984/vim-feeling-lucky', {'do': 'pip install --upgrade google-api-python-client' } " require google api
+    Plug 'daizeng1984/vim-snip-and-paste'
+    
+else
+    " snippet
+    Plug 'Shougo/neosnippet.vim'
+    Plug 'Shougo/neosnippet-snippets'
+endif
+
+
+Plug 'Shougo/echodoc.vim'
+Plug 'airblade/vim-rooter' " User :Rooter to do it manually
+Plug 'honza/vim-snippets'
 " Disable for languageclient-neovim
 " if CliInstalled('eclipse')
 " Plug 'dansomething/vim-eclim', { 'for' : ['java', 'scala']} " Annoying 'unable to determine the project ...' for file like html
@@ -38,8 +89,6 @@ endif
 Plug 'junegunn/fzf', { 'dir': $DOTFILE_LOCAL_PREFIX . '/lib/miniconda/share/fzf'} " some time this cause issue if you install fzf in different source e.g. brew install. To solve you need to brew reinstall
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-emoji'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
 Plug 'jlanzarotta/bufexplorer'
 Plug 'vim-scripts/wombat256.vim'
 Plug 'mhinz/vim-grepper'
@@ -83,26 +132,11 @@ Plug 'powerman/vim-plugin-AnsiEsc', {'for': ['markdown'] }  " allow colorful cha
 Plug 'jxnblk/vim-mdx-js' " MDX syntax
 Plug 'ap/vim-css-color' " Color for CSS
 Plug 'jamessan/vim-gnupg' " Encryptize transparently error informations
-" Stop the complaining due to taskwarrior not installed
-if CliInstalled('task')
-Plug 'tbabej/taskwiki', {'for': ['markdown'], 'on': 'VimwikiIndex', 'do': 'pip install --upgrade git+git://github.com/tbabej/tasklib@develop' }
-Plug 'blindFS/vim-taskwarrior', {'for': ['markdown'], 'on': 'VimwikiIndex' }  " For grid view of taskwiki
-endif
 " Plug 'rhysd/nyaovim-markdown-preview', {'for': ['markdown'] }  " Nayovim GUI preview for markdown
 " Plug 'tybenz/vimdeck' " Presentation tool
 
 " Python
 Plug 'nathanaelkane/vim-indent-guides' " Indention guide
-if CliInstalled('ipython')
-Plug 'bfredl/nvim-ipy', { 'do': 'pip install jupyter' } " Jupyter/IPython
-endif
-if CliInstalled('notedown')
-Plug 'goerz/ipynb_notedown.vim', { 'do': 'pip install notedown' } " Install notedown to write ipynb in vim
-endif
-
-"Plug 'daizeng1984/my-worddoctor' " My own python plugin currently in test
-Plug 'daizeng1984/vim-feeling-lucky', {'do': 'pip install --upgrade google-api-python-client' } " require google api
-Plug 'daizeng1984/vim-snip-and-paste'
 
 "Leetcode
 Plug 'ianding1/leetcode.vim'

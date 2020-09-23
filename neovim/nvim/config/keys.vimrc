@@ -87,6 +87,11 @@ imap <F4> <Esc>:call MyInsertCalDate()<CR>
 " Far, find selection in virtual mode
 vmap <C-R> y:Farp<CR><C-R>0<CR>
 
+" Ctrl-e for ultisnips or neosnippet
+if has_key(g:plugs, 'neosnippet.vim')
+    imap <C-e> <Plug>(neosnippet_expand_or_jump)
+endif
+
 " Ctrl-A/X in mswin
 noremap <C-_>= <C-A>
 noremap <C-_>- <C-X>
@@ -125,6 +130,7 @@ nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
 " GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> <c-]> <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
