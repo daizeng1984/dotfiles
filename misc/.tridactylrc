@@ -1,0 +1,15 @@
+set smoothscroll true
+set allowautofocus false
+colorscheme dark
+
+
+bind / fillcmdline find
+bind ? fillcmdline find -?
+bind n findnext 1
+bind N findnext -1
+bind --mode=ex <C-p> ex.prev_completion
+bind --mode=ex <C-n> ex.next_completion
+bind --mode=ex <C-f> text.forward_word
+bind --mode=ex <C-b> text.backward_word
+bind --mode=ex <C-w> text.backward_kill_word
+command fixamo js tri.excmds.setpref("privacy.resistFingerprinting.block_mozAddonManager", "true").then(tri.excmds.setpref("extensions.webextensions.restrictedDomains", '""').then(tri.excmds.fillcmdline_tmp(3000, "Permissions added to user.js. Please restart Firefox to make them take affect.")))
