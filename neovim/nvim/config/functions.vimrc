@@ -156,24 +156,18 @@ command! -nargs=* -complete=dir NERDShowDir call fzf#run(fzf#wrap(
   \ {'source': 'find '.(empty(<f-args>) ? '.' : <f-args>).' -type d',
   \  'sink': 'NERDTree'}))
 
-function! Get_Escaped_Selection()
-    let [line_start, column_start] = getpos("'<")[1:2]
-    let [line_end, column_end] = getpos("'>")[1:2]
-    let lines = getline(line_start, line_end)
-    if len(lines) == 0
-        return ''
-    endif
-    let lines[-1] = lines[-1][: column_end - 2]
-    let lines[0] = lines[0][column_start - 1:]
-    let newlines = []
-    for row in lines
-        call add(newlines, row)
-    endfor
-    return join(newlines, "\n")
+function! GetVisualSelection()
+  try
+    let a_save = @a
+    normal! gv"ay
+    return @a
+  finally
+    let @a = a_save
+  endtry
 endfunction
 
 function CopyToNetCat() range
-    let selected_lines = Get_Escaped_Selection()
+    let selected_lines = GetVisualSelection()
     echo system('printf "%s" '.shellescape(selected_lines).' | nc localhost 2000')
 endfunction
 
