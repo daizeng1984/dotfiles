@@ -63,8 +63,11 @@ if [ -f '/Users/zengdai/Downloads/google-cloud-sdk-188.0.1-darwin-x86_64.tar/goo
 
 # SSH copy from https://stackoverflow.com/questions/1152362/how-to-send-data-to-local-clipboard-from-a-remote-ssh-session#answer-49890019
 ssh_copy() {
+    echo "Make sure you setup password free by doing: ssh-copy-id id@server"
+    # clean all other ssh session
+    ssh ${1} -t 'ps -aux | grep "[s]sh" | grep pts/ | grep -v $(ps --no-headers -fp $$ | awk "{print \$3}") | awk "{print \$2}" | xargs kill -9'
     while ! (nc -l 2000 | pbcopy) || true; do ; done &
     copy_daemon=$!
-    ssh $@ -R 2000:localhost:2000
+    ssh ${1} -R 2000:localhost:2000 -t 'tmux a || $SHELL '
     pkill -9 -g $copy_daemon
 }
