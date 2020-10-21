@@ -9,13 +9,6 @@ fi
 # This bashrc load the universal setup for bash
 # enable color in terminal
 export CLICOLOR=1
-# Color
-RED='\033[0;31m'
-ORANGE='\033[0;33m'
-YELLOW='\033[1;33m'
-GREEN='\033[0;32m'
-NC='\033[0m' # No Color
-
 if [ -n "$force_color_prompt" ]; then
    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
 	# We have color support; assume it's compliant with Ecma-48
@@ -56,50 +49,71 @@ alias copy='rsync --progress -ravzI'
 alias v='vim -n --cmd "filetype indent on" -u "NONE"'
 alias vimm="vim -u $HOME/.config/nvim/init.vim"
 
-# conda
-# Dotfile Binary PATH
-export DOTFILE_LOCAL_PREFIX=$HOME/.dotfiles/.local
-# Override all bin
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('$DOTFILE_LOCAL_PREFIX/lib/miniconda/bin/conda' 'shell.${DOTFILES_SHELL_TYPE}' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "$DOTFILE_LOCAL_PREFIX/lib/miniconda/etc/profile.d/conda.sh" ]; then
-        . "$DOTFILE_LOCAL_PREFIX/lib/miniconda/etc/profile.d/conda.sh"
-    else
-        export PATH="$DOTFILE_LOCAL_PREFIX/lib/miniconda/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-conda deactivate
-conda activate
+source "$HOME/.dotfiles/bashscript/function_definitions.sh"
+# pkg manager priority Nix > Conda > Adhoc
+# adhoc
 export PATH=$DOTFILE_LOCAL_PREFIX/bin:${PATH}
 
+# conda
+# Dotfile HOME PATH
+export DOTFILE_LOCAL_PREFIX=$HOME/.dotfiles/.local
+installedConda=$(checkIfInstalled "conda" conda --quiet)
+if [ "$installedConda" = "1" ] ; then
+    # !! Contents within this block are managed by 'conda init' !!
+    __conda_setup="$('$DOTFILE_LOCAL_PREFIX/lib/miniconda/bin/conda' 'shell.${DOTFILES_SHELL_TYPE}' 'hook' 2> /dev/null)"
+    if [ $? -eq 0 ]; then
+        eval "$__conda_setup"
+    else
+        if [ -f "$DOTFILE_LOCAL_PREFIX/lib/miniconda/etc/profile.d/conda.sh" ]; then
+            . "$DOTFILE_LOCAL_PREFIX/lib/miniconda/etc/profile.d/conda.sh"
+        else
+            export PATH="$DOTFILE_LOCAL_PREFIX/lib/miniconda/bin:$PATH"
+        fi
+    fi
+    unset __conda_setup
+    # TODO: do we need this?
+    conda deactivate
+    conda activate
+fi
 
-source "$HOME/.dotfiles/bashscript/function_definitions.sh"
+
+# nix
+export NIX_HOME_PATH=$HOME/.nix-profile
+if [ -e $NIX_HOME_PATH/etc/profile.d/nix.sh ]; then . $NIX_HOME_PATH/etc/profile.d/nix.sh; fi # added by Nix installer
+# nix home-manager
+export NIX_PATH=$HOME/.nix-defexpr/channels${NIX_PATH:+:}$NIX_PATH
+
 
 # Fzf and ag is my new love
-installedFzf=$(checkIfInstalled "fzf" fzf)
-installedAg=$(checkIfInstalled "ag" the_silver_searcher)
-installedFd=$(checkIfInstalled "fd" fd-find)
-installedFasd=$(checkIfInstalled "fasd" fasd)
-installedRipGrep=$(checkIfInstalled "rg" ripgrep)
+installedFzf=$(checkIfInstalled "fzf" fzf --quiet)
+installedAg=$(checkIfInstalled "ag" the_silver_searcher --quiet)
+installedFd=$(checkIfInstalled "fd" fd-find --quiet)
+installedFasd=$(checkIfInstalled "fasd" fasd --quiet)
+installedRipGrep=$(checkIfInstalled "rg" ripgrep --quiet)
 installedXdgOpen=$(checkIfInstalled "xdg-open" xdg-open --quiet)
 
 # TODO: export certainfile='$(fzf)'
 # Initialize fasd
-if [ "$installedFasd" = "1" ] && [ "$installedFzf" = "1" ] ; then
+if [ "$installedFasd" = "1" ] ; then
+    eval "$(fasd --init ${DOTFILES_SHELL_TYPE}-hook ${DOTFILES_SHELL_TYPE}-ccomp ${DOTFILES_SHELL_TYPE}-ccomp-install)"
+fi
+if [ "$installedFzf" = "1" ] ; then
 # FZF from fzf.zsh
 # Auto-completion
 # ---------------
-eval "$(fasd --init ${DOTFILES_SHELL_TYPE}-hook ${DOTFILES_SHELL_TYPE}-ccomp ${DOTFILES_SHELL_TYPE}-ccomp-install)"
-[[ $- == *i* ]] && source "$CONDA_PREFIX/share/fzf/shell/completion.${DOTFILES_SHELL_TYPE}" 2> /dev/null
-# Key bindings
-# ------------
-source "$CONDA_PREFIX/share/fzf/shell/key-bindings.${DOTFILES_SHELL_TYPE}"
+if [[ $- == *i* ]] ; then
+    # Try to find different source of fzf, make sure you are not installing multiple version
+    if [ -x $NIX_HOME_PATH/bin/fzf ] ; then
+        source "$NIX_HOME_PATH/share/fzf/completion.${DOTFILES_SHELL_TYPE}" 2> /dev/null
+        source $NIX_HOME_PATH/share/fzf/key-bindings.${DOTFILES_SHELL_TYPE}
+    elif [ -x $CONDA_PREFIX/bin/fzf ] ; then
+        source "$CONDA_PREFIX/share/fzf/shell/completion.${DOTFILES_SHELL_TYPE}" 2> /dev/null
+        source $CONDA_PREFIX/share/fzf/shell/key-bindings.${DOTFILES_SHELL_TYPE}
+    elif [ -r $HOME/.fzf/shell/key-bindings.${DOTFILES_SHELL_TYPE} ] ; then
+        source "$HOME/.fzf/shell/completion.${DOTFILES_SHELL_TYPE}" 2> /dev/null
+        source $HOME/.fzf/shell/key-bindings.${DOTFILES_SHELL_TYPE}
+    fi
+fi
 alias j=fd
 alias ja=fda
 alias jj=cdf

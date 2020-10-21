@@ -4,8 +4,11 @@ source "${DOTFILES_HOME}/samples/common/android.def"
 source "${DOTFILES_HOME}/samples/common/java.def"
 
 # Prefer Clang vs GCC
-export CXX=$(which clang++)
-export CC=$(which clang)
+installedClang=$(checkIfInstalled "clang" clang --quiet)
+if [ "$installedClang" = "1" ] ; then
+    export CXX=$(which clang++)
+    export CC=$(which clang)
+fi
 
 # xcape avoid multiple keys
 # killall xcape

@@ -160,10 +160,14 @@ function! CliInstalled(cond)
     return system("if ! type " . a:cond . " > /dev/null 2>&1; then echo '0'; else echo '1'; fi")
 endfunction
 
-if CliInstalled('fzf') && CliInstalled('ag')
+if CliInstalled('fzf') 
     let g:fzf_layout = { 'up': '~50%' }
     map <silent> <leader>wf :FZF<CR>
-    let $FZF_DEFAULT_COMMAND = 'ag --hidden -p ~/.dotfile/neovim/nvim/.agignore -l -g ""'
+    if CliInstalled('ag')
+        let $FZF_DEFAULT_COMMAND = 'ag --hidden -p ~/.dotfile/neovim/nvim/.agignore -l -g ""'
+    else
+        let $FZF_DEFAULT_COMMAND = 'find . -type f'
+    endif
 else
     map <silent> <leader>wf :FufCoverageFile<CR>
     map <silent> <leader>w, :FufRenewCache<CR>

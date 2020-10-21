@@ -9,7 +9,7 @@ NC='\033[0m' # No Color
 checkIfInstalled() {
     if ! type ${1}  > /dev/null 2>&1; then
         if [ "${3}" != "--quiet" ]; then
-            >&2 printf "${RED}${1} might not be found or installed correctly.${NC} Try ${GREEN}conda install -c somechannel ${2}${NC}!\n"
+            >&2 printf "${RED}${1} might not be found or installed correctly.${NC} Try ${GREEN}nix-env or conda to install ${2}${NC}!\n"
         fi
         echo "0"
     else
