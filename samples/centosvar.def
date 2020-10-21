@@ -1,3 +1,6 @@
+# X related
+export DISPLAY=:0.0
+
 # Android
 source "${DOTFILES_HOME}/samples/common/android.def"
 # Java

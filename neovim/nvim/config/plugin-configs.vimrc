@@ -7,6 +7,23 @@ let g:echodoc#type = 'signature'
 " Always draw the signcolumn.
 set signcolumn=yes
 
+" NERDtree
+let g:NERDTreeUseSimpleIndicator = 1
+let g:NERDTreeDirArrowExpandable = '+'
+let g:NERDTreeDirArrowCollapsible = '-'
+let g:NERDTreeGitStatusIndicatorMapCustom = {
+                \ 'Modified'  :'M',
+                \ 'Staged'    :'+',
+                \ 'Untracked' :'?',
+                \ 'Renamed'   :'->',
+                \ 'Unmerged'  :'un',
+                \ 'Deleted'   :'D',
+                \ 'Dirty'     :'*',
+                \ 'Ignored'   :'_',
+                \ 'Clean'     :'v',
+                \ 'Unknown'   :'??',
+                \ }
+
 " Deoplete
 if has_key(g:plugs, 'deoplete.nvim')
 
@@ -73,7 +90,6 @@ let g:bufExplorerDisableDefaultKeyMapping=1
 
 " VimAirline
 set t_Co=256
-let g:airline_powerline_fonts = 1
 let g:airline_theme='wombat'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'default'

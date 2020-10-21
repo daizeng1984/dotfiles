@@ -166,9 +166,23 @@ function! GetVisualSelection()
   endtry
 endfunction
 
+" TODO: refactor dups
 function CopyToNetCat() range
     let selected_lines = GetVisualSelection()
     echo system('printf "%s" '.shellescape(selected_lines).' | nc localhost 2000')
+endfunction
+function CopyToTmpBuffer() range
+    let selected_lines = GetVisualSelection()
+    echo system('printf "%s" '.shellescape(selected_lines).' > ~/.config/nvim/backup/.vim-buf')
+endfunction
+function PasteFromTmpBuffer()
+    try
+        let a_save = @a
+        let @a = system('cat ~/.config/nvim/backup/.vim-buf')
+        normal! "ap
+    finally
+        let @a = a_save
+    endtry
 endfunction
 
 source $HOME/.config/nvim/config/functions/asciiemoji.vimrc

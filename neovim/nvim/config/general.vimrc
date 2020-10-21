@@ -73,7 +73,6 @@ set ssop-=folds " do not store folds
 
 "The theme and font setting
 silent colorscheme desert
-let g:GuiFont="Droid Sans Mono:h11" " Meslo LG L DZ for Powerline:h11
 
 "Fold for syntax ( { [
 set foldmethod=syntax

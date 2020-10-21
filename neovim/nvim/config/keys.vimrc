@@ -111,6 +111,15 @@ noremap <C-Y>k vat<Esc>da>`<da>
 " Copy to nc
 unmap <C-y>
 vnoremap <C-y> :call CopyToNetCat()<CR>
+if !has('clipboard')
+    " if display available?
+    " vnoremap <C-c> :w !xsel -i -b<CR>
+    " nnoremap <C-v> :r!xsel -b<CR>
+    " TODO: select mode
+    vnoremap <C-c> :call CopyToTmpBuffer()<CR>
+    nnoremap <C-v> :call PasteFromTmpBuffer()<CR>
+    inoremap <C-v> <Esc>:call PasteFromTmpBuffer()<CR>a
+endif
 
 " LSP
 if g:use_native_lsp
