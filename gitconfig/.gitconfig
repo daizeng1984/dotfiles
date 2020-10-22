@@ -23,6 +23,7 @@
     editor = vim
 	pager = diff-so-fancy | less --tabs=4 -RFX
 	autocrlf = input
+	askpass = 
 
 [i18n]
     filesEncoding = utf-8
