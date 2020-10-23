@@ -49,3 +49,20 @@ for folder in $folders; do
     fi
 done
 
+# link XDG_CONFIG_HOME related
+# Initiate .config if not exists
+[ -z $XDG_CONFIG_HOME ] && XDG_CONFIG_HOME="$HOME/.config"
+[ ! -d $XDG_CONFIG_HOME ] && mkdir -p -- $XDG_CONFIG_HOME
+
+__link_xdg_config() {
+    [ -d $XDG_CONFIG_HOME/$1 ] && mv $XDG_CONFIG_HOME/$1 $XDG_CONFIG_HOME/.old.$1
+    [ -L $XDG_CONFIG_HOME/$1 ] && rm $XDG_CONFIG_HOME/$1
+    echo "Creating xdg symlink for $1"
+    ln -s $dir/$2/$1 $XDG_CONFIG_HOME/$1
+}
+# Create nvim's symlink
+__link_xdg_config 'nvim' 'neovim'
+# Create nix's symlink
+__link_xdg_config 'nixpkgs' 'nix'
+__link_xdg_config 'ranger' ''
+
