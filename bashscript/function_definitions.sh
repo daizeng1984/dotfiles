@@ -20,21 +20,7 @@ checkIfInstalled() {
     fi
 }
 
-
-# hack for clipboard... or use tool like https://github.com/pocke/lemonade
-if ! type pbpaste  > /dev/null 2>&1; then
-    alias dumpclipboard='xclip -selection clipboard -o > '
-else
-    alias dumpclipboard='pbpaste > '
-fi
-# Windows cat /dev/clipboard
-# Mac pbpaste
-# SSH clipboard, e.g. alias sshcopyclipboard='sshcopyclipboard zeng@192.168.0.10 idfile.pem'
-sshcopyclipboard() {
-    dumpclipboard /tmp/sshclipboard.txt
-    scp -i "${2}" /tmp/sshclipboard.txt ${1}:/tmp/sshclipboard.txt
-}
-
+# fasd
 z() {
     local dir
     dir="$(fasd -Rdl "$1" | fzf -1 -0 --no-sort +m)" && cd "${dir}" || return 1

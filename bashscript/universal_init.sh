@@ -52,14 +52,12 @@ alias vimm="vim -u $HOME/.config/nvim/init.vim"
 source "$HOME/.dotfiles/bashscript/function_definitions.sh"
 # pkg manager priority Nix > Conda > Adhoc
 # adhoc
+export DOTFILE_LOCAL_PREFIX=$HOME/.dotfiles/.local
 export PATH=$DOTFILE_LOCAL_PREFIX/bin:${PATH}
 
 # conda
-# Dotfile HOME PATH
-export DOTFILE_LOCAL_PREFIX=$HOME/.dotfiles/.local
-installedConda=$(checkIfInstalled "conda" conda --quiet)
+installedConda=$(checkIfInstalled "$DOTFILE_LOCAL_PREFIX/lib/miniconda/bin/conda" installConda.sh --quiet)
 if [ "$installedConda" = "1" ] ; then
-    # !! Contents within this block are managed by 'conda init' !!
     __conda_setup="$('$DOTFILE_LOCAL_PREFIX/lib/miniconda/bin/conda' 'shell.${DOTFILES_SHELL_TYPE}' 'hook' 2> /dev/null)"
     if [ $? -eq 0 ]; then
         eval "$__conda_setup"
