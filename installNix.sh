@@ -8,3 +8,13 @@ else
     echo "install nix to linux..."
     sh <(curl -L https://nixos.org/nix/install) --daemon
 fi
+
+
+# source
+export NIX_HOME_PATH=$HOME/.nix-profile
+if [ -e $NIX_HOME_PATH/etc/profile.d/nix.sh ]; then . $NIX_HOME_PATH/etc/profile.d/nix.sh; fi
+
+# install home-manager
+nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
+nix-channel --update
+nix-shell '<home-manager>' -A install

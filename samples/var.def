@@ -19,6 +19,6 @@ __mapToDef 'zengdai' 'Zengs-MacBook-Pro' 'macvar.def'
 __mapToDef 'ubuntu' 'ip' 'ec2var.def'
 __mapToDef 'ying' '192.168' 'yingvar.def'
 __mapToDef 'zengdai' 'instance' 'gcpvar.def'
-__mapToDef 'zdai' 'localhost' 'centosvar.def'
+__mapToDef 'zdai' 'localhost' 'centosnix.def' 'homelinux'
 
 

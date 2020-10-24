@@ -1,50 +1,52 @@
 # Configuration
-This configuration is my personal laptop/desktop dotfile [setup](http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/) repo and now it grows into a bootstrap setup for my working environments (mainly linux/mac) and this bootstrap unlike [Laptop](https://github.com/thoughtbot/laptop), it heavily relies on conda. Why? please see [here](https://daizeng1984.github.io/jekyll/update/2018/11/18/conda-everything.html).
+This configuration is my personal laptop/desktop dotfile [setup](http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/) repo and now it grows into a bootstrap setup for my working environments (mainly linux/mac) and this bootstrap unlike [Laptop](https://github.com/thoughtbot/laptop), it heavily relies on nix/conda. Why? please see [here](https://daizeng1984.github.io/jekyll/update/2018/11/18/conda-everything.html).
+
+There are 3 level of setup: Minimal, Conda & Nix.
 
 # Before
-Basic development tools like git, wget, curl, bzip2 like [here](https://github.com/daizeng1984/dotfiles/blob/master/misc/installCentos7.sh). However, unless given a minimum OS installation, that shouldn't worry us too much since most normal OS setup should already have them all so you basically don't need to do anything. However in MacOS, you need to install `brew` first and then make sure git, wget is installed. If not you need to install them from `brew`.
 
-## Mac
-```{bash}
+
+# Minimal
+This setup only provides dotfiles for `bash`/`zsh` and `vim`. 
+```sh
+cd && git clone https://github.com/daizeng1984/dotfiles.git .dotfiles && cd .dotfiles && bash ./createSymlink.sh
+```
+Then restart the shell
+
+# Nix
+This setup relies on Nix which is very powerful. The cost is for now: root permission.
+```sh
+cd && git clone https://github.com/daizeng1984/dotfiles.git .dotfiles && cd .dotfiles && bash ./createSymlink.sh && source ./installNix.sh
+```
+Because it's powerful, you don't need to do anything (TODO: not yet 😄). Just need to pick a profile. 
+
+# Conda (deprecated)
+This setup heavily relies conda to deploy all packages needed. No root access is needed for this. Conda is managed in `~/.dotfiles/.local` folders. 
+You need to have basic development tools like git, wget, curl, bzip2 (TODO: remove these dependencies). 
+
+```sh
+cd && git clone https://github.com/daizeng1984/dotfiles.git .dotfiles && cd .dotfiles && bash ./createSymlink.sh && source ~/.bashrc && source ./installConda.sh`
+```
+Before install on Mac, you need to do extra rampup manually like:
+```sh
 xcode-select --install
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 brew install wget
 ```
 
-# Get Started
-Simply do: `cd && git clone https://github.com/daizeng1984/dotfiles.git .dotfiles && cd .dotfiles && bash ./createSymlink.sh && source ~/.bashrc && source ./installConda.sh`
-
-Note: currently troubling OS like Windows (Cygwin/MingW) only has minimum support from these script and a lot of error messages are expected.
-
-# After
-
-## Change Shells
-Make sure shell path has been added to /etc/shells
-```{bash}
-chsh -s /bin/zsh
-```
-
-## Platform Dependent Script
-make sure you register a name to `samples/var.def` with username `$(whoami)` and hostname `$(hostname)`
-
-## TODO: Desktop
+## Desktop
 ### Centos
 ```{bash}
 sudo source $HOME/.dotfiles/misc/installCentos7Desktop.sh
 ```
-
 ### Mac OS X
 ```{bash}
 source $HOME/.dotfiles/mac/installMacDesktop.sh
 ```
 ## Key Mapping
-
 On Mac, use Karabiner-Element!
 On Linux, first you need to disable gnome terminal's [F10 key bindings](https://ubuntu-tutorials.com/2007/07/16/disabling-the-f10-key-menu-accelerators-in-gnome-terminal/), and disable Capslock in `TweakTool` or `xmodmap -e 'clear Lock'`. Then remap capslock to F10 by installing xcape in your conda environment as `conda install -c daizeng1984 xcape`. In your startup script you should run `killall xcape` and then `xcape -e '#66=#76'`. 
 
-## Better Vim
-To install Language Support in Neovim run 
+# Different Profile
+make sure you register a name to `samples/var.def` with username `$(whoami)` and hostname `$(hostname)`
 
-```{bash}
-$HOME/.dotfiles/misc/installNeovimLanguageServers.sh`
-```

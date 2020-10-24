@@ -1,0 +1,5 @@
+# Utils
+source "${DOTFILES_HOME}/samples/common/utils.def"
+
+# Nix, please do everything!
+
