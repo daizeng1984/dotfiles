@@ -39,11 +39,6 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 
-# some more ls aliases
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
-
 # A copy that can solve Mac's "problem"
 alias copy='rsync --progress -ravzI'
 alias v='vim -n --cmd "filetype indent on" -u "NONE"'
@@ -87,14 +82,33 @@ installedFzf=$(checkIfInstalled "fzf" fzf --quiet)
 installedAg=$(checkIfInstalled "ag" the_silver_searcher --quiet)
 installedFd=$(checkIfInstalled "fd" fd-find --quiet)
 installedFasd=$(checkIfInstalled "fasd" fasd --quiet)
+installedDirenv=$(checkIfInstalled "direnv" direnv --quiet)
+installedExa=$(checkIfInstalled "exa" exa --quiet)
 installedRipGrep=$(checkIfInstalled "rg" ripgrep --quiet)
 installedXdgOpen=$(checkIfInstalled "xdg-open" xdg-open --quiet)
+
+# ls aliases
+if [ "$installedExa" = "1" ] ; then
+    alias ls='exa'
+    alias ll='exa -alF'
+    alias la='exa -a'
+    alias l='exa -CF'
+else
+    alias ll='ls -alF'
+    alias la='ls -A'
+    alias l='ls -CF'
+fi
 
 # TODO: export certainfile='$(fzf)'
 # Initialize fasd
 if [ "$installedFasd" = "1" ] ; then
     eval "$(fasd --init ${DOTFILES_SHELL_TYPE}-hook ${DOTFILES_SHELL_TYPE}-ccomp ${DOTFILES_SHELL_TYPE}-ccomp-install)"
 fi
+# Initialize direnv
+if [ "$installedDirenv" = "1" ] ; then
+    eval "$(direnv hook bash)"
+fi
+
 if [ "$installedFzf" = "1" ] ; then
 # FZF from fzf.zsh
 # Auto-completion

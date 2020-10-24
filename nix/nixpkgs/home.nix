@@ -1,21 +1,41 @@
 { config, pkgs, ... }:
 
+let profiles = {
+# Base includes shell and utility related install
+  base = [
+    ./profiles/cli.nix
+  ];
+  # For my main development machine only
+  dev = [
+    ./profiles/cli.nix
+    # ./profiles/node.nix
+    # ./profiles/python.nix
+    # ./profiles/go.nix
+  ];
+  homelinux = [
+    ./profiles/cli.nix
+    #./profiles/firefox
+  ];
+  homemac = [
+    ./profiles/cli.nix
+    #./profiles/firefox
+  ];
+};
+envProfile = builtins.getEnv "MY_NIX_PROFILE";
+# I'm sure here can do better, now tolerate nix baby language 😂
+profile = if ("${envProfile}" == "") then "base" else "${envProfile}" ;
+in
 {
+  nixpkgs.config.allowUnfree = true;
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
-  # # Home Manager needs a bit of information about you and the
-  # # paths it should manage.
-  # home.username = "zdai";
-  # home.homeDirectory = "/home/zdai";
+  imports = if (builtins.hasAttr "${profile}" profiles) then profiles."${profile}" else [ "${profile}" ];
 
-  # This value determines the Home Manager release that your
-  # configuration is compatible with. This helps avoid breakage
-  # when a new Home Manager release introduces backwards
-  # incompatible changes.
   #
-  # You can update Home Manager without changing this value. See
-  # the Home Manager release notes for a list of state version
-  # changes in each release.
+  home.username = "Zeng Dai";
+  home.homeDirectory = builtins.getEnv "HOME";
+  
+  # Starting ver
   home.stateVersion = "20.09";
 }

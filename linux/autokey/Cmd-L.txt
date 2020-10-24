@@ -1,1 +1,1 @@
-<ctrl>+l
+<right>

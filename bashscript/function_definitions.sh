@@ -174,3 +174,11 @@ fi
 listen_port() {
     lsof -i -P -n | grep LISTEN
 }
+
+e() {
+    dtrx -v $@
+}
+
+br() {
+    broot --sort-by-size -h $@
+}
