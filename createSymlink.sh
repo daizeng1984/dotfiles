@@ -1,7 +1,7 @@
 # some code is from https://github.com/michaeljsmalley/dotfiles/blob/master/makesymlinks.sh with slightly modification
 dir=~/.dotfiles                    # dotfiles directory
 olddir=~/.dotfiles_old             # old dotfiles backup directory
-folders="bashscript zshscript vim74lua gitconfig screen tmux misc"    # list of folders that have dot files
+folders="bashscript zshscript vim74lua linux screen tmux misc term"    # list of folders that have dot files
 
 # create dotfiles_old in homedir
 echo -n "Creating $olddir for backup of any existing dotfiles in ~ ..."
@@ -52,17 +52,19 @@ done
 # link XDG_CONFIG_HOME related
 # Initiate .config if not exists
 [ -z $XDG_CONFIG_HOME ] && XDG_CONFIG_HOME="$HOME/.config"
-[ ! -d $XDG_CONFIG_HOME ] && mkdir -p -- $XDG_CONFIG_HOME
 
 __link_xdg_config() {
-    [ -d $XDG_CONFIG_HOME/$1 ] && mv $XDG_CONFIG_HOME/$1 $XDG_CONFIG_HOME/.old.$1
+    [ ! -d $XDG_CONFIG_HOME/$3 ] && mkdir -p -- $XDG_CONFIG_HOME/$3
     [ -L $XDG_CONFIG_HOME/$1 ] && rm $XDG_CONFIG_HOME/$1
+    [ -d $XDG_CONFIG_HOME/$1 ] && mv $XDG_CONFIG_HOME/$1 $XDG_CONFIG_HOME/$1.old
     echo "Creating xdg symlink for $1"
-    ln -s $dir/$2/$1 $XDG_CONFIG_HOME/$1
+    ln -s $dir/$2 $XDG_CONFIG_HOME/$1
 }
+
 # Create nvim's symlink
-__link_xdg_config 'nvim' 'neovim'
+__link_xdg_config 'nvim' 'neovim/nvim' ''
 # Create nix's symlink
-__link_xdg_config 'nixpkgs' 'nix'
-__link_xdg_config 'ranger' ''
+__link_xdg_config 'nixpkgs' 'nix/nixpkgs' ''
+__link_xdg_config 'ranger' 'ranger' ''
+__link_xdg_config 'autokey/data/autokey' 'linux/autokey' 'autokey/data'
 

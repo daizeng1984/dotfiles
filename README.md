@@ -3,29 +3,32 @@ This configuration is my personal laptop/desktop dotfile [setup](http://blog.sma
 
 There are 3 level of setup: Minimal, Conda & Nix.
 
-# Before
-
-
 # Minimal
 This setup only provides dotfiles for `bash`/`zsh` and `vim`. 
 ```sh
-cd && git clone https://github.com/daizeng1984/dotfiles.git .dotfiles && cd .dotfiles && bash ./createSymlink.sh
+cd && git clone https://github.com/daizeng1984/dotfiles.git .dotfiles && cd .dotfiles && source ./createSymlink.sh
 ```
 Then restart the shell
 
 # Nix
 This setup relies on Nix which is very powerful. The cost is for now: root permission.
 ```sh
-cd && git clone https://github.com/daizeng1984/dotfiles.git .dotfiles && cd .dotfiles && bash ./createSymlink.sh && source ./installNix.sh
+cd && git clone https://github.com/daizeng1984/dotfiles.git .dotfiles && cd .dotfiles && source ./createSymlink.sh && source ./installNix.sh
 ```
-Because it's powerful, you don't need to do anything (TODO: not yet 😄). Just need to pick a profile. 
+Because it's powerful, you don't need to do anything (TODO: kidding not yet 😄 unless you are in NixOS)
+
+## Linux
+TODO:
+
+## Mac
+TODO:
 
 # Conda (deprecated)
-This setup heavily relies conda to deploy all packages needed. No root access is needed for this. Conda is managed in `~/.dotfiles/.local` folders. 
+This setup heavily relies conda to deploy all packages needed. No root access is needed so unlike Nix X/Desktop app is done separately. Conda is managed in `~/.dotfiles/.local` folders. 
 You need to have basic development tools like git, wget, curl, bzip2 (TODO: remove these dependencies). 
 
 ```sh
-cd && git clone https://github.com/daizeng1984/dotfiles.git .dotfiles && cd .dotfiles && bash ./createSymlink.sh && source ~/.bashrc && source ./installConda.sh`
+cd && git clone https://github.com/daizeng1984/dotfiles.git .dotfiles && cd .dotfiles && source ./createSymlink.sh && source ~/.bashrc && source ./installConda.sh`
 ```
 Before install on Mac, you need to do extra rampup manually like:
 ```sh

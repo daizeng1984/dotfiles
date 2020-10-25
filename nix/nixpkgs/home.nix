@@ -14,6 +14,7 @@ let profiles = {
   ];
   homelinux = [
     ./profiles/cli.nix
+    ./profiles/linuxdesk.nix
     #./profiles/firefox
   ];
   homemac = [
