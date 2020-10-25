@@ -14,6 +14,7 @@ in
     mlterm # fast term
     rxvt-unicode
     audacious
+    redshift
     firefox
     vlc
     shutter
@@ -22,4 +23,17 @@ in
   home.sessionVariables = {
     LOCALE_ARCHIVE = "${pkgs.glibcLocales}/lib/locale/locale-archive";
   };
+
+  # home manager control xsession
+  # temporary using .profile because centos7 doesn't support systemctl per --user!!! Upgrading 8 is tedious
+  # xsession.enable = true;
+  # xsession.windowManager.command = "";
+  # redshift
+  services.redshift = {
+    latitude = "37.4";
+    longitude = "-122.0";
+    enable = true;
+    tray = true;
+  };
+  targets.genericLinux.enable = true;
 }

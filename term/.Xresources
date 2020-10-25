@@ -13,8 +13,8 @@
 *.color9:       #cc6666
 
 ! green
-*.color2:       #8c9440
-*.color10:      #b5bd68
+*.color2:       #8ca440
+*.color10:      #b5ed68
 
 ! yellow
 *.color3:       #de935f
@@ -37,8 +37,13 @@
 *.color15:      #c5c8c6
 
 !! URxvt Appearance 
+! 96x2 mostly
+Xft.dpi:       192
 ! run fc-list
-URxvt.font: xft:Space Mono for Powerline:pixelsize=32
+URxvt.font: xft:Source Code Pro for Powerline:size=12
+
+! scrollbar
+URxvt.scrollBar_right: true
 
 ! extension
 URxvt.perl-ext-common:  default,clipboard,matcher,resize-font
