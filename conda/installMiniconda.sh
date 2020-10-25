@@ -1,6 +1,6 @@
 PLATFORM="Linux"
 SYSTEM_NAME=$(uname -s)
-if [ "$(echo $SYSTEM_NAME | cut -c 1-6)" == "Darwin" ]; then
+if [ "$(echo $SYSTEM_NAME | cut -c 1-6)" = "Darwin" ]; then
 	echo "Find MacOSX..."
     PLATFORM="MacOSX"
 else
