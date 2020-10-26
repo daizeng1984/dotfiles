@@ -12,8 +12,10 @@ defscrollback 30000
 # Change main escape key to F10 https://stackoverflow.com/questions/1543427/gnu-screen-changing-the-default-escape-command-key-to-alt-x#7251588
 # reset escape key to the default
 escape ^^^
+escape ^Bb
 # auxiliary register
 register S ^^
+register S ^b
 # Alt + x produces ^A and acts as an escape key
 bindkey -k k; process S
 bind j focus down

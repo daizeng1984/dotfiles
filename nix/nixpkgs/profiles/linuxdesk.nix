@@ -13,9 +13,10 @@ in
     nixGL.nixGLDefault
     mlterm # fast term
     rxvt-unicode
-    audacious
     redshift
     firefox
+    youtube-dl
+    audacious
     vlc
     shutter
   ];

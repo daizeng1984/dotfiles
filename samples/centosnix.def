@@ -3,3 +3,8 @@ source "${DOTFILES_HOME}/samples/common/utils.def"
 
 # Nix, please do everything!
 
+playmusic() {
+    _realURL=$(youtube-dl --get-url --format best ${1})
+    #vlc --qt-start-minimized --play-and-exit -I dummy $_realURL &>/dev/null &
+    audacious $_realURL &>/dev/null &
+}
