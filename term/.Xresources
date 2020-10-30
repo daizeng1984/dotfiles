@@ -40,7 +40,7 @@
 ! 96x2 mostly
 Xft.dpi:       192
 ! run fc-list
-URxvt.font: xft:Source Code Pro for Powerline:size=12
+URxvt.font: xft:DejaVu Sans Mono:size=12
 
 ! scrollbar
 URxvt.scrollBar_right: true
@@ -57,6 +57,6 @@ URxvt.colorUL: #4682B4
 
 ! clipboard
 URxvt.clipboard.autocopy: true
-URxvt.keysym.Control-Insert: perl:clipboard:copy
-URxvt.keysym.Shift-Insert: perl:clipboard:paste
+URxvt.keysym.C-Insert: perl:clipboard:copy
+URxvt.keysym.S-Insert: perl:clipboard:paste
 

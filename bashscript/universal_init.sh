@@ -91,10 +91,10 @@ installedXdgOpen=$(checkIfInstalled "xdg-open" xdg-open --quiet)
 
 # ls aliases
 if [ "$installedExa" = "1" ] ; then
-    alias ls='exa'
-    alias ll='exa -alF'
-    alias la='exa -a'
-    alias l='exa -CF'
+    alias ls='exa -snew'
+    alias ll='exa -alF -snew'
+    alias la='exa -a -snew'
+    alias l='exa -CF -snew'
 else
     alias ll='ls -alF'
     alias la='ls -A'

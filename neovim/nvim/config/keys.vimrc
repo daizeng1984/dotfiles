@@ -1,5 +1,7 @@
 let mapleader = ","
 
+" Sudo
+nnoremap <silent> <leader>W :w !sudo tee > /dev/null %<CR>
 
 " IPython
 map <silent> <leader>pr <Plug>(IPy-Run)

@@ -367,3 +367,6 @@ endfunction
 " Copy to nc
 unmap <C-y>
 vnoremap <C-y> :call CopyToNetCat()<CR>
+
+" sudo
+nnoremap <silent> <leader>W :w !sudo tee > /dev/null %<CR>

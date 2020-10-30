@@ -10,11 +10,19 @@ let
 in
 {
   home.packages = with pkgs; [
+    ntfs3g
+    nodejs # neovim coc depends
+    yarn
+    jdk8 # old apps, thinkorswim
+    xsel # copy paste in urxvt, perl is also dependended
     nixGL.nixGLDefault
-    mlterm # fast term
+    libGLU
+    alacritty
     rxvt-unicode
+    autokey
     redshift
     firefox
+    google-chrome
     youtube-dl
     audacious
     vlc
@@ -27,8 +35,9 @@ in
 
   # home manager control xsession
   # temporary using .profile because centos7 doesn't support systemctl per --user!!! Upgrading 8 is tedious
-  # xsession.enable = true;
-  # xsession.windowManager.command = "";
+  xsession.enable = true;
+  xsession.windowManager.command = "";
+
   # redshift
   services.redshift = {
     latitude = "37.4";

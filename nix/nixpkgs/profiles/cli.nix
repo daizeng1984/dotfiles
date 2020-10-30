@@ -10,13 +10,16 @@ let
 in
 {
   home.packages = with pkgs; [
+    git
     niv # manage nix deps
+    zsh
     fzf
     neovim #TODO: separate program for some serious setup
     vim
     direnv # how to setup nix-shell? https://nixos.org/guides/declarative-and-reproducible-developer-environments.html#declarative-reproducible-envs
     httpie
     tmux
+    tmuxp
     ag
     fasd
     dtrx

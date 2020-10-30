@@ -64,9 +64,8 @@ if has('python3') && g:use_python3_plugins
     endif
     
     " My own stuff
-    "Plug 'daizeng1984/my-worddoctor' " My own python plugin currently in test
-    Plug 'daizeng1984/vim-feeling-lucky', {'do': 'pip install --upgrade google-api-python-client' } " require google api
-    Plug 'daizeng1984/vim-snip-and-paste'
+    " Plug 'daizeng1984/my-worddoctor' " My own python plugin currently in test
+    " Plug 'daizeng1984/vim-snip-and-paste'
     
 else
     " snippet
