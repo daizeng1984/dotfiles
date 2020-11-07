@@ -7,9 +7,13 @@ let
       rev = "4a62ec17e20ce0e738a8e5126b4298a73903b468";
       sha256 = "0n5a3rnv9qnnsrl76kpi6dmaxmwj1mpdd2g0b4n1wfimqfaz6gi1";
   }) {};
+
+  #scdl = pkgs.callPackage ../modules/scdl { };
+  
 in
 {
   home.packages = with pkgs; [
+    #scdl
     git
     niv # manage nix deps
     zsh

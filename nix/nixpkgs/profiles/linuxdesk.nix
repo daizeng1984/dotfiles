@@ -27,6 +27,14 @@ in
     audacious
     vlc
     shutter
+    virtualbox
+    wine
+    winetricks
+    gtk3
+    tdesktop
+    # ibus
+    # ibus-engines.libpinyin
+    # ibus-engines.table-chinese
   ];
   # solve the locale problems
   home.sessionVariables = {
@@ -44,6 +52,48 @@ in
     longitude = "-122.0";
     enable = true;
     tray = true;
+  };
+
+  # Don't install FUSE, just use system one. permission issues!
+  systemd.user = {
+    services.dropbox_rclone = let
+        mountdir="${config.home.homeDirectory}/cloud/dropbox";
+      in
+      {
+      Unit = {
+        Description = "dropbox rclone mount";
+      };
+      Install.WantedBy = [ "multi-user.target" ];
+      Service = {
+          ExecStartPre = "${pkgs.coreutils}/bin/mkdir -p ${mountdir}";
+          ExecStart = ''
+              ${pkgs.rclone}/bin/rclone mount dropbox: ${mountdir}
+          '';
+          ExecStop = "${pkgs.fuse}/bin/fusermount -uz ${mountdir}";
+          Type = "notify";
+          Restart = "always";
+          RestartSec = "10s";
+      };
+    };
+    services.google_rclone = let
+        mountdir="${config.home.homeDirectory}/cloud/google";
+      in
+      {
+      Unit = {
+        Description = "google drive rclone mount";
+      };
+      Install.WantedBy = [ "multi-user.target" ];
+      Service = {
+          ExecStartPre = "${pkgs.coreutils}/bin/mkdir -p ${mountdir}";
+          ExecStart = ''
+              ${pkgs.rclone}/bin/rclone mount google: ${mountdir}
+          '';
+          ExecStop = "${pkgs.fuse}/bin/fusermount -uz ${mountdir}";
+          Type = "notify";
+          Restart = "always";
+          RestartSec = "10s";
+      };
+    };
   };
   targets.genericLinux.enable = true;
 }

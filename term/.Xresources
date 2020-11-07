@@ -60,3 +60,6 @@ URxvt.clipboard.autocopy: true
 URxvt.keysym.C-Insert: perl:clipboard:copy
 URxvt.keysym.S-Insert: perl:clipboard:paste
 
+! disalbe ctrl shift
+URxvt.iso14755: false
+URxvt.iso14755_52: false

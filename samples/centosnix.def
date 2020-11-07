@@ -1,6 +1,11 @@
 # Utils
 source "${DOTFILES_HOME}/samples/common/utils.def"
 
+# Java
+# export JAVA_HOME=$NIX_HOME_PATH/lib/openjdk
+# export JAVA_LD_LIBRARY_PATH=$JAVA_HOME/lib/server
+
+
 # Nix, please do everything!
 
 playmusic() {
