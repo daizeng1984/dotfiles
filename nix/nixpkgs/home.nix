@@ -19,7 +19,7 @@ let profiles = {
   ];
   homemac = [
     ./profiles/cli.nix
-    #./profiles/firefox
+    ./profiles/macdesk.nix
   ];
 };
 envProfile = builtins.getEnv "MY_NIX_PROFILE";

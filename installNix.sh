@@ -1,3 +1,4 @@
+#!/bin/bash
 # Install nix with root (TODO: for linux with no permission)
 PLATFORM="Linux"
 SYSTEM_NAME=$(uname -s)

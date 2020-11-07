@@ -22,7 +22,7 @@ in
     tmuxp
     ag
     fasd
-    dtrx
+    #dtrx not supported on mac
     # gnupg TODO
     # pinentry
     ripgrep
@@ -31,6 +31,7 @@ in
     broot
     ranger
     trash-cli
+    rclone
     rsync
     fd
     exa

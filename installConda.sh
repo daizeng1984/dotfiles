@@ -1,3 +1,4 @@
+#!/bin/bash
 # Install miniconda
 source ./conda/installMiniconda.sh
 
