@@ -100,8 +100,8 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-dadbod' " db, keep it here to try
 Plug 'tpope/vim-unimpaired' " [,]q for quickfix and [l for loclist
 Plug 'tpope/vim-eunuch' "Rename, Delete, Sudo etc.
+Plug 'tpope/vim-commentary' " replace tcomment
 Plug 'mattn/emmet-vim' " c-y ,then type this>is>tag ---> <this> <is> <tag> ... </.... or type insert mode and c-y , here's the cheatsheet https://docs.emmet.io/cheat-sheet/
-Plug 'tomtom/tcomment_vim' " gc toggle comment
 Plug 'mattn/webapi-vim' " Gist dependencies
 Plug 'vim-scripts/Gist.vim' "Gist but before git config --global github.user Username
 Plug 'vim-scripts/BufOnly.vim' " BufOnly to close all but this

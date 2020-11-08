@@ -10,6 +10,8 @@ let
 in
 {
   home.packages = with pkgs; [
+    dtrx
+    # duf
     ntfs3g
     nodejs # neovim coc depends
     yarn

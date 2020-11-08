@@ -31,7 +31,7 @@ in
     # pinentry
     ripgrep
     tree
-    # ncdu
+    # duf not supported on mac
     broot
     ranger
     trash-cli

@@ -5,10 +5,10 @@
                 {
                     "shell_command": [
                         "nvim"
-                    ], 
-                    "start_directory": "~/Workspace/vimwiki"
+                    ]
                 }
             ], 
+            "start_directory": "~/Workspace/vimwiki",
             "window_name": "wiki"
         },
         {
@@ -16,29 +16,27 @@
                 {
                     "shell_command": [
                         "nvim"
-                    ], 
-                    "start_directory": "~/Workspace/vimwiki/Projects/Blogger/blogv3"
+                    ]
                 },
                 {
                     "shell_command": [
                         "yarn develop"
-                    ], 
-                    "start_directory": "~/Workspace/vimwiki/Projects/Blogger/blogv3"
+                    ]
                 }
-                
             ], 
+            "start_directory": "~/Workspace/vimwiki/Projects/Blogger/blogv3",
             "layout": "3ee2,201x52,0,0{145x52,0,0,2,55x52,146,0,3}",
-            "window_name": "wiki"
+            "window_name": "blogv3"
         },
         {
             "panes": [
                 {
                     "shell_command": [
                         "nvim"
-                    ], 
-                    "start_directory": "~/.dotfiles"
+                    ]
                 }
             ], 
+            "start_directory": "~/.dotfiles",
             "window_name": "dot"
         },
         {
@@ -46,10 +44,10 @@
                 {
                     "shell_command": [
                         "ranger"
-                    ], 
-                    "start_directory": "~"
+                    ]
                 }
             ], 
+            "start_directory": "~",
             "window_name": "ranger"
         },
         {
@@ -57,10 +55,10 @@
                 {
                     "shell_command": [
                         "nvim"
-                    ], 
-                    "start_directory": "~/Workspace/Java/neodoctee/all"
+                    ]
                 }
             ], 
+            "start_directory": "~/Workspace/Java/neodoctee/all",
             "window_name": "dotee"
         },
         {
@@ -68,16 +66,15 @@
                 {
                     "shell_command": [
                         "LC_ALL=zh_CN.UTF-8 wine ~/.wine/drive_c/Program\\ Files/Tencent/WeChat/WeChat.exe"
-                    ], 
-                    "start_directory": "~"
+                    ]
                 },
                 {
                     "shell_command": [
                         "telegram-desktop"
-                    ], 
-                    "start_directory": "~"
+                    ]
                 }
             ], 
+            "start_directory": "~",
             "layout": "main-vertical",
             "window_name": "social"
         }

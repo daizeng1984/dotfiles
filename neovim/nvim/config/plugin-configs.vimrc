@@ -136,7 +136,10 @@ let g:taskwiki_disable_concealcursor=1 " Disable the override
 
 " Vim table mode conflict to vimwiki (https://github.com/dhruvasagar/vim-table-mode/issues/110)
 let g:vimwiki_table_mappings = 0
-autocmd FileType vimwiki setlocal commentstring="> %s"
+
+" Commentary
+autocmd FileType vimwiki setlocal commentstring=<!--\ %s\ -->
+autocmd FileType markdown.mdx setlocal commentstring=<!--\ %s\ -->
 
 " Vim/Task Wiki
 let g:vimwiki_list = [{'path': '~/Workspace/vimwiki',
