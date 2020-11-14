@@ -20,7 +20,7 @@
                 },
                 {
                     "shell_command": [
-                        "yarn develop"
+                        "CHOKIDAR_USEPOLLING=1 yarn start"
                     ]
                 }
             ], 

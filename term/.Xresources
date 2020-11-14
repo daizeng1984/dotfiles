@@ -40,7 +40,7 @@
 ! 96x2 mostly
 Xft.dpi:       192
 ! run fc-list
-URxvt.font: xft:DejaVu Sans Mono:size=12
+URxvt.font: xft:DejaVu Sans Mono:size=12, xft:WenQuanYi Micro Hei Mono:size=12
 
 ! scrollbar
 URxvt.scrollBar_right: true

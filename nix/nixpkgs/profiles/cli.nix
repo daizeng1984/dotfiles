@@ -40,11 +40,15 @@ in
     fd
     exa
     comma
+    wqy_microhei
+    # twitter-color-emoji
     bat
     htop
     navi
     tldr
     neofetch
     tokei
+    sc-im
+    calcurse
   ];
 }

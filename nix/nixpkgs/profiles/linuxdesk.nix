@@ -6,12 +6,10 @@ let
       repo = "nixGL";
       rev = "fad15ba09de65fc58052df84b9f68fbc088e5e7c";
       sha256 = "1wc5gfj5ymgm4gxx5pz4lkqp5vxqdk2njlbnrc1kmailgzj6f75h";
-  }) {};
-in
+  }) {}; in
 {
   home.packages = with pkgs; [
-    dtrx
-    # duf
+    # unrar duf
     ntfs3g
     nodejs # neovim coc depends
     yarn
@@ -22,13 +20,18 @@ in
     alacritty
     rxvt-unicode
     autokey
+    wmctrl
+    xorg.xwininfo
     redshift
     firefox
     google-chrome
     youtube-dl
     audacious
     vlc
+    ffmpeg
     shutter
+    gimp
+    imagemagick
     virtualbox
     wine
     winetricks
@@ -56,7 +59,7 @@ in
     tray = true;
   };
 
-  # Don't install FUSE, just use system one. permission issues!
+  # Don't install nix FUSE, just use system one. permission issues!
   systemd.user = {
     services.dropbox_rclone = let
         mountdir="${config.home.homeDirectory}/cloud/dropbox";
@@ -73,7 +76,7 @@ in
           '';
           ExecStop = "${pkgs.fuse}/bin/fusermount -uz ${mountdir}";
           Type = "notify";
-          Restart = "always";
+          Restart = "on-failure";
           RestartSec = "10s";
       };
     };
@@ -92,8 +95,24 @@ in
           '';
           ExecStop = "${pkgs.fuse}/bin/fusermount -uz ${mountdir}";
           Type = "notify";
-          Restart = "always";
-          RestartSec = "10s";
+          Restart = "on-failure";
+          RestartSec = "3s";
+      };
+    };
+    services.autokey = {
+      Unit = {
+        After="graphical-session-pre.target";
+        PartOf="graphical-session.target";
+        Description = "Autokey";
+      };
+      Install.WantedBy = [ "graphical-session.target" ];
+      Service = {
+          ExecStart = ''
+              ${pkgs.autokey}/bin/autokey-gtk
+          '';
+          ExecStop = "";
+          Restart = "on-failure";
+          RestartSec = "3s";
       };
     };
   };

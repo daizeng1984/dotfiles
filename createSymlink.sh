@@ -66,5 +66,5 @@ __link_xdg_config 'nvim' 'neovim/nvim' ''
 # Create nix's symlink
 __link_xdg_config 'nixpkgs' 'nix/nixpkgs' ''
 __link_xdg_config 'ranger' 'ranger' ''
-__link_xdg_config 'autokey/data/autokey' 'linux/autokey' 'autokey/data'
+# __link_xdg_config 'autokey' 'linux/autokey' ''
 
