@@ -41,6 +41,7 @@ in
     exa
     comma
     wqy_microhei
+    symbola
     # twitter-color-emoji
     bat
     htop
