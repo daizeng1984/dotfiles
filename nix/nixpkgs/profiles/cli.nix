@@ -9,6 +9,14 @@ let
   }) {};
 
   #scdl = pkgs.callPackage ../modules/scdl { };
+
+  # Gnupg: ref to https://github.com/nix-community/home-manager/blob/master/modules/services/gpg-agent.nix
+  # gpgInitStr = ''
+  #   GPG_TTY="$(tty)"
+  #   export GPG_TTY
+  # '';
+  pinentryFlavor = "curses";
+      # [ "curses" "tty" "gtk2" "qt" "gnome3" "emacs" ]
   
 in
 {
@@ -26,9 +34,8 @@ in
     tmuxp
     ag
     fasd
-    #dtrx not supported on mac
-    # gnupg TODO
-    # pinentry
+    dtrx
+    unrar
     ripgrep
     tree
     # duf not supported on mac
@@ -52,4 +59,15 @@ in
     sc-im
     calcurse
   ];
+
+  home.file.".gnupg/gpg-agent.conf".text = lib.concatStringsSep "\n" (
+    ["no-grab"]
+    ++
+    ["pinentry-program ${pkgs.pinentry.${pinentryFlavor}}/bin/pinentry"]
+  );
+
+  # Generating .gnupg/gpg.conf 
+  programs.gpg = {
+    enable = true;
+  };
 }

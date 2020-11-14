@@ -28,6 +28,9 @@ profile = if ("${envProfile}" == "") then "base" else "${envProfile}" ;
 in
 {
   nixpkgs.config.allowUnfree = true;
+  # build for mac if not supported
+  nixpkgs.config.allowUnsupportedSystem = true;
+
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
