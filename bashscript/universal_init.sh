@@ -76,7 +76,7 @@ export NIX_HOME_PATH=$HOME/.nix-profile
 if [ -e $NIX_HOME_PATH/etc/profile.d/nix.sh ]; then . $NIX_HOME_PATH/etc/profile.d/nix.sh; fi # added by Nix installer
 # nix home-manager
 export NIX_PATH=$HOME/.nix-defexpr/channels${NIX_PATH:+:}$NIX_PATH
-source $HOME/.nix-profile/etc/profile.d/hm-session-vars.sh
+[ -e $HOME/.nix-profile/etc/profile.d/hm-session-vars.sh ] && source $HOME/.nix-profile/etc/profile.d/hm-session-vars.sh
 
 
 # Fzf and ag is my new love
