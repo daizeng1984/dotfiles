@@ -36,6 +36,7 @@ let
     wine
     winetricks
     gtk3
+    appimage-run
     tdesktop
     # ibus
     # ibus-engines.libpinyin

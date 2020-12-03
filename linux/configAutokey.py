@@ -195,9 +195,13 @@ makeFile('shift-alt-g', ['<alt>', '<shift>'], 'g', eitherTermOrNot, '', '<ctrl>+
 makeFile('alt-r', ['<alt>'], 'r', eitherTermOrNot, '<alt>+r', '<ctrl>+r')
 makeFile('alt-z', ['<alt>'], 'z', eitherTermOrNot, '', '<ctrl>+z')
 makeFile('shift-alt-z', ['<alt>', '<shift>'], 'z', eitherTermOrNot, '', '<ctrl>+y')
+makeFile('shift-alt-f', ['<alt>', '<shift>'], 'f', eitherTermOrNot, '', '<ctrl>+<shift>+f')
+makeFile('shift-alt-e', ['<alt>', '<shift>'], 'e', eitherTermOrNot, '', '<ctrl>+<shift>+e')
 
 makeFile('alt-y', ['<alt>'], 'y', eitherTermOrNot, '<alt>+y', '<ctrl>+h')
 makeFile('alt-w', ['<alt>'], 'w', eitherTermOrNot, '<alt>+w', '<ctrl>+w')
+makeFile('alt-p', ['<alt>'], 'p', eitherTermOrNot, '<alt>+p', '<ctrl>+p')
+makeFile('super-alt-i', ['<super>', '<alt>'], 'i', eitherTermOrNot, '', '<ctrl>+<shift>+i')
 
 # makeFile('shift-alt-leftb', ['<alt>', '<shift>'], '[', eitherTermOrNot, '<ctrl>+<pageup>', '<ctrl>+<pageup>')
 # makeFile('shift-alt-rightb', ['<alt>', '<shift>'], ']', eitherTermOrNot, '<ctrl>+<pagedown>', '<ctrl>+<pagedown>')

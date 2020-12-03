@@ -7,9 +7,14 @@ if [ "$(echo $SYSTEM_NAME | cut -c 1-6)" = "Darwin" ]; then
     sh <(curl -L https://nixos.org/nix/install) --darwin-use-unencrypted-nix-store-volume
 else
     echo "install nix to linux..."
-    sh <(curl -L https://nixos.org/nix/install)
+    if [[ " $@ " =~ " --no-root " ]]; then
+        echo "install nix without root..."
+        [ ! -d $HOME/.nix ] && mkdir -m 0755 $HOME/.nix
+        $HOME/.dotfiles/.local/bin/nix-user-chroot $HOME/.nix bash -c 'curl -L https://nixos.org/nix/install | sh'
+    else
+        sh <(curl -L https://nixos.org/nix/install)
+    fi
 fi
-
 
 # source
 export NIX_HOME_PATH=$HOME/.nix-profile
