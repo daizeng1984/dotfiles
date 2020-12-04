@@ -72,6 +72,7 @@ fi
 
 
 # nix
+export PROOT_NO_SECCOMP=1
 export NIX_HOME_PATH=$HOME/.nix-profile
 if [ -e $NIX_HOME_PATH/etc/profile.d/nix.sh ]; then . $NIX_HOME_PATH/etc/profile.d/nix.sh; fi # added by Nix installer
 # nix home-manager
@@ -91,12 +92,11 @@ installedXdgOpen=$(checkIfInstalled "xdg-open" xdg-open --quiet)
 
 # ls aliases
 if [ "$installedExa" = "1" ] ; then
-    alias ls='exa -snew'
+    alias la='ls -A'
+    alias l='ls -CF'
     alias ll='exa -alF -snew'
-    alias la='exa -a -snew'
-    alias l='exa -CF -snew'
 else
-    alias ll='ls -alF'
+    alias ll='ls -ahlF'
     alias la='ls -A'
     alias l='ls -CF'
 fi
