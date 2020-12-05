@@ -3,21 +3,24 @@
 let profiles = {
 # Base includes shell and utility related install
   base = [
-    ./profiles/cli.nix
+    ./profiles/minimal.nix
   ];
   # For my main development machine only
   dev = [
+    ./profiles/minimal.nix
     ./profiles/cli.nix
     # ./profiles/node.nix
     # ./profiles/python.nix
     # ./profiles/go.nix
   ];
   homelinux = [
+    ./profiles/minimal.nix
     ./profiles/cli.nix
     ./profiles/linuxdesk.nix
     #./profiles/firefox
   ];
   homemac = [
+    ./profiles/minimal.nix
     ./profiles/cli.nix
     ./profiles/macdesk.nix
   ];

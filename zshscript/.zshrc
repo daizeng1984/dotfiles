@@ -1,3 +1,8 @@
+# interactive guard
+if [ -z "$PS1" ]; then
+    return
+fi
+
 DOTFILES_HOME=$HOME/.dotfiles
 # TODO: clean bash and zsh's home folder pollution
 SYSTEM_NAME=$(uname -s)

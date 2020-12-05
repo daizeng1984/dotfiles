@@ -102,3 +102,6 @@ zle -N zle-keymap-select
 
 # Theme
 source "$HOME/.dotfiles/misc/oldstyle.zsh-theme"
+
+# no extended history
+unsetopt extended_history

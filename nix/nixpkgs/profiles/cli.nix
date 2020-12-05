@@ -7,6 +7,11 @@ let
       rev = "4a62ec17e20ce0e738a8e5126b4298a73903b468";
       sha256 = "0n5a3rnv9qnnsrl76kpi6dmaxmwj1mpdd2g0b4n1wfimqfaz6gi1";
   }) {};
+  stable = import (builtins.fetchTarball {
+      name = "nixos-20.09";
+      url = "https://codeload.github.com/NixOS/nixpkgs/tar.gz/20.09";
+      sha256 = "1wg61h4gndm3vcprdcg7rc4s1v3jkm5xd7lw8r2f67w502y94gcy";
+  }) {};
 
   #scdl = pkgs.callPackage ../modules/scdl { };
 
@@ -21,39 +26,16 @@ let
 in
 {
   home.packages = with pkgs; [
-    #scdl
-    git
-    niv # manage nix deps
-    zsh
-    fzf
-    neovim #TODO: separate program for some serious setup
     vim
-    direnv # how to setup nix-shell? https://nixos.org/guides/declarative-and-reproducible-developer-environments.html#declarative-reproducible-envs
-    httpie
+    neovim
     tmux
     tmuxp
-    ag
-    fasd
     dtrx
     unrar
-    ripgrep
-    tree
-    # duf not supported on mac
-    broot
-    ranger
-    trash-cli
     rclone
-    rsync
-    fd
-    exa
     comma
     wqy_microhei
     symbola
-    # twitter-color-emoji
-    bat
-    htop
-    navi
-    tldr
     neofetch
     tokei
     sc-im

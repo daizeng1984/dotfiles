@@ -6,7 +6,8 @@ if [ "$DOTFILES_SYSTEM_NAME" = "darwin" ]; then
     fi
 fi
 
-TERM=xterm-256color
+export TERM=xterm-256color
+export HISTFILE=$HOME/.zsh_history
 # This bashrc load the universal setup for bash
 # enable color in terminal
 export CLICOLOR=1

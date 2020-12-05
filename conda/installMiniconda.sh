@@ -10,10 +10,11 @@ SCRIPT_NAME="Miniconda3-latest-${PLATFORM}-x86_64.sh"
 RETURN_DIR=$(pwd)
 cd /tmp
 wget -N "https://repo.anaconda.com/miniconda/${SCRIPT_NAME}"
-bash ./${SCRIPT_NAME} -b -p $HOME/.dotfiles/.local/lib/miniconda
+bash ./${SCRIPT_NAME} -b -u -p $HOME/.dotfiles/.local/lib/miniconda
 rm -rf ./${SCRIPT_NAME}
 cd $RETURN_DIR
 
+source $HOME/.bashrc
 # Create default python environment
 #conda install -y python=3.6
 # Add the best channel over defaults TODO: .condarc
