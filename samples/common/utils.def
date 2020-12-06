@@ -7,3 +7,10 @@ tellslack() {
     fi
     curl -X POST -H 'Content-type: application/json' --data "{\"text\":\"${1}\"}" $SLACK_WEBHOOK_URL
 }
+
+# Deploy nix direnv
+deploynix() {
+    cp $DOTFILES_HOME/direnv/${1}/* .
+    cp $DOTFILES_HOME/direnv/${1}/.envrc .
+    direnv allow
+}

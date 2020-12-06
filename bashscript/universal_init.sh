@@ -107,10 +107,6 @@ fi
 if [ "$installedFasd" = "1" ] ; then
     eval "$(fasd --init ${DOTFILES_SHELL_TYPE}-hook ${DOTFILES_SHELL_TYPE}-ccomp ${DOTFILES_SHELL_TYPE}-ccomp-install)"
 fi
-# Initialize direnv
-if [ "$installedDirenv" = "1" ] ; then
-    eval "$(direnv hook bash)"
-fi
 
 if [ "$installedFzf" = "1" ] ; then
 # FZF from fzf.zsh
@@ -137,4 +133,9 @@ fi
 # Alias for open, you know we don't need to do this on mac
 if [ "$installedXdgOpen" = "0" ]; then
     alias xdg-open=open
+fi
+
+# Initialize direnv
+if [ "$installedDirenv" = "1" ] ; then
+    eval "$(direnv hook ${DOTFILES_SHELL_TYPE} )"
 fi
