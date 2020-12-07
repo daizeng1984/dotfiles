@@ -1,5 +1,6 @@
 # Nixpkgs 20.09
 # no -g/global install needed! node_modules/.bin is in PATH when in this folder
+# { pkgs ? import <nixpkgs> {} }:
 { pkgs ? 
 import (builtins.fetchTarball {
       name = "nixos-20.09";
