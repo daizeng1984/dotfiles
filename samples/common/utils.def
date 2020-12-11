@@ -8,9 +8,34 @@ tellslack() {
     curl -X POST -H 'Content-type: application/json' --data "{\"text\":\"${1}\"}" $SLACK_WEBHOOK_URL
 }
 
+# adb tools
+adbshell() {
+    # https://nixos.wiki/wiki/Android
+    nix-shell -p androidenv.androidPkgs_9_0.platform-tools
+}
+
 # Deploy nix direnv
 deploynix() {
     cp $DOTFILES_HOME/direnv/${1}/* .
     cp $DOTFILES_HOME/direnv/${1}/.envrc .
     direnv allow
 }
+
+# show path
+alias pythonpath='python -m site'
+alias nodepath='npm config get prefix'
+
+# SSH copy from https://stackoverflow.com/questions/1152362/how-to-send-data-to-local-clipboard-from-a-remote-ssh-session#answer-49890019
+ssh_copy() {
+    echo "Make sure you setup password free by doing: ssh-copy-id id@server"
+    # clean all other ssh session
+    ssh ${1} -t 'ps -aux | grep "[s]sh" | grep pts/ | grep -v $(ps --no-headers -fp $$ | awk "{print \$3}") | awk "{print \$2}" | xargs kill -9'
+    while ! (nc -l 2000 | pbcopy) || true; do 
+        : 
+    done &
+
+    copy_daemon=$!
+    ssh ${1} -R 2000:localhost:2000 -t '([ -x $NIX_HOME_PATH/bin/tmux ] && $NIX_HOME_PATH/bin/tmux) || ([ -x $MINICONDA_HOME/bin/tmux ] && $MINICONDA_HOME/bin/tmux ) || $SHELL '
+    pkill -9 -g $copy_daemon
+}
+

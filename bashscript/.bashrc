@@ -1,10 +1,13 @@
+# non interactive
+# my env vars
+export DOTFILES_HOME=$HOME/.dotfiles
+source $DOTFILES_HOME/bashscript/env.sh
+
 # interactive guard
 if [ -z "$PS1" ]; then
     return
 fi
 
-DOTFILES_HOME=$HOME/.dotfiles
-__shell_type__="zsh"
 DOTFILES_SYSTEM_NAME="unknown"
 
 # Which machine? we use uname to see: http://stackoverflow.com/questions/3466166/how-to-check-if-running-in-cygwin-mac-or-linux

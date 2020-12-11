@@ -23,6 +23,8 @@ bind -m "vi-insert" '"\C-L":clear-screen'  2>/dev/null
 bind -m "vi-insert" '"\C-F":forward-word'  2>/dev/null
 bind -m "vi-insert" '"\C-B":backward-word'  2>/dev/null
 bind -m "vi-insert" '"\C-A":beginning-of-line'  2>/dev/null
+bind -m "vi-insert" '"\C-E":end-of-line'  2>/dev/null
+bind -m "vi-insert" '"\C-K":kill-line'  2>/dev/null
 bind -m "vi-insert" '"\C-N":next-history'  2>/dev/null
 bind -m "vi-insert" '"\C-P":previous-history'  2>/dev/null
 

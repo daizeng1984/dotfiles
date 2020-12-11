@@ -1,12 +1,6 @@
 # Non-nix way: Install by using ~/.dotfiles/android/installSDKTools.sh and export the following
-# export ANDROID_HOME=${DOTFILE_LOCAL_PREFIX}/lib/android/android-sdk
-# export ANDROID_NDK_ROOT=${DOTFILE_LOCAL_PREFIX}/lib/android/android-sdk/ndk-bundle
-# export ANDROID_NDK_HOME=${ANDROID_NDK_ROOT}
-# export PATH=$PATH:$ANDROID_HOME/platform-tools
-# export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin
-
-# adb tools
-adbshell() {
-    # https://nixos.wiki/wiki/Android
-    nix-shell -p androidenv.androidPkgs_9_0.platform-tools
-}
+export ANDROID_HOME=${DOTFILE_LOCAL_PREFIX}/lib/android/android-sdk
+export ANDROID_NDK_ROOT=${DOTFILE_LOCAL_PREFIX}/lib/android/android-sdk/ndk-bundle
+export ANDROID_NDK_HOME=${ANDROID_NDK_ROOT}
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin

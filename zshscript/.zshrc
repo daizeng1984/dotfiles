@@ -1,13 +1,17 @@
+# non interactive
+# my env vars
+export DOTFILES_HOME=$HOME/.dotfiles
+source $DOTFILES_HOME/bashscript/env.sh
+
 # interactive guard
 if [ -z "$PS1" ]; then
     return
 fi
 
-DOTFILES_HOME=$HOME/.dotfiles
 # TODO: clean bash and zsh's home folder pollution
 SYSTEM_NAME=$(uname -s)
 DOTFILES_SYSTEM_NAME="unknown"
-__shell_type__="zsh"
+
 if [ "$(echo $SYSTEM_NAME | cut -c 1-6)" = "Darwin" ]; then
     DOTFILES_SYSTEM_NAME="darwin"
 	echo "Find darwin System..."

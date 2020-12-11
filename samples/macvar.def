@@ -1,25 +1,11 @@
-export ECLIPSE_HOME="/Applications/Eclipse.app/Contents/Eclipse"
-export PATH="$PATH:$ECLIPSE_HOME"
-export NODE_PATH="${DOTFILE_LOCAL_PREFIX}/lib/miniconda/lib/node_modules"
+# export ECLIPSE_HOME="/Applications/Eclipse.app/Contents/Eclipse"
+# export PATH="$PATH:$ECLIPSE_HOME"
+# export NODE_PATH="${DOTFILE_LOCAL_PREFIX}/lib/miniconda/lib/node_modules"
 
 # Python managed by conda, we can activate our python environment
 # source activate webdev
-python -VV
-alias pysite='python -m site'
-
-# Node/NPM path
-alias nodepath='npm config get prefix'
-npm config set python $(which python)
-
-# Java
-source "${DOTFILES_HOME}/samples/common/java.def"
-
-# Android
-source "${DOTFILES_HOME}/samples/common/android.def"
-
-# C++
-export CXX=$(which clang++)
-export CC=$(which clang)
+# python -VV
+# npm config set python $(which python)
 
 # Utils
 source "${DOTFILES_HOME}/samples/common/utils.def"
@@ -31,43 +17,4 @@ alias cp=copy
 macnotify() {
 osascript -e "display notification \"${1}\" with title \"Alert\""
 }
-alias alert=notify
-
-# alias sshcopyclipboard='sshcopyclipboard $SSHCOPY_REMOTE $SSH_KEY'
-# 
-# # https://apple.stackexchange.com/questions/15318/using-terminal-to-copy-a-file-to-clipboard#answer-15484
-# file-to-clipboard() {
-#     osascript - "$@" <<'END' 2> /dev/null
-# on run {a}
-# set the clipboard to POSIX file (POSIX path of ((POSIX file a) as alias))
-# end
-# END
-# }
-
-
-# GCP stuff
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/zengdai/Downloads/google-cloud-sdk-188.0.1-darwin-x86_64.tar/google-cloud-sdk/path.${__shell_type__}.inc' ]; then source '/Users/zengdai/Downloads/google-cloud-sdk-188.0.1-darwin-x86_64.tar/google-cloud-sdk/path.${__shell_type__}.inc'; fi
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/zengdai/Downloads/google-cloud-sdk-188.0.1-darwin-x86_64.tar/google-cloud-sdk/completion.${__shell_type}.inc' ]; then source '/Users/zengdai/Downloads/google-cloud-sdk-188.0.1-darwin-x86_64.tar/google-cloud-sdk/completion.${__shell_type__}.inc'; fi
-
-## Leave experimental at the end
-## Just install gvm and do bootstrap install: gvm install go1.8.3 -B && gvm use go1.8.3  then gvm install whatever version and gvim use xxx --default
-## gvm
-#source $HOME/.gvm/scripts/gvm
-#
-## virtual go
-#command -v vg >/dev/null 2>&1 && eval "$(vg eval --shell ${__shell_type__})"
-## Stop slowing my cd https://github.com/markeissler/gvm2/issues/16
-#unset -f cd
-
-# SSH copy from https://stackoverflow.com/questions/1152362/how-to-send-data-to-local-clipboard-from-a-remote-ssh-session#answer-49890019
-ssh_copy() {
-    echo "Make sure you setup password free by doing: ssh-copy-id id@server"
-    # clean all other ssh session
-    ssh ${1} -t 'ps -aux | grep "[s]sh" | grep pts/ | grep -v $(ps --no-headers -fp $$ | awk "{print \$3}") | awk "{print \$2}" | xargs kill -9'
-    while ! (nc -l 2000 | pbcopy) || true; do ; done &
-    copy_daemon=$!
-    ssh ${1} -R 2000:localhost:2000 -t 'tmux a || $SHELL '
-    pkill -9 -g $copy_daemon
-}
+alias alert=macnotify
