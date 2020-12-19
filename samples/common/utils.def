@@ -35,7 +35,12 @@ ssh_copy() {
     done &
 
     copy_daemon=$!
-    ssh ${1} -R 2000:localhost:2000 -t '([ -x $NIX_HOME_PATH/bin/tmux ] && $NIX_HOME_PATH/bin/tmux) || ([ -x $MINICONDA_HOME/bin/tmux ] && $MINICONDA_HOME/bin/tmux ) || $SHELL '
+    ssh ${1} -R 2000:localhost:2000 -t '([ -x $NIX_HOME_PATH/bin/tmux ] && ($NIX_HOME_PATH/bin/tmux a)) || ([ -x $MINICONDA_HOME/bin/tmux ] && ($MINICONDA_HOME/bin/tmux a) ) || $SHELL '
     pkill -9 -g $copy_daemon
 }
 
+ssh_tunnel() {
+    ssh_tunnel_remote="${@:2}"
+    ssh_tunnel_port="$1"
+    ssh -L $ssh_tunnel_port:127.0.0.1:$ssh_tunnel_port -N -f $ssh_tunnel_remote
+}
