@@ -1,9 +1,9 @@
 #!/usr/bin/bash
 # Install nvidia card
-yum -y install epel-release
-yum -y install https://www.elrepo.org/elrepo-release-8.el8.elrepo.noarch.rpm
-yum update
-yum -y install kmod-nvidia
+# dnf -y install epel-release
+# dnf -y install https://www.elrepo.org/elrepo-release-8.el8.elrepo.noarch.rpm
+# dnf update
+# dnf -y install kmod-nvidia
 
 # nuke capslock once for all!
 localectl set-x11-keymap us pc105 '' caps:escape
@@ -24,3 +24,9 @@ gsettings set org.gnome.desktop.wm.keybindings show-desktop "['<Primary><Alt>d']
 gsettings set org.gnome.desktop.wm.keybindings switch-input-source "['<Primary>space']"
 gsettings set org.gnome.desktop.wm.keybindings switch-input-source-backward "['<Primary><Shift>space']"
 
+# generate autokey scripts
+python3 $HOME/.dotfiles/linux/configAutokey.py
+
+# login dpi
+#cp $HOME/.dotfiles/misc/93_hidpi.gschema.override /usr/share/glib-2.0/schemas/
+#sudo glib-compile-schemas /usr/share/glib-2.0/schemas

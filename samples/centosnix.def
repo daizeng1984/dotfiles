@@ -1,15 +1,15 @@
 # Utils
 source "${DOTFILES_HOME}/samples/common/utils.def"
 
-# Java
-# export JAVA_HOME=$NIX_HOME_PATH/lib/openjdk
-# export JAVA_LD_LIBRARY_PATH=$JAVA_HOME/lib/server
-
-
 # Nix, please do everything!
 
 playmusic() {
     _realURL=$(youtube-dl --get-url --format best ${1})
     #vlc --qt-start-minimized --play-and-exit -I dummy $_realURL &>/dev/null &
     audacious $_realURL &>/dev/null &
+}
+
+update_centos_grub() {
+    sudo -S vi /etc/default/grub
+    sudo -S grub2-mkconfig -o /boot/efi/EFI/centos/grub.cfg
 }

@@ -24,6 +24,8 @@
     profiles =
     let defaultSettings = {
           "app.update.auto" = false;
+          "javascript.options.wasm" = true;
+          "ui.key.menuAccessKeyFocuses" = false;
           # "browser.startup.homepage" = "https://lobste.rs";
           # # ✂️- no need to splurge all my settings, you get the idea...
           # "identity.fxaccounts.account.device.name" = config.networking.hostName;

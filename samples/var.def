@@ -15,10 +15,10 @@ function __mapToDef() {
 
 }
 
+# use hostnamectl set-hostname <new host name> to set hostname or sudo scutil --set HostName <new host name>
+__mapToDef 'zengdai' 'macbook-pro-13-home' 'macvar.def' 'homemac'
 __mapToDef 'zengdai' 'Zengs-MacBook-Pro' 'macvar.def' 'homemac'
-__mapToDef 'ubuntu' 'ip' 'ec2var.def'
-__mapToDef 'ying' '192.168' 'yingvar.def'
-__mapToDef 'zengdai' 'instance' 'gcpvar.def'
-__mapToDef 'zdai' 'localhost' 'centosnix.def' 'homelinux'
-
+__mapToDef 'zdai' 'centos8-xps8700' 'centosnix.def' 'homelinux'
+__mapToDef 'zdai' 'centos8-laptop' 'centosnix.def' 'homelinux'
+__mapToDef 'wdai' 'centos8-laptop' 'centosnix.def' 'homelinux'
 

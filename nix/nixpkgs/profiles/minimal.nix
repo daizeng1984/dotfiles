@@ -10,6 +10,8 @@ in
 {
   home.packages = with pkgs; [
     git
+    git-lfs # large file storage support
+    gitAndTools.delta
     zsh
     fzf
     neovim

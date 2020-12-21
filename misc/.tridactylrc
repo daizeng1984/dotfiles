@@ -4,6 +4,7 @@ set allowautofocus false
 colorscheme dark
 
 
+unbind r 
 bind / fillcmdline find
 bind ? fillcmdline find -?
 bind n findnext 1

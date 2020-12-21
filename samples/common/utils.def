@@ -44,3 +44,8 @@ ssh_tunnel() {
     ssh_tunnel_port="$1"
     ssh -L $ssh_tunnel_port:127.0.0.1:$ssh_tunnel_port -N -f $ssh_tunnel_remote
 }
+
+# discover ips
+discover_network() {
+    nmap 192.168.1.0/24
+}

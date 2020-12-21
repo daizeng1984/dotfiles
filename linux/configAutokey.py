@@ -3,6 +3,8 @@ import os
 import sys
 import json
 
+# TODO: left, right ctrl difference https://askubuntu.com/questions/251479/how-to-bind-ctrlarrows-to-home-and-end-keys-xmodmap-does-not-work#answer-1176213
+
 eitherTermOrNot = '''
 className = window.get_active_class()
 if ('Wine' in className) or ('URxvt' in className) or ('terminal' in className) :

@@ -28,6 +28,7 @@ in
   home.packages = with pkgs; [
     vim
     neovim
+    nmap
     tmux
     tmuxp
     dtrx
