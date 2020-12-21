@@ -30,16 +30,13 @@ fi
 unset color_prompt force_color_prompt
 
 # enable color support of ls and also add handy aliases
-if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls -hF --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
+alias ls='ls -hF --color=auto'
+alias dir='dir --color=auto'
+alias vdir='vdir --color=auto'
 
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
-fi
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
 
 # A copy that can solve Mac's "problem"
 alias copy='rsync --progress -ravzI'
@@ -86,11 +83,16 @@ installedAg=$(checkIfInstalled "ag" the_silver_searcher --quiet)
 installedFd=$(checkIfInstalled "fd" fd-find --quiet)
 installedFasd=$(checkIfInstalled "fasd" fasd --quiet)
 installedDirenv=$(checkIfInstalled "direnv" direnv --quiet)
+installedDircolors=$(checkIfInstalled "dircolors" dircolors --quiet)
 installedExa=$(checkIfInstalled "exa" exa --quiet)
 installedRipGrep=$(checkIfInstalled "rg" ripgrep --quiet)
 installedXdgOpen=$(checkIfInstalled "xdg-open" xdg-open --quiet)
 
 # ls aliases
+if [ "$installedDircolors" = "1" ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+fi
+
 if [ "$installedExa" = "1" ] ; then
     alias la='ls -A'
     alias l='ls -CF'
