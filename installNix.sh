@@ -1,10 +1,15 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Install nix with root (TODO: for linux with no permission)
 PLATFORM="Linux"
 SYSTEM_NAME=$(uname -s)
 if [ "$(echo $SYSTEM_NAME | cut -c 1-6)" = "Darwin" ]; then
 	echo "install nix to darwin..."
     sh <(curl -L https://nixos.org/nix/install) --darwin-use-unencrypted-nix-store-volume
+    source $HOME/.dotfiles/nix/configNix.sh
+elif [ `uname -n` = "nixos" ]; then
+    echo "nix installed, add channels only"
+    nix-channel --add https://nixos.org/channels/nixpkgs-unstable nixpkgs
+    nix-channel --update
     source $HOME/.dotfiles/nix/configNix.sh
 else
     echo "install nix to linux..."
