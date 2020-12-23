@@ -20,5 +20,6 @@ __mapToDef 'zengdai' 'macbook-pro-13-home' 'macvar.def' 'homemac'
 __mapToDef 'zengdai' 'Zengs-MacBook-Pro' 'macvar.def' 'homemac'
 __mapToDef 'zdai' 'centos8-xps8700' 'centosnix.def' 'homelinux'
 __mapToDef 'zdai' 'centos8-laptop' 'centosnix.def' 'homelinux'
+__mapToDef 'zdai' 'nixos' 'centosnix.def' 'homelinux'
 __mapToDef 'wdai' 'nixos' 'centosnix.def' 'homelinux'
 
