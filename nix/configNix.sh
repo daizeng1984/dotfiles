@@ -2,15 +2,14 @@
 export NIX_HOME_PATH=$HOME/.nix-profile
 if [ -e $NIX_HOME_PATH/etc/profile.d/nix.sh ]; then . $NIX_HOME_PATH/etc/profile.d/nix.sh; fi
 
+# by default bash
+source ~/.bashrc
+
 # home-manager
 nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
 nix-channel --update
 nix-shell '<home-manager>' -A install
 #nix-env -i home-manager
-
-
-# by default bash
-source ~/.bashrc
 
 home-manager switch
 
