@@ -6,7 +6,8 @@ let
       repo = "nixGL";
       rev = "fad15ba09de65fc58052df84b9f68fbc088e5e7c";
       sha256 = "1wc5gfj5ymgm4gxx5pz4lkqp5vxqdk2njlbnrc1kmailgzj6f75h";
-  }) {}; in
+    }) {}; 
+in
 {
   home.packages = with pkgs; [
     # unrar duf
@@ -46,11 +47,12 @@ let
   home.sessionVariables = {
     LOCALE_ARCHIVE = "${pkgs.glibcLocales}/lib/locale/locale-archive";
   };
+  systemd.user.systemctlPath = "systemctl";
 
   # home manager control xsession
-  # temporary using .profile because centos7 doesn't support systemctl per --user!!! Upgrading 8 is tedious
-  xsession.enable = true;
-  xsession.windowManager.command = "";
+  # temporary using .profile
+  # xsession.enable = true;
+  # xsession.windowManager.command = "";
 
   # redshift
   services.redshift = {

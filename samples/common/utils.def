@@ -27,10 +27,15 @@ alias nodepath='npm config get prefix'
 
 # SSH copy from https://stackoverflow.com/questions/1152362/how-to-send-data-to-local-clipboard-from-a-remote-ssh-session#answer-49890019
 ssh_copy() {
+    if [ "$DOTFILES_SYSTEM_NAME" = "darwin" ]; then
+        clipboard_function="pbcopy"
+    else
+        clipboard_function="xsel --clipboard"
+    fi
     echo "Make sure you setup password free by doing: ssh-copy-id id@server"
     # clean all other ssh session
     ssh ${1} -t 'ps -aux | grep "[s]sh" | grep pts/ | grep -v $(ps --no-headers -fp $$ | awk "{print \$3}") | awk "{print \$2}" | xargs kill -9'
-    while ! (nc -l 2000 | pbcopy) || true; do 
+    while ! (nc -l 2000 | $clipboard_function) || true; do 
         : 
     done &
 
