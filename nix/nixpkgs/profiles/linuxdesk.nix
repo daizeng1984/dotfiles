@@ -16,7 +16,7 @@ in
     nodejs # neovim coc depends
     yarn
     jdk8 # old apps, thinkorswim
-    xsel # copy paste in urxvt, perl is also dependended
+    xsel # copy paste in urxvt, perl
     nixGL.nixGLDefault
     libGLU
     alacritty
@@ -46,13 +46,30 @@ in
   # solve the locale problems
   home.sessionVariables = {
     LOCALE_ARCHIVE = "${pkgs.glibcLocales}/lib/locale/locale-archive";
+    GSETTINGS_SCHEMA_DIR="${pkgs.gtk3}/share/gsettings-schemas/${pkgs.gtk3.name}/glib-2.0/schemas";
   };
-  systemd.user.systemctlPath = "systemctl";
 
   # home manager control xsession
-  # temporary using .profile
-  # xsession.enable = true;
-  # xsession.windowManager.command = "";
+  # config gdm to use `user script` to load
+  xsession.enable = true;
+  xsession.windowManager.command = "exec -l $SHELL -c gnome-session";
+  xsession.importedVariables = [
+    "PATH"
+    "MANPATH"
+    "DBUS_SESSION_BUS_ADDRESS"
+    "DISPLAY"
+    "SSH_AUTH_SOCK"
+    "XAUTHORITY"
+    "XDG_DATA_DIRS"
+    "XDG_RUNTIME_DIR"
+    "XDG_SESSION_ID"
+    "XCURSOR_PATH"
+    "LOCALE_ARCHIVE"
+    "GSETTINGS_SCHEMA_DIR"
+    "QT_MODULES"
+    "XMODIFIERS"
+    "GTK_MODULES"
+  ];
 
   # redshift
   services.redshift = {
@@ -93,6 +110,8 @@ in
 
   # Don't install nix FUSE, just use system one. permission issues!
   systemd.user = {
+    systemctlPath = "systemctl";
+
     services.dropbox_rclone = let
         mountdir="${config.home.homeDirectory}/cloud/dropbox";
       in
