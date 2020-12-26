@@ -6,10 +6,12 @@ nix-channel --update
 # by default bash
 source ~/.bashrc
 nix-shell '<home-manager>' -A install
-home-manager switch
+# firefox profile hack
+rm $HOME/.mozilla/firefox/profiles.ini
+home-manager -b bak switch
 
 # install good stuff
-
+source ~/.bashrc
 # neovim
 # depends on nodejs, python, maybe installMiniconda first?
 source $HOME/.dotfiles/neovim/configNeovim.sh

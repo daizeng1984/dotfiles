@@ -24,7 +24,7 @@ in
     autokey
     wmctrl
     xorg.xwininfo
-    redshift
+    #redshift
     google-chrome
     youtube-dl
     audacious
@@ -71,13 +71,15 @@ in
     "GTK_MODULES"
   ];
 
-  # redshift
-  services.redshift = {
-    latitude = "37.4";
-    longitude = "-122.0";
-    enable = true;
-    tray = true;
-  };
+  # redshift, use gnome's settings
+  # services.redshift = {
+  #   latitude = "37.4";
+  #   longitude = "-122.0";
+  #   brightness.day = "0.6";
+  #   brightness.night = "0.4";
+  #   enable = true;
+  #   tray = true;
+  # };
 
   # firefox
   programs.firefox = {
