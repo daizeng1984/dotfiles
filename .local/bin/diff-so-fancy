@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 PREV_DIR=$(pwd)
 
 INSTALL_DIR=$HOME/.dotfiles/.local/lib/diff-so-fancy
