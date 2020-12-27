@@ -1,5 +1,5 @@
 # Let us manage by ourselves now
-export XCURSOR_PATH=/usr/share/icons/
+export XCURSOR_PATH=${XCURSOR_PATH}:/usr/share/icons/
 
 # export GTK_IM_MODULE=fcitx
 # export QT_IM_MODULE=fcitx

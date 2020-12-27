@@ -24,6 +24,7 @@ in
     autokey
     wmctrl
     xorg.xwininfo
+    xorg.xhost
     #redshift
     google-chrome
     youtube-dl
@@ -49,10 +50,11 @@ in
     GSETTINGS_SCHEMA_DIR="${pkgs.gtk3}/share/gsettings-schemas/${pkgs.gtk3.name}/glib-2.0/schemas";
   };
 
-  # home manager control xsession
-  # config gdm to use `user script` to load
   xsession.enable = true;
-  xsession.windowManager.command = "exec -l $SHELL -c gnome-session";
+  xsession.windowManager.command = "exec -l $SHELL -c ${pkgs.gnome3.gnome-session}/bin/gnome-session";
+  xsession.profileExtra = ''
+    xhost +SI:localuser:$USER
+  '';
   xsession.importedVariables = [
     "PATH"
     "MANPATH"
@@ -71,15 +73,6 @@ in
     "GTK_MODULES"
   ];
 
-  # redshift, use gnome's settings
-  # services.redshift = {
-  #   latitude = "37.4";
-  #   longitude = "-122.0";
-  #   brightness.day = "0.6";
-  #   brightness.night = "0.4";
-  #   enable = true;
-  #   tray = true;
-  # };
 
   # firefox
   programs.firefox = {
@@ -90,6 +83,7 @@ in
           "app.update.auto" = false;
           "javascript.options.wasm" = true;
           "ui.key.menuAccessKeyFocuses" = false;
+          "accessibility.force_disabled" = 1;
           # "browser.startup.homepage" = "https://lobste.rs";
           # # ✂️- no need to splurge all my settings, you get the idea...
           # "identity.fxaccounts.account.device.name" = config.networking.hostName;
@@ -154,11 +148,11 @@ in
     };
     services.autokey = {
       Unit = {
-        After="graphical-session-pre.target";
-        PartOf="graphical-session.target";
+        After="hm-graphical-session-pre.target";
+        PartOf="hm-graphical-session.target";
         Description = "Autokey";
       };
-      Install.WantedBy = [ "graphical-session.target" ];
+      Install.WantedBy = [ "hm-graphical-session.target" ];
       Service = {
           ExecStart = ''
               ${pkgs.autokey}/bin/autokey-gtk

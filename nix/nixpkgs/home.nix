@@ -9,15 +9,17 @@ let profiles = {
   dev = [
     ./profiles/minimal.nix
     ./profiles/cli.nix
-    # ./profiles/node.nix
-    # ./profiles/python.nix
-    # ./profiles/go.nix
   ];
   homelinux = [
     ./profiles/minimal.nix
     ./profiles/cli.nix
     ./profiles/linuxdesk.nix
-    #./profiles/firefox
+    ./profiles/linuxsession.nix
+  ];
+  homenixos = [
+    ./profiles/minimal.nix
+    ./profiles/cli.nix
+    ./profiles/linuxdesk.nix
   ];
   homemac = [
     ./profiles/minimal.nix
