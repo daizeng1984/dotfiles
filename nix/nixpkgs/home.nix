@@ -13,13 +13,16 @@ let profiles = {
   homelinux = [
     ./profiles/minimal.nix
     ./profiles/cli.nix
-    ./profiles/linuxdesk.nix
-    ./profiles/linuxsession.nix
+    ./profiles/linux/programs.nix
+    ./profiles/linux/services.nix
+    ./profiles/linux/gnome.nix
   ];
   homenixos = [
     ./profiles/minimal.nix
     ./profiles/cli.nix
-    ./profiles/linuxdesk.nix
+    ./profiles/linux/programs.nix
+    ./profiles/linux/services.nix
+    ./profiles/linux/nixos.nix
   ];
   homemac = [
     ./profiles/minimal.nix
