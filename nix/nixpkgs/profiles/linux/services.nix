@@ -21,7 +21,7 @@
       Unit = {
         Description = "dropbox rclone mount";
       };
-      Install.WantedBy = [ "multi-user.target" ];
+      Install.WantedBy = [ "graphical-session.target" ];
       Service = {
           ExecStartPre = "${pkgs.coreutils}/bin/mkdir -p ${mountdir}";
           ExecStart = ''
@@ -40,7 +40,7 @@
       Unit = {
         Description = "google drive rclone mount";
       };
-      Install.WantedBy = [ "multi-user.target" ];
+      Install.WantedBy = [ "graphical-session.target" ];
       Service = {
           ExecStartPre = "${pkgs.coreutils}/bin/mkdir -p ${mountdir}";
           ExecStart = ''
@@ -54,18 +54,18 @@
     };
     services.autokey = {
       Unit = {
-        After="hm-graphical-session-pre.target";
-        PartOf="hm-graphical-session.target";
+        After="graphical-session-pre.target";
+        PartOf="graphical-session.target";
         Description = "Autokey";
       };
-      Install.WantedBy = [ "hm-graphical-session.target" ];
+      Install.WantedBy = [ "graphical-session.target" ];
       Service = {
           ExecStart = ''
               ${pkgs.autokey}/bin/autokey-gtk
           '';
           ExecStop = "";
           Restart = "on-failure";
-          RestartSec = "3s";
+          RestartSec = "0s";
       };
     };
   };
