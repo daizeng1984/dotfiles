@@ -21,6 +21,12 @@ deploynix() {
     direnv allow
 }
 
+# Deploy conda direnv
+deployconda() {
+    echo "use conda $@" > .envrc
+    direnv allow
+}
+
 # show path
 alias pythonpath='python -m site'
 alias nodepath='npm config get prefix'

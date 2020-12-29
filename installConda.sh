@@ -26,6 +26,7 @@ source ./conda/installMiniconda.sh
 conda install -y -c conda-forge wget
 conda install -y -c conda-forge git
 conda install -y -c conda-forge zsh
+conda install -y -c conda-forge direnv
 conda install -y -c conda-forge neovim
 conda install -y -c daizeng1984 nvim
 conda install -y -c conda-forge tmux
@@ -52,6 +53,10 @@ conda install -y -c conda-forge broot
 conda install -y -c conda-forge httpie
 conda install -y -c conda-forge htop
 conda install -y -c conda-forge pandoc
+
+# direnv
+curl -sfL https://direnv.net/install.sh -o /tmp/installdirenv.sh
+bash -c "bin_path=$HOME/.dotfiles/.local/bin/ source /tmp/installdirenv.sh"
 
 # Configs
 source $HOME/.dotfiles/neovim/configNeovim.sh
