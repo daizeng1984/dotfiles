@@ -9,7 +9,7 @@ fi
 SCRIPT_NAME="Miniconda3-latest-${PLATFORM}-x86_64.sh"
 RETURN_DIR=$(pwd)
 cd /tmp
-wget -N "https://repo.anaconda.com/miniconda/${SCRIPT_NAME}"
+curl "https://repo.anaconda.com/miniconda/${SCRIPT_NAME}" -o ${SCRIPT_NAME}
 bash ./${SCRIPT_NAME} -b -u -p $HOME/.dotfiles/.local/lib/miniconda
 rm -rf ./${SCRIPT_NAME}
 cd $RETURN_DIR

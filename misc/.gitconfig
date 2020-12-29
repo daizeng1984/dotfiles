@@ -25,6 +25,7 @@
     #pager = delta --show-syntax-themes --dark
 	autocrlf = input
 	askpass = 
+	trustctime = false
 
 [i18n]
     filesEncoding = utf-8

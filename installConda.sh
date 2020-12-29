@@ -7,22 +7,23 @@ source ./conda/installMiniconda.sh
 # conda install -y -c conda-forge nodejs
 # conda install -y -c conda-forge yarn
 
-# Boostrap java
+# Boostrap java, consider using nix
 # conda install -y -c daizeng1984 sdkman
 
-# C++
+# C++, use nix please
 # conda install -y -c conda-forge cmake
 # conda install -y -c conda-forge clangdev
 # conda install -y -c conda-forge conan
 # conan remote add bincrafters https://api.bintray.com/conan/bincrafters/public-conan
 # conda install -y -c daizeng1984 ccls
 
-# ruby
+# ruby, use nix please
 # native lib via bundler always requires lib path from conda, not friendly at all
 # has to use system ruby
 # conda install -y -c conda-forge ruby
 
 # Tools
+conda install -y -c conda-forge wget
 conda install -y -c conda-forge git
 conda install -y -c conda-forge zsh
 conda install -y -c conda-forge neovim

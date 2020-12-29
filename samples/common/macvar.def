@@ -1,0 +1,9 @@
+# Mac copy is not the `real` copy if coreutils not installed, we relies on installing it in conda or nix
+# alias cp=copy
+
+# Mac scripts
+# Alert
+macnotify() {
+osascript -e "display notification \"${1}\" with title \"Alert\""
+}
+alias alert=macnotify

@@ -9,6 +9,7 @@ playmusic() {
     audacious $_realURL &>/dev/null &
 }
 
+# to save some human braincells on centos
 update_centos_grub() {
     sudo -S vi /etc/default/grub
     sudo -S grub2-mkconfig -o /boot/efi/EFI/centos/grub.cfg

@@ -2,9 +2,9 @@
 export DISPLAY=:0.0
 
 # Android
-source "${DOTFILES_HOME}/samples/common/android.def"
+source "${DOTFILES_HOME}/samples/common/conda/android.def"
 # Java
-source "${DOTFILES_HOME}/samples/common/java.def"
+source "${DOTFILES_HOME}/samples/common/conda/java.def"
 
 # Prefer Clang vs GCC
 installedClang=$(checkIfInstalled "clang" clang --quiet)

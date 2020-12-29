@@ -1,3 +1,5 @@
+# WSL, TODO
+
 export NODE_PATH="${DOTFILE_LOCAL_PREFIX}/lib/miniconda/lib/node_modules"
 
 # Python managed by conda, we can activate our python environment
