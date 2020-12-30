@@ -8,6 +8,8 @@
 [alias]
     d = difftool
     s = status
+    n = !git --no-pager
+    nd = n diff --no-color
     ss = status --ignored
     co = commit
 [push]

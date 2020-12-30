@@ -7,6 +7,8 @@ let
       rev = "4a62ec17e20ce0e738a8e5126b4298a73903b468";
       sha256 = "0n5a3rnv9qnnsrl76kpi6dmaxmwj1mpdd2g0b4n1wfimqfaz6gi1";
   }) {};
+
+  # Nix stable
   stable = import (builtins.fetchTarball {
       name = "nixos-20.09";
       url = "https://codeload.github.com/NixOS/nixpkgs/tar.gz/20.09";
@@ -34,13 +36,14 @@ in
     dtrx
     unrar
     rclone
-    comma
     wqy_microhei
     symbola
     neofetch
     tokei
     sc-im
     calcurse
+    # customize
+    comma
   ];
 
   home.file.".gnupg/gpg-agent.conf".text = lib.concatStringsSep "\n" (
