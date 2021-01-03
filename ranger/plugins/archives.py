@@ -158,24 +158,17 @@ class copyfilepath(Command):
         def cygwin_copy(path):
             self.fm.notify( "Copied file path: " + path)
             os.system("echo -n " + path  + "  > /dev/clipboard")
-        def darwin_copy(path):
+        def nix_copy(path):
             self.fm.notify( "Copied file path: " + path)
-            ps = subprocess.Popen(("echo", "-n", path ), stdout=subprocess.PIPE)
-            subprocess.check_output(("pbcopy"), stdin=ps.stdout)
-            ps.wait()
-        def linux_copy(path):
-            self.fm.notify( "Copied file path: " + path)
-            os.system("echo \"" + path + "\" | xclip -selection clipboard")
+            os.system("echo \"" + path + "\" | cbs ")
         def donothing_copy(path):
             self.fm.notify( "Cannot do anything about this path: " + path)
 
         # Pyperclip Doesn't support Cygwin for some reason 
         if "cygwin" in platform.system().lower():
             cygwin_copy(" ".join(["$(cygpath -wma \"" + os.path.abspath(f.path) + "\")" for f in marked_files]))
-        elif "darwin" in platform.system().lower():
-            darwin_copy(" ".join([os.path.abspath(f.path) for f in marked_files]))
-        elif "linux" in platform.system().lower():
-            linux_copy(" ".join([os.path.abspath(f.path) for f in marked_files]))
+        elif "darwin" in platform.system().lower() or "linux" in platform.system().lower():
+            nix_copy(" ".join([os.path.abspath(f.path) for f in marked_files]))
         else:
             donothing_copy(" ".join([os.path.abspath(f.path) for f in marked_files]))
 
