@@ -23,7 +23,26 @@ deploynix() {
 
 # Deploy conda direnv
 deployconda() {
-    echo "use conda $@" > .envrc
+    if [ -n "$1" ]; then
+        local env_name="$1";
+        echo "use conda $env_name" > .envrc;
+    else
+        echo "use conda" > .envrc;
+        env_content="name: new_env
+channels:
+    - conda-forge
+dependencies:
+    - python=3.6   # or 2.7
+    - numpy
+    - nodejs
+    - flask
+    - pip
+    - pip:
+        - Flask-Testing"
+        echo $env_content > $(pwd)/environment.yml
+        nvim $(pwd)/environment.yml
+        conda env create -f $(pwd)/environment.yml
+    fi;
     direnv allow
 }
 

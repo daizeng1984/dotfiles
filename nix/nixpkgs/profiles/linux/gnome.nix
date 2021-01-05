@@ -4,12 +4,21 @@
   home.packages = with pkgs; [
     gtk3
   ];
+  # solve the locale problems
+  home.sessionVariables = {
+    LOCALE_ARCHIVE = "${pkgs.glibcLocales}/lib/locale/locale-archive";
+    GSETTINGS_SCHEMA_DIR="${pkgs.gtk3}/share/gsettings-schemas/${pkgs.gtk3.name}/glib-2.0/schemas";
+  };
 
   # home manager control xsession
   # gnome should be installed in host
   # config gdm to use `user script` to load
   xsession.enable = true;
-  xsession.windowManager.command = "exec -l $SHELL -c gnome-session";
+  xsession.windowManager.command = ''
+    systemctl --user start graphical-session-pre.target
+    systemctl --user start graphical-session.target
+    exec -l $SHELL -c gnome-session
+    '';
   xsession.importedVariables = [
     "PATH"
     "MANPATH"

@@ -1,5 +1,6 @@
 use_conda() {
   local ACTIVATE="$CONDA_PREFIX/bin/activate"
+  export PATH=$CONDA_PREFIX/bin:$PATH
 
   if [ -n "$1" ]; then
     # Explicit environment name from layout command.
@@ -7,6 +8,7 @@ use_conda() {
     source $ACTIVATE ${env_name}
   elif (grep -q name: environment.yml); then
     # Detect environment name from `environment.yml` file in `.envrc` directory
+    # override the path to be conda flavor
     source $ACTIVATE `grep name: environment.yml | sed -e 's/name: //' | cut -d "'" -f 2 | cut -d '"' -f 2`
   else
     (>&2 echo No environment specified);
