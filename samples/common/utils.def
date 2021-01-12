@@ -22,6 +22,14 @@ deploynix() {
 }
 
 # Deploy conda direnv
+deployconda_update_env() {
+  if (grep -q name: environment.yml); then
+    conda env update -f environment.yml
+  else
+    (>&2 echo No environment.yml found);
+    exit 1;
+  fi;
+}
 deployconda() {
     if [ -n "$1" ]; then
         local env_name="$1";
