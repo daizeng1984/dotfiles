@@ -84,6 +84,7 @@ in
           "javascript.options.wasm" = true;
           "ui.key.menuAccessKeyFocuses" = false;
           "accessibility.force_disabled" = 1;
+          "gfx.webrender.all" = true;
         };
     in {
       home = {
