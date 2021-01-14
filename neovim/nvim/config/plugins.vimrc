@@ -28,7 +28,9 @@ if g:use_native_lsp
     Plug 'w0rp/ale'
 else
     let g:coc_disable_startup_warning = 1
-    Plug 'neoclide/coc.nvim', {'branch': 'release'}
+    if CliInstalled('node')
+        Plug 'neoclide/coc.nvim', {'branch': 'release'}
+    endif
 endif
 
 
