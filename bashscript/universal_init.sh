@@ -82,6 +82,7 @@ installedFzf=$(checkIfInstalled "fzf" fzf --quiet)
 installedAg=$(checkIfInstalled "ag" the_silver_searcher --quiet)
 installedFd=$(checkIfInstalled "fd" fd-find --quiet)
 installedFasd=$(checkIfInstalled "fasd" fasd --quiet)
+installedZoxide=$(checkIfInstalled "zoxide" fasd --quiet)
 installedDirenv=$(checkIfInstalled "direnv" direnv --quiet)
 installedDircolors=$(checkIfInstalled "dircolors" dircolors --quiet)
 installedExa=$(checkIfInstalled "exa" exa --quiet)
@@ -104,9 +105,30 @@ else
 fi
 
 # TODO: export certainfile='$(fzf)'
-# Initialize fasd
-if [ "$installedFasd" = "1" ] ; then
+# Initialize zoxide or fasd
+if [ "$installedZoxide" = "1" ] ; then
+    # fasd
+    z() {
+        local dir
+        dir="$(__zoxide_zqi "$@")" && cd "${dir}" || return 1
+    }
+
+    zz() {
+        echo "not implemented yet!"
+    }
+    
+    eval "$(zoxide init ${DOTFILES_SHELL_TYPE} --no-aliases)"
+elif [ "$installedFasd" = "1" ] ; then
     eval "$(fasd --init ${DOTFILES_SHELL_TYPE}-hook ${DOTFILES_SHELL_TYPE}-ccomp ${DOTFILES_SHELL_TYPE}-ccomp-install)"
+    # fasd
+    z() {
+        local dir
+        dir="$(fasd -Rdl "$1" | fzf -1 -0 --no-sort +m)" && cd "${dir}" || return 1
+    }
+    zz() {
+        local file
+        file="$(fasd -Rfl "$1" | fzf -1 -0 --no-sort +m)" && open "${file}" || return 1
+    }
 fi
 
 if [ "$installedFzf" = "1" ] ; then

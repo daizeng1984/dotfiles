@@ -20,17 +20,6 @@ checkIfInstalled() {
     fi
 }
 
-# fasd
-z() {
-    local dir
-    dir="$(fasd -Rdl "$1" | fzf -1 -0 --no-sort +m)" && cd "${dir}" || return 1
-}
-
-zz() {
-    local file
-    file="$(fasd -Rfl "$1" | fzf -1 -0 --no-sort +m)" && open "${file}" || return 1
-}
-
 # fzf tools from https://github.com/junegunn/fzf/wiki/examples
 # fd - cd to selected directory
 cdd() {

@@ -15,9 +15,13 @@
   # config gdm to use `user script` to load
   xsession.enable = true;
   xsession.windowManager.command = ''
+    # centos user script doesn't have graphical-session target run, we are on our own
     systemctl --user start graphical-session-pre.target
     systemctl --user start graphical-session.target
+
+    # Gnome session
     exec -l $SHELL -c gnome-session
+
     '';
   xsession.importedVariables = [
     "PATH"
@@ -36,5 +40,27 @@
     "XMODIFIERS"
     "GTK_MODULES"
   ];
+
+  home.keyboard = null;
+
+  systemd.user = {
+    services = {
+      setxkbmap = {
+        Unit = {
+          Description = "Set up keyboard in X";
+          After = [ "graphical-session-pre.target" ];
+          PartOf = [ "graphical-session.target" ];
+        };
+
+        Install = { WantedBy = [ "graphical-session.target" ]; };
+
+        Service = {
+          Type = "oneshot";
+          RemainAfterExit = true;
+          ExecStart = "setxkbmap -option caps:none";
+        };
+      };
+    };
+  };
 }
 

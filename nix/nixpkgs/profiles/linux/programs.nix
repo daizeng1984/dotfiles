@@ -44,6 +44,7 @@ in
     # unrar duf
     apfs-fuse
     ntfs3g
+    gparted
     python3 # tools like autokey depends
     nodejs # neovim coc depends
     yarn
@@ -54,6 +55,7 @@ in
     rxvt-unicode
     google-chrome
     youtube-dl
+    tickrs
     audacious
     vlc
     ffmpeg

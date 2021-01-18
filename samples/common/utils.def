@@ -27,8 +27,60 @@ deployconda_update_env() {
     conda env update -f environment.yml
   else
     (>&2 echo No environment.yml found);
-    exit 1;
   fi;
+}
+
+deploymeson() {
+    deploynix cpp
+    local meson_template="
+project('myproject', 'cpp',
+  version : '0.1',
+  default_options : ['warning_level=3',
+                     'cpp_std=c++17'])
+
+cxx = meson.get_compiler('cpp')
+
+boost_dep = cxx.find_library('boost_system')
+poco_dep = cxx.find_library('PocoFoundation')
+
+exe = executable('main', 'src/main.cpp',
+  dependencies: [poco_dep, boost_dep],
+  install : true)
+
+test('basic', exe)
+"    
+    local main_cpp='
+#include <boost/lexical_cast.hpp>
+#include <Poco/Environment.h>
+#include <iostream>
+
+#if defined(__clang__)
+#define CC "clang++"
+#elif defined (__GNUC__)
+#define CC "g++"
+#else
+#define CC "<unknown compiler>"
+#endif
+
+int main() {
+  std::cout << "Hello World!" << std::endl
+    << "Compiler: " << CC << " " << __VERSION__ << std::endl
+    << "Boost: " << (BOOST_VERSION / 100000) << "."
+                 << (BOOST_VERSION / 100 % 1000) << "."
+                 << (BOOST_VERSION % 100) << std::endl
+    << "POCO: " << (Poco::Environment::libraryVersion() >> 24) << "."
+                << (Poco::Environment::libraryVersion() >> 16 & 0xff) << "."
+                << (Poco::Environment::libraryVersion() >> 8 & 0xff)
+                << std::endl;
+}
+'
+    echo $meson_template > $(pwd)/meson.build
+    mkdir -p $(pwd)/src/
+    [ -f $(pwd)/src/main.cpp ] || echo $main_cpp > $(pwd)/src/main.cpp
+    nvim $(pwd)/meson.build
+}
+mc() {
+    meson compile -C build
 }
 deployconda() {
     if [ -n "$1" ]; then
