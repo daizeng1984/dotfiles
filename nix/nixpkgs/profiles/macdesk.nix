@@ -31,52 +31,7 @@ let
     };
 
   };
-in  
-{
-  nixpkgs.overlays = [(import ../overlays/mac)];
-  home.packages = with pkgs; [
-    findutils
-    cbs
-    coreutils
-    alacritty
-    youtube-dl
-    VLC
-    Phoenix
-    Flux
-    #KarabinerElements
-    Iterm2 # instead of using xcode to build iterm2 in nixpkgs
-  ];
-  # # solve the locale problems
-  # home.sessionVariables = {
-  #   LOCALE_ARCHIVE = "${pkgs.glibcLocales}/lib/locale/locale-archive";
-  # };
-
-  programs.firefox = {
-    enable = true;
-    package = pkgs.Firefox;
-    profiles =
-    let defaultSettings = {
-          "app.update.auto" = false;
-          "javascript.options.wasm" = true;
-          "ui.key.menuAccessKeyFocuses" = false;
-        };
-    in {
-      home = {
-        id = 0;
-        settings = defaultSettings // {
-        };
-      };
-
-      work = {
-        id = 1;
-        settings = defaultSettings // {
-        };
-      };
-    };
-  };
-
-  # Have to use alias to make it appear on 
-  home.activation.link_apps = with pkgs; let
+  macosAlias = with pkgs; let
     createMacOSAlias = (
       (builtins.toString (
         callPackage
@@ -128,6 +83,52 @@ in
           ${createMacOSAlias} "${config.home.profileDirectory}/Applications/$app_bn" "${config.home.homeDirectory}/Applications/$app_bn"
       done
     '');
+in  
+{
+  nixpkgs.overlays = [(import ../overlays/mac)];
+  home.packages = with pkgs; [
+    findutils
+    cbs
+    coreutils
+    alacritty
+    youtube-dl
+    VLC
+    Phoenix
+    #Flux, use night shift
+    #KarabinerElements
+    Iterm2 # instead of using xcode to build iterm2 in nixpkgs
+  ];
+  # # solve the locale problems
+  # home.sessionVariables = {
+  #   LOCALE_ARCHIVE = "${pkgs.glibcLocales}/lib/locale/locale-archive";
+  # };
+
+  programs.firefox = {
+    enable = true;
+    package = pkgs.Firefox;
+    profiles =
+    let defaultSettings = {
+          "app.update.auto" = false;
+          "javascript.options.wasm" = true;
+          "ui.key.menuAccessKeyFocuses" = false;
+        };
+    in {
+      home = {
+        id = 0;
+        settings = defaultSettings // {
+        };
+      };
+
+      work = {
+        id = 1;
+        settings = defaultSettings // {
+        };
+      };
+    };
+  };
+
+  # Have to use alias to make it appear on 
+  # home.activation.link_apps = macosAlias;
 
 }
 

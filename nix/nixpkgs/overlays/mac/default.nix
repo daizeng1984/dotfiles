@@ -1,10 +1,10 @@
 self: super: with super; {
-  Firefox = let version = "83.0"; in import(./util.nix) { inherit version; super=self;
+  Firefox = let version = "84.0.2"; in import(./util.nix) { inherit version; super=self;
     Name = "Firefox";
     src = fetchurl {
       name = "Firefox-${version}.dmg";
       url = "https://download-installer.cdn.mozilla.net/pub/firefox/releases/${version}/mac/en-GB/Firefox%20${version}.dmg";
-      sha256 = "08p3qnf38pncsr0pdanzbm6q9ywjjahf88ygfmyj1gvayynwkxvi";
+      sha256 = "1dmbkph9izmwymbkyll5lmhqbaikjfg13nbg9izjj27qcf4iijj5";
     };
   };
 
