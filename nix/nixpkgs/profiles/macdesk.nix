@@ -88,6 +88,7 @@ in
   nixpkgs.overlays = [(import ../overlays/mac)];
   home.packages = with pkgs; [
     findutils
+    slack
     cbs
     coreutils
     alacritty
