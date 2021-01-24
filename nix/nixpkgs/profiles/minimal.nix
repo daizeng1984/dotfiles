@@ -25,13 +25,15 @@ in
     duf
     broot
     ranger
+    du-dust
+    tealdeer
+    hyperfine
+    grex
     trash-cli
     rsync
     fd
     exa
     bat
     htop
-    navi
-    tldr
   ];
 }

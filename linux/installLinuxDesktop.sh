@@ -15,8 +15,8 @@ gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/or
 gsettings set org.gnome.desktop.wm.keybindings show-desktop "['<Primary><Alt>d']"
 
 # input method
-gsettings set org.gnome.desktop.wm.keybindings switch-input-source "['<Primary>space']"
-gsettings set org.gnome.desktop.wm.keybindings switch-input-source-backward "['<Primary><Shift>space']"
+gsettings set org.gnome.desktop.wm.keybindings switch-input-source "['<Super>space']"
+gsettings set org.gnome.desktop.wm.keybindings switch-input-source-backward "['<Super><Shift>space']"
 
 # generate autokey scripts
 python3 $HOME/.dotfiles/linux/configAutokey.py

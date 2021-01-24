@@ -14,5 +14,9 @@ mkShell {
     cmake
     zlib 
   ];
+
+  shellHook = ''
+    export PATH=$HOME/.cargo/bin:$PATH
+  '';
 }
 
