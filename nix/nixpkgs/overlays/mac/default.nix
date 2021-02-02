@@ -45,6 +45,15 @@ self: super: with super; {
   };
   
 
+  MonitorControl = let version = "2.1.0"; in import(./util.nix) { inherit version; super=self;
+    Name = "MonitorControl";
+    src = fetchurl {
+      name = "MonitorControl.${version}.dmg";
+      url = "https://github.com/MonitorControl/MonitorControl/releases/download/v${version}/MonitorControl.${version}.dmg";
+      sha256 = "01pjmh94zvxk2zb73jdm4yi36qi2cvm28f9f0zqyk8q2l2b1lan0";
+    };
+  };
+  
   # Karabiner has launchctl etc. 
   # KarabinerElements = let version = "13.1.0"; in import(./util.nix) { inherit version; inherit super;
   #   Name = "Karabiner-Elements";

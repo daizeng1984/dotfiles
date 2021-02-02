@@ -6,14 +6,14 @@ There are 3 level of setup: Minimal, Conda & Nix.
 # Minimal
 This setup only provides dotfiles for `bash`/`zsh` and `vim`. 
 ```sh
-cd && git clone https://github.com/daizeng1984/dotfiles.git .dotfiles && cd .dotfiles && source ./createSymlink.sh
+cd && git clone https://github.com/daizeng1984/dotfiles.git .dotfiles && cd .dotfiles && ./createSymlink.sh
 ```
 Then restart the shell
 
 # Nix
 This setup relies on Nix which is very powerful. The cost is for now: root permission.
 ```sh
-cd && git clone https://github.com/daizeng1984/dotfiles.git .dotfiles && cd .dotfiles && source ./createSymlink.sh && source ./installNix.sh
+cd && git clone https://github.com/daizeng1984/dotfiles.git .dotfiles && cd .dotfiles && ./createSymlink.sh && source ./installNix.sh
 ```
 Because it's powerful, you don't need to do anything (TODO: kidding not yet 😄 unless you are in NixOS)
 
@@ -28,7 +28,7 @@ This setup heavily relies conda to deploy all packages needed. No root access is
 You need to have basic development tools like git, wget, curl, bzip2 (TODO: remove these dependencies). 
 
 ```sh
-cd && git clone https://github.com/daizeng1984/dotfiles.git .dotfiles && cd .dotfiles && source ./createSymlink.sh && source ~/.bashrc && source ./installConda.sh`
+cd && git clone https://github.com/daizeng1984/dotfiles.git .dotfiles && cd .dotfiles && ./createSymlink.sh && source ~/.bashrc && source ./installConda.sh`
 ```
 Before install on Mac, you need to do extra rampup manually like:
 ```sh

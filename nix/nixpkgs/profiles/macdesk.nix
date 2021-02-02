@@ -89,8 +89,14 @@ in
   home.packages = with pkgs; [
     findutils
     slack
+    gimp
     cbs
     coreutils
+    imagemagick
+    python3 # tools like autokey depends
+    nodejs # neovim coc depends
+    yarn
+    wuzz
     alacritty
     youtube-dl
     VLC
@@ -129,7 +135,7 @@ in
   };
 
   # Have to use alias to make it appear on 
-  # home.activation.link_apps = macosAlias;
+  home.activation.link_apps = macosAlias;
 
 }
 

@@ -10,6 +10,7 @@
 #source $HOME/.dotfiles/mac/configKarabiner.sh
 source $HOME/.dotfiles/mac/configPhoenix.sh
 cd $HOME
+mkdir -p $HOME/Applications
 
 # iterm2
 mkdir -p "$HOME/Library/Application Support/iTerm2/DynamicProfiles/"
