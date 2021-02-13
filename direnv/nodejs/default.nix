@@ -16,6 +16,7 @@ pkgs.mkShell {
   ];
 
   shellHook = ''
+    export PATH="$PWD/node_modules/.bin/:$PATH"
     echo "🚀 nodejs ready!"
   '';
 

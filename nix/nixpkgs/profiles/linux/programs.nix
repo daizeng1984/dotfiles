@@ -68,6 +68,7 @@ in
     winetricks
     appimage-run
     tdesktop
+    ghostscript
     # ibus
     # ibus-engines.libpinyin
     # ibus-engines.table-chinese

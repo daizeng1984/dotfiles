@@ -134,3 +134,13 @@ ssh_tunnel() {
 discover_network() {
     nmap 192.168.1.0/24
 }
+
+# stock
+watch_stock() {
+    tickrs -s ES=F,NQ=F,YM=F,AMZN,MSFT,AAPL,TSLA -t 3M --summary
+}
+
+# pdf compress
+pdf_compress() {
+    gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/ebook -dNOPAUSE -dQUIET -dBATCH -sOutputFile="$1-compressed.pdf" "$1"
+}

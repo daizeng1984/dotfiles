@@ -25,6 +25,19 @@ set conceallevel=1
 " clipboard
 " set clipboard=unnamedplus
 " set completeopt=longest,menuone,preview
+let g:clipboard = {
+            \   'name': 'cbs',
+            \   'copy': {
+            \      '+': 'cbs',
+            \      '*': 'cbs',
+            \    },
+            \   'paste': {
+            \      '+': 'cbs paste',
+            \      '*': 'cbs paste',
+            \   },
+            \   'cache_enabled': 1,
+            \ }
+
 filetype plugin indent on
 set omnifunc=syntaxcomplete#Complete
 
