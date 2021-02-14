@@ -87,6 +87,7 @@ in
 {
   nixpkgs.overlays = [(import ../overlays/mac)];
   home.packages = with pkgs; [
+    tickrs
     findutils
     slack
     gimp
@@ -98,9 +99,11 @@ in
     yarn
     wuzz
     alacritty
+    ghostscript
     youtube-dl
     VLC
     Phoenix
+    #MonitorControl
     #Flux, use night shift
     #KarabinerElements
     Iterm2 # instead of using xcode to build iterm2 in nixpkgs
