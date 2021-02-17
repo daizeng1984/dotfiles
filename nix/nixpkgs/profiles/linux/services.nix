@@ -68,6 +68,22 @@
           RestartSec = "0s";
       };
     };
+    services.albert = {
+      Unit = {
+        After="graphical-session-pre.target";
+        PartOf="graphical-session.target";
+        Description = "Albert";
+      };
+      Install.WantedBy = [ "graphical-session.target" ];
+      Service = {
+          ExecStart = ''
+              ${pkgs.albert}/bin/albert
+          '';
+          ExecStop = "";
+          Restart = "on-failure";
+          RestartSec = "0s";
+      };
+    };
   };
   targets.genericLinux.enable = true;
 }

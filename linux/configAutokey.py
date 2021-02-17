@@ -154,8 +154,8 @@ makeFile('move-window-right', ['<super>'], '.', moveWindowLeftOrRight, '$X')
 makeFile('kill-window', ['<alt>'], 'q', killWindow)
 
 # I like Mac
-makeFile('ctrl-n', ['<ctrl>'], 'n', eitherTermOrNot, '<ctrl>+n', '<tab>')
-makeFile('ctrl-p', ['<ctrl>'], 'p', eitherTermOrNot, '<ctrl>+p', '<shift>+<tab>')
+makeFile('ctrl-n', ['<ctrl>'], 'n', eitherTermOrNot, '<ctrl>+n', '<down>')
+makeFile('ctrl-p', ['<ctrl>'], 'p', eitherTermOrNot, '<ctrl>+p', '<up>')
 makeFile('ctrl-a', ['<ctrl>'], 'a', eitherTermOrNot, '<ctrl>+a', '<home>')
 makeFile('ctrl-e', ['<ctrl>'], 'e', eitherTermOrNot, '<ctrl>+e', '<end>')
 #makeFile('ctrl-u', ['<ctrl>'], 'u', eitherTermOrNot, '<ctrl>+u', '<>')
@@ -209,6 +209,6 @@ makeFile('super-alt-i', ['<super>', '<alt>'], 'i', eitherTermOrNot, '', '<ctrl>+
 # makeFile('shift-alt-rightb', ['<alt>', '<shift>'], ']', eitherTermOrNot, '<ctrl>+<pagedown>', '<ctrl>+<pagedown>')
 makeFile('alt-up', ['<alt>', ], '<up>', eitherTermOrNot, '<ctrl>+<home>', '<ctrl>+<home>')
 makeFile('alt-down', ['<alt>', ], '<down>', eitherTermOrNot, '<ctrl>+<end>', '<ctrl>+<end>')
-
-
 # makeFile('ctrl-alt-t', ['<ctrl>', '<alt>'], 't', runURxvt) too much crap env vars polution
+
+makeFile('ctrl-[', ['<ctrl>'], '[', eitherTermOrNot, '<ctrl>+[', '<escape>')

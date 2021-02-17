@@ -29,7 +29,7 @@ let
     ];
     cargoSha256 = "0yvl67wx8dwnr0ndk4i9c86r33zaf42vpa48cx0m2maf6lphwvqn";
 
-    meta = with stdenv.lib; {
+    meta = with lib; {
       description = "cbs is a command line utility that is designed to run on linux system , macOs and maybe windows.";
       homepage = "https://github.com/robatipoor/cbs";
       license = licenses.asl20;
@@ -69,6 +69,7 @@ in
     appimage-run
     tdesktop
     ghostscript
+    albert
     # ibus
     # ibus-engines.libpinyin
     # ibus-engines.table-chinese
