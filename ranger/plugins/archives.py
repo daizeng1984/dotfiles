@@ -230,7 +230,8 @@ class z(Command):
     def execute(self):
         import subprocess
         arg = self.rest(1)
-        command = 'fasd -Rdl \'' + arg + '\' | fzf -1 -0 --no-sort +m'
+        command = 'zoxide query -l | fzf -1 -0 --no-sort +m'
+        #command = 'fasd -Rdl \'' + arg + '\' | fzf -1 -0 --no-sort +m'
         fzf = self.fm.execute_command(command, stdout=subprocess.PIPE)
         stdout, stderr = fzf.communicate()
         
