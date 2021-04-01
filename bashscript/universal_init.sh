@@ -110,7 +110,7 @@ if [ "$installedZoxide" = "1" ] ; then
     # fasd
     z() {
         local dir
-        dir="$(__zoxide_zqi "$@")" && cd "${dir}" || return 1
+        dir="$(zoxide query -l | fzf -1 -0 --no-sort +m)" && cd "${dir}" || return 1
     }
 
     zz() {
