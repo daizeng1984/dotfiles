@@ -1,10 +1,10 @@
 self: super: with super; {
-  Firefox = let version = "84.0.2"; in import(./util.nix) { inherit version; super=self;
+  Firefox = let version = "85.0.2"; in import(./util.nix) { inherit version; super=self;
     Name = "Firefox";
     src = fetchurl {
       name = "Firefox-${version}.dmg";
       url = "https://download-installer.cdn.mozilla.net/pub/firefox/releases/${version}/mac/en-GB/Firefox%20${version}.dmg";
-      sha256 = "1dmbkph9izmwymbkyll5lmhqbaikjfg13nbg9izjj27qcf4iijj5";
+      sha256 = "1iqpvqh8n47j81xq6qqq1pcd1vv5d98ahad8ab45a43d6fc2spyr";
     };
   };
 
@@ -35,6 +35,15 @@ self: super: with super; {
     };
   };
 
+  Shifty = let version = "1.1.2"; in import(./util.nix) { inherit version; super=self;
+    Name = "Shifty";
+    src = fetchurl {
+      name = "Shifty-${version}.zip";
+      url = "https://github.com/thompsonate/Shifty/releases/download/v${version}/Shifty-${version}.zip";
+      sha256 = "0fkm80m4crzr3i66z16fvmwbsl0wv9w8jiwzlldsq1s9a3qyvnki";
+    };
+  };
+
   Iterm2 = let version = "3_4_3"; in import(./util.nix) { inherit version; super=self;
     Name = "Iterm2";
     src = fetchurl {
@@ -54,6 +63,14 @@ self: super: with super; {
     };
   };
   
+  Cog = let version = "4ea289ba"; in import(./util.nix) { inherit version; super=self;
+    Name = "Cog";
+    src = fetchurl {
+      name = "Cog-${version}.zip";
+      url = "https://balde.losno.co/cog/Cog-${version}.zip";
+      sha256 = "1g7f3mw1ygi3kdcpiiixyjg1hnbhl0ryccdxqq287q0lsd14854f";
+    };
+  };
   # Karabiner has launchctl etc. 
   # KarabinerElements = let version = "13.1.0"; in import(./util.nix) { inherit version; inherit super;
   #   Name = "Karabiner-Elements";

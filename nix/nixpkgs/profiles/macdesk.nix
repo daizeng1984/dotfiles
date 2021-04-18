@@ -23,7 +23,7 @@ let
     ];
     cargoSha256 = "0yvl67wx8dwnr0ndk4i9c86r33zaf42vpa48cx0m2maf6lphwvqn";
 
-    meta = with stdenv.lib; {
+    meta = with lib; {
       description = "cbs is a command line utility that is designed to run on linux system , macOs and maybe windows.";
       homepage = "https://github.com/robatipoor/cbs";
       license = licenses.asl20;
@@ -54,7 +54,7 @@ let
                 install -D -m755 $src $out/bin/create-macos-alias
               '';
 
-              meta = with stdenv.lib; {
+              meta = with lib; {
                 license = licenses.mit;
                 platforms = platforms.darwin;
                 maintainers = with maintainers; [ eqyiel ];
@@ -104,9 +104,10 @@ in
     VLC
     Phoenix
     #MonitorControl
-    #Flux, use night shift
+    Shifty# Flux has no version control
     #KarabinerElements
     Iterm2 # instead of using xcode to build iterm2 in nixpkgs
+    Cog
   ];
   # # solve the locale problems
   # home.sessionVariables = {
