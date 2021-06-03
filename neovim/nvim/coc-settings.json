@@ -1,3 +1,23 @@
 {
-    "rust-client.disableRustup": true
+    "rust-client.disableRustup": true,
+    "languageserver": {
+        "ccls": {
+            "command": "ccls",
+            "filetypes": ["c", "cc", "cpp", "c++", "objc", "objcpp"],
+            "rootPatterns": [".ccls", "compile_commands.json", ".git/", ".hg/"],
+            "trace.server": "verbose",
+            "initializationOptions": {
+                "request": {
+                    "timeout": 5000
+                },
+                "cache": {
+                    "directory": ".ccls-cache"
+                },
+                "clang": {
+                    "extraArgs": ["-fms-extensions", "-fms-compatibility", "-fdelayed-template-parsing"],
+                    "excludeArgs": []
+                }
+            }
+        }
+    }
 }

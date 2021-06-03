@@ -42,7 +42,7 @@ conda install -y -c conda-forge trash-cli
 conda install -y -c conda-forge ripgrep
 conda install -y -c conda-forge the_silver_searcher
 conda install -y -c antoined xsel
-conda install -y -c daizeng1984 fasd
+conda install -y -c conda-forge zoxide
 conda install -y -c conda-forge fd-find
 conda install -y -c bioconda grep # make sure we have organic grep on mac
 conda install -y -c conda-forge patool
@@ -53,10 +53,6 @@ conda install -y -c conda-forge broot
 conda install -y -c conda-forge httpie
 conda install -y -c conda-forge htop
 conda install -y -c conda-forge pandoc
-
-# direnv
-curl -sfL https://direnv.net/install.sh -o /tmp/installdirenv.sh
-bash -c "bin_path=$HOME/.dotfiles/.local/bin/ source /tmp/installdirenv.sh"
 
 # Configs
 source $HOME/.dotfiles/neovim/configNeovim.sh
