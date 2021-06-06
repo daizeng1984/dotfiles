@@ -71,6 +71,17 @@ self: super: with super; {
       sha256 = "1g7f3mw1ygi3kdcpiiixyjg1hnbhl0ryccdxqq287q0lsd14854f";
     };
   };
+
+  # TODO:!!!**NOT official google-chrome use at your own risk**
+  # https://www.slimjet.com/chrome/google-chrome-old-version.php
+  GoogleChrome = let version = "90.0.4430.72"; in import(./util.nix) { inherit version; super=self;
+    Name = "GoogleChrome";
+    src = fetchurl {
+      name = "googlechrome.dmg";
+      url = "https://www.slimjet.com/chrome/download-chrome.php?file=files/${version}/googlechrome.dmg";
+      sha256 = "1qcc88pz1mgz3gvdma91plcffi6mj2vvb4ldkgfw6z068l5ga2gz";
+    };
+  };
   # Karabiner has launchctl etc. 
   # KarabinerElements = let version = "13.1.0"; in import(./util.nix) { inherit version; inherit super;
   #   Name = "Karabiner-Elements";

@@ -14,9 +14,9 @@ meta ? with super.stdenv.lib; {
   phases = [ "unpackPhase" "installPhase" ];
   installPhase = ''
       mkdir -p "$out/Applications"
-      for app in $("${super.findutils}/bin/find" "." -maxdepth 1 -iname '*.app'); do
-          app_bn="$(${super.coreutils}/bin/basename $app)"
-          cp -r $app_bn "$out/Applications/$app_bn"
+      "${super.findutils}/bin/find" "." -maxdepth 1 -iname '*.app' | while read app ; do
+          app_bn=$(${super.coreutils}/bin/basename "$app")
+          cp -r "$app_bn" "$out/Applications/$app_bn"
       done
     '';
   inherit src;

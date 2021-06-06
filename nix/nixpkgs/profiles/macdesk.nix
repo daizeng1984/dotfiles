@@ -69,7 +69,7 @@ let
       echo "Creating alias..."
 
       # TODO: clean ups?
-      # for app in $("${findutils}/bin/find" "${config.home.homeDirectory}/Applications/" -maxdepth 1 -iname '*.app'); do
+      # "${findutils}/bin/find" "${config.home.profileDirectory}/Applications/" -maxdepth 1 -iname '*.app' | while read app ; do
       #   type_str=`${file}/bin/file $app`
       #   if [ "$type_str" == *"Alias"* ]; then
       #     echo "Removing alias $app"
@@ -77,8 +77,8 @@ let
       #   fi
       # done
       
-      for app in $("${findutils}/bin/find" "${config.home.profileDirectory}/Applications/" -maxdepth 1 -iname '*.app'); do
-          app_bn="$(${coreutils}/bin/basename $app)"
+      "${findutils}/bin/find" "${config.home.profileDirectory}/Applications/" -maxdepth 1 -iname '*.app' | while read app ; do
+          app_bn="$(${coreutils}/bin/basename "$app")"
           echo "Aliasing ${config.home.profileDirectory}/Applications/$app_bn to ${config.home.homeDirectory}/Applications/$app_bn"
           ${createMacOSAlias} "${config.home.profileDirectory}/Applications/$app_bn" "${config.home.homeDirectory}/Applications/$app_bn"
       done
@@ -108,6 +108,7 @@ in
     #KarabinerElements
     Iterm2 # instead of using xcode to build iterm2 in nixpkgs
     Cog
+    GoogleChrome
   ];
   # # solve the locale problems
   # home.sessionVariables = {
