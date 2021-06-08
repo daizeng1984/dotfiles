@@ -9,6 +9,10 @@ endfunction
 " Specify a directory for plugins (for Neovim: ~/.local/share/nvim/plugged)
 call plug#begin('~/.config/nvim/plugged')
 
+" color scheme
+Plug 'cocopon/iceberg.vim'
+"Plug 'vim-scripts/wombat256.vim'
+
 " Whether to use deoplete + lsp or coc.nvim
 let g:use_native_lsp = 0
 let g:use_python3_plugins = 1
@@ -36,8 +40,8 @@ endif
 
 " TODO: Avoid conflict with my old vim plugins
 if has('nvim')
-    Plug 'vim-airline/vim-airline'
-    Plug 'vim-airline/vim-airline-themes'
+    Plug 'zefei/vim-wintabs'
+    Plug 'zefei/vim-wintabs-powerline'
 endif
 
 
@@ -52,7 +56,7 @@ if has('python3') && g:use_python3_plugins
     endif
 
     " snippet
-    Plug 'SirVer/ultisnips'
+    " Plug 'SirVer/ultisnips'
 
     " Stop the complaining due to taskwarrior not installed
     if CliInstalled('task')
@@ -71,8 +75,8 @@ if has('python3') && g:use_python3_plugins
     
 else
     " snippet
-    Plug 'Shougo/neosnippet.vim'
-    Plug 'Shougo/neosnippet-snippets'
+    " Plug 'Shougo/neosnippet.vim'
+    " Plug 'Shougo/neosnippet-snippets'
 endif
 
 
@@ -93,9 +97,7 @@ Plug 'junegunn/vim-emoji'
 Plug 'jlanzarotta/bufexplorer'
 Plug 'vim-scripts/wombat256.vim'
 Plug 'mhinz/vim-grepper'
-Plug 'airblade/vim-gitgutter' " Show git diff
-Plug 'rhysd/conflict-marker.vim'
-set previewheight=20
+Plug 'mhinz/vim-signify'
 Plug 'tpope/vim-fugitive' " -, dv, U, cc, cA, p, q
 Plug 'gregsexton/gitv' "extension to fugitive
 Plug 'tpope/vim-surround'
@@ -107,13 +109,12 @@ Plug 'mattn/emmet-vim' " c-y ,then type this>is>tag ---> <this> <is> <tag> ... <
 Plug 'mattn/webapi-vim' " Gist dependencies
 Plug 'vim-scripts/Gist.vim' "Gist but before git config --global github.user Username
 Plug 'vim-scripts/BufOnly.vim' " BufOnly to close all but this
-Plug 'sheerun/vim-polyglot' " One to rule them all, one to find them, one to bring them all and in the darkness bind them.
+"SLOW! Plug 'sheerun/vim-polyglot' " One to rule them all, one to find them, one to bring them all and in the darkness bind them.
 Plug 'vim-scripts/LargeFile' " Load largefile without syntax etc. burden
 Plug 'AndrewRadev/linediff.vim' " :Linediff for two blocks
 Plug 'brooth/far.vim' " Easier Search&Replace :Far number num <tab>for hint and then vola! Use x to exclude and X to exclude for all, i for include and I for ... Far also works for virtual block!
 Plug 'djoshea/vim-autoread' " Auto reload when changed by other app
-Plug 'kshenoy/vim-signature' " Added color vis for marks
-" Plug 'rking/ag.vim' " Test
+"SLOW! Plug 'kshenoy/vim-signature' " Added color vis for marks
 Plug 'bronson/vim-visual-star-search' " Case sensitive * in virtual mode
 Plug 'tpope/vim-ragtag' " complete words with tag! :help ragtag
 Plug 'scrooloose/nerdtree' " NERDtree, even though know it for a while, usually my flow doesn't include much file exploring
@@ -121,7 +122,7 @@ Plug 'Xuyuanp/nerdtree-git-plugin' " git flag in NERDTree
 
 " Deplete companions
 Plug 'justinj/vim-react-snippets'
-Plug 'neomake/neomake'
+" Plug 'neomake/neomake'
 
 " Markdown plugins
 Plug 'dhruvasagar/vim-table-mode', {'for': ['markdown'] } " for better table in markdown, :TableModeToggle and || to start, you can even tableize the csv style entries and do table formula, delete column localleader=\\
@@ -141,6 +142,8 @@ Plug 'nathanaelkane/vim-indent-guides' " Indention guide
 
 "Leetcode
 Plug 'ianding1/leetcode.vim'
+Plug 'drmikehenry/vim-headerguard'
+Plug 'ericcurtin/CurtineIncSw.vim'
 "Plug 'ramele/agrep'
 "Plug 'othree/jspc.vim', { 'for': ['javascript', 'javascript.jsx'] }
 " Plug 'itchyny/calendar.vim' " Interesting to try out, Google Calendar in vim!

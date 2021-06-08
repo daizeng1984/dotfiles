@@ -88,17 +88,13 @@ let $FZF_DEFAULT_COMMAND = '( fd --type f --hidden --follow --exclude .git || fi
 " BufExplorer
 let g:bufExplorerDisableDefaultKeyMapping=1
 
-" VimAirline
-set t_Co=256
-let g:airline_theme='wombat'
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#formatter = 'default'
-let g:airline#extensions#tabline#buffer_nr_show = 1
-let g:airline#extensions#tabline#fnamemod = ':t'
-let g:airline#extensions#tabline#left_sep = ''
-let g:airline#extensions#tabline#left_alt_sep = ''
-let g:airline#extensions#tabline#right_sep = ''
-let g:airline#extensions#tabline#right_alt_sep = ''
+" wintab
+let g:wintabs_powerline_arrow_left = '>'
+let g:wintabs_powerline_arrow_right = '<'
+let g:wintabs_powerline_sep_buffer_transition = ''
+let g:wintabs_powerline_sep_buffer = ''
+let g:wintabs_powerline_sep_tab_transition = ''
+let g:wintabs_powerline_sep_tab = ''
 
 " TODO: rootcause vim8 fails...
 if ! has('nvim')
@@ -106,8 +102,7 @@ set laststatus=2
 endif
 
 " Wombat!
-colorscheme wombat256mod
-hi Normal ctermbg=none
+colorscheme iceberg
 
 " Grepper
 let g:grepper = {
@@ -168,9 +163,6 @@ hi IndentGuidesOdd  ctermbg=237
 hi IndentGuidesEven ctermbg=234
 
 
-" Gitgutter
-autocmd BufWritePost * GitGutter
-
 " LSP
 if g:use_native_lsp
 lua <<EOF
@@ -190,5 +182,8 @@ let g:ale_fixers = {
 \   'javascript': ['eslint'],
 \}
 let g:ale_set_quickfix = 1
+
+" CoC
+let g:coc_config_home = '${HOME}/.config/nvim'
 
 endif

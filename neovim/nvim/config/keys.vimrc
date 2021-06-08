@@ -90,7 +90,9 @@ imap <F4> <Esc>:call MyInsertCalDate()<CR>
 vmap <C-R> y:Farp<CR><C-R>0<CR>
 
 " Ctrl-e for ultisnips or neosnippet
-if has_key(g:plugs, 'neosnippet.vim')
+if has_key(g:plugs, 'coc.nvim')
+    imap <C-e> <Plug>(coc-snippets-expand)
+elseif has_key(g:plugs, 'neosnippet.vim')
     imap <C-e> <Plug>(neosnippet_expand_or_jump)
 endif
 
@@ -239,3 +241,6 @@ if system('uname -r') =~ "Microsoft"
         autocmd TextYankPost * :call system('clip.exe ',@")
     augroup END
 endif
+
+" switch
+nmap <leader>wo :call CurtineIncSw()<CR>

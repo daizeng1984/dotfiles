@@ -25,19 +25,6 @@ set conceallevel=1
 " clipboard
 " set clipboard=unnamedplus
 " set completeopt=longest,menuone,preview
-let g:clipboard = {
-            \   'name': 'cbs',
-            \   'copy': {
-            \      '+': 'cbs',
-            \      '*': 'cbs',
-            \    },
-            \   'paste': {
-            \      '+': 'cbs paste',
-            \      '*': 'cbs paste',
-            \   },
-            \   'cache_enabled': 1,
-            \ }
-
 filetype plugin indent on
 set omnifunc=syntaxcomplete#Complete
 
@@ -84,8 +71,6 @@ endif
 set ssop-=options " do not store global and local values in a session 
 set ssop-=folds " do not store folds
 
-"The theme and font setting
-silent colorscheme desert
 
 "Fold for syntax ( { [
 set foldmethod=syntax
