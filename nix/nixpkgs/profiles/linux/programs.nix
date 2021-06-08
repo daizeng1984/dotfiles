@@ -40,6 +40,7 @@ let
   
 in
 {
+  nixpkgs.overlays = [(import ../../overlays/linux)];
   home.packages = with pkgs; [
     # unrar duf
     apfs-fuse
@@ -70,6 +71,8 @@ in
     tdesktop
     ghostscript
     albert
+    pandoc
+    wkhtmltopdf
     # ibus
     # ibus-engines.libpinyin
     # ibus-engines.table-chinese

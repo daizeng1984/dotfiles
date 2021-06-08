@@ -36,5 +36,6 @@ in
     exa
     bat
     htop
+    miniserve
   ];
 }

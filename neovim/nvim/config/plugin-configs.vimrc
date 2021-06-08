@@ -101,8 +101,12 @@ if ! has('nvim')
 set laststatus=2
 endif
 
-" Wombat!
-colorscheme iceberg
+" Color
+if (has("termguicolors"))
+    set termguicolors
+endif
+syntax enable
+colorscheme palenight
 
 " Grepper
 let g:grepper = {
