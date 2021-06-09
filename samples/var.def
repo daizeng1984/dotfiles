@@ -2,15 +2,17 @@ function __mapToDef() {
     user="${1}"
     host="${2}"
     def="${3}"
-    nix="${4}"
-    if [ -z "{5}" ]; then
+    nix=""
+    dustline="diamonddust"
+    if [ $# -gt 3 ]; then
+        nix="${4}"
+    fi
+    if [ $# -gt 4 ]; then
         dustline="${5}"
-    else
-        dustline='diamonddust'
     fi
     if [ "${user}" = "$(whoami)" ] && [[ "$(hostname)" == *"${host}"* ]] ; then
         if [ -r "$HOME/.dotfiles/samples/${def}" ] ; then
-            echo "Find ${def} script for user ${user} on $(hostname)"
+            echo "Find ${def} script for user ${user} on $(hostname) with nix setting ${nix} & dustline ${dustline}"
             export MY_NIX_PROFILE=$nix
             export TMUX_DUSTLINE_SCHEME="$dustline"
             source "$HOME/.dotfiles/samples/${def}"
