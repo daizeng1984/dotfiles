@@ -88,14 +88,6 @@ let $FZF_DEFAULT_COMMAND = '( fd --type f --hidden --follow --exclude .git || fi
 " BufExplorer
 let g:bufExplorerDisableDefaultKeyMapping=1
 
-" wintab
-let g:wintabs_powerline_arrow_left = '>'
-let g:wintabs_powerline_arrow_right = '<'
-let g:wintabs_powerline_sep_buffer_transition = ''
-let g:wintabs_powerline_sep_buffer = ''
-let g:wintabs_powerline_sep_tab_transition = ''
-let g:wintabs_powerline_sep_tab = ''
-
 " TODO: rootcause vim8 fails...
 if ! has('nvim')
 set laststatus=2

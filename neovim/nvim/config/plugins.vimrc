@@ -44,9 +44,10 @@ endif
 
 " TODO: Avoid conflict with my old vim plugins
 if has('nvim')
-    Plug 'zefei/vim-wintabs'
-    Plug 'zefei/vim-wintabs-powerline'
+    " Plug 'zefei/vim-wintabs'
+    " Plug 'zefei/vim-wintabs-powerline'
 endif
+Plug 'ap/vim-buftabline'
 
 
 " Python plugins
