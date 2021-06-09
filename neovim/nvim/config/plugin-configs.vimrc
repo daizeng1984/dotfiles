@@ -106,7 +106,7 @@ if (has("termguicolors"))
     set termguicolors
 endif
 syntax enable
-colorscheme iceberg
+colorscheme seoul256
 
 " Grepper
 let g:grepper = {

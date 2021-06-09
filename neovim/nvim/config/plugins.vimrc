@@ -13,8 +13,9 @@ call plug#begin('~/.config/nvim/plugged')
 " https://colorswat.ch/vim/list?p=3&bg=dark&cat=all
 Plug 'cocopon/iceberg.vim'
 Plug 'arcticicestudio/nord-vim'
-Plug 'jacoborus/tender.vim'
-Plug 'freeo/vim-kalisi'
+Plug 'NLKNguyen/papercolor-theme'
+Plug 'KeitaNakamura/neodark.vim'
+Plug 'junegunn/seoul256.vim'
 
 " Whether to use deoplete + lsp or coc.nvim
 let g:use_native_lsp = 0
@@ -119,7 +120,8 @@ Plug 'brooth/far.vim' " Easier Search&Replace :Far number num <tab>for hint and 
 Plug 'djoshea/vim-autoread' " Auto reload when changed by other app
 "SLOW! Plug 'kshenoy/vim-signature' " Added color vis for marks
 Plug 'bronson/vim-visual-star-search' " Case sensitive * in virtual mode
-Plug 'tpope/vim-ragtag' " complete words with tag! :help ragtag
+" Plug 'tpope/vim-ragtag' " complete words with tag! :help ragtag
+Plug 'alvan/vim-closetag'
 Plug 'scrooloose/nerdtree' " NERDtree, even though know it for a while, usually my flow doesn't include much file exploring
 Plug 'Xuyuanp/nerdtree-git-plugin' " git flag in NERDTree
 
