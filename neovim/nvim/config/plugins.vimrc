@@ -11,13 +11,10 @@ call plug#begin('~/.config/nvim/plugged')
 
 " color scheme
 " https://colorswat.ch/vim/list?p=3&bg=dark&cat=all
-" Plug 'cocopon/iceberg.vim'
-" Plug 'ajmwagar/vim-deus'
-" Plug 'arcticicestudio/nord-vim'
-" Plug 'jacoborus/tender.vim'
-Plug 'drewtempelmeyer/palenight.vim'
-" Plug 'freeo/vim-kalisi'
-"Plug 'vim-scripts/wombat256.vim'
+Plug 'cocopon/iceberg.vim'
+Plug 'arcticicestudio/nord-vim'
+Plug 'jacoborus/tender.vim'
+Plug 'freeo/vim-kalisi'
 
 " Whether to use deoplete + lsp or coc.nvim
 let g:use_native_lsp = 0
