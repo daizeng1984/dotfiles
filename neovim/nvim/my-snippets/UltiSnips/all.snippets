@@ -6,3 +6,131 @@ endsnippet
 snippet utc "UTC Time"
 ${1:`!v strftime("%Y-%m-%d %H:%M:%S %z")`}
 endsnippet
+
+# OpenGL
+snippet glheader "Opinated must have "
+// Generate your own header https://github.com/Dav1dde/glad/tree/glad2
+#include <glad/glad.h>
+#define GLFW_INCLUDE_NONE
+#include <GLFW/glfw3.h>
+#include <glm/glm.hpp>
+#define STB_IMAGE_IMPLEMENTATION
+#include <stb_image.h>
+endsnippet
+
+snippet glhelloworld "Hello World Example"
+// Init GLFW
+glfwInit();
+// Set all the required options for GLFW
+glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
+
+// Create a GLFWwindow object that we can use for GLFW's functions
+GLFWwindow* window = glfwCreateWindow(${1:WIDTH}, ${2:HEIGHT}, "HelloWorld", NULL, NULL);
+glfwMakeContextCurrent(window);
+if (window == NULL)
+{
+	std::cout << "Failed to create GLFW window" << std::endl;
+	glfwTerminate();
+	return -1;
+}
+
+// Set the required callback functions:
+// void key_callback(GLFWwindow* window, int key, int scancode, int action, int mode); 
+// Keycode see here: https://www.glfw.org/docs/3.3/group__keys.html
+glfwSetKeyCallback(window, ${3:key_callback}); //
+
+if (!gladLoadGLLoader((GLADloadproc) glfwGetProcAddress))
+{
+	std::cout << "Failed to initialize OpenGL context" << std::endl;
+	return -1;
+}
+
+// Define the viewport dimensions
+glViewport(0, 0, ${1:WIDTH}, ${2:HEIGHT});
+
+// Game loop
+while (!glfwWindowShouldClose(window)) 
+{
+	// Check if any events have been activated (key pressed, mouse moved etc.) and call corresponding response functions
+	glfwPollEvents();
+
+	if( glfwGetKey(window, GLFW_KEY_ESCAPE ) != GLFW_PRESS ) {
+		break;
+	}
+
+	// Render
+	// Clear the colorbuffer
+	glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+	glClear(GL_COLOR_BUFFER_BIT);
+
+	// Swap the screen buffers
+	glfwSwapBuffers(window);
+}
+
+// Terminates GLFW, clearing any resources allocated by GLFW.
+glfwTerminate();
+return 0;
+endsnippet
+
+snippet glvbo "VBO"
+GLuint ${1:mybuffer};
+glGenBuffers(1,&${1:myBuffer});
+glBindBuffer(GL_ARRAY_BUFFER, ${1:myBuffer});
+glBufferData(GL_ARRAY_BUFFER,sizeof(${2:data}),${2:data},GL_STATIC_DRAW); // GL_DYNAMIC_DRAW
+
+glBindBuffer(GL_ARRAY_BUFFER, 0);
+endsnippet
+
+snippet glebo "EBO"
+GLuint ${1:mybuffer};
+glGenBuffers(1,&${1:myBuffer});
+glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ${1:myBuffer});
+glBufferData(GL_ELEMENT_ARRAY_BUFFER,sizeof(${2:data}),${2:data},GL_STATIC_DRAW); // GL_DYNAMIC_DRAW
+
+glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+endsnippet
+
+snippet glvao "VAO"
+glGenVertexArrays(1, &${1:VAO});
+glBindVertexArray(${1:VAO});
+
+// Example: struct Vertex { float3 Position; float3 Normal; float3 TexCoords; };
+#define OFFSETOF(TYPE, ELEMENT) ((size_t)&(((TYPE *)0)->ELEMENT))
+// vertex positions float3
+glEnableVertexAttribArray(0);	
+glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(${2:Vertex}), (void*)OFFSETOF(${2:Vertex}, ${3:Position});
+// vertex normals float 3
+glEnableVertexAttribArray(1);	
+glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(${2:Vertex}), (void*)OFFSETOF(${2:Vertex}, ${4:Normal}));
+// vertex texture coords
+glEnableVertexAttribArray(2);	
+glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(${2:Vertex}), (void*)OFFSETOF(${2:Vertex}, ${5:TexCoords}));
+#undef OFFSETOF
+
+glBindVertexArray(0);
+endsnippet
+
+snippet gltexture "Set Texture"
+endsnippet
+
+snippet glpush "Push States"
+// Save states, remove according to needs
+GLint last_program; glGetIntegerv(GL_CURRENT_PROGRAM, &last_program);
+GLint last_texture; glGetIntegerv(GL_TEXTURE_BINDING_2D, &last_texture);
+GLint last_array_buffer; glGetIntegerv(GL_ARRAY_BUFFER_BINDING, &last_array_buffer);
+GLint last_element_array_buffer; glGetIntegerv(GL_ELEMENT_ARRAY_BUFFER_BINDING, &last_element_array_buffer);
+GLint last_vertex_array; glGetIntegerv(GL_VERTEX_ARRAY_BINDING, &last_vertex_array);
+GLint last_blend_src; glGetIntegerv(GL_BLEND_SRC, &last_blend_src);
+GLint last_blend_dst; glGetIntegerv(GL_BLEND_DST, &last_blend_dst);
+GLint last_blend_equation_rgb; glGetIntegerv(GL_BLEND_EQUATION_RGB, &last_blend_equation_rgb);
+GLint last_blend_equation_alpha; glGetIntegerv(GL_BLEND_EQUATION_ALPHA, &last_blend_equation_alpha);
+GLint last_viewport[4]; glGetIntegerv(GL_VIEWPORT, last_viewport);
+GLboolean last_enable_blend = glIsEnabled(GL_BLEND);
+GLboolean last_enable_cull_face = glIsEnabled(GL_CULL_FACE);
+GLboolean last_enable_depth_test = glIsEnabled(GL_DEPTH_TEST);
+GLboolean last_enable_scissor_test = glIsEnabled(GL_SCISSOR_TEST);
+
+endsnippet
