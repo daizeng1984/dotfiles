@@ -9,6 +9,7 @@ import (builtins.fetchTarball {
     }
 }:
  
+# You need to run sdkmanager --licenses to accept all licenses cached
 let
   androidSdk = pkgs.androidenv.androidPkgs_9_0.androidsdk;
 in

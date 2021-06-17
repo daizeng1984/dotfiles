@@ -32,12 +32,6 @@ requirements:
     - autoconf
     - automake
 
-  host:
-    - gettext
-    - libiconv
-  run:
-    - gettext
-    - libiconv
 
 test:
   commands:

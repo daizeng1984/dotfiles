@@ -1,0 +1,917 @@
+
+# OpenGL
+snippet glheader "Opinated must have "
+// Generate your own header https://github.com/Dav1dde/glad/tree/glad2
+#include <glad/glad.h>
+#define GLFW_INCLUDE_NONE
+#include <GLFW/glfw3.h>
+#include <glm/glm.hpp>
+#define STB_IMAGE_IMPLEMENTATION
+#include <stb_image.h>
+endsnippet
+
+snippet glhelloworld "Hello World Example"
+// Init GLFW
+glfwInit();
+// Set all the required options for GLFW
+glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
+glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE); //Mac OSX
+
+
+// Create a GLFWwindow object that we can use for GLFW's functions
+GLFWwindow* window = glfwCreateWindow(${1:WIDTH}, ${2:HEIGHT}, "HelloWorld", NULL, NULL);
+glfwMakeContextCurrent(window);
+if (window == NULL)
+{
+	std::cout << "Failed to create GLFW window" << std::endl;
+	glfwTerminate();
+	return -1;
+}
+
+// Set the required callback functions:
+// void key_callback(GLFWwindow* window, int key, int scancode, int action, int mode); 
+// Keycode see here: https://www.glfw.org/docs/3.3/group__keys.html
+glfwSetKeyCallback(window, [](GLFWwindow* window, int key, int scancode, int action, int mode)->void {
+	std::cout << key << std::endl;
+	if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS) {
+		glfwSetWindowShouldClose(window, GL_TRUE);
+	}
+}); //
+
+if (!gladLoadGLLoader((GLADloadproc) glfwGetProcAddress))
+{
+	std::cout << "Failed to initialize OpenGL context" << std::endl;
+	return -1;
+}
+
+// Define the viewport dimensions
+glViewport(0, 0, ${1:WIDTH}, ${2:HEIGHT});
+
+// Game loop
+while (!glfwWindowShouldClose(window)) 
+{
+	// Check if any events have been activated (key pressed, mouse moved etc.) and call corresponding response functions
+	glfwPollEvents();
+
+	// Render
+	// Clear the colorbuffer
+	glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+	glClear(GL_COLOR_BUFFER_BIT);
+
+	// Swap the screen buffers
+	glfwSwapBuffers(window);
+}
+
+// Terminates GLFW, clearing any resources allocated by GLFW.
+glfwTerminate();
+endsnippet
+
+snippet glvbo "VBO"
+GLuint ${1:mybuffer};
+glGenBuffers(1,&${1:myBuffer});
+glBindBuffer(GL_ARRAY_BUFFER, ${1:myBuffer});
+glBufferData(GL_ARRAY_BUFFER,sizeof(${2:data}),${2:data},GL_STATIC_DRAW); // GL_DYNAMIC_DRAW
+
+glBindBuffer(GL_ARRAY_BUFFER, 0);
+endsnippet
+
+snippet glebo "EBO"
+GLuint ${1:mybuffer};
+glGenBuffers(1,&${1:myBuffer});
+glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ${1:myBuffer});
+glBufferData(GL_ELEMENT_ARRAY_BUFFER,sizeof(${2:data}),${2:data},GL_STATIC_DRAW); // GL_DYNAMIC_DRAW
+
+glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+endsnippet
+
+snippet glvao "VAO"
+glGenVertexArrays(1, &${1:VAO});
+glBindVertexArray(${1:VAO});
+
+// Example: struct Vertex { float3 Position; float3 Normal; float3 TexCoords; };
+#define OFFSETOF(TYPE, ELEMENT) ((size_t)&(((TYPE *)0)->ELEMENT))
+// vertex positions float3
+glEnableVertexAttribArray(0);	
+glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(${2:Vertex}), (void*)OFFSETOF(${2:Vertex}, ${3:Position});
+// vertex normals float 3
+glEnableVertexAttribArray(1);	
+glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(${2:Vertex}), (void*)OFFSETOF(${2:Vertex}, ${4:Normal}));
+// vertex texture coords
+glEnableVertexAttribArray(2);	
+glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(${2:Vertex}), (void*)OFFSETOF(${2:Vertex}, ${5:TexCoords}));
+#undef OFFSETOF
+
+glBindVertexArray(0);
+endsnippet
+
+snippet gltexture "Set Texture"
+endsnippet
+
+snippet gltriangle "Get Triangle"
+const GLfloat triangleVertex[] = {
+   -1.0f, -1.0f, 0.0f,
+   1.0f, -1.0f, 0.0f,
+   0.0f,  1.0f, 0.0f,
+};
+endsnippet
+
+snippet glcube "Get Cube"
+// Cube vertices, see https://www.opengl-tutorial.org/beginners-tutorials/tutorial-4-a-colored-cube/
+const GLfloat cubeVertex[] = {
+    -1.0f,-1.0f,-1.0f, // triangle 1 : begin
+    -1.0f,-1.0f, 1.0f,
+    -1.0f, 1.0f, 1.0f, // triangle 1 : end
+    1.0f, 1.0f,-1.0f, // triangle 2 : begin
+    -1.0f,-1.0f,-1.0f,
+    -1.0f, 1.0f,-1.0f, // triangle 2 : end
+    1.0f,-1.0f, 1.0f,
+    -1.0f,-1.0f,-1.0f,
+    1.0f,-1.0f,-1.0f,
+    1.0f, 1.0f,-1.0f,
+    1.0f,-1.0f,-1.0f,
+    -1.0f,-1.0f,-1.0f,
+    -1.0f,-1.0f,-1.0f,
+    -1.0f, 1.0f, 1.0f,
+    -1.0f, 1.0f,-1.0f,
+    1.0f,-1.0f, 1.0f,
+    -1.0f,-1.0f, 1.0f,
+    -1.0f,-1.0f,-1.0f,
+    -1.0f, 1.0f, 1.0f,
+    -1.0f,-1.0f, 1.0f,
+    1.0f,-1.0f, 1.0f,
+    1.0f, 1.0f, 1.0f,
+    1.0f,-1.0f,-1.0f,
+    1.0f, 1.0f,-1.0f,
+    1.0f,-1.0f,-1.0f,
+    1.0f, 1.0f, 1.0f,
+    1.0f,-1.0f, 1.0f,
+    1.0f, 1.0f, 1.0f,
+    1.0f, 1.0f,-1.0f,
+    -1.0f, 1.0f,-1.0f,
+    1.0f, 1.0f, 1.0f,
+    -1.0f, 1.0f,-1.0f,
+    -1.0f, 1.0f, 1.0f,
+    1.0f, 1.0f, 1.0f,
+    -1.0f, 1.0f, 1.0f,
+    1.0f,-1.0f, 1.0f
+};
+endsnippet
+
+snippet glteapot "Get Teapot"
+// https://raw.githubusercontent.com/openglredbook/examples/master/include/Shapes/Teapot.h
+const int NumTeapotVertices = 306;
+const int NumTeapotPatches = 32;
+const int NumTeapotVerticesPerPatch = 16;  // 4x4 Bezier patches
+const int NumTeapotIndices = NumTeapotVerticesPerPatch * NumTeapotPatches;
+
+//
+//  TeapotVerties - Control vertices of the patches forming the Utah teapot
+//
+
+static const GLfloat TeapotVertices[NumTeapotVertices][3] = {
+    { 1.4, 2.4, 0.0 },
+    { 1.4, 2.4, 0.784 },
+    { 0.784, 2.4, 1.4 },
+    { 0.0, 2.4, 1.4 },
+    { 1.3375, 2.53125, 0.0 },
+    { 1.3375, 2.53125, 0.749 },
+    { 0.749, 2.53125, 1.3375 },
+    { 0.0, 2.53125, 1.3375 },
+    { 1.4375, 2.53125, 0.0 },
+    { 1.4375, 2.53125, 0.805 },
+    { 0.805, 2.53125, 1.4375 },
+    { 0.0, 2.53125, 1.4375 },
+    { 1.5, 2.4, 0.0 },
+    { 1.5, 2.4, 0.84 },
+    { 0.84, 2.4, 1.5 },
+    { 0.0, 2.4, 1.5 },
+    { -0.784, 2.4, 1.4 },
+    { -1.4, 2.4, 0.784 },
+    { -1.4, 2.4, 0.0 },
+    { -0.749, 2.53125, 1.3375 },
+    { -1.3375, 2.53125, 0.749 },
+    { -1.3375, 2.53125, 0.0 },
+    { -0.805, 2.53125, 1.4375 },
+    { -1.4375, 2.53125, 0.805 },
+    { -1.4375, 2.53125, 0.0 },
+    { -0.84, 2.4, 1.5 },
+    { -1.5, 2.4, 0.84 },
+    { -1.5, 2.4, 0.0 },
+    { -1.4, 2.4, 0.784 },
+    { -0.784, 2.4, 1.4 },
+    { 0.0, 2.4, 1.4 },
+    { -1.3375, 2.53125, 0.749 },
+    { -0.749, 2.53125, 1.3375 },
+    { 0.0, 2.53125, 1.3375 },
+    { -1.4375, 2.53125, 0.805 },
+    { -0.805, 2.53125, 1.4375 },
+    { 0.0, 2.53125, 1.4375 },
+    { -1.5, 2.4, 0.84 },
+    { -0.84, 2.4, 1.5 },
+    { 0.0, 2.4, 1.5 },
+    { 0.784, 2.4, 1.4 },
+    { 1.4, 2.4, 0.784 },
+    { 0.749, 2.53125, 1.3375 },
+    { 1.3375, 2.53125, 0.749 },
+    { 0.805, 2.53125, 1.4375 },
+    { 1.4375, 2.53125, 0.805 },
+    { 0.84, 2.4, 1.5 },
+    { 1.5, 2.4, 0.84 },
+    { 1.75, 1.875, 0.0 },
+    { 1.75, 1.875, 0.98 },
+    { 0.98, 1.875, 1.75 },
+    { 0.0, 1.875, 1.75 },
+    { 2.0, 1.35, 0.0 },
+    { 2.0, 1.35, 1.12 },
+    { 1.12, 1.35, 2.0 },
+    { 0.0, 1.35, 2.0 },
+    { 2.0, 0.9, 0.0 },
+    { 2.0, 0.9, 1.12 },
+    { 1.12, 0.9, 2.0 },
+    { 0.0, 0.9, 2.0 },
+    { -0.98, 1.875, 1.75 },
+    { -1.75, 1.875, 0.98 },
+    { -1.75, 1.875, 0.0 },
+    { -1.12, 1.35, 2.0 },
+    { -2.0, 1.35, 1.12 },
+    { -2.0, 1.35, 0.0 },
+    { -1.12, 0.9, 2.0 },
+    { -2.0, 0.9, 1.12 },
+    { -2.0, 0.9, 0.0 },
+    { -1.75, 1.875, 0.98 },
+    { -0.98, 1.875, 1.75 },
+    { 0.0, 1.875, 1.75 },
+    { -2.0, 1.35, 1.12 },
+    { -1.12, 1.35, 2.0 },
+    { 0.0, 1.35, 2.0 },
+    { -2.0, 0.9, 1.12 },
+    { -1.12, 0.9, 2.0 },
+    { 0.0, 0.9, 2.0 },
+    { 0.98, 1.875, 1.75 },
+    { 1.75, 1.875, 0.98 },
+    { 1.12, 1.35, 2.0 },
+    { 2.0, 1.35, 1.12 },
+    { 1.12, 0.9, 2.0 },
+    { 2.0, 0.9, 1.12 },
+    { 2.0, 0.45, 0.0 },
+    { 2.0, 0.45, 1.12 },
+    { 1.12, 0.45, 2.0 },
+    { 0.0, 0.45, 2.0 },
+    { 1.5, 0.225, 0.0 },
+    { 1.5, 0.225, 0.84 },
+    { 0.84, 0.225, 1.5 },
+    { 0.0, 0.225, 1.5 },
+    { 1.5, 0.15, 0.0 },
+    { 1.5, 0.15, 0.84 },
+    { 0.84, 0.15, 1.5 },
+    { 0.0, 0.15, 1.5 },
+    { -1.12, 0.45, 2.0 },
+    { -2.0, 0.45, 1.12 },
+    { -2.0, 0.45, 0.0 },
+    { -0.84, 0.225, 1.5 },
+    { -1.5, 0.225, 0.84 },
+    { -1.5, 0.225, 0.0 },
+    { -0.84, 0.15, 1.5 },
+    { -1.5, 0.15, 0.84 },
+    { -1.5, 0.15, 0.0 },
+    { -2.0, 0.45, 1.12 },
+    { -1.12, 0.45, 2.0 },
+    { 0.0, 0.45, 2.0 },
+    { -1.5, 0.225, 0.84 },
+    { -0.84, 0.225, 1.5 },
+    { 0.0, 0.225, 1.5 },
+    { -1.5, 0.15, 0.84 },
+    { -0.84, 0.15, 1.5 },
+    { 0.0, 0.15, 1.5 },
+    { 1.12, 0.45, 2.0 },
+    { 2.0, 0.45, 1.12 },
+    { 0.84, 0.225, 1.5 },
+    { 1.5, 0.225, 0.84 },
+    { 0.84, 0.15, 1.5 },
+    { 1.5, 0.15, 0.84 },
+    { -1.6, 2.025, 0.0 },
+    { -1.6, 2.025, 0.3 },
+    { -1.5, 2.25, 0.3 },
+    { -1.5, 2.25, 0.0 },
+    { -2.3, 2.025, 0.0 },
+    { -2.3, 2.025, 0.3 },
+    { -2.5, 2.25, 0.3 },
+    { -2.5, 2.25, 0.0 },
+    { -2.7, 2.025, 0.0 },
+    { -2.7, 2.025, 0.3 },
+    { -3.0, 2.25, 0.3 },
+    { -3.0, 2.25, 0.0 },
+    { -2.7, 1.8, 0.0 },
+    { -2.7, 1.8, 0.3 },
+    { -3.0, 1.8, 0.3 },
+    { -3.0, 1.8, 0.0 },
+    { -1.5, 2.25, 0.3 },
+    { -1.6, 2.025, 0.3 },
+    { -2.5, 2.25, 0.3 },
+    { -2.3, 2.025, 0.3 },
+    { -3.0, 2.25, 0.3 },
+    { -2.7, 2.025, 0.3 },
+    { -3.0, 1.8, 0.3 },
+    { -2.7, 1.8, 0.3 },
+    { -2.7, 1.575, 0.0 },
+    { -2.7, 1.575, 0.3 },
+    { -3.0, 1.35, 0.3 },
+    { -3.0, 1.35, 0.0 },
+    { -2.5, 1.125, 0.0 },
+    { -2.5, 1.125, 0.3 },
+    { -2.65, 0.9375, 0.3 },
+    { -2.65, 0.9375, 0.0 },
+    { -2.0, 0.9, 0.3 },
+    { -1.9, 0.6, 0.3 },
+    { -1.9, 0.6, 0.0 },
+    { -3.0, 1.35, 0.3 },
+    { -2.7, 1.575, 0.3 },
+    { -2.65, 0.9375, 0.3 },
+    { -2.5, 1.125, 0.3 },
+    { -1.9, 0.6, 0.3 },
+    { -2.0, 0.9, 0.3 },
+    { 1.7, 1.425, 0.0 },
+    { 1.7, 1.425, 0.66 },
+    { 1.7, 0.6, 0.66 },
+    { 1.7, 0.6, 0.0 },
+    { 2.6, 1.425, 0.0 },
+    { 2.6, 1.425, 0.66 },
+    { 3.1, 0.825, 0.66 },
+    { 3.1, 0.825, 0.0 },
+    { 2.3, 2.1, 0.0 },
+    { 2.3, 2.1, 0.25 },
+    { 2.4, 2.025, 0.25 },
+    { 2.4, 2.025, 0.0 },
+    { 2.7, 2.4, 0.0 },
+    { 2.7, 2.4, 0.25 },
+    { 3.3, 2.4, 0.25 },
+    { 3.3, 2.4, 0.0 },
+    { 1.7, 0.6, 0.66 },
+    { 1.7, 1.425, 0.66 },
+    { 3.1, 0.825, 0.66 },
+    { 2.6, 1.425, 0.66 },
+    { 2.4, 2.025, 0.25 },
+    { 2.3, 2.1, 0.25 },
+    { 3.3, 2.4, 0.25 },
+    { 2.7, 2.4, 0.25 },
+    { 2.8, 2.475, 0.0 },
+    { 2.8, 2.475, 0.25 },
+    { 3.525, 2.49375, 0.25 },
+    { 3.525, 2.49375, 0.0 },
+    { 2.9, 2.475, 0.0 },
+    { 2.9, 2.475, 0.15 },
+    { 3.45, 2.5125, 0.15 },
+    { 3.45, 2.5125, 0.0 },
+    { 2.8, 2.4, 0.0 },
+    { 2.8, 2.4, 0.15 },
+    { 3.2, 2.4, 0.15 },
+    { 3.2, 2.4, 0.0 },
+    { 3.525, 2.49375, 0.25 },
+    { 2.8, 2.475, 0.25 },
+    { 3.45, 2.5125, 0.15 },
+    { 2.9, 2.475, 0.15 },
+    { 3.2, 2.4, 0.15 },
+    { 2.8, 2.4, 0.15 },
+    { 0.0, 3.15, 0.0 },
+    { 0.0, 3.15, 0.002 },
+    { 0.002, 3.15, 0.0 },
+    { 0.8, 3.15, 0.0 },
+    { 0.8, 3.15, 0.45 },
+    { 0.45, 3.15, 0.8 },
+    { 0.0, 3.15, 0.8 },
+    { 0.0, 2.85, 0.0 },
+    { 0.2, 2.7, 0.0 },
+    { 0.2, 2.7, 0.112 },
+    { 0.112, 2.7, 0.2 },
+    { 0.0, 2.7, 0.2 },
+    { -0.002, 3.15, 0.0 },
+    { -0.45, 3.15, 0.8 },
+    { -0.8, 3.15, 0.45 },
+    { -0.8, 3.15, 0.0 },
+    { -0.112, 2.7, 0.2 },
+    { -0.2, 2.7, 0.112 },
+    { -0.2, 2.7, 0.0 },
+    { 0.0, 3.15, 0.002 },
+    { -0.8, 3.15, 0.45 },
+    { -0.45, 3.15, 0.8 },
+    { 0.0, 3.15, 0.8 },
+    { -0.2, 2.7, 0.112 },
+    { -0.112, 2.7, 0.2 },
+    { 0.0, 2.7, 0.2 },
+    { 0.45, 3.15, 0.8 },
+    { 0.8, 3.15, 0.45 },
+    { 0.112, 2.7, 0.2 },
+    { 0.2, 2.7, 0.112 },
+    { 0.4, 2.55, 0.0 },
+    { 0.4, 2.55, 0.224 },
+    { 0.224, 2.55, 0.4 },
+    { 0.0, 2.55, 0.4 },
+    { 1.3, 2.55, 0.0 },
+    { 1.3, 2.55, 0.728 },
+    { 0.728, 2.55, 1.3 },
+    { 0.0, 2.55, 1.3 },
+    { 1.3, 2.4, 0.0 },
+    { 1.3, 2.4, 0.728 },
+    { 0.728, 2.4, 1.3 },
+    { 0.0, 2.4, 1.3 },
+    { -0.224, 2.55, 0.4 },
+    { -0.4, 2.55, 0.224 },
+    { -0.4, 2.55, 0.0 },
+    { -0.728, 2.55, 1.3 },
+    { -1.3, 2.55, 0.728 },
+    { -1.3, 2.55, 0.0 },
+    { -0.728, 2.4, 1.3 },
+    { -1.3, 2.4, 0.728 },
+    { -1.3, 2.4, 0.0 },
+    { -0.4, 2.55, 0.224 },
+    { -0.224, 2.55, 0.4 },
+    { 0.0, 2.55, 0.4 },
+    { -1.3, 2.55, 0.728 },
+    { -0.728, 2.55, 1.3 },
+    { 0.0, 2.55, 1.3 },
+    { -1.3, 2.4, 0.728 },
+    { -0.728, 2.4, 1.3 },
+    { 0.0, 2.4, 1.3 },
+    { 0.224, 2.55, 0.4 },
+    { 0.4, 2.55, 0.224 },
+    { 0.728, 2.55, 1.3 },
+    { 1.3, 2.55, 0.728 },
+    { 0.728, 2.4, 1.3 },
+    { 1.3, 2.4, 0.728 },
+    { 0.0, 0.0, 0.0 },
+    { 1.5, 0.15, 0.0 },
+    { 1.5, 0.15, 0.84 },
+    { 0.84, 0.15, 1.5 },
+    { 0.0, 0.15, 1.5 },
+    { 1.5, 0.075, 0.0 },
+    { 1.5, 0.075, 0.84 },
+    { 0.84, 0.075, 1.5 },
+    { 0.0, 0.075, 1.5 },
+    { 1.425, 0.0, 0.0 },
+    { 1.425, 0.0, 0.798 },
+    { 0.798, 0.0, 1.425 },
+    { 0.0, 0.0, 1.425 },
+    { -0.84, 0.15, 1.5 },
+    { -1.5, 0.15, 0.84 },
+    { -1.5, 0.15, 0.0 },
+    { -0.84, 0.075, 1.5 },
+    { -1.5, 0.075, 0.84 },
+    { -1.5, 0.075, 0.0 },
+    { -0.798, 0.0, 1.425 },
+    { -1.425, 0.0, 0.798 },
+    { -1.425, 0.0, 0.0 },
+    { -1.5, 0.15, 0.84 },
+    { -0.84, 0.15, 1.5 },
+    { 0.0, 0.15, 1.5 },
+    { -1.5, 0.075, 0.84 },
+    { -0.84, 0.075, 1.5 },
+    { 0.0, 0.075, 1.5 },
+    { -1.425, 0.0, 0.798 },
+    { -0.798, 0.0, 1.425 },
+    { 0.0, 0.0, 1.425 },
+    { 0.84, 0.15, 1.5 },
+    { 1.5, 0.15, 0.84 },
+    { 0.84, 0.075, 1.5 },
+    { 1.5, 0.075, 0.84 },
+    { 0.798, 0.0, 1.425 },
+    { 1.425, 0.0, 0.798 }
+ };
+
+//
+//  TeapotIndices - Indices into patch control vertices (from vertices.h)
+//
+//    Each patch is a 4x4 Bezier patch, and there are 32 patches in the
+//      Utah teapot.
+//
+
+static const GLint TeapotIndices[NumTeapotPatches][4][4] = {
+    {
+	{0, 1, 2, 3},
+	{4, 5, 6, 7},
+	{8, 9, 10, 11},
+	{12, 13, 14, 15}
+    },
+    {
+	{3, 16, 17, 18},
+	{7, 19, 20, 21},
+	{11, 22, 23, 24},
+	{15, 25, 26, 27}
+    },
+    {
+	{18, 28, 29, 30},
+	{21, 31, 32, 33},
+	{24, 34, 35, 36},
+	{27, 37, 38, 39}
+    },
+    {
+	{30, 40, 41, 0},
+	{33, 42, 43, 4},
+	{36, 44, 45, 8},
+	{39, 46, 47, 12}
+    },
+    {
+	{12, 13, 14, 15},
+	{48, 49, 50, 51},
+	{52, 53, 54, 55},
+	{56, 57, 58, 59}
+    },
+    {
+	{15, 25, 26, 27},
+	{51, 60, 61, 62},
+	{55, 63, 64, 65},
+	{59, 66, 67, 68}
+    },
+    {
+	{27, 37, 38, 39},
+	{62, 69, 70, 71},
+	{65, 72, 73, 74},
+	{68, 75, 76, 77}
+    },
+    {
+	{39, 46, 47, 12},
+	{71, 78, 79, 48},
+	{74, 80, 81, 52},
+	{77, 82, 83, 56}
+    },
+    {
+	{56, 57, 58, 59},
+	{84, 85, 86, 87},
+	{88, 89, 90, 91},
+	{92, 93, 94, 95}
+    },
+    {
+	{59, 66, 67, 68},
+	{87, 96, 97, 98},
+	{91, 99, 100, 101},
+	{95, 102, 103, 104}
+    },
+    {
+	{68, 75, 76, 77},
+	{98, 105, 106, 107},
+	{101, 108, 109, 110},
+	{104, 111, 112, 113}
+    },
+    {
+	{77, 82, 83, 56},
+	{107, 114, 115, 84},
+	{110, 116, 117, 88},
+	{113, 118, 119, 92}
+    },
+    {
+	{120, 121, 122, 123},
+	{124, 125, 126, 127},
+	{128, 129, 130, 131},
+	{132, 133, 134, 135}
+    },
+    {
+	{123, 136, 137, 120},
+	{127, 138, 139, 124},
+	{131, 140, 141, 128},
+	{135, 142, 143, 132}
+    },
+    {
+	{132, 133, 134, 135},
+	{144, 145, 146, 147},
+	{148, 149, 150, 151},
+	{68, 152, 153, 154}
+    },
+    {
+	{135, 142, 143, 132},
+	{147, 155, 156, 144},
+	{151, 157, 158, 148},
+	{154, 159, 160, 68}
+    },
+    {
+	{161, 162, 163, 164},
+	{165, 166, 167, 168},
+	{169, 170, 171, 172},
+	{173, 174, 175, 176}
+    },
+    {
+	{164, 177, 178, 161},
+	{168, 179, 180, 165},
+	{172, 181, 182, 169},
+	{176, 183, 184, 173}
+    },
+    {
+	{173, 174, 175, 176},
+	{185, 186, 187, 188},
+	{189, 190, 191, 192},
+	{193, 194, 195, 196}
+    },
+    {
+	{176, 183, 184, 173},
+	{188, 197, 198, 185},
+	{192, 199, 200, 189},
+	{196, 201, 202, 193}
+    },
+    {
+	{203, 203, 203, 203},
+	{206, 207, 208, 209},
+	{210, 210, 210, 210},
+	{211, 212, 213, 214}
+    },
+    {
+	{203, 203, 203, 203},
+	{209, 216, 217, 218},
+	{210, 210, 210, 210},
+	{214, 219, 220, 221}
+    },
+    {
+	{203, 203, 203, 203},
+	{218, 223, 224, 225},
+	{210, 210, 210, 210},
+	{221, 226, 227, 228}
+    },
+    {
+	{203, 203, 203, 203},
+	{225, 229, 230, 206},
+	{210, 210, 210, 210},
+	{228, 231, 232, 211}
+    },
+    {
+	{211, 212, 213, 214},
+	{233, 234, 235, 236},
+	{237, 238, 239, 240},
+	{241, 242, 243, 244}
+    },
+    {
+	{214, 219, 220, 221},
+	{236, 245, 246, 247},
+	{240, 248, 249, 250},
+	{244, 251, 252, 253}
+    },
+    {
+	{221, 226, 227, 228},
+	{247, 254, 255, 256},
+	{250, 257, 258, 259},
+	{253, 260, 261, 262}
+    },
+    {
+	{228, 231, 232, 211},
+	{256, 263, 264, 233},
+	{259, 265, 266, 237},
+	{262, 267, 268, 241}
+    },
+    {
+	{269, 269, 269, 269},
+	{278, 279, 280, 281},
+	{274, 275, 276, 277},
+	{270, 271, 272, 273}
+    },
+    {
+	{269, 269, 269, 269},
+	{281, 288, 289, 290},
+	{277, 285, 286, 287},
+	{273, 282, 283, 284}
+    },
+    {
+	{269, 269, 269, 269},
+	{290, 297, 298, 299},
+	{287, 294, 295, 296},
+	{284, 291, 292, 293}
+    },
+    {
+	{269, 269, 269, 269},
+	{299, 304, 305, 278},
+	{296, 302, 303, 274},
+	{293, 300, 301, 270}
+    }
+};
+endsnippet
+
+snippet glsimplevsfs "vertex & fragment shaders"
+const char* vertexShader =
+"#version ${1:400}\n"
+"in vec3 vp;"
+"void main() {"
+"  gl_Position = vec4(vp, 1.0);"
+"}";
+
+const char* fragmentShader =
+"#version ${1:400}\n"
+"out vec4 frag_colour;"
+"void main() {"
+"  frag_colour = vec4(0.0, 0.5, 0.5, 1.0);"
+"}";
+endsnippet
+
+snippet glshader "Create shader program"
+GLuint vs = glCreateShader(GL_VERTEX_SHADER);
+glShaderSource(vs, 1, &vertexShader, NULL);
+glCompileShader(vs);
+GLuint fs = glCreateShader(GL_FRAGMENT_SHADER);
+glShaderSource(fs, 1, &fragmentShader, NULL);
+glCompileShader(fs);
+
+GLuint shaderProgram = glCreateProgram();
+glAttachShader(shaderProgram, fs);
+glAttachShader(shaderProgram, vs);
+glLinkProgram(shaderProgram);
+endsnippet
+
+snippet glcheckshader "Check shader status"
+auto checkShader = [](GLuint shaderId, bool program=false)-> bool {
+// inline bool ChechShader(GLuint shaderId, bool program=false) {
+    GLint res = GL_FALSE;
+	int infoLength;
+	// Check Shader
+	if(program) {
+		glGetProgramiv(shaderId, GL_LINK_STATUS, &res);
+		glGetProgramiv(shaderId, GL_INFO_LOG_LENGTH, &infoLength);
+	}
+	else {
+		glGetShaderiv(shaderId, GL_COMPILE_STATUS, &res);
+		glGetShaderiv(shaderId, GL_INFO_LOG_LENGTH, &infoLength);
+	}
+		
+	if ( infoLength > 0 ){
+		std::string errMsg(infoLength+1, 0);
+		glGetShaderInfoLog(shaderId, infoLength, NULL, errMsg.data());
+		std::cout << (program ? "Program Error: " : "Shader Error" ) << errMsg << std::endl;
+		return false;
+	}
+	else {
+		return true;
+	}
+}
+endsnippet
+
+snippet gldraw "Draw"
+glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+glClearColor(0.0f, 1.0f, 0.0f, 1.0f); // RGBA green by default
+glBindFramebuffer( GL_FRAMEBUFFER, ${1:fbo});
+glColorMask( GL_TRUE, GL_TRUE, GL_TRUE, GL_TRUE );
+glUseProgram(${2:program});
+glBindVertexArray(${3:vao});
+glDrawArrays(GL_TRIANGLES, 0, ${4:3}); // number of points in vao, commonly GL_POINTS,  GL_LINES,  GL_TRIANGLE_STRIP
+endsnippet
+
+snippet glpush "Push States"
+// Save states, remove according to needs
+GLint last_program; glGetIntegerv(GL_CURRENT_PROGRAM, &last_program);
+GLint last_texture; glGetIntegerv(GL_TEXTURE_BINDING_2D, &last_texture);
+GLint last_array_buffer; glGetIntegerv(GL_ARRAY_BUFFER_BINDING, &last_array_buffer);
+GLint last_element_array_buffer; glGetIntegerv(GL_ELEMENT_ARRAY_BUFFER_BINDING, &last_element_array_buffer);
+GLint last_vertex_array; glGetIntegerv(GL_VERTEX_ARRAY_BINDING, &last_vertex_array);
+GLint last_blend_src; glGetIntegerv(GL_BLEND_SRC, &last_blend_src);
+GLint last_blend_dst; glGetIntegerv(GL_BLEND_DST, &last_blend_dst);
+GLint last_blend_equation_rgb; glGetIntegerv(GL_BLEND_EQUATION_RGB, &last_blend_equation_rgb);
+GLint last_blend_equation_alpha; glGetIntegerv(GL_BLEND_EQUATION_ALPHA, &last_blend_equation_alpha);
+GLint last_viewport[4]; glGetIntegerv(GL_VIEWPORT, last_viewport);
+GLboolean last_enable_blend = glIsEnabled(GL_BLEND);
+GLboolean last_enable_cull_face = glIsEnabled(GL_CULL_FACE);
+GLboolean last_enable_depth_test = glIsEnabled(GL_DEPTH_TEST);
+GLboolean last_enable_scissor_test = glIsEnabled(GL_SCISSOR_TEST);
+endsnippet
+
+snippet glmvp "MVP"
+glm::mat4 Projection = glm::perspective(glm::radians(fovdegree), aspectRatio, near, far);
+// Or, for an ortho camera :
+//glm::mat4 Projection = glm::ortho(x0, x1, y0, y1, z0, z1); // In world coordinates
+// View
+glm::mat4 View = glm::lookAt(
+    glm::vec3(0,0,-1), // Camera
+    glm::vec3(0,0,0), // Lookat
+    glm::vec3(0,1,0)  // Up
+    );
+  
+// Model
+glm::mat4 Model = glm::mat4(1.0f);
+// MVP
+glm::mat4 mvp = Projection * View * Model;
+endsnippet
+
+snippet gluniform "Uniform"
+GLuint ${2:uniform}Location = glGetUniformLocation(${1:programId}, "${2:uniform}");
+glUniform${3:1}v(${2:uniform}, 1, GL_FALSE, ${4:data}); // format #{ui|f|i}v or Matrix#(x#){f}v
+endsnippet
+
+snippet glimage "Load Image"
+int width, height, channel;
+unsigned char* image = stbi_load(${1:"image.png"}, &width, &height, &channel, STBI_rgb); // or STBI_rgb_alpha
+
+if(image == nullptr)
+    std::cout << "Cannot load image" << std::endl;
+
+glGenTextures(1, &textureId);
+glBindTexture(GL_TEXTURE_2D, textureId);
+
+glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE );
+glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE );
+glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR); //GL_LINEAR_MIPMAP_LINEAR 
+glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+// be aware of the packing setup
+// glPixelStorei( GL_UNPACK_ALIGNMENT, 1 );
+
+
+glTexImage2D(GL_TEXTURE_2D, 0, channel == 3 ? GL_RGB : GL_RBGA, w, h, 0, channel == 3 ? GL_RGB : GL_RBGA, GL_UNSIGNED_BYTE, image);
+//glGenerateMipmap( GL_TEXTURE_2D); // generate mipmap if we use that
+
+glBindTexture(GL_TEXTURE_2D, 0);
+
+stbi_image_free(image);
+endsnippet
+
+snippet glrbo "Render buffer or target"
+	glGenRenderbuffers( 1, &colorRBO );
+	glBindRenderbuffer( GL_RENDERBUFFER, colorRBO );
+
+#		if DEMOCFG_MSAA_FBO
+	glRenderbufferStorageMultisample( GL_RENDERBUFFER, 4, GL_RGBA8 /*TODO*/, fboWidth, fboHeight );
+#		else
+	glRenderbufferStorage( GL_RENDERBUFFER, GL_RGBA, fboWidth, fboHeight );
+#		endif
+
+#		if DEMOCFG_MSAA_FBO
+	glGenRenderbuffers( 1, &resolveRBO );
+	glBindRenderbuffer( GL_RENDERBUFFER, resolveRBO );
+	glRenderbufferStorage( GL_RENDERBUFFER, GL_RGBA, fboWidth, fboHeight );
+
+endsnippet
+
+snippet gldefine "Useful define"
+#define SAFE_DELTEX_( t ) if( t ) { glDeleteTextures( 1, &t ); t = 0; }
+#define SAFE_DELFBO_( f ) if( f ) { glDeleteFramebuffers( 1, &f ); f = 0; }
+#define SAFE_DELRBO_( r ) if( r ) { glDeleteRenderbuffers( 1, &r ); r = 0; }
+#define ERROR_CHECKPOINT {\
+GLenum err;\
+while((err = glGetError()) != GL_NO_ERROR)\
+{\
+  std::string errMsg;
+  switch (err)\
+  {\
+    // opengl 2 errors (8)\
+    case GL_NO_ERROR:\
+      errMsg = "GL_NO_ERROR";\
+    case GL_INVALID_ENUM:\
+      errMsg = "GL_INVALID_ENUM";\
+    case GL_INVALID_VALUE:\
+      errMsg = "GL_INVALID_VALUE";\
+    case GL_INVALID_OPERATION:\
+      errMsg = "GL_INVALID_OPERATION";\
+    case GL_STACK_OVERFLOW:\
+      errMsg = "GL_STACK_OVERFLOW";\
+    case GL_STACK_UNDERFLOW:\
+      errMsg = "GL_STACK_UNDERFLOW";\
+    case GL_OUT_OF_MEMORY:\
+      errMsg = "GL_OUT_OF_MEMORY";\
+    case GL_TABLE_TOO_LARGE:\
+      errMsg = "GL_TABLE_TOO_LARGE";\
+    // opengl 3 errors (1)\
+    case GL_INVALID_FRAMEBUFFER_OPERATION:\
+      errMsg = "GL_INVALID_FRAMEBUFFER_OPERATION";\
+	// opengl 4\
+	case GL_CONTEXT_LOST:\
+	  errMsg = "GL_CONTEXT_LOST";\
+    // gles 2, 3 and gl 4 error are handled by the switch above\
+    default:\
+      errMsg = "unknown error";\
+  }\
+  std::cout << errMsg << std::endl;\
+}\
+}
+
+endsnippet
+
+snippet glerror "Error callback"
+void GLAPIENTRY
+MessageCallback( GLenum source,
+                 GLenum type,
+                 GLuint id,
+                 GLenum severity,
+                 GLsizei length,
+                 const GLchar* message,
+                 const void* userParam )
+{
+  fprintf( stderr, "GL CALLBACK: %s type = 0x%x, severity = 0x%x, message = %s\n",
+	   ( type == GL_DEBUG_TYPE_ERROR ? "** GL ERROR **" : "" ),
+		type, severity, message );
+}
+
+// During init, enable debug output
+glEnable              ( GL_DEBUG_OUTPUT );
+glDebugMessageCallback( MessageCallback, 0 );
+endsnippet
+
+snippet glpop "Pop States"
+// Pop states, remove if no need
+glUseProgram(last_program);
+glBindVertexArray(last_vertex_array);
+glBindTexture(GL_TEXTURE_2D, last_texture);
+glBindBuffer(GL_ARRAY_BUFFER, last_array_buffer);
+glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, last_element_array_buffer);
+glBlendEquationSeparate(last_blend_equation_rgb, last_blend_equation_alpha);
+glBlendFunc(last_blend_src, last_blend_dst);
+glViewport(last_viewport[0], last_viewport[1], (GLsizei)last_viewport[2], (GLsizei)last_viewport[3]);
+if (last_enable_blend) glEnable(GL_BLEND); else glDisable(GL_BLEND);
+if (last_enable_cull_face) glEnable(GL_CULL_FACE); else glDisable(GL_CULL_FACE);
+if (last_enable_depth_test) glEnable(GL_DEPTH_TEST); else glDisable(GL_DEPTH_TEST);
+if (last_enable_scissor_test) glEnable(GL_SCISSOR_TEST); else glDisable(GL_SCISSOR_TEST);
+endsnippet
+
+

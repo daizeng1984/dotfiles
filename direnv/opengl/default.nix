@@ -5,7 +5,7 @@ import (builtins.fetchTarball {
       url = "https://codeload.github.com/NixOS/nixpkgs/tar.gz/21.05";
       sha256 = "1ckzhh24mgz6jd1xhfgx0i9mijk6xjqxwsshnvq789xsavrmsc36";
     }) {
-      config.allowUnfree = true; # for vscode
+      # config.allowUnfree = true;
       # config.allowBroken = true;
       # config.allowUnsupportedSystem = true;
     }
@@ -36,6 +36,8 @@ in pkgs.mkShell {
   ];
   buildInputs = with pkgs; [ 
     glfw
+    glm
+    stb
     darwin.apple_sdk.frameworks.Foundation
     darwin.apple_sdk.frameworks.OpenGL
     lldb
@@ -47,8 +49,7 @@ in pkgs.mkShell {
   shellHook = ''
     mkdir -p ./deps/glad
     glad --spec gl --profile core --out-path ./deps/glad --generator c --local-files --api gl=3.3
-    echo "🚀 opengl ready!"
+    echo "🚀 opengl ready! build with for example `clang++ main.cpp deps/glad/glad.c -Ideps/ -Istb -o main -lGLFW`"
   '';
-
 }
 
