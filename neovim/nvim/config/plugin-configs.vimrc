@@ -179,7 +179,11 @@ let g:ale_fixers = {
 \}
 let g:ale_set_quickfix = 1
 
-" CoC
-let g:coc_config_home = '${HOME}/.config/nvim'
-
 endif
+
+" CoC
+" let g:coc_config_home = '${HOME}/.config/nvim'
+
+" Github link
+let g:gh_open_command = 'fn() { echo "$@" | pbcopy; }; fn '
+

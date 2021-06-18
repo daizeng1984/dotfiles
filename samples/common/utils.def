@@ -113,9 +113,16 @@ alias nodepath='npm config get prefix'
 # SSH copy from https://stackoverflow.com/questions/1152362/how-to-send-data-to-local-clipboard-from-a-remote-ssh-session#answer-49890019
 ssh_copy() {
     echo "Make sure you setup password free by doing: 1)ssh-keygen -o if not done 2) ssh-copy-id id@server"
+    # TODO: alias pbcopy in linux xsel --clipboard
+    if [ "$DOTFILES_SYSTEM_NAME" = "darwin" ]; then
+        clipboard_function="pbcopy"
+    else
+        clipboard_function="xsel --clipboard"
+    fi
+    echo "Make sure you setup password free by doing: ssh-copy-id id@server"
     # clean all other ssh session
     ssh ${1} -t 'ps -aux | grep "[s]sh" | grep pts/ | grep -v $(ps --no-headers -fp $$ | awk "{print \$3}") | awk "{print \$2}" | xargs kill -9'
-    while ! (nc -l 2000 | cbs) || true; do 
+    while ! (nc -l 2000 | $clipboard_function) || true; do 
         : 
     done &
 
@@ -143,4 +150,8 @@ watch_stock() {
 # pdf compress
 pdf_compress() {
     gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/ebook -dNOPAUSE -dQUIET -dBATCH -sOutputFile="$1-compressed.pdf" "$1"
+}
+
+generate_gitignore() {
+    curl "https://www.toptal.com/developers/gitignore/api/${1}" --output .gitignore
 }

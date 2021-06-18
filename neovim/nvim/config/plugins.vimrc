@@ -112,7 +112,8 @@ Plug 'tpope/vim-eunuch' "Rename, Delete, Sudo etc.
 Plug 'tpope/vim-commentary' " replace tcomment
 Plug 'mattn/emmet-vim' " c-y ,then type this>is>tag ---> <this> <is> <tag> ... </.... or type insert mode and c-y , here's the cheatsheet https://docs.emmet.io/cheat-sheet/
 Plug 'mattn/webapi-vim' " Gist dependencies
-Plug 'vim-scripts/Gist.vim' "Gist but before git config --global github.user Username
+" Plug 'vim-scripts/Gist.vim' "Gist but before git config --global github.user Username
+Plug 'ruanyl/vim-gh-line' " get github links
 Plug 'vim-scripts/BufOnly.vim' " BufOnly to close all but this
 "SLOW! Plug 'sheerun/vim-polyglot' " One to rule them all, one to find them, one to bring them all and in the darkness bind them.
 Plug 'vim-scripts/LargeFile' " Load largefile without syntax etc. burden

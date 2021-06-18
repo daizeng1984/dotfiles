@@ -7,7 +7,9 @@ snippet glheader "Opinated must have "
 #include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
 #define STB_IMAGE_IMPLEMENTATION
-#include <stb_image.h>
+#include <stb/stb_image.h>
+#include <iostream>
+#include <string>
 endsnippet
 
 snippet glhelloworld "Hello World Example"
@@ -48,7 +50,9 @@ if (!gladLoadGLLoader((GLADloadproc) glfwGetProcAddress))
 }
 
 // Define the viewport dimensions
-glViewport(0, 0, ${1:WIDTH}, ${2:HEIGHT});
+int framebufferWidth, framebufferHeight; // e.g. retina
+glfwGetFramebufferSize(window, &framebufferWidth, &framebufferHeight);
+glViewport(0, 0, framebufferWidth, framebufferHeight);
 
 // Game loop
 while (!glfwWindowShouldClose(window)) 
@@ -70,38 +74,43 @@ glfwTerminate();
 endsnippet
 
 snippet glvbo "VBO"
-GLuint ${1:mybuffer};
+GLuint ${1:myBuffer};
 glGenBuffers(1,&${1:myBuffer});
 glBindBuffer(GL_ARRAY_BUFFER, ${1:myBuffer});
 glBufferData(GL_ARRAY_BUFFER,sizeof(${2:data}),${2:data},GL_STATIC_DRAW); // GL_DYNAMIC_DRAW
-
 glBindBuffer(GL_ARRAY_BUFFER, 0);
 endsnippet
 
 snippet glebo "EBO"
-GLuint ${1:mybuffer};
+GLuint ${1:myBuffer};
 glGenBuffers(1,&${1:myBuffer});
 glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ${1:myBuffer});
 glBufferData(GL_ELEMENT_ARRAY_BUFFER,sizeof(${2:data}),${2:data},GL_STATIC_DRAW); // GL_DYNAMIC_DRAW
-
 glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 endsnippet
 
 snippet glvao "VAO"
-glGenVertexArrays(1, &${1:VAO});
-glBindVertexArray(${1:VAO});
+GLuint ${1:vao};
+glGenVertexArrays(1, &${1:vao});
+glBindVertexArray(${1:vao});
+
+// TODO: WARN: glEnableVertexAttribArray need active buffer e.g. glBindBuffer first
+glBindBuffer(GL_ARRAY_BUFFER, ${6:myBuffer});
 
 // Example: struct Vertex { float3 Position; float3 Normal; float3 TexCoords; };
 #define OFFSETOF(TYPE, ELEMENT) ((size_t)&(((TYPE *)0)->ELEMENT))
 // vertex positions float3
 glEnableVertexAttribArray(0);	
-glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(${2:Vertex}), (void*)OFFSETOF(${2:Vertex}, ${3:Position});
+glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(${2:Vertex}), (void*)OFFSETOF(${2:Vertex}, ${3:Position}));
+glDisableVertexAttribArray(0);
 // vertex normals float 3
 glEnableVertexAttribArray(1);	
 glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(${2:Vertex}), (void*)OFFSETOF(${2:Vertex}, ${4:Normal}));
+glDisableVertexAttribArray(1);
 // vertex texture coords
 glEnableVertexAttribArray(2);	
 glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(${2:Vertex}), (void*)OFFSETOF(${2:Vertex}, ${5:TexCoords}));
+glDisableVertexAttribArray(2);
 #undef OFFSETOF
 
 glBindVertexArray(0);
@@ -730,24 +739,29 @@ auto checkShader = [](GLuint shaderId, bool program=false)-> bool {
 		
 	if ( infoLength > 0 ){
 		std::string errMsg(infoLength+1, 0);
-		glGetShaderInfoLog(shaderId, infoLength, NULL, errMsg.data());
+		glGetShaderInfoLog(shaderId, infoLength, NULL, &errMsg[0]);
 		std::cout << (program ? "Program Error: " : "Shader Error" ) << errMsg << std::endl;
 		return false;
 	}
 	else {
 		return true;
 	}
-}
+};
 endsnippet
 
 snippet gldraw "Draw"
-glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 glClearColor(0.0f, 1.0f, 0.0f, 1.0f); // RGBA green by default
+glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+glEnable(GL_DEPTH_TEST);
+glDepthFunc(GL_LESS);
 glBindFramebuffer( GL_FRAMEBUFFER, ${1:fbo});
 glColorMask( GL_TRUE, GL_TRUE, GL_TRUE, GL_TRUE );
 glUseProgram(${2:program});
 glBindVertexArray(${3:vao});
+glEnableVertexAttribArray(0);	
 glDrawArrays(GL_TRIANGLES, 0, ${4:3}); // number of points in vao, commonly GL_POINTS,  GL_LINES,  GL_TRIANGLE_STRIP
+glBindVertexArray(0);
+glDisableVertexAttribArray(0);
 endsnippet
 
 snippet glpush "Push States"
@@ -838,14 +852,13 @@ snippet gldefine "Useful define"
 #define SAFE_DELTEX_( t ) if( t ) { glDeleteTextures( 1, &t ); t = 0; }
 #define SAFE_DELFBO_( f ) if( f ) { glDeleteFramebuffers( 1, &f ); f = 0; }
 #define SAFE_DELRBO_( r ) if( r ) { glDeleteRenderbuffers( 1, &r ); r = 0; }
-#define ERROR_CHECKPOINT {\
+#define GL_ERROR_CHECKPOINT() {\
 GLenum err;\
 while((err = glGetError()) != GL_NO_ERROR)\
 {\
-  std::string errMsg;
+  std::string errMsg;\
   switch (err)\
   {\
-    // opengl 2 errors (8)\
     case GL_NO_ERROR:\
       errMsg = "GL_NO_ERROR";\
     case GL_INVALID_ENUM:\
@@ -862,20 +875,16 @@ while((err = glGetError()) != GL_NO_ERROR)\
       errMsg = "GL_OUT_OF_MEMORY";\
     case GL_TABLE_TOO_LARGE:\
       errMsg = "GL_TABLE_TOO_LARGE";\
-    // opengl 3 errors (1)\
     case GL_INVALID_FRAMEBUFFER_OPERATION:\
       errMsg = "GL_INVALID_FRAMEBUFFER_OPERATION";\
-	// opengl 4\
-	case GL_CONTEXT_LOST:\
-	  errMsg = "GL_CONTEXT_LOST";\
-    // gles 2, 3 and gl 4 error are handled by the switch above\
+    case GL_CONTEXT_LOST:\
+            errMsg = "GL_CONTEXT_LOST";\
     default:\
       errMsg = "unknown error";\
   }\
   std::cout << errMsg << std::endl;\
 }\
 }
-
 endsnippet
 
 snippet glerror "Error callback"
