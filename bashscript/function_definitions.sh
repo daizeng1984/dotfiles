@@ -41,12 +41,14 @@ fda() {
 
 # fkill - kill process
 fkill() {
-  pid=$(ps -ef | sed 1d | fzf -m | awk '{print $2}')
+  pids=$(ps -ef | sed 1d | fzf -m | awk '{print $2}')
 
-  if [ "x$pid" != "x" ]
-  then
-    kill -${1:-9} $pid
-  fi
+  echo $pids | while read pid ; do
+    if [ "x$pid" != "x" ]
+    then
+      kill -${1:-9} $pid
+    fi
+  done
 }
 sfkill() {
   pid=$(ps -ef | sed 1d | fzf -m | awk '{print $2}')
