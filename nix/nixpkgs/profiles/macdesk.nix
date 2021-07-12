@@ -90,8 +90,8 @@ in
     tickrs
     findutils
     slack
-    gimp
-    cbs
+    #gimp
+    #cbs
     coreutils
     imagemagick
     python3 # tools like autokey depends
@@ -108,7 +108,7 @@ in
     #KarabinerElements
     Iterm2 # instead of using xcode to build iterm2 in nixpkgs
     Cog
-    GoogleChrome
+    #GoogleChrome
   ];
   # # solve the locale problems
   # home.sessionVariables = {
