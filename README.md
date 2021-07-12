@@ -11,11 +11,17 @@ cd && git clone https://github.com/daizeng1984/dotfiles.git .dotfiles && cd .dot
 Then restart the shell
 
 # Nix
-This setup relies on Nix which is very powerful. The cost is for now: root permission.
+This setup relies on Nix which is very powerful. The cost is for now: root permission. On Mac you need to run: `xcode-select --install` first to make sure basic cli e.g. git are available.
 ```sh
 cd && git clone https://github.com/daizeng1984/dotfiles.git .dotfiles && cd .dotfiles && ./createSymlink.sh && source ./installNix.sh
 ```
 Because it's powerful, you don't need to do anything (TODO: kidding not yet 😄 unless you are in NixOS)
+
+After that, you need to setup *.def files. For example, for mac, go to `var.def` file and put mapping for your `whoami` and `hostname` output:
+```sh
+__mapToDef '<your whoami output>' '<your hostname output>' 'macnix.def' 'homemac'
+```
+restart your terminal and run home-manager switch
 
 ## Linux
 TODO:
