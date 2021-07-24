@@ -109,6 +109,8 @@ in
     Iterm2 # instead of using xcode to build iterm2 in nixpkgs
     Cog
     #GoogleChrome
+    CornerCal
+    Kap
   ];
   # # solve the locale problems
   # home.sessionVariables = {

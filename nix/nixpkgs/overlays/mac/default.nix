@@ -82,6 +82,25 @@ self: super: with super; {
       sha256 = "1qcc88pz1mgz3gvdma91plcffi6mj2vvb4ldkgfw6z068l5ga2gz";
     };
   };
+
+  CornerCal = let version = "1.1"; in import(./util.nix) { inherit version; super=self;
+    Name = "CornerCal";
+    src = fetchurl {
+      name = "CornerCal.zip";
+      url = "https://github.com/ekreutz/CornerCal/blob/v${version}/builds/CornerCal.zip?raw=true";
+      sha256 = "10d7y2dcrsh0420gh3y6900hz2n98p8gnypciyfphfsdswwm07rr";
+    };
+  };
+  
+  Kap = let version = "3.3.2"; in import(./util.nix) { inherit version; super=self;
+    Name = "Kap";
+    src = fetchurl {
+      name = "Kap-${version}.dmg";
+      url = "https://github.com/wulkano/kap/releases/download/v${version}/Kap-${version}.dmg";
+      sha256 = "0ibw1d7dmkxx5nmil14gc0mci34dlzrzs03rn1xzdw18f760axrj";
+    };
+  };
+  
   # Karabiner has launchctl etc. 
   # KarabinerElements = let version = "13.1.0"; in import(./util.nix) { inherit version; inherit super;
   #   Name = "Karabiner-Elements";

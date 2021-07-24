@@ -155,3 +155,8 @@ pdf_compress() {
 generate_gitignore() {
     curl "https://www.toptal.com/developers/gitignore/api/${1}" --output .gitignore
 }
+
+remote_copy() {
+    rsync -rav -e ssh $@
+}
+
