@@ -118,6 +118,7 @@ Plug 'vim-scripts/BufOnly.vim' " BufOnly to close all but this
 "SLOW! Plug 'sheerun/vim-polyglot' " One to rule them all, one to find them, one to bring them all and in the darkness bind them.
 Plug 'vim-scripts/LargeFile' " Load largefile without syntax etc. burden
 Plug 'AndrewRadev/linediff.vim' " :Linediff for two blocks
+Plug 'will133/vim-dirdiff' "DirDiff
 Plug 'brooth/far.vim' " Easier Search&Replace :Far number num <tab>for hint and then vola! Use x to exclude and X to exclude for all, i for include and I for ... Far also works for virtual block!
 Plug 'djoshea/vim-autoread' " Auto reload when changed by other app
 "SLOW! Plug 'kshenoy/vim-signature' " Added color vis for marks

@@ -101,6 +101,15 @@ self: super: with super; {
     };
   };
   
+  Flame = let version = "0.10.1"; in import(./util.nix) { inherit version; super=self;
+    Name = "Flameshot";
+    src = fetchurl {
+      name = "flameshot.dmg";
+      url = "https://github.com/flameshot-org/flameshot/releases/download/v${version}/flameshot.dmg";
+      sha256 = "0ibw1d7dmkxx5nmil14gc0mci34dlzrzs03rn1xzdw18f760axrj";
+    };
+  };
+  
   # Karabiner has launchctl etc. 
   # KarabinerElements = let version = "13.1.0"; in import(./util.nix) { inherit version; inherit super;
   #   Name = "Karabiner-Elements";
