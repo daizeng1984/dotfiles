@@ -107,6 +107,7 @@ fi
 # TODO: export certainfile='$(fzf)'
 # Initialize zoxide or fasd
 if [ "$installedZoxide" = "1" ] ; then
+    export _ZO_MAXAGE=99999
     # fasd
     z() {
         local dir
