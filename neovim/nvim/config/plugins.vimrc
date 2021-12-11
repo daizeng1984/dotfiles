@@ -125,8 +125,10 @@ Plug 'djoshea/vim-autoread' " Auto reload when changed by other app
 Plug 'bronson/vim-visual-star-search' " Case sensitive * in virtual mode
 " Plug 'tpope/vim-ragtag' " complete words with tag! :help ragtag
 Plug 'alvan/vim-closetag'
-Plug 'scrooloose/nerdtree' " NERDtree, even though know it for a while, usually my flow doesn't include much file exploring
-Plug 'Xuyuanp/nerdtree-git-plugin' " git flag in NERDTree
+Plug 'lambdalisue/fern.vim'
+Plug 'lambdalisue/fern-git-status.vim'
+Plug 'antoinemadec/FixCursorHold.nvim' " https://github.com/antoinemadec/FixCursorHold.nvim
+" nerdtree is too slow!!!
 
 " Deplete companions
 Plug 'justinj/vim-react-snippets'
@@ -155,6 +157,8 @@ Plug 'ericcurtin/CurtineIncSw.vim'
 "Plug 'ramele/agrep'
 "Plug 'othree/jspc.vim', { 'for': ['javascript', 'javascript.jsx'] }
 " Plug 'itchyny/calendar.vim' " Interesting to try out, Google Calendar in vim!
+
+Plug 'puremourning/vimspector'
 
 " Add plugins to &runtimepath
 call plug#end()

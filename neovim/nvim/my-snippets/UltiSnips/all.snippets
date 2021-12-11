@@ -23,6 +23,12 @@ snippet bimg "blog image"
 ![${1:Image Title}](../images/blog/${2:`!v strftime("%Y")`}/${3:image.png})
 endsnippet
 
+snippet link "markdown link"
+[${0:${VISUAL}}](${1:`!v
+getreg("*")
+`})
+endsnippet
+
 snippet img "markdown image"
 ![${0:${VISUAL}}](${1:`!v
 getreg("*")
