@@ -24,6 +24,7 @@ source ./conda/installMiniconda.sh
 
 # Tools
 conda install -y -c conda-forge wget
+conda install -y -c conda-forge coreutils
 conda install -y -c conda-forge git
 conda install -y -c conda-forge zsh
 conda install -y -c conda-forge direnv

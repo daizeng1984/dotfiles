@@ -29,7 +29,9 @@ filetype plugin indent on
 set omnifunc=syntaxcomplete#Complete
 
 " Add rtp
-set runtimepath+=$XDG_CONFIG_HOME/nvim/runtime
+set runtimepath=$XDG_CONFIG_HOME/nvim/runtime
+set runtimepath+=$HOME/.local/share/nvim/site
+set runtimepath+=$VIMRUNTIME
 
 "Set textwidth to avoid auto wrapping (insert new line)
 set textwidth=0

@@ -12,7 +12,7 @@ function __mapToDef() {
     fi
     if [ "${user}" = "$(whoami)" ] && [[ "$(hostname)" == *"${host}"* ]] ; then
         if [ -r "$HOME/.dotfiles/samples/${def}" ] ; then
-            echo "Find ${def} script for user ${user} on $(hostname) with nix setting ${nix} & dustline ${dustline}"
+            echo "Find ${def} script for user ${user} on $(hostname) with nix setting name=[${nix}] & dustline ${dustline}"
             export MY_NIX_PROFILE=$nix
             export TMUX_DUSTLINE_SCHEME="$dustline"
             source "$HOME/.dotfiles/samples/${def}"
@@ -24,7 +24,7 @@ function __mapToDef() {
 }
 
 # use hostnamectl set-hostname <new host name> to set hostname or sudo scutil --set HostName <new host name>
-__mapToDef 'zdai' 'macbook-pro-13-home' 'macnix.def' 'homemac'
+__mapToDef 'zdai' 'macbook-pro-13-home' 'macnix.def'
 __mapToDef 'zeng' 'Zengs-MacBook-Pro' 'macconda.def'
 __mapToDef 'zdai' 'centos8-xps8700' 'centosnix.def' 'homelinux' 'reddust'
 __mapToDef 'zdai' 'centos8-laptop' 'centosnix.def' 'homelinux'

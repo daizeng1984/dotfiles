@@ -150,15 +150,11 @@ Plug 'jamessan/vim-gnupg' " Encryptize transparently error informations
 " Python
 Plug 'nathanaelkane/vim-indent-guides' " Indention guide
 
-"Leetcode
-Plug 'ianding1/leetcode.vim'
 Plug 'drmikehenry/vim-headerguard'
 Plug 'ericcurtin/CurtineIncSw.vim'
 "Plug 'ramele/agrep'
 "Plug 'othree/jspc.vim', { 'for': ['javascript', 'javascript.jsx'] }
 " Plug 'itchyny/calendar.vim' " Interesting to try out, Google Calendar in vim!
-
-Plug 'puremourning/vimspector'
 
 " Add plugins to &runtimepath
 call plug#end()
