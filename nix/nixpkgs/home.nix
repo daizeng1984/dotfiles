@@ -2,6 +2,9 @@
 
 let profiles = {
 # Base includes shell and utility related install
+  blank = [
+    ./profiles/blank.nix
+  ];
   base = [
     ./profiles/minimal.nix
   ];
@@ -29,10 +32,14 @@ let profiles = {
     ./profiles/cli.nix
     ./profiles/macdesk.nix
   ];
+  homemacconda = [
+    ./profiles/blank.nix
+    ./profiles/macdesk.nix
+  ];
 };
 envProfile = builtins.getEnv "MY_NIX_PROFILE";
 # I'm sure here can do better, now tolerate nix baby language 😂
-profile = if ("${envProfile}" == "") then "base" else "${envProfile}" ;
+profile = if ("${envProfile}" == "") then "blank" else "${envProfile}" ;
 in
 {
   nixpkgs.config.allowUnfree = true;
