@@ -98,7 +98,9 @@ dependencies:
     - flask
     - pip
     - pip:
-        - Flask-Testing"
+        - Flask-Testing
+shell: export MY_ENV_VAR=0
+        "
         echo $env_content > $(pwd)/environment.yml
         nvim $(pwd)/environment.yml
         conda env create -f $(pwd)/environment.yml

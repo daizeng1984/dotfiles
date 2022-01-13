@@ -44,12 +44,12 @@ self: super: with super; {
     };
   };
 
-  Iterm2 = let version = "3_4_3"; in import(./util.nix) { inherit version; super=self;
+  Iterm2 = let version = "3_4_15"; in import(./util.nix) { inherit version; super=self;
     Name = "Iterm2";
     src = fetchurl {
       name = "iTerm2-${version}.zip";
       url = "https://iterm2.com/downloads/stable/iTerm2-${version}.zip";
-      sha256 = "1fgnm2mfp3n14ba8rlvl7y630w9pvbvyadyzxabzgpcbhd23imwy";
+      sha256 = "0y0vhxwn1cl0y1gjm5fad5zndb4v448mqcksbmmskpgg73h4wn9j";
     };
   };
   
@@ -63,12 +63,12 @@ self: super: with super; {
     };
   };
   
-  Cog = let version = "4ea289ba"; in import(./util.nix) { inherit version; super=self;
+  Cog = let version = "9feaffc9"; in import(./util.nix) { inherit version; super=self;
     Name = "Cog";
     src = fetchurl {
       name = "Cog-${version}.zip";
       url = "https://balde.losno.co/cog/Cog-${version}.zip";
-      sha256 = "1g7f3mw1ygi3kdcpiiixyjg1hnbhl0ryccdxqq287q0lsd14854f";
+      sha256 = "0q300aarnaim1jhdxxbb261pc1qlblljqr96imvr83j5rvhqay52";
     };
   };
 
@@ -92,21 +92,21 @@ self: super: with super; {
     };
   };
   
-  Kap = let version = "3.3.2"; in import(./util.nix) { inherit version; super=self;
+  Kap = let version = "3.5.1"; in import(./util.nix) { inherit version; super=self;
     Name = "Kap";
     src = fetchurl {
       name = "Kap-${version}.dmg";
       url = "https://github.com/wulkano/kap/releases/download/v${version}/Kap-${version}.dmg";
-      sha256 = "0ibw1d7dmkxx5nmil14gc0mci34dlzrzs03rn1xzdw18f760axrj";
+      sha256 = "06xzghig5nal22cin2yax70sajzrx2jwqy00v95jp70fwgxxg4wf";
     };
   };
   
-  Flame = let version = "0.10.1"; in import(./util.nix) { inherit version; super=self;
+  Flameshot = let version = "0.10.2"; in import(./util.nix) { inherit version; super=self;
     Name = "Flameshot";
     src = fetchurl {
       name = "flameshot.dmg";
       url = "https://github.com/flameshot-org/flameshot/releases/download/v${version}/flameshot.dmg";
-      sha256 = "0ibw1d7dmkxx5nmil14gc0mci34dlzrzs03rn1xzdw18f760axrj";
+      sha256 = "1a9bwh7v7zwv746h684ajrb7h230nkcb9s6xdfcqfzbnarklrrr6";
     };
   };
   

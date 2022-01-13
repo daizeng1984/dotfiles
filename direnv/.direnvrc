@@ -10,6 +10,7 @@ use_conda() {
     # Detect environment name from `environment.yml` file in `.envrc` directory
     # override the path to be conda flavor
     source $ACTIVATE `grep name: environment.yml | sed -e 's/name: //' | cut -d "'" -f 2 | cut -d '"' -f 2`
+    eval `grep shell: environment.yml | sed -e 's/shell: //' `
   else
     (>&2 echo No environment specified);
     exit 1;

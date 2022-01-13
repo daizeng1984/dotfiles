@@ -10,7 +10,7 @@ let
 in
 {
   home.packages = with pkgs; [
-    git
+    gitSVN
     git-lfs # large file storage support
     gitAndTools.delta
     zsh

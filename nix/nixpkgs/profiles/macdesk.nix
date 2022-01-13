@@ -104,13 +104,15 @@ in
     VLC
     Phoenix
     #MonitorControl
-    Shifty# Flux has no version control
+    Shifty
+    # Flux has no version control
     #KarabinerElements
     Iterm2 # instead of using xcode to build iterm2 in nixpkgs
     Cog
     #GoogleChrome
-    CornerCal
+    #CornerCal
     Kap
+    Flameshot
   ];
   # # solve the locale problems
   # home.sessionVariables = {
