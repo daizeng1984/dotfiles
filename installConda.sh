@@ -2,6 +2,7 @@
 # Install miniconda
 source ./conda/installMiniconda.sh
 
+if [ "${1}" != "--minicondaOnly" ]; then
 # Now we do minimal setup
 # Nodejs
 # conda install -y -c conda-forge nodejs
@@ -21,6 +22,8 @@ source ./conda/installMiniconda.sh
 # native lib via bundler always requires lib path from conda, not friendly at all
 # has to use system ruby
 # conda install -y -c conda-forge ruby
+# Mamba
+conda install -y -c conda-forge mamba
 
 # Tools
 conda install -y -c conda-forge wget
@@ -28,9 +31,10 @@ conda install -y -c conda-forge coreutils
 conda install -y -c conda-forge git
 conda install -y -c conda-forge zsh
 conda install -y -c conda-forge direnv
-conda install -y -c conda-forge neovim
-conda install -y -c daizeng1984 nvim
+# conda install -y -c conda-forge neovim
+# conda install -y -c daizeng1984 nvim
 conda install -y -c conda-forge tmux
+conda install -y -c conda-forge vim
 # Fix https://github.com/conda-forge/tmux-feedstock/issues/12
 conda install -y -c conda-forge ncurses
 # Misc
@@ -61,3 +65,5 @@ source $HOME/.dotfiles/neovim/configNeovim.sh
 source $HOME/.dotfiles/tmux/configTmux.sh
 
 git clone https://github.com/robbyrussell/oh-my-zsh.git $HOME/.oh-my-zsh
+
+fi

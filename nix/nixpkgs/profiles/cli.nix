@@ -31,7 +31,7 @@ in
     vim
     nmap
     tmux
-    tmuxp
+    #tmuxp
     dtrx
     unrar
     rclone

@@ -94,8 +94,8 @@ in
     #cbs
     coreutils
     imagemagick
-    python3 # tools like autokey depends
-    nodejs # neovim coc depends
+    #python3 # tools like autokey depends
+    #nodejs # neovim coc depends
     yarn
     wuzz
     alacritty

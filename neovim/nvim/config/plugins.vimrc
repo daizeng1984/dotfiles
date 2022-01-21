@@ -104,7 +104,6 @@ Plug 'vim-scripts/wombat256.vim'
 Plug 'mhinz/vim-grepper'
 Plug 'mhinz/vim-signify'
 Plug 'tpope/vim-fugitive' " -, dv, U, cc, cA, p, q
-Plug 'gregsexton/gitv' "extension to fugitive
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-dadbod' " db, keep it here to try
 Plug 'tpope/vim-unimpaired' " [,]q for quickfix and [l for loclist
@@ -142,7 +141,6 @@ Plug 'vimwiki/vimwiki' " Great tool! I think it's better than org mode I tried
 Plug 'vim-scripts/utl.vim', {'for': ['markdown'] } " Utl help open URL in netrw
 Plug 'powerman/vim-plugin-AnsiEsc', {'for': ['markdown'] }  " allow colorful chart in taskwiki
 Plug 'jxnblk/vim-mdx-js' " MDX syntax
-Plug 'ap/vim-css-color' " Color for CSS
 Plug 'jamessan/vim-gnupg' " Encryptize transparently error informations
 " Plug 'rhysd/nyaovim-markdown-preview', {'for': ['markdown'] }  " Nayovim GUI preview for markdown
 " Plug 'tybenz/vimdeck' " Presentation tool

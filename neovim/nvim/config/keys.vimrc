@@ -211,6 +211,7 @@ command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organize
 " Add (Neo)Vim's native statusline support.
 " NOTE: Please see `:h coc-status` for integrations with external plugins that
 " provide custom statusline: lightline.vim, vim-airline.
+set statusline^=%<%f\ %h%m%r%{FugitiveStatusline()}%=%-14.(%l,%c%V%)\ %P
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 " Mappings for CoCList
@@ -240,6 +241,11 @@ if system('uname -r') =~ "Microsoft"
         autocmd TextYankPost * :call system('clip.exe ',@")
     augroup END
 endif
+
+" Fugitive
+nnoremap <expr> D &buftype ==# 'quickfix' ? "yaw:cclose\<CR>:Gvdiffsplit \<C-R>0\<CR>" : 'D'
+nnoremap <leader>gl :0Gclog -- %<CR>
+autocmd BufReadPost fugitive://* set bufhidden=delete
 
 " switch
 nmap <leader>wo :call CurtineIncSw()<CR>

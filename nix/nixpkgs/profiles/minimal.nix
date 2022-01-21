@@ -22,6 +22,7 @@ in
     #fasd
     zoxide
     ripgrep
+    gnugrep
     tree
     duf
     broot
