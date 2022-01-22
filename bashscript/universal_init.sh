@@ -41,7 +41,7 @@ alias egrep='egrep --color=auto'
 # A copy that can solve Mac's "problem"
 alias copy='rsync --progress -ravzI'
 alias v='vim -n --cmd "filetype indent on" -u "NONE"'
-alias vimm="vim -u $HOME/.config/nvim/init.vim"
+alias vim="vim -u $HOME/.config/nvim/init.vim"
 
 source "$HOME/.dotfiles/bashscript/function_definitions.sh"
 # pkg manager priority Nix > Conda > Adhoc

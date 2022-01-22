@@ -245,6 +245,7 @@ endif
 " Fugitive
 nnoremap <expr> D &buftype ==# 'quickfix' ? "yaw:cclose\<CR>:Gvdiffsplit \<C-R>0\<CR>" : 'D'
 nnoremap <leader>gl :0Gclog -- %<CR>
+nnoremap <leader>D :call DiffCurrentQuickfixEntry()<CR>
 autocmd BufReadPost fugitive://* set bufhidden=delete
 
 " switch

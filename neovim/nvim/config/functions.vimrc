@@ -185,4 +185,17 @@ function PasteFromTmpBuffer()
     endtry
 endfunction
 
+" https://github.com/tpope/vim-fugitive/issues/132
+function DiffCurrentQuickfixEntry() abort
+  cc
+  let qf = getqflist({'context': 0, 'idx': 0})
+  if get(qf, 'idx') && type(get(qf, 'context')) == type({}) && type(get(qf.context, 'items')) == type([])
+    let diff = get(qf.context.items[qf.idx - 1], 'diff', [])
+    for i in reverse(range(len(diff)))
+      exe (i ? 'rightbelow' : 'leftabove') 'vert diffsplit' fnameescape(diff[i].filename)
+      wincmd p
+    endfor
+  endif
+endfunction
+
 source $HOME/.config/nvim/config/functions/asciiemoji.vimrc
