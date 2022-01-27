@@ -153,6 +153,7 @@ Plug 'ericcurtin/CurtineIncSw.vim'
 "Plug 'ramele/agrep'
 "Plug 'othree/jspc.vim', { 'for': ['javascript', 'javascript.jsx'] }
 " Plug 'itchyny/calendar.vim' " Interesting to try out, Google Calendar in vim!
+Plug 'github/copilot.vim'
 
 " Add plugins to &runtimepath
 call plug#end()

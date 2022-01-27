@@ -12,7 +12,6 @@ let
 in
 {
   home.packages = with pkgs; [
-    nobreakingNeovim
   ];
 
   home.file.".gnupg/gpg-agent.conf".text = lib.concatStringsSep "\n" (
