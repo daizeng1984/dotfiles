@@ -93,13 +93,13 @@ function! s:getemoji()
     let retval = []
     for e in keys
         let v = emoji#for(e)
-        call add(retval, e . '=' . v)
+        call add(retval, e . '<------>' . v)
     endfor
     return retval
 endfunction
 
 function! s:addemoji(line)
-    let arr = split(a:line, '=')
+    let arr = split(a:line, '<------>')
     execute "normal! a" . arr[1] . "\<Esc>"
 endfunction
 

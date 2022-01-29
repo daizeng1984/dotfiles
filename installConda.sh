@@ -1,8 +1,6 @@
 #!/bin/bash
 # Install miniconda
 source ./conda/installMiniconda.sh
-
-if [ "${1}" != "--minicondaOnly" ]; then
 # Now we do minimal setup
 # Nodejs
 # conda install -y -c conda-forge nodejs
@@ -28,6 +26,7 @@ conda install -y -c conda-forge mamba
 # Tools
 conda install -y -c conda-forge wget
 conda install -y -c conda-forge coreutils
+conda install -y -c conda-forge findutils
 conda install -y -c conda-forge git
 conda install -y -c conda-forge zsh
 conda install -y -c conda-forge direnv
@@ -65,5 +64,3 @@ source $HOME/.dotfiles/neovim/configNeovim.sh
 source $HOME/.dotfiles/tmux/configTmux.sh
 
 git clone https://github.com/robbyrussell/oh-my-zsh.git $HOME/.oh-my-zsh
-
-fi

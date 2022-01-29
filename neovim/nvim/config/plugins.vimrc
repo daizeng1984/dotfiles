@@ -42,18 +42,13 @@ else
 endif
 
 
-" TODO: Avoid conflict with my old vim plugins
-if has('nvim')
-    " Plug 'zefei/vim-wintabs'
-    " Plug 'zefei/vim-wintabs-powerline'
-endif
 Plug 'ap/vim-buftabline'
 
 
 " Python plugins
 if has('python3') && g:use_python3_plugins
     " Async interface
-    Plug 'Shougo/denite.nvim', { 'do': 'pip install typing' }
+    " Plug 'Shougo/denite.nvim', { 'do': 'pip install typing' }
 
     " ipython
     if CliInstalled('ipython')
@@ -61,7 +56,7 @@ if has('python3') && g:use_python3_plugins
     endif
 
     " snippet
-    " Plug 'SirVer/ultisnips'
+    Plug 'SirVer/ultisnips'
 
     " Stop the complaining due to taskwarrior not installed
     if CliInstalled('task')

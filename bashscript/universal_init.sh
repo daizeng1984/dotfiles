@@ -42,6 +42,8 @@ alias egrep='egrep --color=auto'
 alias copy='rsync --progress -ravzI'
 alias v='vim -n --cmd "filetype indent on" -u "NONE"'
 alias vim="vim -u $HOME/.config/nvim/init.vim"
+alias vimprofile='vim --startuptime /tmp/vimstartuptime.txt -c ":q" && cat /tmp/vimstartuptime.txt'
+alias nvimprofile='nvim --startuptime /tmp/vimstartuptime.txt -c ":q" && cat /tmp/vimstartuptime.txt'
 
 source "$HOME/.dotfiles/bashscript/function_definitions.sh"
 # pkg manager priority Nix > Conda > Adhoc

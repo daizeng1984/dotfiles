@@ -100,8 +100,7 @@ noremap <C-_>= <C-A>
 noremap <C-_>- <C-X>
 
 " AsciiEmoji
-nnoremap <leader>em :<C-U>call AsciiEmoji()<CR>:<C-U>Denite menu<CR>
-nnoremap <leader>ea :<C-U>%s/:\([^:]\+\):/\=emoji#for(submatch(1), submatch(0))/g<CR>
+nnoremap <leader>em :AsciiEmoji()<CR>
 nnoremap <leader>ej :FzfEmoji<CR>
 
 
