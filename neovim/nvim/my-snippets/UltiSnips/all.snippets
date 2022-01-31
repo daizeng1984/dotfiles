@@ -36,7 +36,5 @@ getreg("*")
 endsnippet
 
 snippet gimg "google image"
-![${0:${VISUAL}}](${1:`!v
-substitute(getreg("*"), "https://drive.google.com/file/d/\\(.*\\)/view.*", "https://drive.google.com/uc\\?export=view\\&id=\\1", "g")
-`})
+<img style="width:100%; max-width:30rem;" alt="${0:${VISUAL}}" src="${1:`!v substitute(getreg("*"), "https://drive.google.com/file/d/\\(.*\\)/view.*", "https://drive.google.com/uc\\?export=view\\&id=\\1", "g")`}" />
 endsnippet
