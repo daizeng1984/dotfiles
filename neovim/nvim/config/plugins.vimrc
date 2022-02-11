@@ -20,6 +20,11 @@ Plug 'junegunn/seoul256.vim'
 " Whether to use deoplete + lsp or coc.nvim
 let g:use_native_lsp = 0
 let g:use_python3_plugins = 1
+let g:has_jq = 0
+
+if CliInstalled('jq')
+    let g:has_jq = 1
+endif
 
 if !has('nvim')
     let g:use_native_lsp = 0

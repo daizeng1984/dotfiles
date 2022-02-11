@@ -249,3 +249,12 @@ autocmd BufReadPost fugitive://* set bufhidden=delete
 
 " switch
 nmap <leader>wo :call CurtineIncSw()<CR>
+
+" format json
+if g:has_jq
+    nnoremap <leader>jj :%!jq .<CR>
+    nnoremap <leader>jr :%!jq -c . <CR>
+else
+    nnoremap <leader>jj :%!python -m json.tool<CR>
+    nnoremap <leader>jr :%delete \| 0put =json_encode(json_decode(@@))<CR>
+endif

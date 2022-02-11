@@ -21,6 +21,7 @@ in
     httpie
     nobreakingNeovim
     ag
+    jq
     #fasd
     zoxide
     ripgrep

@@ -45,6 +45,7 @@ conda install -y -c conda-forge rsync
 conda install -y -c conda-forge trash-cli
 conda install -y -c conda-forge ripgrep
 conda install -y -c conda-forge the_silver_searcher
+conda install -y -c conda-forge jq
 conda install -y -c antoined xsel
 conda install -y -c conda-forge zoxide
 conda install -y -c conda-forge fd-find

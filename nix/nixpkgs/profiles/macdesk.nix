@@ -3,34 +3,6 @@
 let
   # clipboard
   # TODO: merge with linux one
-  cbs = with pkgs; pkgs.rustPlatform.buildRustPackage rec {
-    pname = "cbs";
-    version = "0.1.0";
-
-    src = pkgs.fetchFromGitHub {
-      owner = "robatipoor";
-      repo = pname;
-      rev = "e3f75bcd1045d65727537b700ee3dabcdc12266a";
-      sha256 = "11n103z3148bszs22f5vm2lp4gk6qxbbnyi9hbxv4d26qz4mrkij";
-    };
-
-    nativeBuildInputs = [ python3 ];
-    buildInputs = [ xorg.libxcb darwin.apple_sdk.frameworks.AppKit ];
-
-    cargoPatches = [
-      # a patch file to add/update Cargo.lock in the source code
-      ./linux/patches/cbs-cargo.lock.patch
-    ];
-    cargoSha256 = "0yvl67wx8dwnr0ndk4i9c86r33zaf42vpa48cx0m2maf6lphwvqn";
-
-    meta = with lib; {
-      description = "cbs is a command line utility that is designed to run on linux system , macOs and maybe windows.";
-      homepage = "https://github.com/robatipoor/cbs";
-      license = licenses.asl20;
-      maintainers = [ maintainers.tailhook ];
-    };
-
-  };
   macosAlias = with pkgs; let
     createMacOSAlias = (
       (builtins.toString (
@@ -87,12 +59,8 @@ in
 {
   nixpkgs.overlays = [(import ../overlays/mac)];
   home.packages = with pkgs; [
-    tickrs
-    findutils
     slack
     #gimp
-    #cbs
-    coreutils
     imagemagick
     #python3 # tools like autokey depends
     #nodejs # neovim coc depends
