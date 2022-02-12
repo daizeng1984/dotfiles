@@ -8,6 +8,9 @@ fi
 
 export TERM=xterm-256color
 export HISTFILE=$HOME/.zsh_history
+export HISTSIZE=10000000
+export SAVEHIST=10000000
+export HISTTIMEFORMAT="";
 # This bashrc load the universal setup for bash
 # enable color in terminal
 export CLICOLOR=1
