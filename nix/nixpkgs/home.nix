@@ -58,5 +58,5 @@ in
   home.homeDirectory = builtins.getEnv "HOME";
   
   # Starting ver
-  home.stateVersion = "20.09";
+  home.stateVersion = "21.11";
 }

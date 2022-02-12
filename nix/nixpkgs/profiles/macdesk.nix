@@ -59,6 +59,7 @@ in
 {
   nixpkgs.overlays = [(import ../overlays/mac)];
   home.packages = with pkgs; [
+    pinentry_mac
     slack
     #gimp
     imagemagick
@@ -110,6 +111,14 @@ in
       };
     };
   };
+
+  # mac pinentry, use gpgconf --kill gpg-agent to refresh
+  home.file.".gnupg/gpg-agent.conf".text = lib.concatStringsSep "\n" (
+    ["no-grab"]
+    ++
+    ["pinentry-program ${pkgs.pinentry_mac}/Applications/pinentry-mac.app/Contents/MacOS/pinentry-mac"]
+  );
+
 
   # Have to use alias to make it appear on 
   home.activation.link_apps = macosAlias;

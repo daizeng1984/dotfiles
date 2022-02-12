@@ -19,7 +19,7 @@ in
     fzf
     direnv # how to setup nix-shell? https://nixos.org/guides/declarative-and-reproducible-developer-environments.html#declarative-reproducible-envs
     httpie
-    nobreakingNeovim
+    neovim
     ag
     jq
     #fasd

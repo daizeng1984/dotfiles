@@ -40,7 +40,7 @@ in
     neofetch
     tokei
     sc-im
-    calcurse
+    # calcurse
     # customize
     comma
   ];
