@@ -1,8 +1,6 @@
 {
     "rust-client.disableRustup": true,
-    "snippets": {
-        "userSnippetsDirectory" : "~/.config/nvim/my-snippets/UltiSnips"
-    },
+    "snippets.userSnippetsDirectory" : "~/.config/nvim/my-snippets/UltiSnips",
     "languageserver": {
         "ccls": {
             "command": "ccls",

@@ -7,9 +7,13 @@ let
       sha256 = "1wg61h4gndm3vcprdcg7rc4s1v3jkm5xd7lw8r2f67w502y94gcy";
   }) {};
   nobreakingNeovim = stable.neovim;
+  vimPy3 = pkgs.vim_configurable.override {
+    python = pkgs.python3;
+  };
 in
 {
   home.packages = with pkgs; [
+    vimPy3
     gitSVN
     git-lfs # large file storage support
     gitAndTools.delta

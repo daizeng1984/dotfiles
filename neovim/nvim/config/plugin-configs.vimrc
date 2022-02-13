@@ -1,5 +1,17 @@
 " Plugin setting
 
+" LSP
+if g:use_native_lsp
+lua <<EOF
+require'lspconfig'.bashls.setup{}
+-- require'lspconfig'.pyls.setup{}
+require'lspconfig'.tsserver.setup{}
+require'lspconfig'.dockerls.setup{}
+EOF
+" install pyls conda install -y -c conda-forge python-language-server
+endif
+
+
 " EchoDoc
 set cmdheight=2
 let g:echodoc#enable_at_startup = 1
@@ -7,27 +19,8 @@ let g:echodoc#type = 'signature'
 " Always draw the signcolumn.
 set signcolumn=yes
 
-" NERDtree
-let g:NERDTreeUseSimpleIndicator = 1
-let g:NERDTreeDirArrowExpandable = '+'
-let g:NERDTreeDirArrowCollapsible = '-'
-let g:NERDTreeGitStatusIndicatorMapCustom = {
-                \ 'Modified'  :'M',
-                \ 'Staged'    :'+',
-                \ 'Untracked' :'?',
-                \ 'Renamed'   :'->',
-                \ 'Unmerged'  :'un',
-                \ 'Deleted'   :'D',
-                \ 'Dirty'     :'*',
-                \ 'Ignored'   :'_',
-                \ 'Clean'     :'v',
-                \ 'Unknown'   :'??',
-                \ }
-
 " Deoplete
 if has_key(g:plugs, 'deoplete.nvim')
-
-
 " autocmd FileType java setlocal omnifunc=javacomplete#Complete " Java Complete 2, with eclim enable this can be disabled
 " autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 " " Jedi make it easier! autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
@@ -59,15 +52,66 @@ let g:deoplete#enable_at_startup = 1
 " call deoplete#enable_logging('DEBUG', './deoplete.log')
 endif
 
-if has_key(g:plugs, 'neosnippet.vim')
-    let g:neosnippet#enable_snipmate_compatibility = 1
-    let g:neosnippet#snippets_directory= $HOME."/.config/nvim/my-snippets/snippets"
-else
+if has_key(g:plugs, 'ultisnips')
     " Ultisnips
     let g:UltiSnipsExpandTrigger="<C-e>"
     let g:UltiSnipsJumpForwardTrigger="<C-k>"
     let g:UltiSnipsJumpBackwardTrigger="<C-b>"
     let g:UltiSnipsSnippetDirectories=["UltiSnips", $HOME."/.config/nvim/my-snippets/UltiSnips"]
+endif
+
+if has_key(g:plugs, 'nvim-cmp')
+lua <<EOF
+  -- Setup nvim-cmp.
+  local cmp = require'cmp'
+
+  cmp.setup({
+    snippet = {
+      -- REQUIRED - you must specify a snippet engine
+      expand = function(args)
+        -- vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+        -- require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+        -- require('snippy').expand_snippet(args.body) -- For `snippy` users.
+        vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
+      end,
+    },
+    completion = {
+      autocomplete = true,
+    },
+    mapping = {
+      ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
+      ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
+      ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
+      ['<C-y>'] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
+      ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+    },
+    sources = cmp.config.sources({
+      { name = 'nvim_lsp' },
+      -- { name = 'vsnip' }, -- For vsnip users.
+      -- { name = 'luasnip' }, -- For luasnip users.
+      { name = 'ultisnips' }, -- For ultisnips users.
+      -- { name = 'snippy' }, -- For snippy users.
+    }, {
+      { name = 'buffer' },
+    })
+  })
+
+  -- Setup lspconfig.
+  local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+  -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
+  require('lspconfig')['bashls'].setup {
+    capabilities = capabilities
+  }
+  -- require('lspconfig')['pyls'].setup {
+  --   capabilities = capabilities
+  -- }
+  require('lspconfig')['tsserver'].setup {
+    capabilities = capabilities
+  }
+  require('lspconfig')['dockerls'].setup {
+    capabilities = capabilities
+  }
+EOF
 endif
 
 " Fuzzy Find for neovim
@@ -159,16 +203,6 @@ hi IndentGuidesOdd  ctermbg=237
 hi IndentGuidesEven ctermbg=234
 
 
-" LSP
-if g:use_native_lsp
-lua <<EOF
-require'nvim_lsp'.bashls.setup{}
-require'nvim_lsp'.pyls.setup{}
-require'nvim_lsp'.tsserver.setup{}
-require'nvim_lsp'.dockerls.setup{}
-EOF
-" install pyls conda install -y -c conda-forge python-language-server
-
 " ALE
 let g:ale_linters = {
 \   'javascript': ['eslint'],
@@ -179,10 +213,26 @@ let g:ale_fixers = {
 \}
 let g:ale_set_quickfix = 1
 
-endif
-
 " CoC
-" let g:coc_config_home = '${HOME}/.config/nvim'
+if has_key(g:plugs, 'coc.nvim')
+    let g:coc_global_extensions = [
+      \ 'coc-snippets',
+      \ 'coc-tsserver',
+      \ ]
+      " \ 'coc-cfn-lint',
+      " \ 'coc-cspell-dicts',
+      " \ 'coc-deno',
+      " \ 'coc-diagnostic',
+      " \ 'coc-docker',
+      " \ 'coc-java',
+      " \ 'coc-json',
+      " \ 'coc-markdownlint',
+      " \ 'coc-metals',
+      " \ 'coc-prettier',
+      " \ 'coc-spell-checker',
+      " \ 'coc-vetur',
+      " \ 'coc-yaml'
+endif
 
 " Github link
 let g:gh_open_command = 'fn() { echo "$@" | pbcopy; }; fn '

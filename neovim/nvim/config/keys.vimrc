@@ -37,6 +37,7 @@ map <silent> <leader>we :Fern . -drawer -reveal=%<CR>
 "Find file
 imap <C-L> <plug>(fzf-complete-line)
 imap <C-T> <plug>(fzf-complete-file)
+cnoremap <C-F> History:<CR>
 map <silent> <leader>fd :FzfDiff<CR>
 map <silent> <leader>fo :call fzf#vim#history()<CR>
 map <silent> <leader>wf :FZF --reverse<CR>
@@ -91,8 +92,6 @@ vmap <C-R> y:Farp<CR><C-R>0<CR>
 " Ctrl-e for ultisnips or neosnippet
 if has_key(g:plugs, 'coc.nvim')
     imap <C-e> <Plug>(coc-snippets-expand)
-elseif has_key(g:plugs, 'neosnippet.vim')
-    imap <C-e> <Plug>(neosnippet_expand_or_jump)
 endif
 
 " Ctrl-A/X in mswin

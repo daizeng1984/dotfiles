@@ -18,7 +18,7 @@ Plug 'KeitaNakamura/neodark.vim'
 Plug 'junegunn/seoul256.vim'
 
 " Whether to use deoplete + lsp or coc.nvim
-let g:use_native_lsp = 0
+let g:use_native_lsp = 0 " :(WIP and requries higher neovim version 0.6.1 etc.
 let g:use_python3_plugins = 1
 let g:has_jq = 0
 
@@ -33,12 +33,16 @@ endif
 
 " Complete plugins only for nvim
 if g:use_native_lsp
-    " Language autocomplete for nvim
-    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-    Plug 'Shougo/deoplete-lsp'
-    Plug 'neovim/nvim-lsp'
+    Plug 'neovim/nvim-lspconfig'
     " Grammars
     Plug 'w0rp/ale'
+    " Autocomplete
+    Plug 'hrsh7th/nvim-cmp'
+    Plug 'hrsh7th/cmp-buffer'
+    Plug 'hrsh7th/cmp-path'
+    Plug 'hrsh7th/cmp-cmdline'
+    Plug 'hrsh7th/cmp-nvim-lsp'
+    Plug 'quangnguyen30192/cmp-nvim-ultisnips'
 else
     let g:coc_disable_startup_warning = 1
     if CliInstalled('node')
@@ -77,11 +81,6 @@ if has('python3') && g:use_python3_plugins
     " My own stuff
     " Plug 'daizeng1984/my-worddoctor' " My own python plugin currently in test
     " Plug 'daizeng1984/vim-snip-and-paste'
-    
-else
-    " snippet
-    " Plug 'Shougo/neosnippet.vim'
-    " Plug 'Shougo/neosnippet-snippets'
 endif
 
 

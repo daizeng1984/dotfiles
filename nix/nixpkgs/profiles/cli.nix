@@ -28,7 +28,6 @@ let
 in
 {
   home.packages = with pkgs; [
-    vim
     nmap
     tmux
     #tmuxp
