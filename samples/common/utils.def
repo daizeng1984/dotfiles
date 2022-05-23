@@ -9,9 +9,29 @@ tellslack() {
 }
 
 # adb tools
-adbshell() {
+android_shell() {
     # https://nixos.wiki/wiki/Android
     nix-shell -p androidenv.androidPkgs_9_0.platform-tools
+}
+
+android_snapshot() {
+  if [ $1 == 'rec' ]
+  then
+    name='recorded.mp4'
+    method='record'
+  else
+    name='captured.png'
+    method='cap'
+  fi
+  adb shell "screen$method" /sdcard/$name
+  adb pull /sdcard/$name
+  adb shell rm /sdcard/$name
+  curr_dir=pwd
+  echo "save to `pwd`/$name"
+}
+
+pdfshell() {
+    nix-shell -p pdftk
 }
 
 # Deploy nix direnv
@@ -160,5 +180,23 @@ generate_gitignore() {
 
 remote_copy() {
     rsync -rav -e ssh $@
+}
+
+lcsession() {
+    leetcode session -e 4018
+}
+
+lclogin() {
+    leetcode user -c $@
+}
+
+lcget() {
+    leetcode show $1 -gx -l cpp
+}
+lcsubmit() {
+    leetcode submit $1
+}
+lctest() {
+    leetcode test $@
 }
 

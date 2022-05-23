@@ -1,6 +1,21 @@
 # Mac copy is not the `real` copy if coreutils not installed, we relies on installing it in conda or nix
 # alias cp=copy
 
+# Vulkan on MacOS, install it from official sdk
+VULKAN_SDK=$HOME/VulkanSDK/1.3.211.0/macOS
+export VULKAN_SDK
+PATH="$PATH:$VULKAN_SDK/bin"
+export PATH
+DYLD_LIBRARY_PATH="$VULKAN_SDK/lib:${DYLD_LIBRARY_PATH:-}"
+export DYLD_LIBRARY_PATH
+echo "This script is now using VK_ADD_LAYER_PATH instead of VK_LAYER_PATH"
+VK_ADD_LAYER_PATH="$VULKAN_SDK/share/vulkan/explicit_layer.d"
+export VK_ADD_LAYER_PATH
+VK_ICD_FILENAMES="$VULKAN_SDK/share/vulkan/icd.d/MoltenVK_icd.json"
+export VK_ICD_FILENAMES
+VK_DRIVER_FILES="$VULKAN_SDK/share/vulkan/icd.d/MoltenVK_icd.json"
+export VK_DRIVER_FILES
+
 # Mac scripts
 # Alert
 macnotify() {

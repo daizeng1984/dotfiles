@@ -19,6 +19,7 @@ source "${DOTFILES_HOME}/samples/common/conda/android.def"
 # C++
 export CXX=$(which clang++)
 export CC=$(which clang)
+source "${DOTFILES_HOME}/samples/common/cmake.def"
 
 # Utils
 source "${DOTFILES_HOME}/samples/common/utils.def"

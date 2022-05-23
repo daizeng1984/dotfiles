@@ -117,7 +117,6 @@ Plug 'vim-scripts/BufOnly.vim' " BufOnly to close all but this
 Plug 'vim-scripts/LargeFile' " Load largefile without syntax etc. burden
 Plug 'AndrewRadev/linediff.vim' " :Linediff for two blocks
 Plug 'will133/vim-dirdiff' "DirDiff
-Plug 'brooth/far.vim' " Easier Search&Replace :Far number num <tab>for hint and then vola! Use x to exclude and X to exclude for all, i for include and I for ... Far also works for virtual block!
 Plug 'djoshea/vim-autoread' " Auto reload when changed by other app
 "SLOW! Plug 'kshenoy/vim-signature' " Added color vis for marks
 Plug 'bronson/vim-visual-star-search' " Case sensitive * in virtual mode
@@ -154,6 +153,11 @@ Plug 'ericcurtin/CurtineIncSw.vim'
 " Plug 'itchyny/calendar.vim' " Interesting to try out, Google Calendar in vim!
 Plug 'github/copilot.vim'
 
+" Find & Replace
+if has('nvim')
+Plug 'nvim-lua/plenary.nvim'
+Plug 'windwp/nvim-spectre'
+endif
 " Add plugins to &runtimepath
 call plug#end()
 

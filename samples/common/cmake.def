@@ -1,0 +1,6 @@
+installedCml=$(checkIfInstalled 'cml' cml --quiet)
+installedCmake=$(checkIfInstalled 'cmake' cmake --quiet)
+if [ "$installedCml" = "0" ] && [ "$installedCmake" = "1" ]; then
+    # wget https://raw.github.com/toeb/cmakepp/master/install.cmake && cmake -P install.cmake && rm install.cmake
+fi
+

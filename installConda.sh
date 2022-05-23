@@ -22,10 +22,12 @@ source ./conda/installMiniconda.sh
 # conda install -y -c conda-forge ruby
 # Mamba
 conda install -y -c conda-forge mamba
+conda install -y -n base -c conda-forge conda-libmamba-solver
 
 # Tools
 conda install -y -c conda-forge wget
 conda install -y -c conda-forge coreutils
+conda install -y -c conda-forge sed # organic sed
 conda install -y -c conda-forge findutils
 conda install -y -c conda-forge git
 conda install -y -c conda-forge zsh

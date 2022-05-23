@@ -237,3 +237,27 @@ endif
 " Github link
 let g:gh_open_command = 'fn() { echo "$@" | pbcopy; }; fn '
 
+" Find & Replace
+if has_key(g:plugs, 'nvim-spectre')
+lua <<EOF
+require('spectre').setup({
+    replace_engine={
+       ['sed']={
+            cmd = "sed",
+            args = {
+                '-i',
+                '-E',
+            },
+            options = {
+                ['ignore-case'] = {
+                        value= "--ignore-case",
+                        icon="[I]",
+                        desc="ignore case"
+                },
+            }
+        },
+    },
+})
+EOF
+endif
+

@@ -1,6 +1,9 @@
 # Utils
 source "${DOTFILES_HOME}/samples/common/utils.def"
 
+# Cmake
+source "${DOTFILES_HOME}/samples/common/cmake.def"
+
 # Mac
 source "${DOTFILES_HOME}/samples/common/macvar.def"
 
