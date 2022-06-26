@@ -1,0 +1,8 @@
+name: conda_build
+channels:
+    - conda-forge
+dependencies:
+    - conda-build
+    - anaconda-client
+shell: export MY_ENV_VAR=0
+        

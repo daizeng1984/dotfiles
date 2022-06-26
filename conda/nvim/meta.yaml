@@ -14,12 +14,14 @@ build:
   number: 0
   skip: True  # [win]
 
+# linux install apt install gcc-multilib for lua deps compiling
 requirements:
   build:
     - {{ compiler('cxx') }}
     - cmake
     - pkg-config
     - automake
+    - ninja
     - autoconf
     - libtool
     - automake

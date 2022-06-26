@@ -27,10 +27,10 @@ for folder in $folders; do
 				fi
             fi
 
-			if [[ ${1} == 'nosymlink' ]]; then
-				if [[ -d ${d} ]]; then
+			if [ "${1}" = 'nosymlink' ]; then
+				if [ -d ${d} ]; then
 					# Process .dotfolder, currently only .vim, TODO: extend it if there's later needs
-					if [[ ${d} != './.vim' ]]; then
+					if [ ${d} != './.vim' ]; then
 						# Better let gvim handle this
 						# printf "if has('win32') || has('win64')\n\tset runtimepath=" + $(cygpath -wa ${dir}/${folder}/${d}) + "\nendif\n" > 
 						echo "Cannot support dot folder: ${d}"

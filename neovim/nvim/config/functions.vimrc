@@ -171,9 +171,17 @@ function CopyToNetCat() range
     let selected_lines = GetVisualSelection()
     echo system('printf "%s" '.shellescape(selected_lines).' | nc localhost 2000')
 endfunction
+
+function! XselAvailable() 
+    return system("if ! xsel &>/dev/null; then echo '0'; else echo '1'; fi")
+endfunction
+
 function CopyToTmpBuffer() range
     let selected_lines = GetVisualSelection()
     echo system('printf "%s" '.shellescape(selected_lines).' > ~/.config/nvim/backup/.vim-buf')
+    if XselAvailable()
+        echo system('printf "%s" '.shellescape(selected_lines).' | xsel -ib ')
+    endif
 endfunction
 function PasteFromTmpBuffer()
     try

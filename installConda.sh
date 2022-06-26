@@ -27,13 +27,14 @@ conda install -y -n base -c conda-forge conda-libmamba-solver
 # Tools
 conda install -y -c conda-forge wget
 conda install -y -c conda-forge coreutils
+conda install -y -c conda-forge tree
 conda install -y -c conda-forge sed # organic sed
 conda install -y -c conda-forge findutils
 conda install -y -c conda-forge git
 conda install -y -c conda-forge zsh
 conda install -y -c conda-forge direnv
-# conda install -y -c conda-forge neovim
-# conda install -y -c daizeng1984 nvim
+conda install -y -c conda-forge neovim
+conda install -y -c daizeng1984 nvim
 conda install -y -c conda-forge tmux
 conda install -y -c conda-forge vim
 # Fix https://github.com/conda-forge/tmux-feedstock/issues/12

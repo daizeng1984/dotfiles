@@ -4,5 +4,6 @@ curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 # It seems vim-plug support...
-nvim -u $HOME/.dotfiles/neovim/nvim/config/plugins.vimrc +PlugInstall +qall
-nvim +UpdateRemotePlugins +qall
+alias vim="vim -u $HOME/.config/nvim/init.vim"
+vim -u $HOME/.dotfiles/neovim/nvim/config/plugins.vimrc +PlugInstall +qall
+vim +UpdateRemotePlugins +qall

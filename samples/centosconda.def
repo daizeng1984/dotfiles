@@ -1,5 +1,5 @@
 # X related
-export DISPLAY=:0.0
+export DISPLAY=:1.0
 
 # Android
 source "${DOTFILES_HOME}/samples/common/conda/android.def"

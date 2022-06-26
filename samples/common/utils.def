@@ -42,6 +42,11 @@ deploynix() {
 }
 
 # Deploy conda direnv
+alias conda=mamba
+
+# Podman
+alias docker=podman
+
 deployconda_update_env() {
   if (grep -q name: environment.yml); then
     conda env update -f environment.yml
@@ -97,7 +102,7 @@ int main() {
     echo $meson_template > $(pwd)/meson.build
     mkdir -p $(pwd)/src/
     [ -f $(pwd)/src/main.cpp ] || echo $main_cpp > $(pwd)/src/main.cpp
-    nvim $(pwd)/meson.build
+    vim $(pwd)/meson.build
 }
 mc() {
     meson compile -C build
@@ -122,7 +127,7 @@ dependencies:
 shell: export MY_ENV_VAR=0
         "
         echo $env_content > $(pwd)/environment.yml
-        nvim $(pwd)/environment.yml
+        vim $(pwd)/environment.yml
         conda env create -f $(pwd)/environment.yml
     fi;
     direnv allow
@@ -131,6 +136,12 @@ shell: export MY_ENV_VAR=0
 # show path
 alias pythonpath='python -m site'
 alias nodepath='npm config get prefix'
+
+# TODO: alias pbcopy in linux xsel --clipboard
+if ! [ "$DOTFILES_SYSTEM_NAME" = "darwin" ]; then
+    alias pbcopy='xsel --clipboard --input'
+    alias pbpaste='xsel --clipboard --output'
+fi
 
 # SSH copy from https://stackoverflow.com/questions/1152362/how-to-send-data-to-local-clipboard-from-a-remote-ssh-session#answer-49890019
 ssh_copy() {
