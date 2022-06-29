@@ -1,8 +1,13 @@
 # my desktop stuff
-#brew cask install wkhtmltopdf
-#brew cask install karabiner-elements
-#brew cask install vimr
-#brew cask install vlc
+brew install --cask wkhtmltopdf
+brew install --cask karabiner-elements
+brew install --cask vlc
+brew install --cask firefox
+brew install --cask flameshot
+brew install --cask phoenix
+brew install --cask iterm2
+brew install --cask shifty
+brew install --cask kap
 #brew cask install gimp
 #brew cask install xee
 # brew cask install balenaetcher
