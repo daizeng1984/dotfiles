@@ -23,6 +23,7 @@ source ./conda/installMiniconda.sh
 # Mamba
 conda install -y -c conda-forge mamba
 conda install -y -n base -c conda-forge conda-libmamba-solver
+alias conda=mamba
 
 # Tools
 conda install -y -c conda-forge wget

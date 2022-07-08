@@ -21,11 +21,11 @@ class extracthere(Command):
         descr = "extracted file(s): " + " ".join(archieves);
 
         'shell apack '
-        obj = CommandLoader(args=['patool', 'extract'] \
+        obj = CommandLoader(args=['dtrx', 'extract'] \
                 + archieves, descr=descr)
 
         self.fm.execute_console(
-        'shell patool extract ' + \
+        'shell dtrx -v ' + \
                 " ".join(archieves))
         self.fm.reload_cwd()
         self.fm.notify(descr)
