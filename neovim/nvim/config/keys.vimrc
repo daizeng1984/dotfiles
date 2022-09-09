@@ -4,12 +4,19 @@ let mapleader = ","
 nnoremap <silent> <leader>W :w !sudo tee > /dev/null %<CR>
 
 " IPython
-map <silent> <leader>pr <Plug>(IPy-Run)
-map <silent> <leader>p<Tab> <Plug>(IPy-Complete)
-map <silent> <leader>p? <Plug>(IPy-WordObjInfo)
-map <silent> <leader>ps <Plug>(IPy-Interrupt)
-map <silent> <leader>pq <Plug>(IPy-Terminate)
-map <silent> <leader>pp :call IPyRun('print(<C-R><C-W>)')<CR>
+" nvim-py
+" map <silent> <leader>pr <Plug>(IPy-Run)
+" map <silent> <leader>pc <Plug>(IPy-RunCell)
+" map <silent> <leader>p<Tab> <Plug>(IPy-Complete)
+" map <silent> <leader>p? <Plug>(IPy-WordObjInfo)
+" map <silent> <leader>ps <Plug>(IPy-Interrupt)
+" map <silent> <leader>pq <Plug>(IPy-Terminate)
+" map <silent> <leader>pp :call IPyRun('print(<C-R><C-W>)')<CR>
+" vim-ipython-cell
+nnoremap <leader>pq :IPythonCellClose<CR>
+nnoremap <leader>px :IPythonCellRestart<CR>
+nnoremap <leader>pc :IPythonCellExecuteCellVerbose<CR>
+nnoremap <leader>pp :IPythonCellExecuteCellVerboseJump<CR>
 
 " Buffer switch
 map <silent> <leader>bt :enew<CR>
@@ -90,9 +97,9 @@ imap <F4> <Esc>:call MyInsertCalDate()<CR>
 vmap <C-R> y:Farp<CR><C-R>0<CR>
 
 " Ctrl-e for ultisnips or neosnippet
-if has_key(g:plugs, 'coc.nvim')
-    imap <C-e> <Plug>(coc-snippets-expand)
-endif
+" if has_key(g:plugs, 'coc.nvim')
+"     imap <C-e> <Plug>(coc-snippets-expand)
+" endif
 
 " Ctrl-A/X in mswin
 noremap <C-_>= <C-A>
@@ -264,4 +271,12 @@ vnoremap <leader>s <cmd>lua require('spectre').open_visual()<CR>
 "  search in current file
 nnoremap <leader>sp viw:lua require('spectre').open_file_search()<cr>
 " run command :Spectre
+endif
+
+" Neovim fix breaking change...
+" https://stackoverflow.com/questions/70391935/how-to-hunt-down-a-rogue-keybind-in-vim#answer-70394506
+if has('nvim')
+    silent! nunmap Y
+    silent! iunmap <C-U>
+    silent! iunmap <C-W>
 endif

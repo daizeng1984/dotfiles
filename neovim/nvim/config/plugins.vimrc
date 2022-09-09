@@ -56,12 +56,14 @@ Plug 'ap/vim-buftabline'
 
 " Python plugins
 if has('python3') && g:use_python3_plugins
-    " Async interface
-    " Plug 'Shougo/denite.nvim', { 'do': 'pip install typing' }
-
     " ipython
     if CliInstalled('ipython')
-        Plug 'bfredl/nvim-ipy', { 'do': 'pip install jupyter' } " Jupyter/IPython
+        Plug 'jpalardy/vim-slime', { 'for': ['python', 'markdown'] }
+        Plug 'hanschen/vim-ipython-cell', { 'for': ['python', 'markdown'] }
+        " jupyter notebook
+        if CliInstalled('jupytext')
+            Plug 'goerz/jupytext.vim' " conda install jupytext Install notedown to write ipynb in vim
+        endif
     endif
 
     " snippet
@@ -71,11 +73,6 @@ if has('python3') && g:use_python3_plugins
     if CliInstalled('task')
         Plug 'tbabej/taskwiki', {'for': ['markdown'], 'on': 'VimwikiIndex', 'do': 'pip install --upgrade git+git://github.com/tbabej/tasklib@develop' }
         Plug 'blindFS/vim-taskwarrior', {'for': ['markdown'], 'on': 'VimwikiIndex' }  " For grid view of taskwiki
-    endif
-    
-    " jupyter notebook
-    if CliInstalled('notedown')
-        Plug 'goerz/ipynb_notedown.vim', { 'do': 'pip install notedown' } " Install notedown to write ipynb in vim
     endif
     
     " My own stuff
@@ -154,10 +151,12 @@ Plug 'ericcurtin/CurtineIncSw.vim'
 Plug 'github/copilot.vim'
 
 " Find & Replace
-if has('nvim')
-Plug 'nvim-lua/plenary.nvim'
-Plug 'windwp/nvim-spectre'
-endif
+" if has('nvim')
+"     Plug 'nvim-lua/plenary.nvim'
+"     Plug 'windwp/nvim-spectre'
+" else
+Plug 'brooth/far.vim'
+" endif
 " Add plugins to &runtimepath
 call plug#end()
 

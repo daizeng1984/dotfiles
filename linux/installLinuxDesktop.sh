@@ -23,6 +23,9 @@ gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/or
 # # set the ctrl+alt+d
 gsettings set org.gnome.desktop.wm.keybindings toggle-maximized "['<Super>o']"
 
+# screenshot
+gsettings set org.gnome.shell.keybindings show-screenshot-ui "['<Primary><Shift><Alt>4']"
+
 # # input method
 # gsettings set org.gnome.desktop.wm.keybindings switch-input-source "['<Super>space']"
 # gsettings set org.gnome.desktop.wm.keybindings switch-input-source-backward "['<Super><Shift>space']"

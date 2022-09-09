@@ -186,6 +186,7 @@ let g:deoplete#sources#whd#learning_texts = ['${HOME}/obama08.txt', '/']
 
 " Far Note ag etc. doesn't support multiline replacement
 let g:far#source = 'rg'
+let g:far#enable_undo=1
 
 " Ipy
 let g:nvim_ipy_perform_mappings = 0
@@ -261,3 +262,18 @@ require('spectre').setup({
 EOF
 endif
 
+" Fern
+let g:fern_disable_startup_warnings = 1
+
+" jupytext
+let g:jupytext_to_ipynb_opts = '--to=notebook'
+
+" always use tmux
+let g:slime_target = 'tmux'
+" fix paste issues in ipython
+let g:slime_python_ipython = 1
+" always send text to the top-right pane in the current tmux tab without asking
+let g:slime_default_config = {
+            \ 'socket_name': get(split($TMUX, ','), 0),
+            \ 'target_pane': '{top-right}' }
+let g:slime_dont_ask_default = 1
