@@ -16,6 +16,7 @@ cd $RETURN_DIR
 
 source $HOME/.bashrc
 # Create default python environment
-#conda install -y python=3.6
+# ping to 3.7 so that we could conda install -c daizeng1984 nvim
+conda install -y python=3.7
 # Add the best channel over defaults TODO: .condarc
 conda config --add channels conda-forge
