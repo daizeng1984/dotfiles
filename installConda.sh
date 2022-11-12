@@ -64,8 +64,4 @@ mamba install -y --no-deps --freeze-installed -c antoined xsel
 mamba install -y --no-deps --freeze-installed -c daizeng1984 nvim
 
 # Configs
-source $HOME/.dotfiles/neovim/configNeovim.sh
-
-source $HOME/.dotfiles/tmux/configTmux.sh
-
-git clone https://github.com/robbyrussell/oh-my-zsh.git $HOME/.oh-my-zsh
+source $HOME/.dotfiles/minimal.sh

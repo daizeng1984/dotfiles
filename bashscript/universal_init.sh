@@ -51,6 +51,7 @@ alias egrep='egrep --color=auto'
 alias copy='rsync --progress -ravzI'
 alias v='vim -n --cmd "filetype indent on" -u "NONE"'
 alias vim="vim -u $HOME/.config/nvim/init.vim"
+alias nvim="nvim -u $HOME/.config/nvim/init.vim"
 alias vimprofile='vim --startuptime /tmp/vimstartuptime.txt -c ":q" && cat /tmp/vimstartuptime.txt'
 alias nvimprofile='nvim --startuptime /tmp/vimstartuptime.txt -c ":q" && cat /tmp/vimstartuptime.txt'
 

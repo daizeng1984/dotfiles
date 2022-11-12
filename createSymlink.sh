@@ -35,10 +35,13 @@ for folder in $folders; do
 						# printf "if has('win32') || has('win64')\n\tset runtimepath=" + $(cygpath -wa ${dir}/${folder}/${d}) + "\nendif\n" > 
 						echo "Cannot support dot folder: ${d}"
 					fi
-				else
+				elif  [[ "$(basename ${d})" =~ ^(.bashrc|.bash_profile)$ ]]; then
 					echo "Create wrapper .dotfiles for ${d}"
 					printf "source \$HOME/.dotfiles/${folder}/${d}" > '__${d}'
 					mv -f '__${d}' ~/${d}
+				else
+					echo "Overwrite $d"
+					cat "$HOME/.dotfiles/${folder}/${d}" > $HOME/${d}
 				fi
 			else
 				echo "Creating symlink for $d"

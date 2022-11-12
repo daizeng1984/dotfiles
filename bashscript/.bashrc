@@ -27,6 +27,9 @@ elif [ "$(expr substr $(uname -s) 1 10)" = "MINGW32_NT" ]; then
 	echo "Find MingW32 System..."
     DOTFILES_SYSTEM_NAME="mingw32"
     [ -r $DOTFILES_HOME/bashscript/platform/.cygwinbashrc ] && source $DOTFILES_HOME/bashscript/platform/.cygwinbashrc
+else
+    DOTFILES_SYSTEM_NAME="unknown"
+    [ -r $DOTFILES_HOME/bashscript/platform/.linuxbashrc ] && source $DOTFILES_HOME/bashscript/platform/.linuxbashrc
 fi
 
 [ -r $DOTFILES_HOME/samples/var.def ] && source $DOTFILES_HOME/samples/var.def
