@@ -21,32 +21,28 @@ for folder in $folders; do
             if [ -L ~/$d ] ; then
                 rm ~/$d
             else 
-				if [ -e ~/$d ]; then
-					cp -rf ~/$d $olddir
-					rm -rf ~/$d
-				fi
+                if [ -e ~/$d ]; then
+                    cp -rf ~/$d $olddir
+                    rm -rf ~/$d
+                fi
             fi
 
-			if [ "${1}" = 'nosymlink' ]; then
-				if [ -d ${d} ]; then
-					# Process .dotfolder, currently only .vim, TODO: extend it if there's later needs
-					if [ ${d} != './.vim' ]; then
-						# Better let gvim handle this
-						# printf "if has('win32') || has('win64')\n\tset runtimepath=" + $(cygpath -wa ${dir}/${folder}/${d}) + "\nendif\n" > 
-						echo "Cannot support dot folder: ${d}"
-					fi
-				elif  [[ "$(basename ${d})" =~ ^(.bashrc|.bash_profile)$ ]]; then
-					echo "Create wrapper .dotfiles for ${d}"
-					printf "source \$HOME/.dotfiles/${folder}/${d}" > '__${d}'
-					mv -f '__${d}' ~/${d}
-				else
-					echo "Overwrite $d"
-					cat "$HOME/.dotfiles/${folder}/${d}" > $HOME/${d}
-				fi
-			else
-				echo "Creating symlink for $d"
-				ln -s $dir/$folder/$d ~/$d
-			fi
+            if [ "${1}" = 'nosymlink' ]; then
+                if [ -d ${d} ]; then
+                    # Process .dotfolder, currently only .vim, TODO: extend it if there's later needs
+                    :
+                elif  [[ "$(basename ${d})" =~ ^(.bashrc|.bash_profile|.zshrc)$ ]]; then
+                    echo "Create wrapper .dotfiles for ${d}"
+                    printf "source \$HOME/.dotfiles/${folder}/${d}" > '__${d}'
+                    mv -f '__${d}' ~/${d}
+                else
+                    echo "Overwrite $d"
+                    cat "$HOME/.dotfiles/${folder}/${d}" > $HOME/${d}
+                fi
+            else
+                echo "Creating symlink for $d"
+                ln -s $dir/$folder/$d ~/$d
+            fi
         done
         cd $dir
     fi
@@ -55,13 +51,26 @@ done
 # link XDG_CONFIG_HOME related
 # Initiate .config if not exists
 [ -z $XDG_CONFIG_HOME ] && XDG_CONFIG_HOME="$HOME/.config"
+ 
+# https://stackoverflow.com/questions/18641864/git-bash-shell-fails-to-create-symbolic-links#answer-25394801
+windows() { [[ -n "$WINDIR" ]]; }
+link() {
+    if windows; then
+        target=`cygpath -w ${2}`
+        dest=`cygpath -w ${1}`
+        # cmd just cannot work right!!!
+        sudo powershell -Command "cmd /C \"mklink /D \"$target\" \"$dest\"\""
+    else
+        ln -s "$1" "$2"
+    fi
+}
 
 __link_xdg_config() {
     [ ! -d $XDG_CONFIG_HOME/$3 ] && mkdir -p -- $XDG_CONFIG_HOME/$3
     [ -L $XDG_CONFIG_HOME/$1 ] && rm $XDG_CONFIG_HOME/$1
     [ -d $XDG_CONFIG_HOME/$1 ] && mv $XDG_CONFIG_HOME/$1 $XDG_CONFIG_HOME/$1.old
     echo "Creating xdg symlink for $1"
-    ln -s $dir/$2 $XDG_CONFIG_HOME/$1
+    link $dir/$2 $XDG_CONFIG_HOME/$1
 }
 
 # Create nvim's symlink
