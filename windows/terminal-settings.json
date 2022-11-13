@@ -4,20 +4,8 @@
     "actions": 
     [
         {
-            "command": "find",
-            "keys": "ctrl+shift+f"
-        },
-        {
             "command": "paste",
             "keys": "ctrl+v"
-        },
-        {
-            "command": 
-            {
-                "action": "splitPane",
-                "split": "right"
-            },
-            "keys": "ctrl+alt+\\"
         },
         {
             "command": 
@@ -26,6 +14,18 @@
                 "singleLine": false
             },
             "keys": "ctrl+c"
+        },
+        {
+            "command": 
+            {
+                "action": "splitPane",
+                "split": "right"
+            },
+            "keys": "ctrl+alt+shift+\\"
+        },
+        {
+            "command": "find",
+            "keys": "ctrl+shift+f"
         },
         {
             "command": 
@@ -81,6 +81,10 @@
             "keys": "alt+up"
         },
         {
+            "command": "unbound",
+            "keys": "ctrl+alt+\\"
+        },
+        {
             "command": "closePane",
             "keys": "ctrl+alt+w"
         },
@@ -95,17 +99,17 @@
             "command": 
             {
                 "action": "moveFocus",
-                "direction": "down"
+                "direction": "left"
             },
-            "keys": "ctrl+alt+down"
+            "keys": "ctrl+alt+left"
         },
         {
             "command": 
             {
                 "action": "moveFocus",
-                "direction": "left"
+                "direction": "down"
             },
-            "keys": "ctrl+alt+left"
+            "keys": "ctrl+alt+down"
         },
         {
             "command": 
@@ -152,6 +156,18 @@
                 "icon": "%USERPROFILE%/scoop/apps/git/current/usr/share/git/git-for-windows.ico",
                 "name": "Bash",
                 "startingDirectory": "%USERPROFILE%"
+            },
+            {
+                "guid": "{71160544-14d8-4194-af25-d05feeac7233}",
+                "name": "MSYS / MSYS2",
+                "commandline": "%USERPROFILE%/scoop/apps/msys2/current/msys2_shell.cmd -defterm -here -no-start -msys",
+                "startingDirectory": "%USERPROFILE%",
+                "icon": "C:/msys64/msys2.ico",
+                "font": 
+                {
+                    "face": "Lucida Console",
+                    "size": 9
+                }
             },
             {
                 "commandline": "%SystemRoot%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",

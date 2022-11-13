@@ -73,8 +73,8 @@ $#Right::Send {ctrl down}{Right}{ctrl up}
 $#+Left::Send {ctrl down}{shift down}{Left}{shift up}{ctrl up}
 $#+Right::Send {ctrl down}{shift down}{Right}{shift up}{ctrl up}
 
-!BS::Send {LShift down}{Home}{LShift Up}{Del}
-#BS::Send {LCtrl down}{BS}{LCtrl up}
+$!BS::Send {LShift down}{Home}{LShift Up}{Del}
+$#BS::Send {LCtrl down}{BS}{LCtrl up}
 
 $#Space::Send {Ctrl Down}{LWin Down}{Space}{LWin Up}{Ctrl Up}
 
@@ -140,8 +140,68 @@ CapsLock::      ; CapsLock
 ^!#CapsLock::   ; Ctrl+Alt+Win+CapsLock
 return         ; Do nothing, return
 
+; suppress win
+LAlt & Space::Send ^{ESC}
 
 ; tools
-^!$::
+$^!$::
 Run % "explorer.exe ms-screenclip:"
 return
+
+$^b::waitforkey := true
+
+#If waitforkey
+$-::
+    waitforkey := false
+    Send {Ctrl Down}{Alt Down}{- Down}{- Up}{Alt Up}{Ctrl Up}
+return
+$|::
+    waitforkey := false
+    Send {Ctrl Down}{Alt Down}{\ Down}{\ Up}{Alt Up}{Ctrl Up}
+return
+$h::
+    waitforkey := false
+    Send {Ctrl Down}{Alt Down}{Left Down}{Left Up}{Alt Up}{Ctrl Up}
+return
+$l::
+    waitforkey := false
+    Send {Ctrl Down}{Alt Down}{Right Down}{Right Up}{Alt Up}{Ctrl Up}
+return
+$j::
+    waitforkey := false
+    Send {Ctrl Down}{Alt Down}{Down Down}{Down Up}{Alt Up}{Ctrl Up}
+return
+$k::
+    waitforkey := false
+    Send {Ctrl Down}{Alt Down}{Up Down}{Up Up}{Alt Up}{Ctrl Up}
+return
+$1::
+    waitforkey := false
+    Send {Ctrl Down}{Alt Down}{1 Down}{1 Up}{Alt Up}{Ctrl Up}
+return
+$2::
+    waitforkey := false
+    Send {Ctrl Down}{Alt Down}{2 Down}{2 Up}{Alt Up}{Ctrl Up}
+return
+$3::
+    waitforkey := false
+    Send {Ctrl Down}{Alt Down}{3 Down}{3 Up}{Alt Up}{Ctrl Up}
+return
+$4::
+    waitforkey := false
+    Send {Ctrl Down}{Alt Down}{4 Down}{4 Up}{Alt Up}{Ctrl Up}
+return
+$c::
+    waitforkey := false
+    Send {Ctrl Down}{Shift Down}{t Down}{t Up}{Shift Up}{Ctrl Up}
+return
+$p::
+    waitforkey := false
+    Send {Ctrl Down}{Shift Down}{Tab Down}{Tab Up}{Shift Up}{Ctrl Up}
+return
+$n::
+    waitforkey := false
+    Send {Ctrl Down}{Tab Down}{Tab Up}{Ctrl Up}
+return
+
+#If
