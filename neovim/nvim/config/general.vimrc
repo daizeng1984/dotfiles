@@ -51,14 +51,14 @@ syntax on
 syntax enable
 
 " Backup and undo https://www.gregjs.com/vim/2016/do-yourself-a-favor-and-modularize-your-vimrc-init-vim/
-set backupdir=~/.config/nvim/backup
-set directory=~/.config/nvim/backup
+set backupdir=$HOME/.config/nvim/backup
+set directory=$HOME/.config/nvim/backup
 if has("vms")
   set nobackup		" do not keep a backup file, use versions instead
 else
   set backup
 endif
-set undodir=~/.config/nvim/undodir
+set undodir=$HOME/.config/nvim/undodir
 set undofile
 set undolevels=100
 set undoreload=1000

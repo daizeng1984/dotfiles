@@ -10,6 +10,25 @@ cd && git clone https://github.com/daizeng1984/dotfiles.git .dotfiles && cd .dot
 ```
 Then restart the shell
 
+## Windows
+First install scoop to bootstrap in powershell:
+```sh
+Set-Itemproperty -path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced' -Name 'HideFileExt' -value 0
+Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
+iwr -useb get.scoop.sh | iex
+scoop install sudo
+scoop bucket add extras
+scoop update
+sudo scoop install git
+scoop install wget
+```
+
+then go to git bash to run:
+```sh
+cd && git clone https://github.com/daizeng1984/dotfiles.git .dotfiles && cd .dotfiles && ./createSymlink.sh && source ./minimal.sh
+```
+
+
 # Nix
 This setup relies on Nix which is very powerful. The cost is for now: root permission. On Mac you need to run: `xcode-select --install` first to make sure basic cli e.g. git are available.
 ```sh
@@ -36,7 +55,7 @@ This setup heavily relies conda to deploy all packages needed. No root access is
 You need to have basic development tools like git, wget, curl, bzip2 (TODO: remove these dependencies). The pros is: you can do whatever you want in your local kingdom just similar to after Nix installed. The cons is: you don't get much sandboxing protection (dependency version mismatching) and you cannot install desktop app. Therefore, a `brew cask` is recommended for this task.
 
 ```sh
-cd && git clone https://github.com/daizeng1984/dotfiles.git .dotfiles && cd .dotfiles && ./createSymlink.sh && source ~/.bashrc && source ./installConda.sh`
+cd && git clone https://github.com/daizeng1984/dotfiles.git .dotfiles && cd .dotfiles && ./createSymlink.sh && source ~/.bashrc && source ./installConda.sh
 ```
 
 TODO: remove wget dependencies etc.
