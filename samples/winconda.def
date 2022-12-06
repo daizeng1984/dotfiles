@@ -1,0 +1,14 @@
+# Python managed by conda, we can activate our python environment
+# source activate webdev
+# python -VV
+# npm config set python $(which python)
+# alias pysite='python -m site'
+
+# Node/NPM path
+# alias nodepath='npm config get prefix'
+# npm config set python $(which python)
+
+# Utils
+source "${DOTFILES_HOME}/samples/common/utils.def"
+
+# Win?

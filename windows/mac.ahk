@@ -148,6 +148,7 @@ $^!$::
 Run % "explorer.exe ms-screenclip:"
 return
 
+#IfWinActive ahk_exe WindowsTerminal.exe ahk_class CASCADIA_HOSTING_WINDOW_CLASS
 $^b::waitforkey := true
 
 #If waitforkey
