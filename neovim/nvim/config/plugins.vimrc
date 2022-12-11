@@ -95,9 +95,9 @@ Plug 'honza/vim-snippets'
 Plug 'junegunn/fzf', { 'dir': $DOTFILE_LOCAL_PREFIX . '/lib/miniconda/share/fzf'} " some time this cause issue if you install fzf in different source e.g. brew install. To solve you need to brew reinstall
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-emoji'
-Plug 'jlanzarotta/bufexplorer'
+" Plug 'jlanzarotta/bufexplorer'
 Plug 'vim-scripts/wombat256.vim'
-Plug 'mhinz/vim-grepper'
+" Plug 'mhinz/vim-grepper'
 Plug 'mhinz/vim-signify'
 Plug 'tpope/vim-fugitive' " -, dv, U, cc, cA, p, q
 Plug 'tpope/vim-surround'
@@ -105,7 +105,7 @@ Plug 'tpope/vim-dadbod' " db, keep it here to try
 Plug 'tpope/vim-unimpaired' " [,]q for quickfix and [l for loclist
 Plug 'tpope/vim-eunuch' "Rename, Delete, Sudo etc.
 Plug 'tpope/vim-commentary' " replace tcomment
-Plug 'mattn/emmet-vim' " c-y ,then type this>is>tag ---> <this> <is> <tag> ... </.... or type insert mode and c-y , here's the cheatsheet https://docs.emmet.io/cheat-sheet/
+" Plug 'mattn/emmet-vim' " c-y ,then type this>is>tag ---> <this> <is> <tag> ... </.... or type insert mode and c-y , here's the cheatsheet https://docs.emmet.io/cheat-sheet/
 Plug 'mattn/webapi-vim' " Gist dependencies
 " Plug 'vim-scripts/Gist.vim' "Gist but before git config --global github.user Username
 Plug 'ruanyl/vim-gh-line' " get github links
@@ -148,7 +148,7 @@ Plug 'ericcurtin/CurtineIncSw.vim'
 "Plug 'ramele/agrep'
 "Plug 'othree/jspc.vim', { 'for': ['javascript', 'javascript.jsx'] }
 " Plug 'itchyny/calendar.vim' " Interesting to try out, Google Calendar in vim!
-Plug 'github/copilot.vim'
+" Plug 'github/copilot.vim'
 
 " Find & Replace
 " if has('nvim')
