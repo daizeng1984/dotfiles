@@ -12,5 +12,5 @@ Copy-Item "./mac.ahk" -Destination "$startup"
 . ./mac.ahk
 
 # copy settings.json to terminal
-start ~/scoop/apps/windows-terminal/current/WindowsTerminal.exe
-Copy-Item "./terminal-settings.json" -Destination "$env:LOCALAPPDATA/Microsoft/Windows Terminal/settings.json"
+start "$env:HOMEPATH/scoop/apps/windows-terminal/current/WindowsTerminal.exe"
+Copy-Item "$env:HOMEPATH/.dotfiles/windows/terminal-settings.json" -Destination "$env:LOCALAPPDATA/Microsoft/Windows Terminal/settings.json"

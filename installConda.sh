@@ -41,9 +41,6 @@ mamba install -y -c conda-forge vim
 mamba install -y -c conda-forge ncurses
 # Misc
 mamba install -y -c conda-forge fzf
-# TODO: fzf recipe is not complete
-mkdir -p $HOME/.dotfiles/.local/lib/miniconda/share/fzf/plugin
-wget https://raw.githubusercontent.com/junegunn/fzf/master/plugin/fzf.vim -P $HOME/.dotfiles/.local/lib/miniconda/share/fzf/plugin
 mamba install -y -c conda-forge rsync
 mamba install -y -c conda-forge trash-cli
 mamba install -y -c conda-forge ripgrep

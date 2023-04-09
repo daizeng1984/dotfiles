@@ -17,9 +17,9 @@ Set-Itemproperty -path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer
 Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
 iwr -useb get.scoop.sh | iex
 scoop install sudo
+sudo scoop install git
 scoop bucket add extras
 scoop update
-sudo scoop install git
 scoop install wget
 ```
 
@@ -28,27 +28,12 @@ then go to git bash to run:
 cd && git clone https://github.com/daizeng1984/dotfiles.git .dotfiles && cd .dotfiles && ./createSymlink.sh && source ./minimal.sh
 ```
 
-
-# Nix
-This setup relies on Nix which is very powerful. The cost is for now: root permission. On Mac you need to run: `xcode-select --install` first to make sure basic cli e.g. git are available.
+For desktop:
 ```sh
-cd && git clone https://github.com/daizeng1984/dotfiles.git .dotfiles && cd .dotfiles && ./createSymlink.sh && source ./installNix.sh
+cd ~/.dotfiles/windows
+powershell -File ./installScoop.ps1
 ```
-Because it's powerful, you don't need to do anything (TODO: kidding not yet 😄 unless you are in NixOS)
 
-After that, you need to setup *.def files. For example, for mac, go to `var.def` file and put mapping for your `whoami` and `hostname` output:
-```sh
-__mapToDef '<your whoami output>' '<your hostname output>' 'macnix.def' 'homemac'
-```
-restart your terminal and run `home-manager switch`
-
-## Linux
-Basically, everything is taken care in home-manager switch if you pick CentOS/gnome or NixOS.
-
-## Mac
-You need to install some outliers that cannot install with Nix (note `brew cask` instead is able to do that though) but it's very necessary and I couldn't find Nix alternative.
-
-For example, karabiner-element.
 
 # Conda (no root)
 This setup heavily relies conda to deploy all packages needed. No root access is needed so unlike Nix X/Desktop app is done separately. Conda is managed in `~/.dotfiles/.local` folders. 
@@ -66,20 +51,38 @@ xcode-select --install
 brew install wget
 ```
 
-## Desktop
-### Centos
-```{bash}
-sudo source $HOME/.dotfiles/misc/installCentos7Desktop.sh
+# Nix
+This setup relies on Nix which is very powerful. The cost is for now: root permission. On Mac you need to run: `xcode-select --install` first to make sure basic cli e.g. git are available.
+```sh
+cd && git clone https://github.com/daizeng1984/dotfiles.git .dotfiles && cd .dotfiles && ./createSymlink.sh && source ./installNix.sh
 ```
-### Mac OS X
-```{bash}
+Because it's powerful, you don't need to do anything (TODO: kidding not yet 😄 unless you are in NixOS)
+
+After that, you need to setup *.def files. For example, for mac, go to `var.def` file and put mapping for your `whoami` and `hostname` output:
+```sh
+__mapToDef '<your whoami output>' '<your hostname output>' 'macnix.def' 'homemac'
+```
+restart your terminal and run `home-manager switch`
+
+## Linux Desktop
+Basically, everything is taken care in home-manager switch if you pick CentOS/gnome or NixOS.
+
+## Mac Desktop
+You need to install some outliers that cannot install with Nix (note `brew cask` instead is able to do that though) but it's very necessary and I couldn't find Nix alternative.
+
+For example, karabiner-element.
+
+```.sh
 source $HOME/.dotfiles/mac/installMacDesktop.sh
 ```
-## Key Mapping
+
+
+# Key Mapping
 On Mac, use Karabiner-Element!
 On Linux, first you need to disable gnome terminal's [F10 key bindings](https://ubuntu-tutorials.com/2007/07/16/disabling-the-f10-key-menu-accelerators-in-gnome-terminal/), and disable Capslock in `TweakTool` or `xmodmap -e 'clear Lock'`. Then remap capslock to F10 by installing xcape in your conda environment as `conda install -c daizeng1984 xcape`. In your startup script you should run `killall xcape` and then `xcape -e '#66=#76'`. 
+On Windows, `installScoop.sh` will install `autohotkey`.
 
-## Different Profile
+## Different Profile (Non-Windows)
 Similar to Nix, make sure you register a name to `samples/var.def` with username `$(whoami)` and hostname `$(hostname)`. For example:
 ```sh
 __mapToDef '<your whoami output>' '<your hostname output>' 'macconda.def' 'homemac'
