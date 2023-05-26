@@ -83,6 +83,8 @@ if [ "$installedConda" = "1" ] ; then
     fi
 fi
 
+# brew
+if [ -e /home/linuxbrew/.linuxbrew ]; then eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"; fi
 
 # nix
 export PROOT_NO_SECCOMP=1

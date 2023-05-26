@@ -1,6 +1,10 @@
+# brew
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+source ~/.bashrc
+brew install 
+
 # gnome
 # get keys: gsettings list-keys org.gnome.desktop.wm.keybindings
-
 # night light https://askubuntu.com/questions/1088650/gnome-night-light-setting-from-the-command-line
 gsettings set org.gnome.settings-daemon.plugins.color night-light-enabled true
 
@@ -29,6 +33,8 @@ gsettings set org.gnome.shell.keybindings show-screenshot-ui "['<Primary><Shift>
 # # input method
 # gsettings set org.gnome.desktop.wm.keybindings switch-input-source "['<Super>space']"
 # gsettings set org.gnome.desktop.wm.keybindings switch-input-source-backward "['<Super><Shift>space']"
+# install tlp tlpui
+# gsettings set com.system76.hidpi enable false
 
 # Install keyd related
 _PWD=$(pwd)
@@ -36,7 +42,7 @@ cd /tmp/
 rm -rf /tmp/keyd
 git clone https://github.com/rvaiya/keyd
 cd keyd
-git checkout v2.4.0
+git checkout v2.4.3
 sudo make uninstall && make && sudo make install
 mkdir -p /etc/keyd/
 sudo cp $DOTFILES_HOME/misc/keyd.conf /etc/keyd/default.conf
