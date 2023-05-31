@@ -27,6 +27,9 @@ $!q::Send !{f4}
 $!r::Send ^{f5}
 $!m::Send {LWin Down}{Down}{LWin Up}
 
+; mouse
+^LButton::RButton
+
 ; Quick Switch Tab shotcuts
 
 $!1::Send ^1
