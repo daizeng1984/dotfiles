@@ -28,7 +28,8 @@ $!r::Send ^{f5}
 $!m::Send {LWin Down}{Down}{LWin Up}
 
 ; mouse
-^LButton::RButton
+$!LButton::Send {Ctrl Down}{LButton Down}{LButton Up}{Ctrl Up}
+$^LButton::RButton
 
 ; Quick Switch Tab shotcuts
 
@@ -151,61 +152,62 @@ $^!$::
 Run % "explorer.exe ms-screenclip:"
 return
 
-#IfWinActive ahk_exe WindowsTerminal.exe ahk_class CASCADIA_HOSTING_WINDOW_CLASS
-$^b::waitforkey := true
+;#IfWinActive ahk_exe WindowsTerminal.exe ahk_class CASCADIA_HOSTING_WINDOW_CLASS
+;$^b::waitforkey := true
+;
+;#If waitforkey
+;$-::
+;    waitforkey := false
+;    Send {Ctrl Down}{Alt Down}{- Down}{- Up}{Alt Up}{Ctrl Up}
+;return
+;$|::
+;    waitforkey := false
+;    Send {Ctrl Down}{Alt Down}{\ Down}{\ Up}{Alt Up}{Ctrl Up}
+;return
+;$h::
+;    waitforkey := false
+;    Send {Ctrl Down}{Alt Down}{Left Down}{Left Up}{Alt Up}{Ctrl Up}
+;return
+;$l::
+;    waitforkey := false
+;    Send {Ctrl Down}{Alt Down}{Right Down}{Right Up}{Alt Up}{Ctrl Up}
+;return
+;$j::
+;    waitforkey := false
+;    Send {Ctrl Down}{Alt Down}{Down Down}{Down Up}{Alt Up}{Ctrl Up}
+;return
+;$k::
+;    waitforkey := false
+;    Send {Ctrl Down}{Alt Down}{Up Down}{Up Up}{Alt Up}{Ctrl Up}
+;return
+;$1::
+;    waitforkey := false
+;    Send {Ctrl Down}{Alt Down}{1 Down}{1 Up}{Alt Up}{Ctrl Up}
+;return
+;$2::
+;    waitforkey := false
+;    Send {Ctrl Down}{Alt Down}{2 Down}{2 Up}{Alt Up}{Ctrl Up}
+;return
+;$3::
+;    waitforkey := false
+;    Send {Ctrl Down}{Alt Down}{3 Down}{3 Up}{Alt Up}{Ctrl Up}
+;return
+;$4::
+;    waitforkey := false
+;    Send {Ctrl Down}{Alt Down}{4 Down}{4 Up}{Alt Up}{Ctrl Up}
+;return
+;$c::
+;    waitforkey := false
+;    Send {Ctrl Down}{Shift Down}{t Down}{t Up}{Shift Up}{Ctrl Up}
+;return
+;$p::
+;    waitforkey := false
+;    Send {Ctrl Down}{Shift Down}{Tab Down}{Tab Up}{Shift Up}{Ctrl Up}
+;return
+;$n::
+;    waitforkey := false
+;    Send {Ctrl Down}{Tab Down}{Tab Up}{Ctrl Up}
+;return
+;
+;#If
 
-#If waitforkey
-$-::
-    waitforkey := false
-    Send {Ctrl Down}{Alt Down}{- Down}{- Up}{Alt Up}{Ctrl Up}
-return
-$|::
-    waitforkey := false
-    Send {Ctrl Down}{Alt Down}{\ Down}{\ Up}{Alt Up}{Ctrl Up}
-return
-$h::
-    waitforkey := false
-    Send {Ctrl Down}{Alt Down}{Left Down}{Left Up}{Alt Up}{Ctrl Up}
-return
-$l::
-    waitforkey := false
-    Send {Ctrl Down}{Alt Down}{Right Down}{Right Up}{Alt Up}{Ctrl Up}
-return
-$j::
-    waitforkey := false
-    Send {Ctrl Down}{Alt Down}{Down Down}{Down Up}{Alt Up}{Ctrl Up}
-return
-$k::
-    waitforkey := false
-    Send {Ctrl Down}{Alt Down}{Up Down}{Up Up}{Alt Up}{Ctrl Up}
-return
-$1::
-    waitforkey := false
-    Send {Ctrl Down}{Alt Down}{1 Down}{1 Up}{Alt Up}{Ctrl Up}
-return
-$2::
-    waitforkey := false
-    Send {Ctrl Down}{Alt Down}{2 Down}{2 Up}{Alt Up}{Ctrl Up}
-return
-$3::
-    waitforkey := false
-    Send {Ctrl Down}{Alt Down}{3 Down}{3 Up}{Alt Up}{Ctrl Up}
-return
-$4::
-    waitforkey := false
-    Send {Ctrl Down}{Alt Down}{4 Down}{4 Up}{Alt Up}{Ctrl Up}
-return
-$c::
-    waitforkey := false
-    Send {Ctrl Down}{Shift Down}{t Down}{t Up}{Shift Up}{Ctrl Up}
-return
-$p::
-    waitforkey := false
-    Send {Ctrl Down}{Shift Down}{Tab Down}{Tab Up}{Shift Up}{Ctrl Up}
-return
-$n::
-    waitforkey := false
-    Send {Ctrl Down}{Tab Down}{Tab Up}{Ctrl Up}
-return
-
-#If
