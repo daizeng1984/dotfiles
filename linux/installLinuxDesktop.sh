@@ -1,10 +1,9 @@
 # brew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-source ~/.bashrc
-brew install 
 
 # gnome
 # get keys: gsettings list-keys org.gnome.desktop.wm.keybindings
+# or more details https://askubuntu.com/questions/196896/how-to-read-default-key-value-with-dconf-or-gsettings
 # night light https://askubuntu.com/questions/1088650/gnome-night-light-setting-from-the-command-line
 gsettings set org.gnome.settings-daemon.plugins.color night-light-enabled true
 
@@ -20,12 +19,16 @@ gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "[
 # gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ binding '<Primary><Alt>t'
 
 # Sound
+gsettings set org.gnome.shell.extensions.pop-shell toggle-stacking-global "[]"
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ name 'Sound'
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ command 'gnome-control-center sound'
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ binding '<Super>s'
 
-# # set the ctrl+alt+d
+# # set the windows max/left/right
+gsettings set org.gnome.shell.extensions.pop-shell tile-orientation "[]"
 gsettings set org.gnome.desktop.wm.keybindings toggle-maximized "['<Super>o']"
+gsettings set org.gnome.mutter.keybindings toggle-tiled-left "['<Super>comma']"
+gsettings set org.gnome.mutter.keybindings toggle-tiled-right "['<Super>period']"
 
 # screenshot
 gsettings set org.gnome.shell.keybindings show-screenshot-ui "['<Primary><Shift><Alt>4']"
@@ -46,6 +49,6 @@ git checkout v2.4.3
 sudo make uninstall && make && sudo make install
 mkdir -p /etc/keyd/
 sudo cp $DOTFILES_HOME/misc/keyd.conf /etc/keyd/default.conf
-sudo systemctl enable keyd && sudo systemctl start keyd
+sudo systemctl enable keyd && sudo systemctl restart keyd
 
 cd $_PWD
