@@ -1,17 +1,55 @@
 # Configuration
-This configuration is my personal laptop/desktop dotfile [setup](http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/) repo and now it grows into a bootstrap setup for my working environments (mainly linux/mac) and this bootstrap, unlike [Laptop](https://github.com/thoughtbot/laptop), heavily relies on nix/conda. Why? because of `linux more favor` and for more details please see [here](https://daizeng1984.github.io/2018-11-18-conda-everything) and [there](https://daizeng1984.github.io/2020-10-24-nix-power)
+This configuration is my personal laptop/desktop dotfile [setup](http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/) repo and now it grows into a bootstrap setup for my working environments (mainly linux/mac) and this bootstrap, unlike [Laptop](https://github.com/thoughtbot/laptop), heavily relies on conda/nix. Why? because of `linux more flavor` and for more details please see [here](https://daizeng1984.github.io/2018-11-18-conda-everything) and [there](https://daizeng1984.github.io/2020-10-24-nix-power)
 
 There are 3 level of setup: Minimal, Conda & Nix.
 
+Minimal is just to setup basics of bashrc etc. and hopefully for vimrc as well; Conda is used to setup a nice (python, nodejs, etc.) CLI dev on linux/mac without desktop experience (mostly keybindings and desktop app); Nix is aiming for fully automation of CLI and desktop app install on \*nix (but outdated due to tremendous maintainence effort and Nix's flaky support on mac).
+
 # Minimal
-This setup only provides dotfiles for `bash`/`zsh` and `vim`. It aims for less intrusive and relies on remote ssh machine default setup. Right in this mode, bash, screen & vim is the only thing you get.
+This setup only provides **dotfiles** for `bash`/`zsh` and good old `vim`. It aims for less intrusive and relies on remote ssh machine default setup. Right in this mode, bash, screen & vim is the only thing you get.
 ```sh
 cd && git clone https://github.com/daizeng1984/dotfiles.git .dotfiles && cd .dotfiles && ./createSymlink.sh
 ```
-Then restart the shell
+Then restart the shell.
 
-## Windows
-First install scoop to bootstrap in powershell:
+# Conda and Desktop App
+This setup provides nicest CLI experience for myself and desktop as well. It heavily relies conda to deploy all packages needed. No root access is needed so unlike Nix X/Desktop app is done separately. Conda is managed in `~/.dotfiles/.local` folders. 
+
+## Linux
+Should be good out of box for most distros. Just need something providing: `git`, `curl` etc. If missing, try install package like `build-essential`.
+
+```sh
+cd && git clone https://github.com/daizeng1984/dotfiles.git .dotfiles && cd .dotfiles && ./createSymlink.sh && source ~/.bashrc && source ./installConda.sh
+```
+
+For desktop:
+```sh
+cd $HOME/.dotfiles/linux && source ./installLinuxDesktop.sh
+```
+
+TODO: manually install tweak tool to disable capslock key
+TODO: install more desktop apps
+
+## Mac
+Run in Terminal:
+```sh
+xcode-select --install
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+brew install wget
+```
+
+Then just run:
+```sh
+cd && git clone https://github.com/daizeng1984/dotfiles.git .dotfiles && cd .dotfiles && ./createSymlink.sh && source ~/.bashrc && source ./installConda.sh
+```
+For desktop:
+```sh
+cd $HOME/.dotfiles/mac && source ./installMacDesktop.sh
+```
+TODO: manually config the `Karabiner-Element` for keybindings...
+
+## Windows (Limited)
+First install scoop to bootstrap in powershell by running:
 ```sh
 Set-Itemproperty -path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced' -Name 'HideFileExt' -value 0
 Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
@@ -23,40 +61,34 @@ scoop update
 scoop install wget
 ```
 
-then go to git bash to run:
+Conda on Windows is quite limited and many app cannot run (due to path slash etc.). But it's better than nothing...
+Just go to `git-bash` app to run:
 ```sh
-cd && git clone https://github.com/daizeng1984/dotfiles.git .dotfiles && cd .dotfiles && ./createSymlink.sh && source ./minimal.sh
+cd && git clone https://github.com/daizeng1984/dotfiles.git .dotfiles && cd .dotfiles && ./createSymlink.sh && source ./conda/installMiniconda.sh
 ```
-
 For desktop:
 ```sh
 cd ~/.dotfiles/windows
 powershell -File ./installScoop.ps1
 ```
 
-
-# Conda (no root)
-This setup heavily relies conda to deploy all packages needed. No root access is needed so unlike Nix X/Desktop app is done separately. Conda is managed in `~/.dotfiles/.local` folders. 
-You need to have basic development tools like git, wget, curl, bzip2 (TODO: remove these dependencies). The pros is: you can do whatever you want in your local kingdom just similar to after Nix installed. The cons is: you don't get much sandboxing protection (dependency version mismatching) and you cannot install desktop app. Therefore, a `brew cask` is recommended for this task.
-
+## Different Profile (Non-Windows)
+This is to customize shell script for different machine etc.. Register a name to `samples/var.def` with username `$(whoami)` and hostname `$(hostname)` and then customize the scripts. For example:
 ```sh
-cd && git clone https://github.com/daizeng1984/dotfiles.git .dotfiles && cd .dotfiles && ./createSymlink.sh && source ~/.bashrc && source ./installConda.sh
+__mapToDef '<your whoami output>' '<your hostname output>' 'macconda.def' 'homemac' 'reddust'
 ```
+this would map current host and user to `macconda.def` scripts and `homemac` is for nix setup and should just leave it there. The `reddust` is to assign the tmux color theme.
 
-TODO: remove wget dependencies etc.
-Before install on Mac, you need to do extra rampup manually like:
-```sh
-xcode-select --install
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
-brew install wget
-```
 
-# Nix
+
+<!---
+# Nix (Deprecated, no time to maintain 😢)
+
 This setup relies on Nix which is very powerful. The cost is for now: root permission. On Mac you need to run: `xcode-select --install` first to make sure basic cli e.g. git are available.
 ```sh
 cd && git clone https://github.com/daizeng1984/dotfiles.git .dotfiles && cd .dotfiles && ./createSymlink.sh && source ./installNix.sh
 ```
-Because it's powerful, you don't need to do anything (TODO: kidding not yet 😄 unless you are in NixOS)
+Because it's powerful, you don't need to do anything (TODO: kidding not yet :D unless you are in NixOS)
 
 After that, you need to setup *.def files. For example, for mac, go to `var.def` file and put mapping for your `whoami` and `hostname` output:
 ```sh
@@ -75,15 +107,6 @@ For example, karabiner-element.
 ```.sh
 source $HOME/.dotfiles/mac/installMacDesktop.sh
 ```
+--->
 
 
-# Key Mapping
-On Mac, use Karabiner-Element!
-On Linux, first you need to disable gnome terminal's [F10 key bindings](https://ubuntu-tutorials.com/2007/07/16/disabling-the-f10-key-menu-accelerators-in-gnome-terminal/), and disable Capslock in `TweakTool` or `xmodmap -e 'clear Lock'`. Then remap capslock to F10 by installing xcape in your conda environment as `conda install -c daizeng1984 xcape`. In your startup script you should run `killall xcape` and then `xcape -e '#66=#76'`. 
-On Windows, `installScoop.sh` will install `autohotkey`.
-
-## Different Profile (Non-Windows)
-Similar to Nix, make sure you register a name to `samples/var.def` with username `$(whoami)` and hostname `$(hostname)`. For example:
-```sh
-__mapToDef '<your whoami output>' '<your hostname output>' 'macconda.def' 'homemac'
-```

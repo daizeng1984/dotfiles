@@ -3,7 +3,7 @@ sudo scoop install 7zip openssh --global
 # scoop install python ruby go perl
 scoop install vcredist
 scoop install firefox flux autohotkey windows-terminal flameshot
-scoop install fzf dust zoxide ag ripgrep bat direnv zip unzip tar fd neovim
+scoop install fzf dust zoxide ag ripgrep bat zip unzip tar fd neovim
 
 # autohotkey
 sudo $HOME/scoop/apps/autohotkey/current/setup.exe

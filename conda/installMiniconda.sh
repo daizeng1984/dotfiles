@@ -12,9 +12,7 @@ fi
 
 if [ "$PLATFORM" = "Windows" ]; then
     echo "Trying scoop to install..."
-    scoop install miniconda3
-    # try, if not manually install
-    powershell 'conda install -y mamba'
+    scoop install mambaforge
 else
 SCRIPT_NAME="Mambaforge-${PLATFORM}-x86_64.sh"
 RETURN_DIR=$(pwd)
