@@ -16,9 +16,9 @@ source ./conda/installMiniconda.sh
 # has to use system ruby
 # conda install -y -c conda-forge ruby
 # Mamba
-conda install -y -c conda-forge mamba
 source "$DOTFILE_LOCAL_PREFIX/lib/miniconda/etc/profile.d/mamba.sh"
 mamba install -y -n base -c conda-forge conda-libmamba-solver
+conda config --set solver libmamba
 
 # Now we do minimal setup
 # Nodejs

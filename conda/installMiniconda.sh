@@ -16,18 +16,15 @@ if [ "$PLATFORM" = "Windows" ]; then
     # try, if not manually install
     powershell 'conda install -y mamba'
 else
-SCRIPT_NAME="Miniconda3-latest-${PLATFORM}-x86_64.sh"
+SCRIPT_NAME="Mambaforge-${PLATFORM}-x86_64.sh"
 RETURN_DIR=$(pwd)
 cd /tmp
-curl "https://repo.anaconda.com/miniconda/${SCRIPT_NAME}" -o ${SCRIPT_NAME}
+curl -L "https://github.com/conda-forge/miniforge/releases/latest/download/${SCRIPT_NAME}" -o ${SCRIPT_NAME}
 bash ./${SCRIPT_NAME} -b -u -p $HOME/.dotfiles/.local/lib/miniconda
 rm -rf ./${SCRIPT_NAME}
 cd $RETURN_DIR
 
 source $HOME/.bashrc
-# Create default python environment
-# ping to 3.7 so that we could conda install -c daizeng1984 nvim
-conda install -y python=3.7
 # Add the best channel over defaults TODO: .condarc
 conda config --add channels conda-forge
 fi
