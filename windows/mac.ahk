@@ -146,6 +146,11 @@ return         ; Do nothing, return
 
 ; suppress win
 LAlt & Space::Send ^{ESC}
+LAlt::Return
+LWin::LAlt
+LWin & Left::Send ^{Left}
+LWin & Right::Send ^{Right}
+LWin & Backspace::Send ^{Backspace}
 
 ; tools
 $^!$::
