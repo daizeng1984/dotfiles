@@ -23,10 +23,12 @@ function __mapToDef() {
 
 }
 
-# use hostnamectl set-hostname <new host name> to set hostname or sudo scutil --set HostName <new host name>
+# linux: `hostnamectl set-hostname <new host name>`
+# mac: `sudo scutil --set HostName <new host name>`
+# windows: `Rename-Computer -NewName "<new host name>"`
 __mapToDef 'zdai' 'macbook-pro-13-home' 'macnix.def' 'homemac' 'reddust'
 __mapToDef 'zeng' 'Zengs-MacBook-Pro' 'macconda.def'
 __mapToDef 'zengdai' 'pop-os' 'centosconda.def' 'homelinux' 'diamonddust'
-__mapToDef 'zengdai' 'Win11-SL3' 'centosconda.def' 'homelinux' 'silverdust'
+__mapToDef 'zengdai' 'windesktop' 'centosconda.def' 'homelinux' 'silverdust'
 __mapToDef 'zdai' 'centos8-xps8700' 'centosnix.def' 'homelinux' 'reddust'
 __mapToDef 'daize' 'DESKTOP-A2KMAHP' 'winconda.def' 'homemac' 'reddust'

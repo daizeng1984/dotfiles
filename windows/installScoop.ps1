@@ -15,3 +15,15 @@ start ./mac.ahk
 # copy settings.json to terminal
 start "$env:HOMEPATH/scoop/apps/windows-terminal/current/WindowsTerminal.exe"
 Copy-Item "$env:HOMEPATH/.dotfiles/windows/terminal-settings.json" -Destination "$env:HOMEPATH/scoop/apps/windows-terminal/current/settings/settings.json"
+
+# hostname
+sudo Rename-Computer -NewName "windesktop"
+# wmic.exe computersystem where name="%computername%" call rename name="windesktop"
+
+# file explorer
+sudo reg add "HKCU\Software\Classes\Local Settings\Software\Microsoft\Windows\Shell\Bags\AllFolders\Shell" /v FolderType /t REG_SZ /d NotSpecified /f
+sudo reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Policies\System" /v DisableLockWorkstation /t REG_DWORD /d 1 /f
+sudo reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" /v NoWinKeys /t REG_DWORD /d 1 /f
+
+# install wsl
+wsl --install

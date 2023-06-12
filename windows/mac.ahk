@@ -144,8 +144,9 @@ CapsLock::      ; CapsLock
 ^!#CapsLock::   ; Ctrl+Alt+Win+CapsLock
 return         ; Do nothing, return
 
+$^!q:: DllCall("LockWorkStation")
 ; suppress win
-LAlt & Space::Send ^{ESC}
+LAlt & Space::Send !{Space}
 LAlt::Return
 LWin::LAlt
 LWin & Left::Send ^{Left}
