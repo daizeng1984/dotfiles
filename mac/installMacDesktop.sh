@@ -8,6 +8,8 @@ brew install --cask phoenix
 brew install --cask iterm2
 brew install --cask shifty
 brew install --cask kap
+brew install gnupg
+brew install pinentry-mac
 #brew cask install gimp
 #brew cask install xee
 # brew cask install balenaetcher
