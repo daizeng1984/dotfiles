@@ -51,4 +51,19 @@ mkdir -p /etc/keyd/
 sudo cp $DOTFILES_HOME/misc/keyd.conf /etc/keyd/default.conf
 sudo systemctl enable keyd && sudo systemctl restart keyd
 
+# install libinput-config to reduce the shitty scrolling speed
+cd /tmp/
+rm -rf /tmp/libinput-config
+git clone https://gitlab.com/warningnonpotablewater/libinput-config.git
+cd libinput-config
+brew install meson
+sudo apt install -y libinput-devel ninja
+meson build
+cd build
+ninja
+sudo ninja install
+echo "scroll-factor=0.175" | sudo tee /etc/libinput.conf
+# Fix firefox's smooth scrolling
+echo export MOZ_USE_XINPUT2=1 | sudo tee /etc/profile.d/use-xinput2.sh
+
 cd $_PWD
