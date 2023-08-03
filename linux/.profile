@@ -1,6 +1,7 @@
 # Let us manage by ourselves now
 export XCURSOR_PATH=${XCURSOR_PATH}:/usr/share/icons/
 
+export STEAM_FORCE_DESKTOPUI_SCALING='2.0'
 # export GTK_IM_MODULE=fcitx
 # export QT_IM_MODULE=fcitx
 # export XMODIFIERS=@im=fcitx
