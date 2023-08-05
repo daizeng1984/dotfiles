@@ -3,6 +3,9 @@ let mapleader = ","
 " Sudo
 nnoremap <silent> <leader>W :w !sudo tee > /dev/null %<CR>
 
+" Tab behavior closer to IDE like vscode
+inoremap <expr> <TAB> pumvisible() ? "\<C-y>" : "\<C-g>u\<TAB>"
+
 " IPython
 " nvim-py
 " map <silent> <leader>pr <Plug>(IPy-Run)

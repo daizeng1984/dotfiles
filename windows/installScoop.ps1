@@ -5,6 +5,21 @@ scoop install vcredist
 scoop install firefox flux autohotkey windows-terminal flameshot
 scoop install fzf dust zoxide ag ripgrep bat zip unzip tar fd neovim
 
+# 7zip context menu
+start "$env:HOMEPATH/scoop/apps/7zip/current/install-context.reg"
+
+# alacritty
+scoop bucket add extras
+scoop install extras/alacritty
+scoop install extras/vcredist2022
+New-Item -ItemType Directory -Path "$env:HOMEPATH/AppData/Roaming/alacritty/"
+Copy-Item "$env:HOMEPATH/.dotfiles/windows/alacritty.yml" -Destination "$env:HOMEPATH/AppData/Roaming/alacritty/alacritty.yml"
+
+
+# fonts
+scoop bucket add nerd-fonts
+scoop install nerd-fonts/UbuntuMono-NF
+
 # autohotkey
 sudo $HOME/scoop/apps/autohotkey/current/setup.exe
 $startup = [environment]::getfolderpath("Startup")

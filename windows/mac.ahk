@@ -14,8 +14,12 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 ; Universal shotcuts
 
 $!x::Send ^x
+#IfWinNotActive ahk_exe alacritty.exe
 $!c::Send ^c
 $!v::Send ^v
+return
+#If
+
 $!s::Send ^s
 $!a::Send ^a
 $!z::Send ^z
@@ -24,7 +28,7 @@ $!w::Send ^w
 $!f::Send ^f
 $!n::Send ^n
 $!q::Send !{f4}
-$!r::Send ^{f5}
+$!r::Send ^r
 $!m::Send {LWin Down}{Down}{LWin Up}
 
 ; mouse
@@ -146,7 +150,7 @@ return         ; Do nothing, return
 
 $^!q:: DllCall("LockWorkStation")
 ; suppress win
-LAlt & Space::Send !{Space}
+LAlt & Space::Send ^{Escape}
 LAlt::Return
 LWin::LAlt
 LWin & Left::Send ^{Left}
