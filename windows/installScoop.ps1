@@ -15,7 +15,6 @@ scoop install extras/vcredist2022
 New-Item -ItemType Directory -Path "$env:HOMEPATH/AppData/Roaming/alacritty/"
 Copy-Item "$env:HOMEPATH/.dotfiles/windows/alacritty.yml" -Destination "$env:HOMEPATH/AppData/Roaming/alacritty/alacritty.yml"
 
-
 # fonts
 scoop bucket add nerd-fonts
 scoop install nerd-fonts/UbuntuMono-NF
@@ -27,6 +26,12 @@ Copy-Item "./mac.ahk" -Destination "$startup"
 cd $startup
 start ./mac.ahk
 
+# flux (startup)
+$WshShell = New-Object -comObject WScript.Shell
+$Shortcut = $WshShell.CreateShortcut("$startup\flux.lnk")
+$Shortcut.TargetPath = "$env:HOMEPATH/scoop/apps/flux/current/flux.exe"
+$Shortcut.Save()
+
 # copy settings.json to terminal
 start "$env:HOMEPATH/scoop/apps/windows-terminal/current/WindowsTerminal.exe"
 Copy-Item "$env:HOMEPATH/.dotfiles/windows/terminal-settings.json" -Destination "$env:HOMEPATH/scoop/apps/windows-terminal/current/settings/settings.json"
@@ -37,7 +42,9 @@ sudo Rename-Computer -NewName "windesktop"
 
 # file explorer
 sudo reg add "HKCU\Software\Classes\Local Settings\Software\Microsoft\Windows\Shell\Bags\AllFolders\Shell" /v FolderType /t REG_SZ /d NotSpecified /f
-sudo reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Policies\System" /v DisableLockWorkstation /t REG_DWORD /d 1 /f
+# disable lock
+# sudo reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Policies\System" /v DisableLockWorkstation /t REG_DWORD /d 1 /f
+# disable win key
 sudo reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" /v NoWinKeys /t REG_DWORD /d 1 /f
 
 # install wsl

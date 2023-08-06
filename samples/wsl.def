@@ -1,0 +1,34 @@
+# Android
+source "${DOTFILES_HOME}/samples/common/conda/android.def"
+# Java
+source "${DOTFILES_HOME}/samples/common/conda/java.def"
+
+# Prefer Clang vs GCC
+installedClang=$(checkIfInstalled "clang" clang --quiet)
+if [ "$installedClang" = "1" ] ; then
+    export CXX=$(which clang++)
+    export CC=$(which clang)
+fi
+
+# Utils
+source "${DOTFILES_HOME}/samples/common/utils.def"
+
+# Windows stuff
+open() {
+    explorer.exe $@
+}
+
+# use wsl and respect env var in the path
+winpath2nix() {
+    _path=$(cmd.exe /c "echo $@") >/dev/null
+    _path=$(echo -E "$_path" | sed 's/\\/\\\\/g') >/dev/null
+    _path=`wslpath -u $_path` >/dev/null
+    _path=$(echo "$_path" | tr -d '\r') >/dev/null
+
+    echo $_path
+}
+
+nixpath2win() {
+    _abspath=`realpath $@`
+    echo -E `wslpath -w $_abspath`
+}
