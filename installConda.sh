@@ -60,5 +60,10 @@ mamba install -y --no-deps --freeze-installed -c bioconda grep # make sure we ha
 mamba install -y --no-deps --freeze-installed -c antoined xsel
 mamba install -y --no-deps --freeze-installed -c daizeng1984 nvim
 
+# install dtrx
+pip install -y dtrx
+mamba install -y -c conda-forge unzip
+mamba install -y -c conda-forge unrar
+
 # Configs
 source $HOME/.dotfiles/minimal.sh

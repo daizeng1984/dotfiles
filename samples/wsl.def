@@ -32,3 +32,8 @@ nixpath2win() {
     _abspath=`realpath $@`
     echo -E `wslpath -w $_abspath`
 }
+
+mountndrive() {
+    sudo mkdir -p /mnt/n
+    sudo mount -t drvfs N: /mnt/n
+}

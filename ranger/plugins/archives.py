@@ -20,10 +20,6 @@ class extracthere(Command):
 
         descr = "extracted file(s): " + " ".join(archieves);
 
-        'shell apack '
-        obj = CommandLoader(args=['dtrx', 'extract'] \
-                + archieves, descr=descr)
-
         self.fm.execute_console(
         'shell dtrx -v ' + \
                 " ".join(archieves))
