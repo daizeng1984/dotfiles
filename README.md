@@ -48,7 +48,7 @@ cd $HOME/.dotfiles/mac && source ./installMacDesktop.sh
 ```
 TODO: manually config the `Karabiner-Element` for keybindings...
 
-## Windows (Limited)
+## Windows (WSL)
 First install scoop to bootstrap in powershell by running:
 ```sh
 Set-Itemproperty -path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced' -Name 'HideFileExt' -value 0
@@ -61,15 +61,12 @@ scoop update
 scoop install wget
 ```
 
-Conda on Windows is quite limited and many app cannot run (due to path slash etc.). But it's better than nothing...
-Just go to `git-bash` app to run:
+Still in powershell, for wsl and desktop:
 ```sh
-cd && git clone https://github.com/daizeng1984/dotfiles.git .dotfiles && cd .dotfiles && ./createSymlink.sh && source ./conda/installMiniconda.sh
-```
-For desktop:
-```sh
+cd && git clone https://github.com/daizeng1984/dotfiles.git .dotfiles
+cd .dotfiles/windows
 cd ~/.dotfiles/windows
-powershell -File ./installScoop.ps1
+./installScoop.ps1
 ```
 
 ## Different Profile (Non-Windows)

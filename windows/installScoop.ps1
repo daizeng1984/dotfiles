@@ -22,9 +22,10 @@ scoop install nerd-fonts/UbuntuMono-NF
 # autohotkey
 sudo $HOME/scoop/apps/autohotkey/current/setup.exe
 $startup = [environment]::getfolderpath("Startup")
-Copy-Item "./mac.ahk" -Destination "$startup"
-cd $startup
-start ./mac.ahk
+# Copy-Item "./mac.ahk" -Destination "$startup"
+# cd $startup
+# start ./mac.ahk
+sudo . "`"$(Convert-Path -Path '~/.dotfiles/windows/create_ahk_task.ps1')`""
 
 # flux (startup)
 $WshShell = New-Object -comObject WScript.Shell
