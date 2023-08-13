@@ -28,6 +28,7 @@ mamba install -y -c conda-forge yarn
 # Tools
 mamba install -y -c conda-forge wget
 mamba install -y -c conda-forge coreutils
+mamba install -y -c conda-forge tar
 mamba install -y -c conda-forge tree
 mamba install -y -c conda-forge sed # organic sed
 mamba install -y -c conda-forge findutils
@@ -56,9 +57,6 @@ mamba install -y -c conda-forge broot
 mamba install -y -c conda-forge httpie
 mamba install -y -c conda-forge htop
 mamba install -y -c conda-forge pandoc
-mamba install -y --no-deps --freeze-installed -c bioconda grep # make sure we have organic grep on mac
-mamba install -y --no-deps --freeze-installed -c antoined xsel
-mamba install -y --no-deps --freeze-installed -c daizeng1984 nvim
 
 # install dtrx
 pip install -y dtrx

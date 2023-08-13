@@ -1,3 +1,15 @@
+# install vim
+mkdir -p /tmp/installnvim
+if [ "$DOTFILES_SYSTEM_NAME" = "darwin" ]; then
+curl -fLo /tmp/installnvim/nvim.tar.gz https://github.com/neovim/neovim/releases/latest/download/nvim-macos.tar.gz
+folder_name="macos"
+else
+curl -fLo /tmp/installnvim/nvim.tar.gz https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
+folder_name="linux64"
+fi
+tar -zxvkf /tmp/installnvim/nvim.tar.gz  --directory /tmp/installnvim
+rsync -razvIP /tmp/installnvim/nvim-$folder_name/*  ~/.dotfiles/.local/
+
 # Install Vim-Plug to default vim rum
 echo "Install Vim-Plug manager"
 curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
