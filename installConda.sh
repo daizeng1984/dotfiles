@@ -33,6 +33,8 @@ mamba install -y -c conda-forge tree
 mamba install -y -c conda-forge sed # organic sed
 mamba install -y -c conda-forge findutils
 mamba install -y -c conda-forge git
+mamba install -y -c conda-forge git-lfs
+git lfs install
 mamba install -y -c conda-forge zsh
 mamba install -y -c conda-forge direnv
 mamba install -y -c conda-forge neovim

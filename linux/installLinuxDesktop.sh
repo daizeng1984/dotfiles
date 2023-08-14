@@ -1,5 +1,5 @@
 # brew
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+# /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 # gnome
 # get keys: gsettings list-keys org.gnome.desktop.wm.keybindings
@@ -20,9 +20,10 @@ gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "[
 
 # Sound
 gsettings set org.gnome.shell.extensions.pop-shell toggle-stacking-global "[]"
+gsettings set org.gnome.shell.keybindings toggle-overview "['<Super>s']"
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ name 'Sound'
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ command 'gnome-control-center sound'
-gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ binding '<Super>s'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ binding '<Super>c'
 
 # # set the windows max/left/right
 gsettings set org.gnome.shell.extensions.pop-shell tile-orientation "[]"
@@ -38,6 +39,29 @@ gsettings set org.gnome.shell.keybindings show-screenshot-ui "['<Primary><Shift>
 # gsettings set org.gnome.desktop.wm.keybindings switch-input-source-backward "['<Super><Shift>space']"
 # install tlp tlpui
 # gsettings set com.system76.hidpi enable false
+installedApt=$(checkIfInstalled "apt" "" --quiet)
+if [ "$installedApt" = "1" ] ; then
+    # ubuntu
+    sudo apt install -y meson libinput-devel ninja libudev-devel
+else
+    # fedora
+    # build essential
+    sudo dnf install -y make automake gcc gcc-c++ kernel-devel
+    sudo dnf install -y meson libinput-devel ninja-build libudev-devel
+
+    # ffmpeg
+    sudo dnf install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+    sudo dnf -y swap ffmpeg-free ffmpeg --allowerasing
+    sudo dnf -y groupupdate multimedia --setop="install_weak_deps=False" --exclude=PackageKit-gstreamer-plugin
+    sudo dnf -y groupupdate sound-and-video
+
+    # surface amd
+    sudo dnf -y swap mesa-va-drivers mesa-va-drivers-freeworld
+    sudo dnf -y swap mesa-vdpau-drivers mesa-vdpau-drivers-freeworld
+    sudo dnf -y swap mesa-va-drivers.i686 mesa-va-drivers-freeworld.i686
+    sudo dnf -y swap mesa-vdpau-drivers.i686 mesa-vdpau-drivers-freeworld.i686
+fi
+
 
 # Install keyd related
 _PWD=$(pwd)
@@ -56,8 +80,6 @@ cd /tmp/
 rm -rf /tmp/libinput-config
 git clone https://gitlab.com/warningnonpotablewater/libinput-config.git
 cd libinput-config
-brew install meson
-sudo apt install -y libinput-devel ninja
 meson build
 cd build
 ninja
