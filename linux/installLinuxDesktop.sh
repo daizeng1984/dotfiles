@@ -34,6 +34,11 @@ gsettings set org.gnome.mutter.keybindings toggle-tiled-right "['<Super>period']
 # screenshot
 gsettings set org.gnome.shell.keybindings show-screenshot-ui "['<Primary><Shift><Alt>4']"
 
+# disable super_l
+gsettings set org.gnome.mutter overlay-key ""
+# disable capslock
+gsettings set org.gnome.desktop.input-sources xkb-options "['caps:none']"
+
 # # input method
 # gsettings set org.gnome.desktop.wm.keybindings switch-input-source "['<Super>space']"
 # gsettings set org.gnome.desktop.wm.keybindings switch-input-source-backward "['<Super><Shift>space']"
@@ -43,6 +48,8 @@ installedApt=$(checkIfInstalled "apt" "" --quiet)
 if [ "$installedApt" = "1" ] ; then
     # ubuntu
     sudo apt install -y meson libinput-devel ninja libudev-devel
+    # ydotool (for wayland)
+    sudo apt install -y xdotool
 else
     # fedora
     # build essential
@@ -60,6 +67,10 @@ else
     sudo dnf -y swap mesa-vdpau-drivers mesa-vdpau-drivers-freeworld
     sudo dnf -y swap mesa-va-drivers.i686 mesa-va-drivers-freeworld.i686
     sudo dnf -y swap mesa-vdpau-drivers.i686 mesa-vdpau-drivers-freeworld.i686
+
+    # go
+    # sudo dnf install -y go
+    # sudo dnf install -y libxkbcommon-devel
 fi
 
 
@@ -88,4 +99,17 @@ echo "scroll-factor=0.175" | sudo tee /etc/libinput.conf
 # Fix firefox's smooth scrolling
 echo export MOZ_USE_XINPUT2=1 | sudo tee /etc/profile.d/use-xinput2.sh
 
+# install dotool
+# cd /tmp/
+# rm -rf /tmp/dotool
+# git clone https://git.sr.ht/\~geb/dotool
+# cd dotool
+# sudo ./install.sh
+
 cd $_PWD
+
+# gpg
+mkdir -p ~/.gnupg/
+# to restart gpg-agent gpgconf --kill gpg-agent and then --launch it
+echo "pinentry-program /usr/bin/pinentry-gnome3" | tee ~/.gnupg/gpg-agent.conf
+
