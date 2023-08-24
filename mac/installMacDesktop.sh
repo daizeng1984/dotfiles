@@ -10,6 +10,12 @@ brew install --cask shifty
 brew install --cask kap
 brew install gnupg
 brew install pinentry-mac
+# gnupg
+mkdir -p ~/.gnupg/
+echo "pinentry-program $(which pinentry-mac)" | tee ~/.gnupg/gpg-agent.conf
+gpgconf --kill gpg-agent
+gpgconf --launch gpg-agent
+
 #brew cask install gimp
 #brew cask install xee
 # brew cask install balenaetcher

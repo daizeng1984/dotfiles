@@ -111,5 +111,9 @@ cd $_PWD
 # gpg
 mkdir -p ~/.gnupg/
 # to restart gpg-agent gpgconf --kill gpg-agent and then --launch it
-echo "pinentry-program /usr/bin/pinentry-gnome3" | tee ~/.gnupg/gpg-agent.conf
+echo "pinentry-program $(which pinentry-gnome3)" | tee ~/.gnupg/gpg-agent.conf
+mkdir -p ~/.gnupg/
+gpgconf --kill gpg-agent
+gpgconf --launch gpg-agent
+
 
