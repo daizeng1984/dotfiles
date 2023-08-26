@@ -38,6 +38,8 @@ gsettings set org.gnome.shell.keybindings show-screenshot-ui "['<Primary><Shift>
 gsettings set org.gnome.mutter overlay-key ""
 # disable capslock
 gsettings set org.gnome.desktop.input-sources xkb-options "['caps:none']"
+# disable 2 finger click
+gsettings set org.gnome.desktop.peripherals.touchpad click-method 'none'
 
 # # input method
 # gsettings set org.gnome.desktop.wm.keybindings switch-input-source "['<Super>space']"
@@ -48,8 +50,9 @@ installedApt=$(checkIfInstalled "apt" "" --quiet)
 if [ "$installedApt" = "1" ] ; then
     # ubuntu
     sudo apt install -y meson libinput-devel ninja libudev-devel
-    # ydotool (for wayland)
-    sudo apt install -y xdotool
+
+    # gnome tweak
+    # TODO
 else
     # fedora
     # build essential
@@ -71,6 +74,8 @@ else
     # go
     # sudo dnf install -y go
     # sudo dnf install -y libxkbcommon-devel
+    # gnome tweak
+    sudo dnf install -y gnome-tweaks
 fi
 
 
