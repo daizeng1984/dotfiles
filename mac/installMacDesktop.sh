@@ -7,6 +7,9 @@ brew install --cask flameshot
 brew install --cask phoenix
 brew install --cask iterm2
 brew install --cask shifty
+brew install --cask flux
+brew install --cask museeks
+brew install --cask dropbox
 brew install --cask kap
 brew install gnupg
 brew install pinentry-mac

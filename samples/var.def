@@ -26,7 +26,7 @@ function __mapToDef() {
 # linux: `hostnamectl set-hostname <new host name>`
 # mac: `sudo scutil --set HostName <new host name>`
 # windows: `Rename-Computer -NewName "<new host name>"`
-__mapToDef 'zdai' 'macbook-pro-13-home' 'macconda.def' 'homemac' 'wombat'
+__mapToDef 'zengdai' 'macbook-pro-13-home' 'macconda.def' 'homemac' 'wombat'
 __mapToDef 'zeng' 'Zengs-MacBook-Pro' 'macconda.def'
 __mapToDef 'zengdai' 'pop-os' 'centosconda.def' 'homelinux' 'diamonddust'
 __mapToDef 'zengdai' 'windesktop' 'wsl.def' 'homelinux' 'silverdust'
