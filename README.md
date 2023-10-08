@@ -34,9 +34,12 @@ TODO: install more desktop apps
 Run in Terminal:
 ```sh
 xcode-select --install
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+git clone --depth=1 https://github.com/Homebrew/brew ~/.brew # install brew locally, since mostly cask it
+# /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"  # install as admin
 brew install wget
 ```
+<!-- /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)" -->
+<!-- brew install wget -->
 
 Then just run:
 ```sh

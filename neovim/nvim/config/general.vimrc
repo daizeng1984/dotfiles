@@ -117,7 +117,8 @@ if has('path_extra')
   setglobal tags-=./tags tags^=./tags;
 endif
 
-
-
-
+" https://github.com/lewis6991/impatient.nvim#notice
+if has('nvim')
+    " vim.loader.enable()
+endif
 

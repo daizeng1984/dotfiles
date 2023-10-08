@@ -80,9 +80,20 @@ nmap <leader>dg :diffget<CR>:diffupdate<CR>zm
 " nnoremap <silent> <leader>fg :Rgrep<CR>
 map <C-f> :Rg <C-r><C-w><CR>
 " vim-grepper
-nmap <leader>fg :Grepper -stop<CR>:Grepper -tool ag -cword<CR>
-vmap <leader>ff <plug>(GrepperOperator)
-map <leader>ff :Grepper -stop<CR>:Grepper -tool rg -cword<CR>
+if has_key(g:plugs, 'vim-grepper')
+    nmap <leader>fg :Grepper -stop<CR>:Grepper -tool ag -cword<CR>
+    vmap <leader>ff <plug>(GrepperOperator)
+    map <leader>ff :Grepper -stop<CR>:Grepper -tool rg -cword<CR>
+else
+    if executable('rg')
+        set grepprg=rg\ -i\ --vimgrep grepformat=%f:%l:%c:%m
+    endif
+    if has_key(g:plugs, 'ack.vim')
+        nnoremap <Leader>ff :Ack!<Space>
+    endif
+    nmap <leader>fg :Rg<Space>
+endif
+
 
 " SSH paste
 map <silent> <leader>sp :r /tmp/sshclipboard.txt<CR>

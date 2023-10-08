@@ -161,6 +161,18 @@ let g:grepper = {
     \}
 let g:grepper.quickfix = 0
 
+" Ack
+let g:ackprg = 'rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!.git/*" '
+
+" Auto close the Quickfix list after pressing '<enter>' on a list item
+" let g:ack_autoclose = 1
+
+" Any empty ack search will search for the work the cursor is on
+let g:ack_use_cword_for_empty_search = 1
+
+" Don't jump to first match
+cnoreabbrev Ack Ack!
+
 
 " Vim markdown
 let g:vim_markdown_fenced_languages = ['html', 'java', 'cpp', 'python=py', 'bash=sh']

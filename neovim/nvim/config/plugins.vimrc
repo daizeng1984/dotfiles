@@ -98,6 +98,7 @@ Plug 'junegunn/vim-emoji'
 " Plug 'jlanzarotta/bufexplorer'
 Plug 'vim-scripts/wombat256.vim'
 " Plug 'mhinz/vim-grepper'
+Plug 'mileszs/ack.vim'
 Plug 'mhinz/vim-signify'
 Plug 'tpope/vim-fugitive' " -, dv, U, cc, cA, p, q
 Plug 'tpope/vim-surround'
