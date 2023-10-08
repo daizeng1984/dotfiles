@@ -35,6 +35,7 @@ Run in Terminal:
 ```sh
 xcode-select --install
 git clone --depth=1 https://github.com/Homebrew/brew ~/.brew # install brew locally, since mostly cask it
+if [ -e ~/.brew/ ]; then eval "$(~/.brew/bin/brew shellenv)"; fi
 # /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"  # install as admin
 brew install wget
 ```
