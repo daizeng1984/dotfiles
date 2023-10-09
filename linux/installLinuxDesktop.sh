@@ -71,11 +71,17 @@ else
     sudo dnf -y swap mesa-va-drivers.i686 mesa-va-drivers-freeworld.i686
     sudo dnf -y swap mesa-vdpau-drivers.i686 mesa-vdpau-drivers-freeworld.i686
 
+    # nvidia
+    sudo dnf install -y nvidia-vaapi-driver
+
     # go
     # sudo dnf install -y go
     # sudo dnf install -y libxkbcommon-devel
     # gnome tweak
     sudo dnf install -y gnome-tweaks
+
+    # app
+    sudo dnf install -y alacritty
 fi
 
 
@@ -121,4 +127,11 @@ mkdir -p ~/.gnupg/
 gpgconf --kill gpg-agent
 gpgconf --launch gpg-agent
 
+# install font
+cd /tmp
+curl -L  https://github.com/canonical/UbuntuMono-fonts/releases/latest/download/UbuntuMono-fonts-fonts.zip -o UbuntuMono-fonts-fonts.zip
+unzip UbuntuMono-fonts-fonts.zip
+cp -rvf UbuntuMono-fonts-fonts /usr/share/fonts/
+fc-cache -fv
+cd $_PWD
 
