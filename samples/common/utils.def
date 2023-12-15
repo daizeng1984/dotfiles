@@ -235,3 +235,31 @@ lctest() {
     leetcode test $@
 }
 
+abspath() {                                               
+    cd "$(dirname "$1")"
+    printf "%s/%s\n" "$(pwd)" "$(basename "$1")"
+    cd "$OLDPWD"
+}
+
+zipedit(){
+    echo "Usage: zipedit archive.zip"
+    if [ -f "$1" ]; then
+        _dir=`dirname $1`
+        _dir=`abspath ${_dir}`
+        _filepath=`abspath $1`
+        _filename=`basename $1 .zip`
+        _pwd=`pwd`
+
+        # backup
+        cp "$1" "/tmp/${_filename}.backup.zip"
+        rm -rf "/tmp/${_filename}"
+
+        unzip "$1" -d "/tmp/${_filename}"
+        ranger "/tmp/${_filename}/"
+
+        cd "/tmp/${_filename}/" && zip "${_filepath}" -FS -r "." 
+        cd "${_pwd}"
+    else
+        echo "Cannot find file $1"
+    fi
+}

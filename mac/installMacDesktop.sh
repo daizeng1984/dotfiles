@@ -12,7 +12,7 @@ brew install --cask cog #museeks
 brew install --cask dropbox
 brew install --cask kap
 brew install --cask alacritty
-brew install --cask orion
+brew install --cask orion # plugin: ublock origin, bitwarden
 brew install --cask turbo-boost-switcher # intel mac power
 brew install gnupg
 brew install pinentry-mac
