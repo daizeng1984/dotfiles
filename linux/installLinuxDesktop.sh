@@ -131,7 +131,7 @@ gpgconf --launch gpg-agent
 cd /tmp
 curl -L  https://github.com/canonical/UbuntuMono-fonts/releases/latest/download/UbuntuMono-fonts-fonts.zip -o UbuntuMono-fonts-fonts.zip
 unzip UbuntuMono-fonts-fonts.zip
-cp -rvf UbuntuMono-fonts-fonts /usr/share/fonts/
+sudo cp -rvf UbuntuMono-fonts-fonts /usr/share/fonts/
 fc-cache -fv
 cd $_PWD
 
