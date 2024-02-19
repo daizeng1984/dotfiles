@@ -20,7 +20,7 @@ scoop bucket add nerd-fonts
 scoop install nerd-fonts/UbuntuMono-NF
 
 # autohotkey
-sudo $HOME/scoop/apps/autohotkey/current/setup.exe
+sudo "$HOME/scoop/apps/autohotkey1.1/current/AutoHotkeyU64.exe"
 $startup = [environment]::getfolderpath("Startup")
 # Copy-Item "./mac.ahk" -Destination "$startup"
 # cd $startup

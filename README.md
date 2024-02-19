@@ -67,10 +67,16 @@ scoop install wget
 
 Still in powershell, for wsl and desktop:
 ```sh
-cd && git clone https://github.com/daizeng1984/dotfiles.git .dotfiles
+cd
+git clone https://github.com/daizeng1984/dotfiles.git .dotfiles
 cd .dotfiles/windows
 cd ~/.dotfiles/windows
 ./installScoop.ps1
+```
+Reboot if there's no errors, then either work under native window git-bash (Windows Terminal) or install Linux inside wsl with above Linux instruction (Alacritty) and followed by some extra steps:
+```sh
+cd
+source .dotfiles/windows/__createHomeFolders.sh
 ```
 
 ## Different Profile (Non-Windows)

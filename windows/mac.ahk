@@ -15,6 +15,7 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
 $!x::Send ^x
 #IfWinNotActive ahk_exe alacritty.exe
+; v2 #HotIf WinNotActive("ahk_exe alacritty.exe")
 $!c::Send ^c
 $!v::Send ^v
 return

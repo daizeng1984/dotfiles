@@ -1,6 +1,6 @@
 $TaskName = "AutoHotKey"
 $TaskDescr = "AutoHotKey autostart"
-$TaskCommand = "`"$(Convert-Path -Path '~/scoop/apps/autohotkey/current/v1.1.37.01/AutoHotkeyU64.exe')`""
+$TaskCommand = "`"$(Convert-Path -Path '~/scoop/apps/autohotkey1.1/current/AutoHotkeyU64.exe')`""
 $TaskArg = "`"$(Convert-Path '~/.dotfiles/windows/mac.ahk')`""
 # connect to the local machine.
 $service = new-object -ComObject("Schedule.Service")
