@@ -1,5 +1,6 @@
 ; credit https://gist.github.com/ascendbruce/677c3169259c975259045f905cd889d6?permalink_comment_id=3762847#file-mac-ahk
 #NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
+#InstallMouseHook
 ; #Warn  ; Enable warnings to assist with detecting common errors.
 SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
@@ -35,6 +36,7 @@ $!m::Send {LWin Down}{Down}{LWin Up}
 ; mouse
 $!LButton::Send {Ctrl Down}{LButton Down}{LButton Up}{Ctrl Up}
 $^LButton::RButton
+RButton::Return
 
 ; Quick Switch Tab shotcuts
 
