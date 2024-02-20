@@ -12,6 +12,7 @@ start "$env:HOMEPATH/scoop/apps/7zip/current/install-context.reg"
 scoop bucket add extras
 scoop install extras/alacritty
 scoop install extras/vcredist2022
+scoop install extras/winaero-tweaker
 New-Item -ItemType Directory -Path "$env:HOMEPATH/AppData/Roaming/alacritty/"
 Copy-Item "$env:HOMEPATH/.dotfiles/windows/alacritty.yml" -Destination "$env:HOMEPATH/AppData/Roaming/alacritty/alacritty.yml"
 

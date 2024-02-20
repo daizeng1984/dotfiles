@@ -36,7 +36,7 @@ $!m::Send {LWin Down}{Down}{LWin Up}
 ; mouse
 $!LButton::Send {Ctrl Down}{LButton Down}{LButton Up}{Ctrl Up}
 $^LButton::RButton
-RButton::Return
+RButton::LButton
 
 ; Quick Switch Tab shotcuts
 
