@@ -15,7 +15,8 @@ source "${DOTFILES_HOME}/samples/common/utils.def"
 
 # Windows stuff
 open() {
-    explorer.exe $@
+    __path__=`nixpath2win $@`
+    explorer.exe $__path__
 }
 
 # use wsl and respect env var in the path
@@ -36,4 +37,15 @@ nixpath2win() {
 mountndrive() {
     sudo mkdir -p /mnt/n
     sudo mount -t drvfs N: /mnt/n
+}
+
+unalias pbpaste
+unalias pbcopy
+
+pbpaste() {
+    powershell.exe -c Get-Clipboard
+}
+
+pbcopy() {
+    clip.exe
 }

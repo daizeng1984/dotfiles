@@ -17,6 +17,7 @@ if [ "$(echo $SYSTEM_NAME | cut -c 1-6)" = "Darwin" ]; then
 	echo "Find darwin System..."
     [ -r $DOTFILES_HOME/zshscript/platform/.nixzshrc ] && source $DOTFILES_HOME/zshscript/platform/.nixzshrc
 elif [ "$(echo $SYSTEM_NAME | cut -c 1-5)" = "Linux" ]; then
+    DOTFILES_SYSTEM_NAME="linux"
 	echo "Find Linux System..."
     [ -r $DOTFILES_HOME/zshscript/platform/.nixzshrc ] && source $DOTFILES_HOME/zshscript/platform/.nixzshrc
 else
