@@ -2,7 +2,7 @@ sudo scoop install 7zip openssh --global
 #scoop install aria2 curl grep sed less touch
 # scoop install python ruby go perl
 scoop install vcredist
-scoop install firefox flux autohotkey windows-terminal flameshot
+scoop install firefox flux windows-terminal flameshot
 scoop install fzf dust zoxide ag ripgrep bat zip unzip tar fd neovim
 
 # 7zip context menu
@@ -21,6 +21,8 @@ scoop bucket add nerd-fonts
 scoop install nerd-fonts/UbuntuMono-NF
 
 # autohotkey
+scoop bucket add versions
+scoop install versions/autohotkey1.1
 sudo "$HOME/scoop/apps/autohotkey1.1/current/AutoHotkeyU64.exe"
 $startup = [environment]::getfolderpath("Startup")
 # Copy-Item "./mac.ahk" -Destination "$startup"
@@ -50,4 +52,7 @@ sudo reg add "HKCU\Software\Classes\Local Settings\Software\Microsoft\Windows\Sh
 sudo reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" /v NoWinKeys /t REG_DWORD /d 1 /f
 
 # install wsl
-wsl --install
+sudo wsl --install
+wsl --set-version Ubuntu 1
+
+sudo "$env:HOMEPATH/.dotfiles/windows/installFont.ps1"

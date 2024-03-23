@@ -7,7 +7,7 @@ echo "Copy from https://blog.simontimms.com/2021/06/11/installing-fonts/"
 
 $fonts = (New-Object -ComObject Shell.Application).Namespace(0x14)
 
-foreach ($file in gci *.ttf)
+foreach ($file in gci *.?tf)
 
 {
     $fileName = $file.Name
@@ -17,6 +17,6 @@ foreach ($file in gci *.ttf)
     }
 }
 
-cp *.ttf c:\windows\fonts\
+cp *.?tf c:\windows\fonts\
 
 cd $PWD
