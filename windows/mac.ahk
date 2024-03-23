@@ -15,12 +15,37 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 ; Universal shotcuts
 
 $!x::Send ^x
-#IfWinNotActive ahk_exe alacritty.exe
-; v2 #HotIf WinNotActive("ahk_exe alacritty.exe")
-$!c::Send ^c
-$!v::Send ^v
+$!c::
+if WinActive("ahk_exe alacritty.exe")
+    Send !c
+else if WinActive("ahk_exe wsl.exe")
+    Send !c
+else
+    Send ^c
+Return
+$!v::
+if WinActive("ahk_exe alacritty.exe")
+    Send !v
+else if WinActive("ahk_exe wsl.exe")
+    Send !v
+else
+    Send ^v
+Return
+
+$!BS::
+if WinActive("ahk_exe explorer.exe")
+    Send ^d
+else
+    Send {LShift down}{Home}{LShift Up}{Del}
 return
-#If
+
+$^d::
+if WinActive("ahk_exe explorer.exe")
+    Send {PageDown}
+else
+    Send ^d
+Return
+
 
 $!s::Send ^s
 $!a::Send ^a
@@ -84,7 +109,6 @@ $#Right::Send {ctrl down}{Right}{ctrl up}
 $#+Left::Send {ctrl down}{shift down}{Left}{shift up}{ctrl up}
 $#+Right::Send {ctrl down}{shift down}{Right}{shift up}{ctrl up}
 
-$!BS::Send {LShift down}{Home}{LShift Up}{Del}
 $#BS::Send {LCtrl down}{BS}{LCtrl up}
 
 $#Space::Send {Ctrl Down}{LWin Down}{Space}{LWin Up}{Ctrl Up}
