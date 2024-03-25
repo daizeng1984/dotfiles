@@ -13,6 +13,8 @@ scoop bucket add extras
 scoop install extras/alacritty
 scoop install extras/vcredist2022
 scoop install extras/winaero-tweaker
+# open this once to set it as default image previewer, much better!
+scoop install extras/imageglass
 New-Item -ItemType Directory -Path "$env:HOMEPATH/AppData/Roaming/alacritty/"
 Copy-Item "$env:HOMEPATH/.dotfiles/windows/alacritty.yml" -Destination "$env:HOMEPATH/AppData/Roaming/alacritty/alacritty.yml"
 
