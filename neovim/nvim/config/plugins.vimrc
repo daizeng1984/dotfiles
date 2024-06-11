@@ -1,6 +1,12 @@
 "Behave like windows
 source $VIMRUNTIME/mswin.vim
-behave mswin 
+" behave mswin 
+" behave is removed. see https://neovim.io/doc/user/news-0.10.html
+set selection=exclusive
+set selectmode=mouse,key
+set mousemodel=popup
+set keymodel=startsel,stopsel
+
 " Check if a cli is there 
 function! CliInstalled(cond) 
     return system("if ! type " . a:cond . " > /dev/null 2>&1; then echo '0'; else echo '1'; fi")
