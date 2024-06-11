@@ -114,6 +114,12 @@ $#BS::Send {LCtrl down}{BS}{LCtrl up}
 $#Space::Send {Ctrl Down}{LWin Down}{Space}{LWin Up}{Ctrl Up}
 
 ; hjkl
+AppsKey::return
+AppsKey & h::send {Left}
+AppsKey & j::send {Down}
+AppsKey & k::send {Up}
+AppsKey & l::send {Right}
+RALT::return
 RALT & h::send {Left}
 RALT & j::send {Down}
 RALT & k::send {Up}
@@ -177,7 +183,7 @@ return         ; Do nothing, return
 
 $^!q:: DllCall("LockWorkStation")
 ; suppress win
-LAlt & Space::Send ^{Escape}
+LAlt & Space::Send {Alt Down}{Space}{Alt Up}
 LAlt::Return
 LWin::LAlt
 LWin & Left::Send ^{Left}

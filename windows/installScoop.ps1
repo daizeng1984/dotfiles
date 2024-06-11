@@ -2,7 +2,7 @@ sudo scoop install 7zip openssh --global
 #scoop install aria2 curl grep sed less touch
 # scoop install python ruby go perl
 scoop install vcredist
-scoop install firefox flux windows-terminal flameshot
+scoop install firefox windows-terminal flameshot
 scoop install fzf dust zoxide ag ripgrep bat zip unzip tar fd neovim
 
 # 7zip context menu
@@ -13,10 +13,13 @@ scoop bucket add extras
 scoop install extras/alacritty
 scoop install extras/vcredist2022
 scoop install extras/winaero-tweaker
+scoop install extras/flux
 # open this once to set it as default image previewer, much better!
 scoop install extras/imageglass
+scoop install extras/flow-launcher
 New-Item -ItemType Directory -Path "$env:HOMEPATH/AppData/Roaming/alacritty/"
 Copy-Item "$env:HOMEPATH/.dotfiles/windows/alacritty.yml" -Destination "$env:HOMEPATH/AppData/Roaming/alacritty/alacritty.yml"
+Copy-Item "$env:HOMEPATH/.dotfiles/windows/alacritty.toml" -Destination "$env:HOMEPATH/AppData/Roaming/alacritty/alacritty.toml"
 
 # fonts
 scoop bucket add nerd-fonts
@@ -55,6 +58,7 @@ sudo reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Polici
 
 # install wsl
 sudo wsl --install
-wsl --set-version Ubuntu 1
+# wsl1
+#wsl --set-version Ubuntu 1
 
 sudo "$env:HOMEPATH/.dotfiles/windows/installFont.ps1"
