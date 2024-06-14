@@ -14,6 +14,7 @@ scoop install extras/alacritty
 scoop install extras/vcredist2022
 scoop install extras/winaero-tweaker
 scoop install extras/flux
+scoop install extras/audacious
 # open this once to set it as default image previewer, much better!
 scoop install extras/imageglass
 scoop install extras/flow-launcher
@@ -27,8 +28,8 @@ scoop install nerd-fonts/UbuntuMono-NF
 
 # autohotkey
 scoop bucket add versions
-scoop install versions/autohotkey1.1
-sudo "$HOME/scoop/apps/autohotkey1.1/current/AutoHotkeyU64.exe"
+#scoop install versions/autohotkey1.1
+#sudo "$HOME/scoop/apps/autohotkey1.1/current/AutoHotkeyU64.exe"
 $startup = [environment]::getfolderpath("Startup")
 # Copy-Item "./mac.ahk" -Destination "$startup"
 # cd $startup
