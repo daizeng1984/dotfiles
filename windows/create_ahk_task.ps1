@@ -1,7 +1,7 @@
 $TaskName = "AutoHotKey"
 $TaskDescr = "AutoHotKey autostart"
 $TaskCommand = "`"$(Convert-Path -Path '~/.dotfiles/windows/macv2.exe')`""
-$TaskArg = "`"$(Convert-Path '')`""
+$TaskArg = ""
 # $TaskCommand = "`"$(Convert-Path -Path '~/scoop/apps/autohotkey1.1/current/AutoHotkeyU64.exe')`""
 # $TaskArg = "`"$(Convert-Path '~/.dotfiles/windows/mac.ahk')`""
 
