@@ -21,7 +21,14 @@ Plug 'cocopon/iceberg.vim'
 Plug 'arcticicestudio/nord-vim'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'KeitaNakamura/neodark.vim'
+if !has('nvim')
 Plug 'junegunn/seoul256.vim'
+else
+Plug 'daizeng1984/seoul256.nvim'
+"Plug 'folke/tokyonight.nvim'
+"Plug 'ellisonleao/gruvbox.nvim'
+endif
+
 
 " Whether to use deoplete + lsp or coc.nvim
 let g:use_native_lsp = 0 " :(WIP and requries higher neovim version 0.6.1 etc.
@@ -109,7 +116,7 @@ Plug 'mhinz/vim-signify'
 Plug 'tpope/vim-fugitive' " -, dv, U, cc, cA, p, q
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-dadbod' " db, keep it here to try
-Plug 'tpope/vim-unimpaired' " [,]q for quickfix and [l for loclist
+" Plug 'tpope/vim-unimpaired' " [,]q for quickfix and [l for loclist
 Plug 'tpope/vim-eunuch' "Rename, Delete, Sudo etc.
 Plug 'tpope/vim-commentary' " replace tcomment
 " Plug 'mattn/emmet-vim' " c-y ,then type this>is>tag ---> <this> <is> <tag> ... </.... or type insert mode and c-y , here's the cheatsheet https://docs.emmet.io/cheat-sheet/
@@ -139,7 +146,7 @@ Plug 'justinj/vim-react-snippets'
 Plug 'dhruvasagar/vim-table-mode', {'for': ['markdown'] } " for better table in markdown, :TableModeToggle and || to start, you can even tableize the csv style entries and do table formula, delete column localleader=\\
 Plug 'daizeng1984/vim-buffer-history' " for better file jump from dhruvasagar/vim-buffer-history
 Plug 'mattn/calendar-vim', {'for': ['markdown'] } " Good to have a calendar view
-Plug 'vimwiki/vimwiki' " Great tool! I think it's better than org mode I tried
+" Plug 'vimwiki/vimwiki', {'for': ['markdown'] }  " Great tool! I think it's better than org mode I tried
 Plug 'vim-scripts/utl.vim', {'for': ['markdown'] } " Utl help open URL in netrw
 Plug 'powerman/vim-plugin-AnsiEsc', {'for': ['markdown'] }  " allow colorful chart in taskwiki
 Plug 'jxnblk/vim-mdx-js' " MDX syntax
