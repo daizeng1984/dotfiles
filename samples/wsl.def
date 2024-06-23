@@ -49,3 +49,9 @@ pbpaste() {
 pbcopy() {
     clip.exe
 }
+
+# not sure about security but this is necessary to allow LAN to access your server
+openport() {
+    powershell.exe -c "netsh advfirewall firewall add rule name=\"Allowing LAN connections\" dir=in action=allow protocol=TCP localport=$1"
+    powershell.exe -c "netsh interface portproxy add v4tov4 listenaddress=0.0.0.0 listenport=$1 connectaddress=localhost connectport=$1"
+}

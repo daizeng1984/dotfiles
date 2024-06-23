@@ -21,7 +21,7 @@ class extracthere(Command):
         descr = "extracted file(s): " + " ".join(archieves);
 
         self.fm.execute_console(
-        'shell dtrx -v ' + \
+        'shell patool extract ' + \
                 " ".join(archieves))
         self.fm.reload_cwd()
         self.fm.notify(descr)
@@ -93,42 +93,6 @@ class trash(Command):
         return ['trash ' + os.path.basename(self.fm.thisdir.path) ]
 
 
-
-# For windows
-class openas(Command):
-    # Yes, Windows is the ugliest
-    apps = { "npp" :"C:/Program Files (x86)/Notepad++/notepad++.exe",\
-                "gvim" :"C:/Program Files (x86)/Vim/vim80/gvim.exe",\
-                "gvimdiff" :"C:/Program Files (x86)/Vim/vim80/gvim.exe -d",\
-                "gimp" :"C:/Program Files/GIMP 2/bin/gimp-2.8.exe",\
-                "paint" :"C:/Windows/system32/mspaint.exe",\
-                "chrome" : "C:/Users/daz2pal/AppData/Local/Google/Chrome/Application/chrome.exe"
-                }
-
-    def execute(self):
-        cwd = self.fm.thisdir
-        marked_files = cwd.get_selection()
-
-        if 'cygwin' in platform.system().lower():
-
-            if not marked_files:
-                return
-
-            original_path = cwd.path
-            parts = self.line.split()
-            if len(parts) < 1 :
-                self.fm.notify("No arguments!")
-            else:
-                runapp = ""
-                if (parts[1] in self.apps):
-                    runapp = self.apps[parts[1]]
-                else:
-                    runapp = parts[1]
-                self.fm.execute_console( "shell '" + runapp + "' " + " ".join(['"$(cygpath -wma "' + os.path.relpath(f.path, cwd.path) + '")"' for f in marked_files]) + " &>/dev/null &")
-
-    def tab(self):
-        return ['openas ' + app for app in self.apps]
-
 # A really simple wrapper for my convenience
 class ripgrep(Command):
     def execute(self):
@@ -156,13 +120,23 @@ class copyfilepath(Command):
             os.system("echo -n " + path  + "  > /dev/clipboard")
         def nix_copy(path):
             self.fm.notify( "Copied file path: " + path)
-            os.system("echo \"" + path + "\" | cbs ")
+            os.system("echo \"" + path + "\" | pbcopy ")
+        def wsl_copy(path):
+            self.fm.notify( "Copied file path: " + path)
+            os.system("wslpath -w \"" + path + "\" | clip.exe ")
         def donothing_copy(path):
             self.fm.notify( "Cannot do anything about this path: " + path)
 
+        system_info = platform.uname()
+        # Check if the system is WSL
+        is_wsl = 'microsoft' in system_info.release.lower() or 'wsl' in system_info.version.lower()
+
         # Pyperclip Doesn't support Cygwin for some reason 
+        'microsoft' in system_info.release.lower() or 'wsl' in system_info.version.lower()
         if "cygwin" in platform.system().lower():
             cygwin_copy(" ".join(["$(cygpath -wma \"" + os.path.abspath(f.path) + "\")" for f in marked_files]))
+        elif is_wsl:
+            wsl_copy(" ".join([os.path.abspath(f.path) for f in marked_files]))
         elif "darwin" in platform.system().lower() or "linux" in platform.system().lower():
             nix_copy(" ".join([os.path.abspath(f.path) for f in marked_files]))
         else:
