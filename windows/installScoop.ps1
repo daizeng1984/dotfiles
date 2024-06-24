@@ -5,6 +5,11 @@ scoop install vcredist
 scoop install firefox windows-terminal flameshot
 scoop install fzf dust zoxide ag ripgrep bat zip unzip tar fd neovim
 
+# fzf
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+# fzf in native win git bash
+echo "PROMPT_COMMAND='history -a'" | Add-Content ~/.bash_profile -NoNewLine -Encoding ascii
+
 # 7zip context menu
 start "$env:HOMEPATH/scoop/apps/7zip/current/install-context.reg"
 

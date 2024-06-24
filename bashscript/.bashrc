@@ -23,10 +23,10 @@ elif [ "$(expr substr $(uname -s) 1 9)" = "CYGWIN_NT" ]; then
 	echo "Find Cygwin System..."
     DOTFILES_SYSTEM_NAME="cygwin"
     [ -r $DOTFILES_HOME/bashscript/platform/.cygwinbashrc ] && source $DOTFILES_HOME/bashscript/platform/.cygwinbashrc
-elif [ "$(expr substr $(uname -s) 1 10)" = "MINGW32_NT" ]; then
-	echo "Find MingW32 System..."
-    DOTFILES_SYSTEM_NAME="mingw32"
-    [ -r $DOTFILES_HOME/bashscript/platform/.cygwinbashrc ] && source $DOTFILES_HOME/bashscript/platform/.cygwinbashrc
+elif [ "$(expr substr $(uname -s) 1 5)" = "MINGW" ]; then
+	echo "Find MingW System..."
+    DOTFILES_SYSTEM_NAME="mingw"
+    [ -r $DOTFILES_HOME/bashscript/platform/.linuxbashrc ] && source $DOTFILES_HOME/bashscript/platform/.linuxbashrc
 else
     DOTFILES_SYSTEM_NAME="unknown"
     [ -r $DOTFILES_HOME/bashscript/platform/.linuxbashrc ] && source $DOTFILES_HOME/bashscript/platform/.linuxbashrc

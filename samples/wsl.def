@@ -13,56 +13,5 @@ fi
 # Utils
 source "${DOTFILES_HOME}/samples/common/utils.def"
 
-# Windows stuff
-open() {
-    __path__=`nixpath2win $@`
-    explorer.exe $__path__
-}
-
-# use wsl and respect env var in the path
-winpath2nix() {
-    _path=$(cmd.exe /c "echo $@") >/dev/null
-    _path=$(echo -E "$_path" | sed 's/\\/\\\\/g') >/dev/null
-    _path=`wslpath -u $_path` >/dev/null
-    _path=$(echo "$_path" | tr -d '\r') >/dev/null
-
-    echo $_path
-}
-
-nixpath2win() {
-    _abspath=`realpath $@`
-    echo -E `wslpath -w $_abspath`
-}
-
-mountndrive() {
-    sudo mkdir -p /mnt/n
-    sudo mount -t drvfs N: /mnt/n
-}
-
-unalias pbpaste
-unalias pbcopy
-
-pbpaste() {
-    powershell.exe -c Get-Clipboard
-}
-
-pbcopy() {
-    clip.exe
-}
-
-# netstat
-netstat() {
-    ss -ltpn
-    cmd.exe /C netstat -a -n -o
-}
-
-winkill() {
-    powershell.exe -c "sudo Stop-Process -Id $1 -Force"
-}
-
-# not sure about security but this is necessary to allow LAN to access your server
-openport() {
-    powershell.exe -c "sudo netsh advfirewall firewall add rule name=\"Allowing LAN connections\" dir=in action=allow protocol=TCP localport=$1"
-    powershell.exe -c "sudo netsh interface portproxy delete v4tov4 listenport=$1 listenaddress=0.0.0.0"
-    powershell.exe -c "sudo netsh interface portproxy add v4tov4 listenaddress=0.0.0.0 listenport=$1 connectaddress=localhost connectport=$1"
-}
+# Windows Stuff
+source "${DOTFILES_HOME}/samples/common/winvar.def"

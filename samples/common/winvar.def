@@ -1,0 +1,56 @@
+# For git bash / mingw
+# export NODE_PATH="${DOTFILE_LOCAL_PREFIX}/lib/miniconda/lib/node_modules"
+
+# Python managed by conda, we can activate our python environment
+# source activate webdev
+# python -VV
+# alias pysite='python -m site'
+
+# Node/NPM path
+# alias nodepath='npm config get prefix'
+# npm config set python $(which python)
+
+# copy/paste
+
+# file and path
+# TODO: cygwin?
+if [ "$DOTFILES_SYSTEM_NAME" = 'mingw' ]; then
+    export _win_path_converter='cygpath.exe'
+else
+    export _win_path_converter='wslpath.exe'
+fi
+
+winpath2nix() {
+    _path=$(powershell.exe -c "echo $@") >/dev/null
+    _path=$(echo -E "$_path" | sed 's/\\/\\\\/g') >/dev/null
+    _path=`$_win_path_converter -u $_path` >/dev/null
+    _path=$(echo "$_path" | tr -d '\r') >/dev/null
+
+    echo $_path
+}
+
+nixpath2win() {
+    _abspath=`realpath $@`
+    echo -E `_win_path_converter -w $_abspath`
+}
+
+open() {
+    __path__=`nixpath2win $@`
+    start $__path__
+}
+
+unalias pbpaste
+unalias pbcopy
+
+pbpaste() {
+    powershell.exe -c Get-Clipboard
+}
+
+pbcopy() {
+    clip.exe
+}
+
+mountndrive() {
+    sudo mkdir -p "/mnt/$1"
+    sudo mount -t drvfs "$1:" "/mnt/$1"
+}
