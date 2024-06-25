@@ -31,7 +31,7 @@ winpath2nix() {
 
 nixpath2win() {
     _abspath=`realpath $@`
-    echo -E `_win_path_converter -w $_abspath`
+    echo -E `$_win_path_converter -w $_abspath`
 }
 
 open() {

@@ -13,6 +13,19 @@ echo -n "Changing to the $dir directory ..."
 cd $dir
 echo "done"
 
+# https://stackoverflow.com/questions/18641864/git-bash-shell-fails-to-create-symbolic-links#answer-25394801
+windows() { [[ -n "$WINDIR" ]]; }
+link() {
+    if windows; then
+        target=`cygpath -w ${2}`
+        dest=`cygpath -w ${1}`
+        # cmd just cannot work right!!!
+        sudo powershell -Command "cmd /C \"mklink /D \"$target\" \"$dest\"\""
+    else
+        ln -s "$1" "$2"
+    fi
+}
+
 # move any existing dotfiles in homedir to dotfiles_old directory, then create symlinks from the homedir to any files in the ~/dotfiles directory specified in $files
 for folder in $folders; do
     if [ -d $folder ] ; then
@@ -41,7 +54,7 @@ for folder in $folders; do
                 fi
             else
                 echo "Creating symlink for $d"
-                ln -s $dir/$folder/$d ~/$d
+                link $dir/$folder/$d ~/$d
             fi
         done
         cd $dir
@@ -52,19 +65,6 @@ done
 # Initiate .config if not exists
 [ -z $XDG_CONFIG_HOME ] && XDG_CONFIG_HOME="$HOME/.config"
  
-# https://stackoverflow.com/questions/18641864/git-bash-shell-fails-to-create-symbolic-links#answer-25394801
-windows() { [[ -n "$WINDIR" ]]; }
-link() {
-    if windows; then
-        target=`cygpath -w ${2}`
-        dest=`cygpath -w ${1}`
-        # cmd just cannot work right!!!
-        sudo powershell -Command "cmd /C \"mklink /D \"$target\" \"$dest\"\""
-    else
-        ln -s "$1" "$2"
-    fi
-}
-
 __link_xdg_config() {
     [ ! -d $XDG_CONFIG_HOME/$3 ] && mkdir -p -- $XDG_CONFIG_HOME/$3
     [ -L $XDG_CONFIG_HOME/$1 ] && rm $XDG_CONFIG_HOME/$1
