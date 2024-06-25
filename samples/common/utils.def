@@ -41,9 +41,12 @@ deploynix() {
     direnv allow
 }
 
+installedConda=$(checkIfInstalled "$DOTFILE_LOCAL_PREFIX/lib/miniconda/bin/conda" installConda.sh --quiet)
+if [ "$installedClang" = "1" ] ; then
 # Deploy conda direnv
 alias co=`which conda`
 alias conda=mamba
+fi
 
 # Podman
 alias docker=podman
