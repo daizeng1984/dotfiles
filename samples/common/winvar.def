@@ -17,7 +17,7 @@
 if [ "$DOTFILES_SYSTEM_NAME" = 'mingw' ]; then
     export _win_path_converter='cygpath.exe'
 else
-    export _win_path_converter='wslpath.exe'
+    export _win_path_converter='wslpath'
 fi
 
 winpath2nix() {
