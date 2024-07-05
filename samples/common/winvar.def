@@ -36,7 +36,7 @@ nixpath2win() {
 
 open() {
     __path__=`nixpath2win $@`
-    start $__path__
+    explorer.exe $__path__
 }
 
 unalias pbpaste
