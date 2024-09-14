@@ -54,3 +54,7 @@ mountndrive() {
     sudo mkdir -p "/mnt/$1"
     sudo mount -t drvfs "$1:" "/mnt/$1"
 }
+
+why_rebooted() {
+    powershell.exe "Get-WinEvent -FilterHashtable @{ LogName = 'System'; Id = 41, 1074, 6006, 6605, 6008; } | Format-List Id, LevelDisplayName, TimeCreated, Message"
+}
