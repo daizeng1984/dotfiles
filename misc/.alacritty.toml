@@ -1,0 +1,26 @@
+[[keyboard.bindings]]
+action = "Paste"
+key = "Insert"
+mode = "~Vi"
+mods = "Shift"
+
+[[keyboard.bindings]]
+action = "Copy"
+key = "Insert"
+mods = "Control"
+
+[cursor.style]
+shape = "Block"
+
+[font]
+size = 14.0
+
+[font.normal]
+family = "Ubuntu Mono"
+
+[window]
+decorations_theme_variant = "Dark"
+opacity = 1.0
+startup_mode = "Maximized"
+
+[keyboard]
