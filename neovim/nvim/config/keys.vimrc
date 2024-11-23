@@ -3,6 +3,15 @@ let mapleader = ","
 " Sudo
 nnoremap <silent> <leader>W :w !sudo tee > /dev/null %<CR>
 
+" Ctrl-S
+nnoremap <C-s> :w<CR>
+inoremap <C-s> <C-o>:w<CR>
+vnoremap <C-s> <C-c>:w<CR>
+" Cmd-S
+nnoremap <D-s> :w<CR>
+inoremap <D-s> <C-o>:w<CR>
+vnoremap <D-s> <C-c>:w<CR>
+
 " Tab behavior closer to IDE like vscode
 inoremap <expr> <TAB> pumvisible() ? "\<C-y>" : "\<C-g>u\<TAB>"
 
@@ -138,7 +147,6 @@ endif
 
 " LSP
 if g:use_native_lsp
-nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
 nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
 nnoremap <silent> gD    <cmd>lua vim.lsp.buf.implementation()<CR>
@@ -153,7 +161,6 @@ elseif has_key(g:plugs, 'coc.nvim')
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
 " GoTo code navigation.
-nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> <c-]> <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
@@ -209,11 +216,6 @@ omap ic <Plug>(coc-classobj-i)
 xmap ac <Plug>(coc-classobj-a)
 omap ac <Plug>(coc-classobj-a)
 
-" Use CTRL-S for selections ranges.
-" Requires 'textDocument/selectionRange' support of LS, ex: coc-tsserver
-nmap <silent> <C-s> <Plug>(coc-range-select)
-xmap <silent> <C-s> <Plug>(coc-range-select)
-
 " Add `:Format` command to format current buffer.
 command! -nargs=0 Format :call CocAction('format')
 
@@ -261,6 +263,7 @@ endif
 nnoremap <expr> D &buftype ==# 'quickfix' ? "yaw:cclose\<CR>:Gvdiffsplit \<C-R>0\<CR>" : 'D'
 nnoremap <leader>gl :0Gclog -- %<CR>
 nnoremap <leader>D :call DiffCurrentQuickfixEntry()<CR>
+nnoremap <leader>gd :Gvdiffsplit<CR>
 autocmd BufReadPost fugitive://* set bufhidden=delete
 
 " switch
