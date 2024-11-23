@@ -73,10 +73,10 @@ cd .dotfiles/windows
 cd ~/.dotfiles/windows
 ./installScoop.ps1
 ```
-Reboot if there's no errors, then either work under native window git-bash (Windows Terminal) or install Linux inside wsl with above Linux instruction (Alacritty) and followed by some extra steps:
+Then delete homefolder's [Downloads, Documents, Music, Pictures, Videos, Workspace] same in powershell, run:
 ```sh
 cd
-source .dotfiles/windows/__createHomeFolders.sh
+source .dotfiles/windows/linkWSLHomeFolder.ps1
 ```
 
 ## Different Profile (Non-Windows)
