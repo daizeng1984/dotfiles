@@ -53,30 +53,28 @@ cd $HOME/.dotfiles/mac && source ./installMacDesktop.sh
 TODO: manually config the `Karabiner-Element` for keybindings...
 
 ## Windows (WSL)
-First install scoop to bootstrap in powershell by running:
+First install scoop to bootstrap in powershell (non-admin) by running:
 ```sh
 Set-Itemproperty -path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced' -Name 'HideFileExt' -value 0
 Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
 iwr -useb get.scoop.sh | iex
 scoop install sudo
-sudo scoop install git
+scoop install 7zip
+scoop install git
 scoop bucket add extras
 scoop update
 scoop install wget
-```
-
-Still in powershell, for wsl and desktop:
-```sh
-cd
+# if no error should proceed
+cd ~
 git clone https://github.com/daizeng1984/dotfiles.git .dotfiles
 cd .dotfiles/windows
 cd ~/.dotfiles/windows
 ./installScoop.ps1
 ```
-Then delete homefolder's [Downloads, Documents, Music, Pictures, Videos, Workspace] same in powershell, run:
+Now restart the windows so that wsl can properly start. Then delete homefolder's [Downloads, Documents, Music, Pictures, Videos, Workspace] same in powershell (admin mode), run:
 ```sh
-cd
-source .dotfiles/windows/linkWSLHomeFolder.ps1
+cd ~
+.dotfiles/windows/linkWSLHomeFolder.ps1
 ```
 
 ## Different Profile (Non-Windows)

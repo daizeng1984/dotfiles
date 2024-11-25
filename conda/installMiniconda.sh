@@ -1,5 +1,6 @@
 PLATFORM="Linux"
 SYSTEM_NAME=$(uname -s)
+ARCH=$(uname -m)
 if [ "$(echo $SYSTEM_NAME | cut -c 1-6)" = "Darwin" ]; then
 	echo "Find MacOSX..."
     PLATFORM="MacOSX"
@@ -14,7 +15,7 @@ if [ "$PLATFORM" = "Windows" ]; then
     echo "Trying scoop to install..."
     scoop install mambaforge
 else
-SCRIPT_NAME="Mambaforge-${PLATFORM}-x86_64.sh"
+SCRIPT_NAME="Miniforge3-${PLATFORM}-${ARCH}.sh"
 RETURN_DIR=$(pwd)
 cd /tmp
 curl -L "https://github.com/conda-forge/miniforge/releases/latest/download/${SCRIPT_NAME}" -o ${SCRIPT_NAME}

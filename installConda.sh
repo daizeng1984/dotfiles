@@ -22,6 +22,7 @@ conda config --set solver libmamba
 
 # Now we do minimal setup
 # Nodejs
+mamba install -y -c conda-forge nvim
 mamba install -y -c conda-forge nodejs
 mamba install -y -c conda-forge yarn
 

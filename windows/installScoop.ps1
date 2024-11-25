@@ -17,7 +17,7 @@ start "$env:HOMEPATH/scoop/apps/7zip/current/install-context.reg"
 scoop bucket add extras
 scoop install extras/alacritty
 scoop install extras/vcredist2022
-scoop install extras/winaero-tweaker
+# scoop install extras/winaero-tweaker # doesn't install on win arm but prbly run okay and need further look
 scoop install extras/flux
 scoop install extras/audacious
 # open this once to set it as default image previewer, much better!
