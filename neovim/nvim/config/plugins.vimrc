@@ -24,8 +24,7 @@ Plug 'KeitaNakamura/neodark.vim'
 if !has('nvim')
 Plug 'junegunn/seoul256.vim'
 else
-Plug 'daizeng1984/seoul256.nvim'
-"Plug 'folke/tokyonight.nvim'
+Plug 'neanias/everforest-nvim'
 "Plug 'ellisonleao/gruvbox.nvim'
 endif
 

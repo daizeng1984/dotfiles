@@ -146,17 +146,7 @@ syntax enable
 if ! has('nvim')
 colorscheme seoul256
 else
-let g:seoul256_italic_comments = v:true
-let g:seoul256_italic_keywords = v:true
-let g:seoul256_italic_functions = v:true
-let g:seoul256_italic_variables = v:true
-let g:seoul256_contrast = v:true
-let g:seoul256_borders = v:false 
-let g:seoul256_disable_background = v:false
-let g:seoul256_hl_current_line = v:true
-colorscheme seoul256
-"colorscheme tokyonight-storm
-"colorscheme gruvbox
+colorscheme everforest
 endif
 
 " Grepper
