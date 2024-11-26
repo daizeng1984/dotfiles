@@ -60,6 +60,12 @@ setopt prompt_subst
 PROMPT='%(?.${ORANGE}%n${RESET}:${CYAN}%3~${RESET} ${RED}$(parse_git_branch)${RESET} > .${ORANGE}%n${RESET}:${CYAN}%~${RESET} ${RED}$(parse_git_branch)${RESET} > '
 RPROMPT='${GREEN}$(date "+%H:%M:%S")${RESET}'
 
+# completion
+autoload -Uz compinit && compinit
+zstyle ':completion:*' matcher-list '' \
+  'm:{a-z\-}={A-Z\_}' \
+  'r:[^[:alpha:]]||[[:alpha:]]=** r:|=* m:{a-z\-}={A-Z\_}' \
+  'r:|?=** m:{a-z\-}={A-Z\_}'
 
 # Theme
 # source "$HOME/.dotfiles/misc/oldstyle.zsh-theme"
