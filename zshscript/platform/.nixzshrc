@@ -46,6 +46,7 @@ parse_git_branch() {
 RED="%F{red}"
 ORANGE="%F{214}"
 CYAN="%F{cyan}"
+GREEN="%F{green}"
 RESET="%f"
 # Function to show Git branch in red
 autoload -Uz vcs_info
@@ -57,6 +58,7 @@ setopt prompt_subst
 
 # Set the prompt with colors
 PROMPT='%(?.${ORANGE}%n${RESET}:${CYAN}%~${RESET} ${RED}$(parse_git_branch)${RESET} > .${ORANGE}%n${RESET}:${CYAN}%~${RESET} ${RED}$(parse_git_branch)${RESET} > '
+RPROMPT='${GREEN}$(date "+%H:%M:%S")${RESET}'
 
 
 # Theme
