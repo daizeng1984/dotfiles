@@ -57,7 +57,7 @@ setopt prompt_subst
 
 
 # Set the prompt with colors
-PROMPT='%(?.${ORANGE}%n${RESET}:${CYAN}%~${RESET} ${RED}$(parse_git_branch)${RESET} > .${ORANGE}%n${RESET}:${CYAN}%~${RESET} ${RED}$(parse_git_branch)${RESET} > '
+PROMPT='%(?.${ORANGE}%n${RESET}:${CYAN}%3~${RESET} ${RED}$(parse_git_branch)${RESET} > .${ORANGE}%n${RESET}:${CYAN}%~${RESET} ${RED}$(parse_git_branch)${RESET} > '
 RPROMPT='${GREEN}$(date "+%H:%M:%S")${RESET}'
 
 

@@ -18,7 +18,7 @@ action = "Copy"
 key = "C"
 mods = "Alt"
 
-[shell]
+[terminal.shell]
 program = "wsl -d Ubuntu"
 
 [window]
