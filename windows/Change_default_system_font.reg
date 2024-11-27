@@ -1,0 +1,18 @@
+Windows Registry Editor Version 5.00
+
+; Created by: Shawn Brink
+; Created on: August 27, 2022
+; Updated on: September 1, 2023
+; Tutorial: https://www.elevenforum.com/t/change-default-system-font-in-windows-11.8590/
+
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts]
+"Segoe UI (TrueType)"=""
+"Segoe UI Bold (TrueType)"=""
+"Segoe UI Bold Italic (TrueType)"=""
+"Segoe UI Italic (TrueType)"=""
+"Segoe UI Semibold (TrueType)"=""
+"Segoe UI Symbol (TrueType)"=""
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\FontSubstitutes]
+"Segoe UI"="SF Pro Display"

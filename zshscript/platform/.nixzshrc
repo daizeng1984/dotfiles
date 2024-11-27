@@ -87,5 +87,8 @@ setopt HIST_IGNORE_ALL_DUPS      # Delete old recorded entry if new entry is a d
 # setopt HIST_VERIFY               # Don't execute immediately upon history expansion.
 # setopt HIST_BEEP                 # Beep when accessing nonexistent history.
 
+setopt AUTO_PUSHD        # Automatically push directories onto the stack
+setopt PUSHD_SILENT      # Suppress output when using pushd/popd
+
 # no extended history
 unsetopt extended_history
