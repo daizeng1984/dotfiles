@@ -115,9 +115,31 @@ $!l::Send("^l")
 
 ; navigation, selection, delete a word/till end
 
-$^a::Send("{Home}")
-$^e::Send("{End}")
-$^[::Send("{Escape}")
+$^a::
+{
+if (WinActive("ahk_exe alacritty.exe") || WinActive("ahk_exe wsl.exe"))
+    Send("^a")  ;for alacritty.exe or wsl.exe
+else
+    Send("{Home}")
+Return
+}
+$^e::
+{
+if (WinActive("ahk_exe alacritty.exe") || WinActive("ahk_exe wsl.exe"))
+    Send("^e")  ;for alacritty.exe or wsl.exe
+else
+    Send("{End}")
+Return
+}
+$^[::
+{
+if (WinActive("ahk_exe alacritty.exe") || WinActive("ahk_exe wsl.exe"))
+    Send("^[")  ;for alacritty.exe or wsl.exe
+else
+    Send("{Escape}")
+Return
+}
+
 
 $!Left::Send("{Home}")
 $!Right::Send("{End}")
