@@ -16,6 +16,7 @@ bindkey "^b" backward-word
 bindkey '^p' up-history
 bindkey '^n' down-history
 bindkey '^w' backward-kill-word
+bindkey '^k' kill-line
 bindkey '^?' backward-delete-char
 bindkey '^u' kill-whole-line
 bindkey '^r' history-incremental-search-backward
