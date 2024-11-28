@@ -22,7 +22,8 @@ bindkey '^w' backward-kill-word
 bindkey '^k' kill-line
 bindkey '^?' backward-delete-char
 bindkey '^u' kill-whole-line
-bindkey '^r' history-incremental-search-backward
+# already bind by fzf
+# bindkey '^r' history-incremental-search-backward
 bindkey "^e" end-of-line
 bindkey "^a" beginning-of-line
 bindkey -s "^h" '^upopd\n'
