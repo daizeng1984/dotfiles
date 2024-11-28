@@ -297,3 +297,5 @@ if has('nvim')
     silent! iunmap <C-U>
     silent! iunmap <C-W>
 endif
+
+vnoremap <leader>I :AIEdit<CR>

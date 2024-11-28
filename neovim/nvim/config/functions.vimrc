@@ -207,3 +207,5 @@ function DiffCurrentQuickfixEntry() abort
 endfunction
 
 source $HOME/.config/nvim/config/functions/asciiemoji.vimrc
+
+source $HOME/.config/nvim/config/functions/tgpt.vimrc

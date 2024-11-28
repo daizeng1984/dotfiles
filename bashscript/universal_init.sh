@@ -106,6 +106,7 @@ installedDircolors=$(checkIfInstalled "dircolors" dircolors --quiet)
 installedExa=$(checkIfInstalled "exa" exa --quiet)
 installedRipGrep=$(checkIfInstalled "rg" ripgrep --quiet)
 installedXdgOpen=$(checkIfInstalled "xdg-open" xdg-open --quiet)
+installedTgpt=$(checkIfInstalled "tgpt" tgpt --quiet)
 
 # ls aliases
 if [ "$installedDircolors" = "1" ]; then
@@ -181,3 +182,10 @@ fi
 if [ "$installedDirenv" = "1" ] ; then
     eval "$(direnv hook ${DOTFILES_SHELL_TYPE} )"
 fi
+
+# Setup tgpt
+if [ "$installedTgpt" = "0" ] ; then
+    source $DOTFILES_HOME/misc/installTgpt.sh
+fi
+export AI_PROVIDER=duckduckgo
+
