@@ -9,6 +9,9 @@ DOTFILES_SHELL_TYPE=zsh
 #   export EDITOR='mvim'
 # fi
 
+# Include
+[ -r $DOTFILES_HOME/bashscript/universal_init.sh ] && source $DOTFILES_HOME/bashscript/universal_init.sh
+
 # Key binding
 bindkey -v
 bindkey "^f" forward-word
@@ -24,10 +27,8 @@ bindkey "^e" end-of-line
 bindkey "^a" beginning-of-line
 bindkey -s "^h" '^upopd\n'
 bindkey -s "^g" 'gst\n'
+bindkey -s "^i" '^utgpt -i\n'
 export KEYTIMEOUT=1
-
-# Include
-[ -r $DOTFILES_HOME/bashscript/universal_init.sh ] && source $DOTFILES_HOME/bashscript/universal_init.sh
 
 # completion
 autoload -Uz compinit && compinit
