@@ -9,11 +9,16 @@ action = "Copy"
 key = "Insert"
 mods = "Control"
 
+[[keyboard.bindings]]
+chars = "\u0013"
+key = "S"
+mods = "Command"
+
 [cursor.style]
 shape = "Block"
 
 [font]
-size = 14.0
+size = 16.0
 
 [font.normal]
 family = "Ubuntu Mono"
@@ -24,3 +29,5 @@ opacity = 1.0
 startup_mode = "Maximized"
 
 [keyboard]
+
+
