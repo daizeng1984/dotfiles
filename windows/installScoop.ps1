@@ -18,11 +18,12 @@ scoop bucket add extras
 scoop install extras/alacritty
 scoop install extras/vcredist2022
 # scoop install extras/winaero-tweaker # doesn't install on win arm but prbly run okay and need further look
-scoop install extras/flux
-scoop install extras/audacious
+# scoop install extras/audacious not arm64
+scoop install extras/foobar2000
 # open this once to set it as default image previewer, much better!
 scoop install extras/imageglass
-scoop install extras/flow-launcher
+# scoop install extras/flow-launcher buggy and not arm64
+scoop install extras/powertoys
 New-Item -ItemType Directory -Path "$env:HOMEPATH/AppData/Roaming/alacritty/"
 Copy-Item "$env:HOMEPATH/.dotfiles/windows/alacritty.yml" -Destination "$env:HOMEPATH/AppData/Roaming/alacritty/alacritty.yml"
 Copy-Item "$env:HOMEPATH/.dotfiles/windows/alacritty.toml" -Destination "$env:HOMEPATH/AppData/Roaming/alacritty/alacritty.toml"
@@ -33,19 +34,14 @@ scoop install nerd-fonts/UbuntuMono-NF
 
 # autohotkey
 scoop bucket add versions
-#scoop install versions/autohotkey1.1
-#sudo "$HOME/scoop/apps/autohotkey1.1/current/AutoHotkeyU64.exe"
 $startup = [environment]::getfolderpath("Startup")
-# Copy-Item "./mac.ahk" -Destination "$startup"
-# cd $startup
-# start ./mac.ahk
 sudo . "`"$(Convert-Path -Path '~/.dotfiles/windows/create_ahk_task.ps1')`""
 
 # flux (startup)
-$WshShell = New-Object -comObject WScript.Shell
-$Shortcut = $WshShell.CreateShortcut("$startup\flux.lnk")
-$Shortcut.TargetPath = "$env:HOMEPATH/scoop/apps/flux/current/flux.exe"
-$Shortcut.Save()
+# $WshShell = New-Object -comObject WScript.Shell
+# $Shortcut = $WshShell.CreateShortcut("$startup\flux.lnk")
+# $Shortcut.TargetPath = "$env:HOMEPATH/scoop/apps/flux/current/flux.exe"
+# $Shortcut.Save()
 
 # copy settings.json to terminal
 start "$env:HOMEPATH/scoop/apps/windows-terminal/current/WindowsTerminal.exe"
@@ -60,11 +56,12 @@ sudo reg add "HKCU\Software\Classes\Local Settings\Software\Microsoft\Windows\Sh
 # disable lock
 # sudo reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Policies\System" /v DisableLockWorkstation /t REG_DWORD /d 1 /f
 # disable win key
-sudo reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" /v NoWinKeys /t REG_DWORD /d 1 /f
+# sudo reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" /v NoWinKeys /t REG_DWORD /d 1 /f
 
 # install wsl
 sudo wsl --install
-# wsl1
-#wsl --set-version Ubuntu 1
 
+# install apple fonts
 sudo "$env:HOMEPATH/.dotfiles/windows/installFont.ps1"
+
+# restart

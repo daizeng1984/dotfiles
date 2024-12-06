@@ -65,6 +65,7 @@ mamba install -y -c conda-forge pandoc
 pip install -y dtrx
 mamba install -y -c conda-forge unzip
 mamba install -y -c conda-forge unrar
+mamba install -y -c conda-forge p7zip
 
 # Configs
 source $HOME/.dotfiles/minimal.sh
