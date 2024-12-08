@@ -1,6 +1,6 @@
 # Adapted from: https://github.com/LeDragoX/Win-Debloat-Tools/blob/main/src/scripts/Optimize-ServicesRunning.ps1
-# run: 
-# powershell.exe -executionpolicy bypass -command "sudo $env:HOMEPATH/.dotfiles/windows/disableServices.ps1"
+# run in powershell: 
+# sudo.ps1 $env:HOMEPATH/.dotfiles/windows/disableServices.ps1
 
 function Write-Style() {
     [CmdletBinding()]

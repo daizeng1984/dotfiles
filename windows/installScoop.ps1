@@ -35,7 +35,8 @@ scoop install nerd-fonts/UbuntuMono-NF
 # autohotkey
 scoop bucket add versions
 $startup = [environment]::getfolderpath("Startup")
-sudo . "`"$(Convert-Path -Path '~/.dotfiles/windows/create_ahk_task.ps1')`""
+# sudo issue on win11 24H2 https://github.com/lukesampson/psutils/issues/52
+sudo.ps1 . "`"$(Convert-Path -Path '~/.dotfiles/windows/create_ahk_task.ps1')`""
 
 # flux (startup)
 # $WshShell = New-Object -comObject WScript.Shell
@@ -48,20 +49,20 @@ start "$env:HOMEPATH/scoop/apps/windows-terminal/current/WindowsTerminal.exe"
 Copy-Item "$env:HOMEPATH/.dotfiles/windows/terminal-settings.json" -Destination "$env:HOMEPATH/scoop/apps/windows-terminal/current/settings/settings.json"
 
 # hostname
-sudo Rename-Computer -NewName "windesktop"
+sudo.ps1 Rename-Computer -NewName "windesktop"
 # wmic.exe computersystem where name="%computername%" call rename name="windesktop"
 
 # file explorer
-sudo reg add "HKCU\Software\Classes\Local Settings\Software\Microsoft\Windows\Shell\Bags\AllFolders\Shell" /v FolderType /t REG_SZ /d NotSpecified /f
+sudo.ps1 reg add "HKCU\Software\Classes\Local Settings\Software\Microsoft\Windows\Shell\Bags\AllFolders\Shell" /v FolderType /t REG_SZ /d NotSpecified /f
 # disable lock
 # sudo reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Policies\System" /v DisableLockWorkstation /t REG_DWORD /d 1 /f
 # disable win key
 # sudo reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" /v NoWinKeys /t REG_DWORD /d 1 /f
 
 # install wsl
-sudo wsl --install
+sudo.ps1 wsl --install
 
 # install apple fonts
-sudo "$env:HOMEPATH/.dotfiles/windows/installFont.ps1"
+sudo.ps1 "$env:HOMEPATH/.dotfiles/windows/installFont.ps1"
 
 # restart
