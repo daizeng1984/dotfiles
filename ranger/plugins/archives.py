@@ -81,7 +81,7 @@ class trash(Command):
         if 'cygwin' in platform.system().lower():
             playsound = "cat `cygpath -W`/Media/recycle.wav > /dev/dsp & "
         elif 'darwin' in platform.system().lower():
-            playsound = "afplay /System/Library/Components/CoreAudio.component/Contents/SharedSupport/SystemSounds/dock/drag\ to\ trash.aif & "
+            playsound = "afplay /System/Library/Components/CoreAudio.component/Contents/SharedSupport/SystemSounds/dock/drag\\ to\\ trash.aif & "
 
         self.fm.execute_console(
         'shell trash-put ' + \
@@ -103,7 +103,50 @@ class ripgrep(Command):
         else:
             self.fm.execute_console( "shell rg -p " + " ".join(parts[1:]) + " | less -R ")
 
-# import pyperclip  DOESN'T WORK! DIY now
+def os_env_name():
+    system_info = platform.uname()
+    # Pyperclip Doesn't support Cygwin for some reason 
+    if "cygwin" in platform.system().lower():
+        return 'cygwin'
+    elif 'microsoft' in system_info.release.lower() or 'wsl' in system_info.version.lower():
+        return 'wsl'
+    elif "darwin" in platform.system().lower() or "linux" in platform.system().lower():
+        return 'darwin'
+    else:
+        return 'linux'
+
+class guiopen(Command):
+    def execute(self):
+        parts = self.line.split()
+
+        os_name = os_env_name();
+        def wsl_open(path):
+            os.system("wslpath -m \"" + path + "\" | sed -e 's/\\//\\\\\\\\/g' | xargs -I {} explorer.exe '{}'");
+            pass
+        def darwin_open(path):
+            os.system("open " + path)
+        def linux_open(path):
+            os.system("xdg-open " + path)
+
+        open_cmd = None
+        if os_name == 'wsl':
+            open_cmd = wsl_open
+        elif os_name == 'darwin':
+            open_cmd = darwin_open
+        elif os_name == 'cygwin':
+            pass
+            #TODO
+        elif os_name == 'linux':
+            open_cmd == linux_open
+
+
+        if len(parts) < 1 :
+            self.fm.notify("No arguments!")
+        else:
+            if open_cmd:
+                open_cmd(" ".join(parts[1:]))
+
+
 class copyfilepath(Command):
     def execute(self):
         cwd = self.fm.thisdir
@@ -131,8 +174,6 @@ class copyfilepath(Command):
         # Check if the system is WSL
         is_wsl = 'microsoft' in system_info.release.lower() or 'wsl' in system_info.version.lower()
 
-        # Pyperclip Doesn't support Cygwin for some reason 
-        'microsoft' in system_info.release.lower() or 'wsl' in system_info.version.lower()
         if "cygwin" in platform.system().lower():
             cygwin_copy(" ".join(["$(cygpath -wma \"" + os.path.abspath(f.path) + "\")" for f in marked_files]))
         elif is_wsl:
@@ -226,11 +267,11 @@ class fzf_select(Command):
         import os.path
         if self.quantifier:
             # match only directories
-            command="find -L . \( -path '*/\.*' -o -fstype 'dev' -o -fstype 'proc' \) -prune \
+            command="find -L . \\( -path '*/\\.*' -o -fstype 'dev' -o -fstype 'proc' \\) -prune \
             -o -type d -print 2> /dev/null | sed 1d | cut -b3- | fzf +m"
         else:
             # match files and directories
-            command="find -L . \( -path '*/\.*' -o -fstype 'dev' -o -fstype 'proc' \) -prune \
+            command="find -L . \\( -path '*/\\.*' -o -fstype 'dev' -o -fstype 'proc' \\) -prune \
             -o -print 2> /dev/null | sed 1d | cut -b3- | fzf +m"
         fzf = self.fm.execute_command(command, stdout=subprocess.PIPE)
         stdout, stderr = fzf.communicate()
