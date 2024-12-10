@@ -146,6 +146,12 @@ class guiopen(Command):
             if open_cmd:
                 open_cmd(" ".join(parts[1:]))
 
+def linux_to_windows_path(linux_path):
+    result = subprocess.run(['wslpath', '-w', linux_path], capture_output=True, text=True)
+    if result.returncode == 0:
+        return result.stdout.strip()
+    else:
+        raise Exception(f"Error translating path: {result.stderr.strip()}")
 
 class copyfilepath(Command):
     def execute(self):
@@ -158,16 +164,20 @@ class copyfilepath(Command):
         original_path = cwd.path
         parts = self.line.split()
 
-        def cygwin_copy(path):
+        def cygwin_copy(marked_files):
+            path = " ".join(["$(cygpath -wma \"" + os.path.abspath(f.path) + "\")" for f in marked_files])
             self.fm.notify( "Copied file path: " + path)
             os.system("echo -n " + path  + "  > /dev/clipboard")
-        def nix_copy(path):
+        def nix_copy(marked_files):
+            path = " ".join([os.path.abspath(f.path) for f in marked_files])
             self.fm.notify( "Copied file path: " + path)
             os.system("echo \"" + path + "\" | pbcopy ")
-        def wsl_copy(path):
+        def wsl_copy(marked_files):
+            path = " ".join([linux_to_windows_path(os.path.abspath(f.path)) for f in marked_files])
             self.fm.notify( "Copied file path: " + path)
-            os.system("wslpath -w \"" + path + "\" | clip.exe ")
-        def donothing_copy(path):
+            subprocess.run("clip.exe", input=path, text=True)
+        def donothing_copy(marked_files):
+            path = " ".join([os.path.abspath(f.path) for f in marked_files])
             self.fm.notify( "Cannot do anything about this path: " + path)
 
         system_info = platform.uname()
@@ -175,13 +185,13 @@ class copyfilepath(Command):
         is_wsl = 'microsoft' in system_info.release.lower() or 'wsl' in system_info.version.lower()
 
         if "cygwin" in platform.system().lower():
-            cygwin_copy(" ".join(["$(cygpath -wma \"" + os.path.abspath(f.path) + "\")" for f in marked_files]))
+            cygwin_copy(marked_files)
         elif is_wsl:
-            wsl_copy(" ".join([os.path.abspath(f.path) for f in marked_files]))
+            wsl_copy(marked_files)
         elif "darwin" in platform.system().lower() or "linux" in platform.system().lower():
-            nix_copy(" ".join([os.path.abspath(f.path) for f in marked_files]))
+            nix_copy(marked_files)
         else:
-            donothing_copy(" ".join([os.path.abspath(f.path) for f in marked_files]))
+            donothing_copy(marked_files)
 
 # Modified from https://lists.nongnu.org/archive/html/ranger-users/2010-09/msg00003.html
 class bulkrename(Command):
@@ -239,7 +249,6 @@ class z(Command):
     Jump to directory using fzf and fasd
     """
     def execute(self):
-        import subprocess
         arg = self.rest(1)
         command = 'zoxide query -l | fzf -1 -0 --no-sort +m'
         #command = 'fasd -Rdl \'' + arg + '\' | fzf -1 -0 --no-sort +m'
@@ -263,7 +272,6 @@ class fzf_select(Command):
     See: https://github.com/junegunn/fzf
     """
     def execute(self):
-        import subprocess
         import os.path
         if self.quantifier:
             # match only directories
