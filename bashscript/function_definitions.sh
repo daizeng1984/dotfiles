@@ -173,3 +173,31 @@ e() {
 br() {
     broot --sort-by-size -h $@
 }
+
+# Env var for API Keys etc.
+# Check if the environment variable exists
+if [ -f $DOTFILE_LOCAL_PREFIX/.my_variables ]; then
+    source $DOTFILE_LOCAL_PREFIX/.my_variables
+else 
+    touch $DOTFILE_LOCAL_PREFIX/.my_variables
+fi
+
+ask_for_envvar(){
+    NEW_VAR=$1
+    ENV_FILE=$DOTFILE_LOCAL_PREFIX/.my_variables
+    if grep -q "^export $NEW_VAR=" "$ENV_FILE"; then
+        # Update the existing variable
+        # sed -i "s/^export $NEW_VAR=.*/^export $NEW_VAR=$NEW_VALUE/" "$ENV_FILE"
+        echo "existing variable '$NEW_VAR' in '$ENV_FILE'."
+    else
+        # Append the new variable to the file
+        echo -n "Please enter a value for ${NEW_VAR}: "
+        read NEW_VALUE
+        if ! [ -z "$NEW_VALUE" ]; then
+            echo "export $NEW_VAR=$NEW_VALUE" >> "$ENV_FILE"
+            echo "Appended new variable '$NEW_VAR'='$NEW_VALUE' to '$ENV_FILE'."
+            source $DOTFILE_LOCAL_PREFIX/.my_variables
+        fi
+    fi
+}
+

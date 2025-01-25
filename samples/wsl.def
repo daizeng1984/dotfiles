@@ -15,3 +15,7 @@ source "${DOTFILES_HOME}/samples/common/utils.def"
 
 # Windows Stuff
 source "${DOTFILES_HOME}/samples/common/winvar.def"
+
+# Gemini key
+ask_for_envvar GEMINI_API_KEY
+
