@@ -20,7 +20,7 @@ set sidescrolloff=5
 set lazyredraw
 set magic " for regular expressions
 set autoread
-set pastetoggle=<F3>
+" set pastetoggle=<F3>
 set conceallevel=1
 " clipboard
 set clipboard=unnamedplus
@@ -88,8 +88,6 @@ set ttimeoutlen=100
 filetype plugin on
 " Unix as standard file type
 set ffs=unix,dos,mac
-" Always utf8
-set termencoding=utf-8
 " set encoding=utf-8
 set fileencoding=utf-8
 

@@ -137,7 +137,6 @@ nnoremap <leader>ej :FzfEmoji<CR>
 noremap <C-Y>k vat<Esc>da>`<da> 
 
 " Copy to nc
-unmap <C-y>
 vnoremap <C-y> :call CopyToNetCat()<CR>
 if !has('clipboard')
     vnoremap <C-c> :call CopyToTmpBuffer()<CR>

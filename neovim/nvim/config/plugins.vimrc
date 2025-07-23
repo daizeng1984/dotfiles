@@ -1,7 +1,43 @@
 "Behave like windows
-source $VIMRUNTIME/mswin.vim
+" source $VIMRUNTIME/mswin.vim
 " behave mswin 
 " behave is removed. see https://neovim.io/doc/user/news-0.10.html
+if has("clipboard")
+    " CTRL-X and SHIFT-Del are Cut
+    vnoremap <C-X> "+x
+    vnoremap <S-Del> "+x
+
+    " CTRL-C and CTRL-Insert are Copy
+    vnoremap <C-C> "+y
+    vnoremap <C-Insert> "+y
+
+    " CTRL-V and SHIFT-Insert are Paste
+    map <C-V>		"+gP
+    map <S-Insert>		"+gP
+
+    cmap <C-V>		<C-R>+
+    cmap <S-Insert>		<C-R>+
+    
+    inoremap <C-V>      <C-R>"
+else
+		" Use the unnamed register when clipboard support not available
+
+    " CTRL-X and SHIFT-Del are Cut
+    vnoremap <C-X>   x
+    vnoremap <S-Del> x
+
+    " CTRL-C and CTRL-Insert are Copy
+    vnoremap <C-C>      y
+    vnoremap <C-Insert> y
+
+    " CTRL-V and SHIFT-Insert are Paste
+    noremap <C-V>      gP
+    noremap <S-Insert> gP
+
+    inoremap <C-V>      <C-R>"
+    inoremap <S-Insert> <C-R>"
+endif
+
 set selection=exclusive
 set selectmode=mouse,key
 set mousemodel=popup

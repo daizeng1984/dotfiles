@@ -18,10 +18,10 @@ mods = "Command"
 shape = "Block"
 
 [font]
-size = 16.0
+size = 12.0
 
 [font.normal]
-family = "Ubuntu Mono"
+family = "Ubuntu Sans Mono"
 
 [window]
 decorations_theme_variant = "Dark"

@@ -78,9 +78,7 @@ if [ "$installedConda" = "1" ] ; then
     # TODO: do we need this?
     conda deactivate
     conda activate
-    if [ -f "$DOTFILE_LOCAL_PREFIX/lib/miniconda/etc/profile.d/mamba.sh" ]; then
-        . "$DOTFILE_LOCAL_PREFIX/lib/miniconda/etc/profile.d/mamba.sh"
-    fi
+    export MAMBA_ROOT_PREFIX="$DOTFILE_LOCAL_PREFIX/lib/miniconda"
 fi
 
 # brew

@@ -1,0 +1,13 @@
+[Unit]
+Description=TITDB
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/titdb -m f -d /dev/input/event0
+Restart=on-failure
+User=root
+Group=root
+
+[Install]
+WantedBy=multi-user.target
