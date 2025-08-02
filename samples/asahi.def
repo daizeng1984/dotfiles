@@ -1,0 +1,29 @@
+export NODE_PATH="${DOTFILE_LOCAL_PREFIX}/lib/miniconda/lib/node_modules"
+
+# Python managed by conda, we can activate our python environment
+# source activate webdev
+python -VV
+alias pysite='python -m site'
+
+# Node/NPM path
+alias nodepath='npm config get prefix'
+# npm config set python $(which python)
+
+# Java
+source "${DOTFILES_HOME}/samples/common/conda/java.def"
+
+# Android
+source "${DOTFILES_HOME}/samples/common/conda/android.def"
+
+# C++
+export CXX=$(which clang++)
+export CC=$(which clang)
+source "${DOTFILES_HOME}/samples/common/cmake.def"
+
+# Utils
+source "${DOTFILES_HOME}/samples/common/utils.def"
+
+# Wayland
+alias pbcopy=wl-copy
+alias pbpaste=wl-paste
+alias open=xdg-open

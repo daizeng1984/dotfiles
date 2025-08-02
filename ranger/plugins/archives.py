@@ -153,6 +153,15 @@ def linux_to_windows_path(linux_path):
     else:
         raise Exception(f"Error translating path: {result.stderr.strip()}")
 
+def is_wayland():
+    # Common environment variables for Wayland sessions
+    wayland_display = os.getenv("WAYLAND_DISPLAY")
+    wayland_session = os.getenv("XDG_SESSION_TYPE") == "wayland"
+    # Some distros set XDG_SESSION_TYPE=wayland when running Wayland
+
+    return wayland_display is not None or wayland_session
+
+
 class copyfilepath(Command):
     def execute(self):
         cwd = self.fm.thisdir
@@ -176,6 +185,10 @@ class copyfilepath(Command):
             path = " ".join([linux_to_windows_path(os.path.abspath(f.path)) for f in marked_files])
             self.fm.notify( "Copied file path: " + path)
             subprocess.run("clip.exe", input=path, text=True)
+        def wayland_copy(marked_files):
+            path = " ".join([os.path.abspath(f.path) for f in marked_files])
+            self.fm.notify( "Copied file path: " + path)
+            subprocess.run("wl-copy", input=path, text=True)
         def donothing_copy(marked_files):
             path = " ".join([os.path.abspath(f.path) for f in marked_files])
             self.fm.notify( "Cannot do anything about this path: " + path)
@@ -188,8 +201,10 @@ class copyfilepath(Command):
             cygwin_copy(marked_files)
         elif is_wsl:
             wsl_copy(marked_files)
-        elif "darwin" in platform.system().lower() or "linux" in platform.system().lower():
+        elif "darwin" in platform.system().lower():
             nix_copy(marked_files)
+        elif "linux" in platform.system().lower() and is_wayland() :
+            wayland_copy(marked_files)
         else:
             donothing_copy(marked_files)
 

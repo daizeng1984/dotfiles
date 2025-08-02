@@ -12,8 +12,13 @@ sudo dnf install -y kernel-devel
 sudo dnf install -y libinput-devel
 sudo dnf install -y libudev-devel
 sudo dnf install -y git
+# my blog deps
+sudo dnf install -y libpng-devel
 # app
 sudo dnf install -y alacritty
+sudo dnf install -y clang
+sudo dnf install -y wl-clipboard
+# sudo dnf install -y expat-devel
 
 
 # Install keyd related
@@ -80,4 +85,9 @@ CC=/usr/bin/gcc-14 CXX=/usr/bin/g++-14 cmake ..
 make
 sudo cp ./titdb /usr/bin
 sudo cp $DOTFILES_HOME/misc/titdb.service /etc/systemd/system/
+
+# instlal app
+# flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo 
+# install wechat install flatseal
+
 
