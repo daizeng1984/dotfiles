@@ -89,5 +89,15 @@ sudo cp $DOTFILES_HOME/misc/titdb.service /etc/systemd/system/
 # instlal app
 # flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo 
 # install wechat install flatseal
+sudo dnf install -y fcitx5 
+sudo dnf install -y fcitx5-autostart 
+sudo dnf install -y fcitx5-configtool 
+sudo dnf install -y fcitx5-chinese-addons 
+sudo dnf install -y fcitx5-gtk 
+sudo dnf install -y fcitx5-qt 
+sudo dnf install -y fcitx5-qt-module 
+sudo dnf install -y kcm-fcitx5
+# Remember to set it up 
+
 
 
