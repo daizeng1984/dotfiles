@@ -4,7 +4,7 @@ After=network.target
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/titdb -m s -d /dev/input/event0 -l 45 -t 10 -r 20 -b 20
+ExecStart=/usr/bin/titdb -m s -d /dev/input/event0 -l 25 -t 10 -r 20 -b 20
 Restart=on-failure
 User=root
 Group=root
