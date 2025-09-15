@@ -97,7 +97,13 @@ sudo dnf install -y fcitx5-gtk
 sudo dnf install -y fcitx5-qt 
 sudo dnf install -y fcitx5-qt-module 
 sudo dnf install -y kcm-fcitx5
+sudo dnf install -y pdftk
 # Remember to set it up 
 
 
+# Install firefox nonfree video codec
+sudo dnf install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 
+sudo dnf config-manager setopt fedora-cisco-openh264.enabled=1
+sudo dnf swap -y ffmpeg-free ffmpeg --allowerasing
+sudo dnf update -y @multimedia --setopt="install_weak_deps=False" --exclude=PackageKit-gstreamer-plugin
