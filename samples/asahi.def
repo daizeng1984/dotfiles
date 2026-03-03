@@ -27,3 +27,7 @@ source "${DOTFILES_HOME}/samples/common/utils.def"
 alias pbcopy=wl-copy
 alias pbpaste=wl-paste
 alias open=xdg-open
+
+# before plasma OCR feature
+alias pbocr='wl-paste --type image/png | tesseract stdin stdout -l eng+chi_sim | wl-copy'
+

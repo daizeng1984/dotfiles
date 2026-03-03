@@ -196,11 +196,11 @@ augroup end
 
 " Applying codeAction to the selected region.
 " Example: `<leader>aap` for current paragraph
-xmap <leader>a  <Plug>(coc-codeaction-selected)
-nmap <leader>a  <Plug>(coc-codeaction-selected)
+" xmap <leader>a  <Plug>(coc-codeaction-selected)
+" nmap <leader>a  <Plug>(coc-codeaction-selected)
 
 " Remap keys for applying codeAction to the current buffer.
-nmap <leader>ac  <Plug>(coc-codeaction)
+" nmap <leader>ac  <Plug>(coc-codeaction)
 " Apply AutoFix to problem on the current line.
 nmap <leader>qf  <Plug>(coc-fix-current)
 
@@ -297,4 +297,17 @@ if has('nvim')
     silent! iunmap <C-W>
 endif
 
+" Claude code
+nnoremap <leader>ac <cmd>ClaudeCode<cr>
+nnoremap <leader>af <cmd>ClaudeCodeFocus<cr>
+nnoremap <leader>ar <cmd>ClaudeCode --resume<cr>
+nnoremap <leader>aC <cmd>ClaudeCode --continue<cr>
+nnoremap <leader>am <cmd>ClaudeCodeSelectModel<cr>
+nnoremap <leader>ab <cmd>ClaudeCodeAdd %<cr>
+nnoremap <leader>aa <cmd>ClaudeCodeDiffAccept<cr>
+nnoremap <leader>ad <cmd>ClaudeCodeDiffDeny<cr>
+vnoremap <leader>as <cmd>ClaudeCodeSend<cr>
+tnoremap <C-h><C-h> <C-\><C-n>
+
+" Local AI
 vnoremap <leader>I :AIEdit<CR>

@@ -98,6 +98,13 @@ sudo dnf install -y fcitx5-qt
 sudo dnf install -y fcitx5-qt-module 
 sudo dnf install -y kcm-fcitx5
 sudo dnf install -y pdftk
+# OCR
+sudo dnf install -y tesseract
+sudo dnf install -y tesseract-langpack-eng
+sudo dnf install -y tesseract-langpack-chi_tra
+sudo dnf install -y tesseract-langpack-chi_sim
+sudo dnf install -y tesseract-langpack-jpn
+
 # Remember to set it up 
 
 

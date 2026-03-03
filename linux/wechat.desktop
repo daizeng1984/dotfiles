@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Wechat
+Comment=wechat running in Firejail sandbox
+Exec=firejail --private=~/Downloads/wechat --appimage ~/Downloads/WeChatLinux_arm64.AppImage
+Icon=/home/zengdai/Downloads/wechat/wechat.png
+Terminal=false
+Type=Application
+Categories=Utility;

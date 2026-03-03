@@ -204,6 +204,7 @@ Plug 'ericcurtin/CurtineIncSw.vim'
 "     Plug 'windwp/nvim-spectre'
 " else
 Plug 'brooth/far.vim'
+Plug 'coder/claudecode.nvim'
 " endif
 " Add plugins to &runtimepath
 call plug#end()

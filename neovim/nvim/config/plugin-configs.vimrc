@@ -294,3 +294,11 @@ let g:slime_default_config = {
             \ 'socket_name': get(split($TMUX, ','), 0),
             \ 'target_pane': '{top-right}' }
 let g:slime_dont_ask_default = 1
+
+" Claude plugin
+if has_key(g:plugs, 'claudecode.nvim')
+lua << EOF
+require("claudecode").setup({})
+
+EOF
+endif
