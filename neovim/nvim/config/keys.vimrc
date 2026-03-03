@@ -307,7 +307,7 @@ nnoremap <leader>ab <cmd>ClaudeCodeAdd %<cr>
 nnoremap <leader>aa <cmd>ClaudeCodeDiffAccept<cr>
 nnoremap <leader>ad <cmd>ClaudeCodeDiffDeny<cr>
 vnoremap <leader>as <cmd>ClaudeCodeSend<cr>
-tnoremap <C-h><C-h> <C-\><C-n>
+tnoremap <C-h><C-h> <C-\><C-n><C-w><C-w>
 
 " Local AI
 vnoremap <leader>I :AIEdit<CR>
