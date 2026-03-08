@@ -299,7 +299,9 @@ let g:slime_dont_ask_default = 1
 " Claude plugin
 if has_key(g:plugs, 'claudecode.nvim')
 lua << EOF
-require("claudecode").setup({})
+require("claudecode").setup({
+terminal_cmd = "claude --dangerously-skip-permissions",
+})
 
 EOF
 endif
