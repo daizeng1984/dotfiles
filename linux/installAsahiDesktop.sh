@@ -98,6 +98,7 @@ sudo dnf install -y fcitx5-qt
 sudo dnf install -y fcitx5-qt-module 
 sudo dnf install -y kcm-fcitx5
 sudo dnf install -y pdftk
+sudo dnf install -y fuse-sshfs
 # OCR
 sudo dnf install -y tesseract
 sudo dnf install -y tesseract-langpack-eng
