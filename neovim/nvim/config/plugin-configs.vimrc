@@ -236,6 +236,7 @@ if has_key(g:plugs, 'coc.nvim')
     let g:coc_global_extensions = [
       \ 'coc-snippets',
       \ 'coc-tsserver',
+      \ 'coc-clangd',
       \ ]
       " \ 'coc-cfn-lint',
       " \ 'coc-cspell-dicts',

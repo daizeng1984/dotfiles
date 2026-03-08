@@ -22,8 +22,27 @@ set magic " for regular expressions
 set autoread
 " set pastetoggle=<F3>
 set conceallevel=1
-" clipboard
-set clipboard=unnamedplus
+" clipboard will be set as OSC52
+" set clipboard=unnamedplus
+lua <<EOF
+-- Force OSC 52 as the clipboard provider for Alacritty
+vim.g.clipboard = {
+    name = 'Alacritty-OSC52',
+    copy = {
+        ['+'] = require('vim.ui.clipboard.osc52').copy('+'),
+        ['*'] = require('vim.ui.clipboard.osc52').copy('*'),
+    },
+    paste = {
+        -- Alacritty paste can sometimes be finicky via OSC 52; 
+        -- this fallback uses the internal register if the terminal blocks the read
+        ['+'] = require('vim.ui.clipboard.osc52').paste('+'),
+        ['*'] = require('vim.ui.clipboard.osc52').paste('*'),
+    },
+}
+-- Enable unnamedplus to sync all yanks to the system clipboard automatically
+vim.opt.clipboard = 'unnamedplus'
+EOF
+
 " set completeopt=longest,menuone,preview
 filetype plugin indent on
 set omnifunc=syntaxcomplete#Complete

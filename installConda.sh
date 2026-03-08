@@ -5,8 +5,8 @@ source ./conda/installMiniconda.sh
 # conda install -y -c --no-update-deps daizeng1984 sdkman
 
 # C++, use nix please
-# conda install -y -c conda-forge cmake
-# conda install -y -c conda-forge clangdev
+conda install -y -c conda-forge cmake
+conda install -y -c conda-forge clangdev
 # conda install -y -c conda-forge conan
 # conan remote add bincrafters https://api.bintray.com/conan/bincrafters/public-conan
 # conda install -y -c --no-update-deps daizeng1984 ccls
@@ -39,7 +39,7 @@ git lfs install
 mamba install -y -c conda-forge zsh
 mamba install -y -c conda-forge direnv
 mamba install -y -c conda-forge neovim
-mamba install -y -c conda-forge tmux
+# mamba install -y -c conda-forge tmux after 3.6 this is broken
 mamba install -y -c conda-forge vim
 # Fix https://github.com/conda-forge/tmux-feedstock/issues/12
 mamba install -y -c conda-forge ncurses
