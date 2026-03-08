@@ -25,3 +25,5 @@ program = "wsl -d Ubuntu"
 decorations_theme_variant = "Dark"
 opacity = 1.0
 startup_mode = "Maximized"
+# This allows applications like Neovim to write to the clipboard via OSC 52
+osc52 = "Always"
