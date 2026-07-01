@@ -135,7 +135,7 @@ if [ "$installedZoxide" = "1" ] ; then
         echo "not implemented yet!"
     }
     
-    eval "$(zoxide init ${DOTFILES_SHELL_TYPE} --no-aliases)"
+    eval "$(zoxide init ${DOTFILES_SHELL_TYPE} --no-cmd)"
 elif [ "$installedFasd" = "1" ] ; then
     eval "$(fasd --init ${DOTFILES_SHELL_TYPE}-hook ${DOTFILES_SHELL_TYPE}-ccomp ${DOTFILES_SHELL_TYPE}-ccomp-install)"
     # fasd

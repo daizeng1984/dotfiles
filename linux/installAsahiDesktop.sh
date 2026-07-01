@@ -99,7 +99,9 @@ sudo dnf install -y fcitx5-qt-module
 sudo dnf install -y kcm-fcitx5
 sudo dnf install -y pdftk
 sudo dnf install -y fuse-sshfs
+sudo dnf install -y wkhtmltopdf
 # OCR
+# if not in KDE, to install: flatpak install flathub com.github.tenderowl.frog
 sudo dnf install -y tesseract
 sudo dnf install -y tesseract-langpack-eng
 sudo dnf install -y tesseract-langpack-chi_tra
