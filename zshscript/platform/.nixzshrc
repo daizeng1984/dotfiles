@@ -31,6 +31,12 @@ bindkey -s "^g" 'gst\n'
 bindkey -s "^y" '^utgpt -i\n'
 export KEYTIMEOUT=1
 
+#home/end
+bindkey '^[[1~' beginning-of-line
+bindkey '^[[H'  beginning-of-line
+bindkey '^[[4~' end-of-line
+bindkey '^[[F'  end-of-line
+
 # completion
 autoload -Uz compinit && compinit
 zstyle ':completion:*' matcher-list '' \

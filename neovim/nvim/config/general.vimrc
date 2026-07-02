@@ -25,9 +25,9 @@ set conceallevel=1
 " clipboard will be set as OSC52
 " set clipboard=unnamedplus
 lua <<EOF
--- Force OSC 52 as the clipboard provider for Alacritty
+-- Force OSC 52 as the clipboard
 vim.g.clipboard = {
-    name = 'Alacritty-OSC52',
+    name = 'OSC52',
     copy = {
         ['+'] = require('vim.ui.clipboard.osc52').copy('+'),
         ['*'] = require('vim.ui.clipboard.osc52').copy('*'),
@@ -39,8 +39,9 @@ vim.g.clipboard = {
         ['*'] = require('vim.ui.clipboard.osc52').paste('*'),
     },
 }
--- Enable unnamedplus to sync all yanks to the system clipboard automatically
-vim.opt.clipboard = 'unnamedplus'
+-- Do NOT sync normal y/d/etc to the system clipboard; keep them in vim's own
+-- registers. Use <C-c> (see keys.vimrc) to explicitly copy to the "+ register.
+vim.opt.clipboard = ''
 EOF
 
 " set completeopt=longest,menuone,preview

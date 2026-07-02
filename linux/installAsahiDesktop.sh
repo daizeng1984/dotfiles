@@ -96,6 +96,11 @@ sudo dnf install -y fcitx5-chinese-addons
 sudo dnf install -y fcitx5-gtk 
 sudo dnf install -y fcitx5-qt 
 sudo dnf install -y fcitx5-qt-module 
+# add pinyin input and make sure to set virtual keyboard in KDE system/keyboard settings to allow pinyin input in alacritty terminal
+# word db download sougou.dict from https://github.com/blackteahamburger/fcitx6-pinyin-sougou-dict/releases
+# then: mkdir -p ~/.local/share/fcitx5/pinyin/dictionaries/ && mv ~/Downloads/sougou.dict ~/.local/share/fcitx5/pinyin/dictionaries/
+# sudo dnf install -y fcitx5-rime
+# sudo dnf install -y librime-lua
 sudo dnf install -y kcm-fcitx5
 sudo dnf install -y pdftk
 sudo dnf install -y fuse-sshfs
@@ -108,6 +113,10 @@ sudo dnf install -y tesseract-langpack-chi_tra
 sudo dnf install -y tesseract-langpack-chi_sim
 sudo dnf install -y tesseract-langpack-jpn
 
+# # rime setup
+# mkdir -p ~/.local/share/fcitx5/rime && cd ~/.local/share/fcitx5/rime
+# git clone --depth=1 https://github.com/iDvel/rime-ice temp_ice
+# cp -r temp_ice/* . && rm -rf temp_ice
 # Remember to set it up 
 
 
@@ -117,3 +126,6 @@ sudo dnf install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-rel
 sudo dnf config-manager setopt fedora-cisco-openh264.enabled=1
 sudo dnf swap -y ffmpeg-free ffmpeg --allowerasing
 sudo dnf update -y @multimedia --setopt="install_weak_deps=False" --exclude=PackageKit-gstreamer-plugin
+
+# uncheck [] Click raises active window in system settings -> Window Management -> Window behavior
+# uncheck [] meta key in system setings -> Shortcuts

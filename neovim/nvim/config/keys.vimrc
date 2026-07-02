@@ -104,9 +104,6 @@ else
 endif
 
 
-" SSH paste
-map <silent> <leader>sp :r /tmp/sshclipboard.txt<CR>
-
 " Terminal
 " tnoremap <silent> <Esc> <C-\><C-n><bar>:q<CR>
 " map <silent> <leader>TT :call TermEnter()<CR> I seldom use it and confusing when using tmux...
@@ -136,13 +133,10 @@ nnoremap <leader>ej :FzfEmoji<CR>
 " Emmet bug temp solution http://vim.wikia.com/wiki/Delete_a_pair_of_XML/HTML_tags
 noremap <C-Y>k vat<Esc>da>`<da> 
 
-" Copy to nc
-vnoremap <C-y> :call CopyToNetCat()<CR>
-if !has('clipboard')
-    vnoremap <C-c> :call CopyToTmpBuffer()<CR>
-    nnoremap <C-v> :call PasteFromTmpBuffer()<CR>
-    inoremap <C-v> <Esc>:call PasteFromTmpBuffer()<CR>a
-endif
+" Ctrl-C: explicitly copy to the system clipboard (via OSC52 + register).
+" Normal y/d/etc stay in vim's own registers only. (here the g not sure why
+" makes a big difference for me to passthrough tmux)
+xnoremap <C-c> "+ygv
 
 " LSP
 if g:use_native_lsp
