@@ -127,5 +127,6 @@ sudo dnf config-manager setopt fedora-cisco-openh264.enabled=1
 sudo dnf swap -y ffmpeg-free ffmpeg --allowerasing
 sudo dnf update -y @multimedia --setopt="install_weak_deps=False" --exclude=PackageKit-gstreamer-plugin
 
-# uncheck [] Click raises active window in system settings -> Window Management -> Window behavior
-# uncheck [] meta key in system setings -> Shortcuts
+# uncheck [] meta key in system setings -> Shortcuts to disable launcher from meta key
+# keyboard -> key bindings -> capslock to be disabled
+# Legacy X11 App Support -> prohibit 

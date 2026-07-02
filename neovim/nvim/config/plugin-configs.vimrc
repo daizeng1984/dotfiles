@@ -54,7 +54,7 @@ endif
 
 if has_key(g:plugs, 'ultisnips')
     " Ultisnips
-    let g:UltiSnipsExpandTrigger="<C-e>"
+    let g:UltiSnipsExpandTrigger="<Tab>"
     let g:UltiSnipsJumpForwardTrigger="<C-k>"
     let g:UltiSnipsJumpBackwardTrigger="<C-b>"
     let g:UltiSnipsSnippetDirectories=["UltiSnips", $HOME."/.config/nvim/my-snippets/UltiSnips"]
