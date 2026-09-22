@@ -1,0 +1,109 @@
+#!/usr/bin/env bash
+# ccs - Claude Code Session search
+#
+# Searches all local Claude Code session transcripts
+# (~/.claude/projects/**/*.jsonl) for a term with ripgrep, lets you pick
+# one interactively with fzf (with live match preview), and prints the
+# chosen session's id to stdout.
+#
+# Usage:
+#   ccs <search-term> [extra rg options...]
+#
+# Examples:
+#   ccs hello
+#   id=$(ccs hello)
+#   ccs -i "some regex"
+set -euo pipefail
+
+CLAUDE_PROJECTS_DIR="${CLAUDE_PROJECTS_DIR:-$HOME/.claude/projects}"
+
+usage() {
+  cat <<'EOF'
+Usage: ccs <search-term> [rg-options...]
+
+Search all Claude Code session transcripts under
+  ~/.claude/projects/**/*.jsonl
+for <search-term> using ripgrep, choose one match interactively in fzf
+(with a live preview of the matching lines), and print the selected
+session id to stdout.
+
+Examples:
+  ccs hello
+  id=$(ccs hello)
+  ccs -w somefunc          # word-boundary match, still fuzzy-picked in fzf
+EOF
+}
+
+if [[ $# -eq 0 || "$1" == "-h" || "$1" == "--help" ]]; then
+  usage
+  exit 0
+fi
+
+for cmd in rg fzf jq; do
+  if ! command -v "$cmd" >/dev/null 2>&1; then
+    echo "ccs: required command '$cmd' not found in PATH" >&2
+    exit 1
+  fi
+done
+
+if [[ ! -d "$CLAUDE_PROJECTS_DIR" ]]; then
+  echo "ccs: no session directory found at $CLAUDE_PROJECTS_DIR" >&2
+  exit 1
+fi
+
+term="$1"
+shift
+
+# Files whose content matches the term, most recently modified first.
+mapfile -t files < <(
+  rg -l --no-messages -- "$@" "$term" "$CLAUDE_PROJECTS_DIR" 2>/dev/null \
+    | xargs -r ls -t
+)
+
+if [[ ${#files[@]} -eq 0 ]]; then
+  echo "ccs: no sessions matched '$term'" >&2
+  exit 1
+fi
+
+# One line per matching session: id, mtime, project dir, first user message
+# snippet, and the file path (kept as a hidden field for the fzf preview).
+build_line() {
+  local file="$1" session_id project mtime summary
+  session_id="$(basename "$file" .jsonl)"
+  project="$(basename "$(dirname "$file")")"
+  mtime="$(date -r "$file" '+%Y-%m-%d %H:%M' 2>/dev/null || echo '?')"
+  summary="$(jq -r '
+      select(.type == "user" and .message.role == "user")
+      | .message.content
+      | if type == "string" then .
+        elif type == "array" then ([.[] | select(.type == "text") | .text] | join(" "))
+        else empty end
+    ' "$file" 2>/dev/null | grep -v '^[[:space:]]*$' | head -n1)"
+  summary="${summary//$'\n'/ }"
+  summary="${summary:0:80}"
+  printf '%s\t%s\t%s\t%s\t%s\n' "$session_id" "$mtime" "$project" "$summary" "$file"
+}
+
+listing=""
+for f in "${files[@]}"; do
+  listing+="$(build_line "$f")"$'\n'
+done
+
+export CCS_TERM="$term"
+selected="$(
+  printf '%s' "$listing" \
+    | fzf --ansi \
+          --delimiter=$'\t' \
+          --with-nth=1,2,3,4 \
+          --tabstop=2 \
+          --prompt="ccs> " \
+          --header="search: ${term}  (enter: print session id, esc: cancel)" \
+          --preview='rg -n -i --color=always -C 2 -- "$CCS_TERM" {5}' \
+          --preview-window='down,60%,wrap'
+)"
+
+if [[ -z "$selected" ]]; then
+  exit 130
+fi
+
+printf '%s\n' "$selected" | cut -f1
