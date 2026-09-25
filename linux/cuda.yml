@@ -1,0 +1,14 @@
+name: cudatutorial
+channels:
+    - nvidia
+    - conda-forge
+dependencies:
+    - gdb
+    - cmake
+    - cudatoolkit
+    - cuda
+    - cuda-gdb # cuda thread(s) ...
+    - pip
+    - pip:
+        - gdbgui # gdbgui -r --gdb cuda-gdb <exe>
+shell: export PATH=$PATH:/usr/local/NVIDIA-Nsight-Compute  # ncu, try mamba remove nsight-compute --force to remove single files

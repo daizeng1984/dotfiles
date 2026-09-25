@@ -69,7 +69,6 @@ curl -L  https://github.com/canonical/Ubuntu-Sans-Mono-fonts/releases/download/v
 unzip UbuntuMono-fonts-fonts.zip
 sudo cp -rvf UbuntuSansMono-fonts-1.006 /usr/share/fonts/
 fc-cache -fv
-cd $_PWD
 
 # solve the palm rejection issue on big touchpad
 cd /tmp
@@ -130,3 +129,11 @@ sudo dnf update -y @multimedia --setopt="install_weak_deps=False" --exclude=Pack
 # uncheck [] meta key in system setings -> Shortcuts to disable launcher from meta key
 # keyboard -> key bindings -> capslock to be disabled
 # Legacy X11 App Support -> prohibit 
+# bluetooth
+sudo dnf install -y expect
+cd /tmp
+git clone https://github.com/christian-korneck/asahi-bt-a2dp-fix.git
+cd asahi-bt-a2dp-fix
+sudo ./install.sh
+
+cd $_PWD
