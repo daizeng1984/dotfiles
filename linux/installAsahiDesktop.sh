@@ -136,4 +136,21 @@ git clone https://github.com/christian-korneck/asahi-bt-a2dp-fix.git
 cd asahi-bt-a2dp-fix
 sudo ./install.sh
 
+# Accessbility disable
+for e in zoom magnifier invert mousemark trackmouse shakecursor; do
+  qdbus-qt6 org.kde.KWin /Effects org.kde.kwin.Effects.unloadEffect $e
+done
+
+for e in zoom magnifier invert mousemark trackmouse shakecursor; do
+  kwriteconfig6 --file kwinrc --group Plugins --key ${e}Enabled false
+done
+qdbus-qt6 org.kde.KWin /KWin reconfigure
+
+kwriteconfig6 --file kaccessrc --group ScreenReader --key Enabled false
+kwriteconfig6 --file kaccessrc --group Keyboard --key Gestures false
+kwriteconfig6 --file kaccessrc --group Keyboard --key StickyKeys false
+kwriteconfig6 --file kaccessrc --group Keyboard --key SlowKeys false
+kwriteconfig6 --file kaccessrc --group Keyboard --key BounceKeys false
+pkill kaccess; kaccess &
+
 cd $_PWD
