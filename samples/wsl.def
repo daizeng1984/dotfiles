@@ -3,6 +3,9 @@ source "${DOTFILES_HOME}/samples/common/conda/android.def"
 # Java
 source "${DOTFILES_HOME}/samples/common/conda/java.def"
 
+# Rust
+source "${DOTFILES_HOME}/samples/common/conda/rust.def"
+
 # Prefer Clang vs GCC
 installedClang=$(checkIfInstalled "clang" clang --quiet)
 if [ "$installedClang" = "1" ] ; then

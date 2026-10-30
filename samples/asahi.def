@@ -12,6 +12,9 @@ alias nodepath='npm config get prefix'
 # Java
 source "${DOTFILES_HOME}/samples/common/conda/java.def"
 
+# Rust
+source "${DOTFILES_HOME}/samples/common/conda/rust.def"
+
 # Android
 source "${DOTFILES_HOME}/samples/common/conda/android.def"
 
