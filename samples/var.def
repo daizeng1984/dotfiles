@@ -27,7 +27,7 @@ function __mapToDef() {
 # mac: `sudo scutil --set HostName <new host name>`
 # windows: `Rename-Computer -NewName "<new host name>"`
 __mapToDef 'zengdai' 'macbook-pro-13-home' 'macconda.def' 'homemac' 'wombat'
-__mapToDef 'zengdai' 'pop-os' 'centosconda.def' 'homelinux' 'orangeddust'
-__mapToDef 'zengdai' 'windesktop' 'wsl.def' 'homelinux' 'tealddust'
+__mapToDef 'zengdai' 'pop-os' 'centosconda.def' 'homelinux' 'orangedust'
+__mapToDef 'zengdai' 'windesktop' 'wsl.def' 'homelinux' 'tealdust'
 __mapToDef 'zengdai' 'fedora' 'centosconda.def' 'homelinux' 'silverdust'
 __mapToDef 'zengdai' 'asahibook' 'asahi.def' 'homelinux' 'pinkdust'
