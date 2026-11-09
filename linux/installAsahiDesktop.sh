@@ -155,6 +155,9 @@ echo "XMODIFIERS=@im=fcitx" > ~/.config/environment.d/fcitx5.conf
 (setsid fcitx5 -d --replace >/dev/null 2>&1 &)
 # relogin afterwards for env changes to take effect
 
+# kitty
+sudo dnf install -y kitty
+
 # Install firefox nonfree video codec
 sudo dnf install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 
@@ -191,3 +194,11 @@ pkill kaccess; kaccess &
 
 cd $_PWD
 
+mamba install -y -c conda-forge rust
+cargon install tickrs
+# tickrs tray popup (KDE): autostart the tray icon
+# needs kitty (quick-access-terminal kitten), PyQt6 for system python, and tickrs
+# itself (nix programs.nix or `cargo install tickrs`)
+sudo dnf install -y kitty python3-pyqt6-base
+mkdir -p ~/.config/autostart
+ln -sf $DOTFILES_HOME/linux/tickrs-tray/tickrs-tray.desktop ~/.config/autostart/tickrs-tray.desktop

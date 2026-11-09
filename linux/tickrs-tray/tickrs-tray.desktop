@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=tickrs tray
+Comment=Tray icon that toggles a tickrs quick-access terminal
+Exec=sh -c '/usr/bin/python3 "$HOME/.dotfiles/linux/tickrs-tray/tickrs_tray.py"'
+Icon=office-chart-line
+X-KDE-autostart-after=panel

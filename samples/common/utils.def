@@ -214,3 +214,5 @@ zipedit(){
         echo "Cannot find file $1"
     fi
 }
+
+alias tk='tickrs --summary -t 1M'
