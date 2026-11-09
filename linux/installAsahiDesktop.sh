@@ -98,8 +98,8 @@ sudo dnf install -y fcitx5-qt-module
 # add pinyin input and make sure to set virtual keyboard in KDE system/keyboard settings to allow pinyin input in alacritty terminal
 # word db download sougou.dict from https://github.com/blackteahamburger/fcitx6-pinyin-sougou-dict/releases
 # then: mkdir -p ~/.local/share/fcitx5/pinyin/dictionaries/ && mv ~/Downloads/sougou.dict ~/.local/share/fcitx5/pinyin/dictionaries/
-# sudo dnf install -y fcitx5-rime
-# sudo dnf install -y librime-lua
+sudo dnf install -y fcitx5-rime
+sudo dnf install -y librime-lua
 sudo dnf install -y kcm-fcitx5
 sudo dnf install -y pdftk
 sudo dnf install -y fuse-sshfs
@@ -112,12 +112,48 @@ sudo dnf install -y tesseract-langpack-chi_tra
 sudo dnf install -y tesseract-langpack-chi_sim
 sudo dnf install -y tesseract-langpack-jpn
 
-# # rime setup
-# mkdir -p ~/.local/share/fcitx5/rime && cd ~/.local/share/fcitx5/rime
-# git clone --depth=1 https://github.com/iDvel/rime-ice temp_ice
-# cp -r temp_ice/* . && rm -rf temp_ice
-# Remember to set it up 
+# rime + rime-ice (雾凇拼音), safe to re-run: keeps *.custom.yaml, user.yaml and *.userdb
+RIME_DIR=~/.local/share/fcitx5/rime
+mkdir -p $RIME_DIR
+rm -rf /tmp/rime-ice
+git clone --depth=1 https://github.com/iDvel/rime-ice /tmp/rime-ice
+# upstream ships a prebuilt build/ that would shadow our *.custom.yaml patches, so skip it
+# and drop the old build/ so rime recompiles everything on next deploy
+(cd /tmp/rime-ice && tar --exclude=.git --exclude=./build -cf - .) | tar -xf - -C $RIME_DIR
+rm -rf $RIME_DIR/build
+ln -sf $DOTFILES_HOME/linux/rime/rime_ice.custom.yaml $RIME_DIR/rime_ice.custom.yaml
+ln -sf $DOTFILES_HOME/linux/rime/default.custom.yaml $RIME_DIR/default.custom.yaml
 
+# fcitx5 input method list: keyboard-us + rime (fcitx5 rewrites profile on exit, so stop it first)
+pkill -x fcitx5; sleep 2
+mkdir -p ~/.config/fcitx5
+cat > ~/.config/fcitx5/profile <<'EOF'
+[Groups/0]
+Name=Default
+Default Layout=us
+DefaultIM=rime
+
+[Groups/0/Items/0]
+Name=keyboard-us
+Layout=
+
+[Groups/0/Items/1]
+Name=rime
+Layout=
+
+[GroupOrder]
+0=Default
+EOF
+
+# KDE Wayland: use fcitx5 as the virtual keyboard (System Settings -> Keyboard -> Virtual Keyboard)
+kwriteconfig6 --file kwinrc --group Wayland --key InputMethod /usr/share/applications/fcitx5-wayland-launcher.desktop
+kwriteconfig6 --file kwinrc --group Wayland --key VirtualKeyboardEnabled true
+# XWayland apps: imsettings defaults to none (XMODIFIERS=@im=none), point it at fcitx5
+mkdir -p ~/.config/imsettings ~/.config/environment.d
+ln -sf /etc/X11/xinit/xinput.d/fcitx5.conf ~/.config/imsettings/xinputrc
+echo "XMODIFIERS=@im=fcitx" > ~/.config/environment.d/fcitx5.conf
+(setsid fcitx5 -d --replace >/dev/null 2>&1 &)
+# relogin afterwards for env changes to take effect
 
 # Install firefox nonfree video codec
 sudo dnf install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
@@ -154,3 +190,4 @@ kwriteconfig6 --file kaccessrc --group Keyboard --key BounceKeys false
 pkill kaccess; kaccess &
 
 cd $_PWD
+

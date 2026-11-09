@@ -1,0 +1,4 @@
+patch:
+  # ↑/↓ 直接整页翻页（代替逐个移动候选高亮）
+  "key_binder/bindings/@before 0": { when: has_menu, accept: Up, send: Page_Up }
+  "key_binder/bindings/@before 1": { when: has_menu, accept: Down, send: Page_Down }

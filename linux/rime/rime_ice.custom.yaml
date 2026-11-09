@@ -1,0 +1,6 @@
+patch:
+  # Enable Fuzzy Pinyin for Rime-ice
+  "speller/algebra/@before 0": xform/^([b-df-hj-r-tw-z])h/$1/
+  "speller/algebra/@before 1": xform/^(z|c|s)([^h])/$1h$2/
+  "speller/algebra/@before 2": xform/^(z|c|s)$/$1h/
+
