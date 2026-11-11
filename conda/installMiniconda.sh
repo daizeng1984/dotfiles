@@ -24,6 +24,5 @@ rm -rf ./${SCRIPT_NAME}
 cd $RETURN_DIR
 
 source $HOME/.bashrc
-# Add the best channel over defaults TODO: .condarc
-conda config --add channels conda-forge
+# channels live in misc/.condarc; never run `conda config` here (it rewrites the symlinked ~/.condarc)
 fi
