@@ -84,10 +84,59 @@ CC=/usr/bin/gcc-14 CXX=/usr/bin/g++-14 cmake ..
 make
 sudo cp ./titdb /usr/bin
 sudo cp $DOTFILES_HOME/misc/titdb.service /etc/systemd/system/
+sudo systemctl daemon-reload
+sudo systemctl enable --now titdb
+
+# disable-while-typing: keyd grabs the real keyboard and re-emits via "keyd virtual keyboard",
+# which libinput doesn't treat as internal, so the touchpad never pauses while typing.
+# Mark it internal so libinput pairs it with the trackpad. Takes effect after re-login.
+sudo mkdir -p /etc/libinput
+sudo tee /etc/libinput/local-overrides.quirks > /dev/null <<'EOF'
+[keyd virtual keyboard]
+MatchUdevType=keyboard
+MatchName=keyd virtual keyboard
+AttrKeyboardIntegration=internal
+EOF
 
 # instlal app
 # flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo 
-# install wechat install flatseal
+# wechat: official arm64 AppImage sandboxed by firejail (not flatpak)
+# --private makes ~/Downloads/wechat the sandbox $HOME, so wechat only sees that folder
+# (chat data lands in ~/Downloads/wechat/xwechat_files; drop files there to send them)
+sudo dnf install -y firejail
+WECHAT_APPIMAGE=$HOME/Downloads/WeChatLinux_arm64.AppImage
+WECHAT_HOME=$HOME/Downloads/wechat
+mkdir -p $WECHAT_HOME
+if [ ! -f $WECHAT_APPIMAGE ]; then
+    # official download page: https://linux.weixin.qq.com
+    curl -fL -o $WECHAT_APPIMAGE https://dldir1v2.qq.com/weixin/Universal/Linux/WeChatLinux_arm64.AppImage
+fi
+chmod +x $WECHAT_APPIMAGE
+if [ ! -f $WECHAT_HOME/wechat.png ]; then
+    (cd $(mktemp -d) && $WECHAT_APPIMAGE --appimage-extract wechat.png >/dev/null && cp squashfs-root/wechat.png $WECHAT_HOME/)
+fi
+mkdir -p ~/.local/share/applications
+cp $DOTFILES_HOME/linux/wechat.desktop ~/.local/share/applications/wechat.desktop
+update-desktop-database ~/.local/share/applications
+kbuildsycoca6  # KDE caches Exec lines; without this the menu keeps launching the old command
+# NO SCREENSHOTS for wechat. firejail's default profile leaves session D-Bus wide open, so the
+# desktop entry uses --dbus-user=filter: only notifications, tray (SNI; 4 is wechat's pid inside
+# the firejail pid namespace) and fcitx5 are allowed; org.freedesktop.portal.Desktop
+# (screenshot/screencast portal) and org.freedesktop.systemd1 (sandbox escape) are unreachable.
+# Belt and braces: also deny the screenshot portal for the "wechat" app id (from wechat.desktop).
+# To debug what it tries to reach: add --dbus-user.log --dbus-log=/tmp/wechat-dbus.log
+flatpak permission-set screenshot screenshot wechat no
+# X11 has no isolation: wechat shares the single XWayland server, so it can still see other X11
+# windows (Steam, wine, games). Clipboard: KWin only hands the clipboard to XWayland while an X11
+# window is focused, so wechat can't read it while you're in Wayland apps, but can whenever wechat
+# or any other X11 window (Steam...) is active. Kept on purpose: wechat is unusable without
+# clipboard (--x11=xephyr would isolate it). At least don't forward Wayland keystrokes to X11 apps.
+# Same as App Permissions > Legacy X11 App Support > "Never".
+kwriteconfig6 --file kwinrc --group Xwayland --key XwaylandEavesdrops None
+# HiDPI: wechat is X11-only (statically linked Qt xcb, no wayland), so let XWayland apps scale
+# themselves, otherwise KWin upscales a 1x bitmap and it's blurry. Don't set QT_SCALE_FACTOR on
+# top of this or it double-scales. Same as Display > Legacy X11 apps > "Apply scaling themselves".
+kwriteconfig6 --file kdeglobals --group KScreen --key XwaylandClientsScale true
 sudo dnf install -y fcitx5 
 sudo dnf install -y fcitx5-autostart 
 sudo dnf install -y fcitx5-configtool 
