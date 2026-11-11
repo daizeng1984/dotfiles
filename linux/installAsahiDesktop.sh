@@ -244,7 +244,8 @@ pkill kaccess; kaccess &
 cd $_PWD
 
 mamba install -y -c conda-forge rust
-cargon install tickrs
+cargo install claude-history
+cargo install tickrs
 # tickrs tray popup (KDE): autostart the tray icon
 # needs kitty (quick-access-terminal kitten), PyQt6 for system python, and tickrs
 # itself (nix programs.nix or `cargo install tickrs`)
