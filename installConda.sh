@@ -56,7 +56,7 @@ mamba install -y -c conda-forge patool
 mamba install -y -c conda-forge ranger-fm # might need mamba install standard-imghdr in python 3.13
 mamba install -y -c conda-forge eza
 mamba install -y -c conda-forge bat
-mamba install -y -c conda-forge broot
+mamba install -y -c conda-forge dust
 mamba install -y -c conda-forge httpie
 mamba install -y -c conda-forge htop
 mamba install -y -c conda-forge pandoc

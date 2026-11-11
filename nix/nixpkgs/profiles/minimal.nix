@@ -32,7 +32,7 @@ in
     gnugrep
     tree
     duf
-    broot
+    dust
     ranger
     du-dust
     tealdeer

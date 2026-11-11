@@ -170,8 +170,9 @@ e() {
     dtrx -v $@
 }
 
+# Disk usage tree, biggest last (dust replaced broot)
 br() {
-    broot --sort-by-size -h $@
+    dust "$@"
 }
 
 # Env var for API Keys etc.
