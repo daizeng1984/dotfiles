@@ -101,7 +101,7 @@ installedFasd=$(checkIfInstalled "fasd" fasd --quiet)
 installedZoxide=$(checkIfInstalled "zoxide" zoxide --quiet)
 installedDirenv=$(checkIfInstalled "direnv" direnv --quiet)
 installedDircolors=$(checkIfInstalled "dircolors" dircolors --quiet)
-installedExa=$(checkIfInstalled "exa" exa --quiet)
+installedEza=$(checkIfInstalled "eza" eza --quiet)
 installedRipGrep=$(checkIfInstalled "rg" ripgrep --quiet)
 installedXdgOpen=$(checkIfInstalled "xdg-open" xdg-open --quiet)
 installedTgpt=$(checkIfInstalled "tgpt" tgpt --quiet)
@@ -111,10 +111,10 @@ if [ "$installedDircolors" = "1" ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
 fi
 
-if [ "$installedExa" = "1" ] ; then
+if [ "$installedEza" = "1" ] ; then
     alias la='ls -A'
     alias l='ls -CF'
-    alias ll='exa -alF -snew'
+    alias ll='eza -alF -s newest'
 else
     alias ll='ls -ahlF'
     alias la='ls -A'

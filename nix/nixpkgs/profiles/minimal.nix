@@ -41,7 +41,7 @@ in
     trash-cli
     rsync
     fd
-    exa
+    eza
     bat
     htop
     miniserve
